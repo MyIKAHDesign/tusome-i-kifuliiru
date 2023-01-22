@@ -39,7 +39,7 @@ const config: DocsThemeConfig = {
   },
   footer: {
     text: <span>
-      AYIVUGWE KABEMBA {new Date().getFullYear()} © <a href="https://kifuliiru.vercel.app/" target="_blank">Tumenye Ibufuliiru</a>. Guno mukolwa guliri hano higulu tumenye bingi ku Kifuliiru.
+      Tusome i Kifuliiru {new Date().getFullYear()} © <a href="https://kifuliiru.vercel.app/" target="_blank">Tumenye Ibufuliiru</a>. Guno mukolwa guliri hano higulu tumenye bingi ku Kifuliiru.
     </span>,
   },
   search:{
