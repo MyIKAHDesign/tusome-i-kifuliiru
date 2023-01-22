@@ -11,9 +11,9 @@ const config: DocsThemeConfig = {
     link: 'https://discord.com',
   },
   docsRepositoryBase: 'https://github.com/MyIKAHDesign/tusome-i-kifuliiru',
-  footer: {
-    text: 'Tusome i Kifuliiru',
-  },
+  // footer: {
+  //   text: 'Tusome i Kifuliiru',
+  // },
   useNextSeoProps() {
     const { route } = useRouter()
     if (route !== '/') {
