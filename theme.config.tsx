@@ -44,9 +44,9 @@ const config: DocsThemeConfig = {
   },
   search:{
     placeholder: "Looza hano...",
-    emptyResult: "Ndabyo twaloonga",
-    loading: "Tugweeti tugalooza",
-    error:"Hali ibyagendeka buligo",
+    // emptyResult: "Ndabyo twaloonga",
+    // loading: "Tugweeti tugalooza",
+    // error:"Hali ibyagendeka buligo",
 
   },
 }
