@@ -49,9 +49,9 @@ const config: DocsThemeConfig = {
     // error:"Hali ibyagendeka buligo",
 
   },
-  sidebar:{
-    toggleButton:true,
-  },
+  // sidebar:{
+  //   toggleButton:true,
+  // },
 }
 
 export default config
