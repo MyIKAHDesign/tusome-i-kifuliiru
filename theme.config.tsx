@@ -34,13 +34,16 @@ const config: DocsThemeConfig = {
   banner: {
     key: '2.0-release',
     text: <a href="https://kifuliiru.vercel.app/" target="_blank">
-      🎉 Tusome i Kifuliiru 2.0. Wangakoli yaandika naho kifuliiru.vercel.comm.  Lenga hano →
+      🎉 Tusome i Kifuliiru 2.0. Wangakoli yaandika naho kifuliiru.vercel.com.  Lenga hano →
     </a>,
   },
   footer: {
-    text: <span>
+    text: <div>
+      <span>
       Tusome i Kifuliiru {new Date().getFullYear()} © <a href="https://kifuliiru.vercel.app/" target="_blank">Tumenye Ibufuliiru</a>. Guno mukolwa guliri hano higulu tumenye bingi ku Kifuliiru.
-    </span>,
+    </span>
+    <p>Guno mukolwa guyimangirwi na <a href="https://ayivugwe.editorx.io/ayivugwekabemba" target="_blank">Ayivugwe Kabemba</a>.</p>
+    </div>,
   },
   search:{
     placeholder: "Looza hano...",
