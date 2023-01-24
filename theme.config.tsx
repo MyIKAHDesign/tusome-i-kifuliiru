@@ -42,7 +42,7 @@ const config: DocsThemeConfig = {
       <span>
       Tusome i Kifuliiru {new Date().getFullYear()} © <a href="https://kifuliiru.vercel.app/" target="_blank">Tumenye Ibufuliiru</a>. Guno mukolwa guliri hano higulu tumenye bingi ku Kifuliiru.
     </span>
-    <p>Guno mukolwa guyimangirwi na <a href="https://ayivugwe.editorx.io/ayivugwekabemba" target="_blank">Ayivugwe Kabemba</a>.</p>
+    <span>Guno mukolwa guyimangirwi na <a href="https://ayivugwe.editorx.io/ayivugwekabemba" target="_blank">Ayivugwe Kabemba</a>.</span>
     </div>,
   },
   search:{
