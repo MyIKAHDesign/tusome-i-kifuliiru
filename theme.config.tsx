@@ -40,7 +40,7 @@ const config: DocsThemeConfig = {
   footer: {
     text: <div style="column-count:2;">
       <span>
-      Tusome i Kifuliiru {new Date().getFullYear()} © <a href="https://kifuliiru.vercel.app/" target="_blank"> Tumenye Ibufuliiru</a>. Guno mukolwa guliri hano higulu tumenye bingi ku Kifuliiru. 
+      Tusome i Kifuliiru {new Date().getFullYear()} © <a href="https://kifuliiru.vercel.app/"> Tumenye Ibufuliiru</a>. Guno mukolwa guliri hano higulu tumenye bingi ku Kifuliiru. 
     </span>
     <span> Guno mukolwa guyimangirwi na <a href="https://ayivugwe.editorx.io/ayivugwekabemba" target="_blank">Ayivugwe Kabemba</a>.</span>
     </div>,
