@@ -40,9 +40,9 @@ const config: DocsThemeConfig = {
   footer: {
     text: <div>
       <span>
-      Tusome i Kifuliiru {new Date().getFullYear()} © <a href="https://kifuliiru.vercel.app/" target="_blank"> <style color="red">Tumenye Ibufuliiru</style></a>. Guno mukolwa guliri hano higulu tumenye bingi ku Kifuliiru.
+      Tusome i Kifuliiru {new Date().getFullYear()} © <a href="https://kifuliiru.vercel.app/" target="_blank"> Tumenye Ibufuliiru</a>. Guno mukolwa guliri hano higulu tumenye bingi ku Kifuliiru. 
     </span>
-    <span>Guno mukolwa guyimangirwi na <a href="https://ayivugwe.editorx.io/ayivugwekabemba" target="_blank"> <style color="red">Ayivugwe Kabemba</style></a>.</span>
+    <span> Guno mukolwa guyimangirwi na <a href="https://ayivugwe.editorx.io/ayivugwekabemba" target="_blank">Ayivugwe Kabemba</a>.</span>
     </div>,
   },
   search:{
