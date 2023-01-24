@@ -38,7 +38,7 @@ const config: DocsThemeConfig = {
     </a>,
   },
   footer: {
-    text: <div>
+    text: <div style="column-count=2;">
       <span>
       Tusome i Kifuliiru {new Date().getFullYear()} © <a href="https://kifuliiru.vercel.app/" target="_blank"> Tumenye Ibufuliiru</a>. Guno mukolwa guliri hano higulu tumenye bingi ku Kifuliiru. 
     </span>
