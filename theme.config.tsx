@@ -47,13 +47,13 @@ const config: DocsThemeConfig = {
   },
   search:{
     placeholder: "Looza hano...",
-    // emptyResult: "Ndabyo twaloonga",
-    // loading: "Tugweeti tugalooza",
-    // error:"Hali ibyagendeka buligo",
+    emptyResult: "Ndabyo twaloonga",
+    loading: "Tugweeti tugalooza",
+    error:"Hali ibitagendeka bwija",
   },
-  // sidebar:{
-  //   toggleButton:true,
-  // },
+  sidebar:{
+     toggleButton:true,
+  },
 }
 
 export default config
