@@ -51,9 +51,9 @@ const config: DocsThemeConfig = {
     // loading: "Tugweeti tugalooza",
     // error:"Hali ibyagendeka buligo",
   },
-  // sidebar:{
-  //   toggleButton:true,
-  // },
+  sidebar:{
+     toggleButton:true,
+  },
 }
 
 export default config
