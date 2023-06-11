@@ -38,7 +38,7 @@ const config: DocsThemeConfig = {
     </a>,
   },
   footer: {
-    text: <div style="column-count:2;">
+    text: <div>
       <span>
       Tusome i Kifuliiru {new Date().getFullYear()} © <a href="https://kifuliiru.vercel.app/"> Tumenye Ibufuliiru</a>. 
     </span>
