@@ -1,9 +1,18 @@
 {
   "index": "Ndondeezo",
-  "kifuliiru": "Kifuliiru, ndeto yitu",
-  "ibufuliiru":"Ibufuliiru, imwitu",
-  "ibindi": "Ibindi",
-  "ibiyandike-mu-kifuliiru":"Ibiyandike mu Kifuliiru",
+  "kifuliiru":{
+    "title":"Kifuliiru ndeto yitu",
+    "type":"page"
+  },
+  "ibufuliiru":{
+    "title":"Ibufuliiru",
+    "type":"page"
+  },
+  "ibindi":{
+    "title": "Ibindi",
+    "type":"page"
+  },
+  
   "ibikakolwa":"Ibikakolwa",
   "twehe": {
     "title": "Guno mukolwa",
