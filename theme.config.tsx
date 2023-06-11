@@ -34,15 +34,15 @@ const config: DocsThemeConfig = {
   banner: {
     key: '2.0-release',
     text: <a href="https://kifuliiru.vercel.app/" target="_blank">
-      🎉 Tusome i Kifuliiru 2.0. Wangakoli yaandika naho kifuliiru.vercel.com.  Lenga hano →
+      🎉 Tusome i Kifuliiru 2.0. Wangakoli yaandika naho kifuliiru.vercel.com. Lenga hano →
     </a>,
   },
   footer: {
     text: <div style="column-count:2;">
       <span>
-      Tusome i Kifuliiru {new Date().getFullYear()} © <a href="https://kifuliiru.vercel.app/"> Tumenye Ibufuliiru</a>. Guno mukolwa guliri hano higulu tumenye bingi ku Kifuliiru. 
+      Tusome i Kifuliiru {new Date().getFullYear()} © <a href="https://kifuliiru.vercel.app/"> Tumenye Ibufuliiru</a>. 
     </span>
-    <span> Guno mukolwa guyimangirwi na <a href="https://ayivugwe.editorx.io/ayivugwekabemba" target="_blank">Ayivugwe Kabemba</a>.</span>
+    <span> Mukolwa gumwa <a href="https://ayivugwe.editorx.io/ayivugwekabemba" target="_blank">Ayivugwe Kabemba</a>.</span>
     </div>,
   },
   search:{
@@ -50,7 +50,6 @@ const config: DocsThemeConfig = {
     // emptyResult: "Ndabyo twaloonga",
     // loading: "Tugweeti tugalooza",
     // error:"Hali ibyagendeka buligo",
-
   },
   // sidebar:{
   //   toggleButton:true,
