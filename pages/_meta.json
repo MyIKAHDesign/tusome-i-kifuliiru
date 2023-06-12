@@ -1,5 +1,8 @@
 {
-  "index": "Ndondeezo",
+  "index": {
+    "title":"Ndondeezo",
+    "type":"page"
+  },
   "kifuliiru":{
     "title":"Kifuliiru ndeto yitu",
     "type":"page"
