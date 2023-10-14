@@ -29,8 +29,8 @@ const config: DocsThemeConfig = {
   ),
   banner: {
     key: '2.0-release',
-    text: <a href="https://kifuliiru.vercel.app/" target="_blank">
-      🎉 Tusome i Kifuliiru 2.0. Wangakoli yaandika naho kifuliiru.vercel.com. Lenga hano →
+    text: <a href="https://ibufuliiru.editorx.io/kifuliiru" target="_blank">
+      🎉 Zatira namuyehuulo we' Kifuliiru. Lenga hano →
     </a>,
   },
   footer: {
