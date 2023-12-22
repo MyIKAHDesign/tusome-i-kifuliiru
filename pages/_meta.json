@@ -1,10 +1,14 @@
 {
   "index":"Ndondeezo",
-  "kifuliiru":"Kifuliiru ndeto yitu",
-  "ibufuliiru":"Ibufuliiru",
-  "ibindi":"Ibindi",
-  "ibikakolwa":"Ibikakolwa na' Bafuliiru",
+  "kifuliiru":"Kifuliiru",
   "magambo-ge-kifuliiru":"Magambo ge'Kifuliiru",
+  "imigeeza":"Imigeeza ye'Kifuliiru",
+  "imigani":"Imigani ye'Kifuliiru",
+  "invumo":"Invumo mu Kifuliiru",
+  "ibufuliiru":"Ibufuliiru",
+  "ibikakolwa":"Ibikakolwa na' Bafuliiru",
+  
+  "ibindi":"Ibindi",
   "twehe": {
     "title": "Guno mukolwa",
     "type": "page"
