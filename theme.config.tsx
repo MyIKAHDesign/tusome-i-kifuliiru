@@ -26,7 +26,8 @@ const config: DocsThemeConfig = {
       <meta property="og:title" content="Tusome i Kifuliiru mu Kifuliiru" />
       <meta property="og:description" content="Tusome indeto yitu Kifuliiru mu Kifuliiru. Kifuliiru ndeto yitu, ndeto ngale. Learn the Kifuliiru language in Kifuliiru.
       This website is here to learn the Kifuliiru language and to promote it. The Kifuliiru language is a language spoken in DRCongo, the Congo-Kinshasa; in the Eastern part, in Uvira territory, South Kivu province. 
-      You may have been asking yourself about what this language is? How can I learn it? Here is the platform for the Kifuliiru language for learners or students and teachers as well." />
+      You may have been asking yourself about what this language is? How can I learn it? Here is a platform for the Kifuliiru language for learners or students and teachers as well." />
+      <meta property="og:image" content=".github/DRCongo.png" />
     </>
   ),
   banner: {
