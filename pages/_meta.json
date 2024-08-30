@@ -1,8 +1,25 @@
 {
-  "index":"Ndondeezo",
-  "kifuliiru":"Kifuliiru",
-  "imigani":"Imigani",
-  "amagambo":"Amagambo ge'Kifuliiru",
+  "index": {
+    "title": "Ndondeezo",
+    "type": "page"
+  },
+  "ndondeero_tusome": {
+    "title": "Ndondeezo",
+    "type": "page"
+  },
+  "kifuliiru": {
+    "title": "Kifuliiru",
+    "type": "page"
+  },
+  "imigani": {
+    "title": "Imigani",
+    "type": "page"
+  },
+  "amagambo": {
+    "title": "Amagambo ge'Kifuliiru",
+    "type": "page"
+  },
+
   "twehe": {
     "title": "Guno mukolwa",
     "type": "page"
@@ -13,5 +30,4 @@
     "href": "https://ibufuliiru.editorx.io/ibufuliiru/tuyandikire",
     "newWindow": true
   }
-
 }
