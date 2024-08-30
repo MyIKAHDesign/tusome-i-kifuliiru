@@ -3,8 +3,8 @@
     "title": "Ndondeezo",
     "type": "page"
   },
-  "ndondeero_tusome": {
-    "title": "Ndondeezo",
+  "tusome": {
+    "title": "Tusome",
     "type": "page"
   },
   "kifuliiru": {
@@ -19,10 +19,20 @@
     "title": "Amagambo ge'Kifuliiru",
     "type": "page"
   },
-
   "twehe": {
-    "title": "Guno mukolwa",
-    "type": "page"
+    "title": "Twehe",
+    "type": "menu",
+    "items": {
+      "twehe": {
+        "title": "Guno mukolwa",
+        "type": "page"
+      },
+
+      "umwandisi": {
+        "title": "Umwandisi",
+        "type": "page"
+      }
+    }
   },
   "contact": {
     "title": "Tuyandikire ↗",
