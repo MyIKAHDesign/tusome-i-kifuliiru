@@ -19,15 +19,12 @@
     "title": "Imigeeza",
     "type": "page"
   },
-  "amagambo": {
-    "title": "Amagambo ge'Kifuliiru",
-    "type": "page"
-  },
+
   "ibufuliiru": {
     "title": "Ibufuliiru",
     "type": "menu",
     "items": {
-      "imwitu_ibufuliiru": {
+      "imwitu-ibufuliiru": {
         "title": "Ibufuliiru",
         "type": "page"
       },
@@ -49,6 +46,10 @@
     "title": "Bingi ku Kifuliiru",
     "type": "menu",
     "items": {
+      "amagambo": {
+        "title": "Amagambo ge'Kifuliiru",
+        "type": "page"
+      },
       "bitaabo-bya-bafuliiru": {
         "title": "Ibitaabo bya'Bafuliiru",
         "type": "page"
