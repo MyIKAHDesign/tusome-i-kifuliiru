@@ -4,7 +4,7 @@ Tusome i Kifuliiru.
 
 [**Longa bingi ku Kifuliiru hano →**](https://ibufuliiru.editorx.io/ibufuliiru/kifuliiru)
 
-[![](.github/screenshot.png)](https://ibufuliiru.editorx.io/ibufuliiru/kifuliiru)
+[![](.github/kifuliiru.png)](https://ibufuliiru.editorx.io/ibufuliiru/kifuliiru)
 
 ## Gwajika bwijabiwja usome indeto yitu Kifuliiru.
 
