@@ -1,7 +1,26 @@
 {
-
-    "imigeeza":"Imigeeza",
-    "imikolwa":"Imikolwa mu Kifuliiru",
-    "invumo":"Ukufuma mu Kifuliiru"
-
+  "bitaabo-bya-bafuliiru": {
+    "title": "Ibitaabo bya'Bafuliiru",
+    "type": "page"
+  },
+  "imikolwa": {
+    "title": "Imikolwa",
+    "type": "page"
+  },
+  "invumo": {
+    "title": "Ukufuma mu Kifuliiru",
+    "type": "page"
+  },
+  "ibinamishwa-mu-kifuliiru": {
+    "title": "Ibinamishwa mu Kifuliiru",
+    "type": "page"
+  },
+  "ibufuliiru.com": {
+    "title": "Ibufuliiru.com",
+    "type": "page"
+  },
+  "tuganule-i-kifuliiru": {
+    "title": "Tuganuule i Kifuliiru",
+    "type": "page"
+  }
 }

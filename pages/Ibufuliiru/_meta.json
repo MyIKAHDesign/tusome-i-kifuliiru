@@ -1,6 +1,18 @@
 {
-    
-    "imigazi":"Imigazi ye'Bufuliiru",
-    "inyiji":"Inyiji ze'Bufuliiru",
-    "utwaya":"Utwaya twe'Bufuliiru"
+  "imwitu_ibufuliiru": {
+    "title": "Imwitu Ibufuliiru",
+    "type": "page"
+  },
+  "imigazi": {
+    "title": "Imigazi ye'Bufuliiru",
+    "type": "page"
+  },
+  "inyiji": {
+    "title": "Inyiji ze'Bufuliiru",
+    "type": "page"
+  },
+  "utwaya": {
+    "title": "Utwaya twe'Bufuliiru",
+    "type": "page"
+  }
 }
