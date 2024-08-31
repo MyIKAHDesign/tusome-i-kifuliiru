@@ -20,28 +20,6 @@
     "type": "page"
   },
 
-  "ibufuliiru": {
-    "title": "Ibufuliiru",
-    "type": "menu",
-    "items": {
-      "imwitu-ibufuliiru": {
-        "title": "Ibufuliiru",
-        "type": "page"
-      },
-      "imigazi": {
-        "title": "Imigazi",
-        "type": "page"
-      },
-      "inyiji": {
-        "title": "Inyiji",
-        "type": "page"
-      },
-      "utwaya": {
-        "title": "Utwaya",
-        "type": "page"
-      }
-    }
-  },
   "bingi-ku-kifuliiru": {
     "title": "Bingi ku Kifuliiru",
     "type": "menu",
