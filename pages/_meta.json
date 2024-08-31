@@ -19,9 +19,27 @@
     "title": "Imigeeza",
     "type": "page"
   },
-  "ibufuliiru": {
-    "title": "Ibufuliiru",
-    "type": "page"
+  "imwitu": {
+    "title": "Imwitu",
+    "type": "menu",
+    "items": {
+      "ibufuliiru": {
+        "title": "Ibufuliiru",
+        "type": "page"
+      },
+      "imigazi": {
+        "title": "Imigazi",
+        "type": "page"
+      },
+      "inyiji": {
+        "title": "Inyiji",
+        "type": "page"
+      },
+      "utwaya": {
+        "title": "Utwaya",
+        "type": "page"
+      }
+    }
   },
   "bingi-ku-kifuliiru": {
     "title": "Bingi ku Kifuliiru",
