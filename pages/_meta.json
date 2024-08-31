@@ -49,19 +49,27 @@
     "title": "Bingi ku Kifuliiru",
     "type": "menu",
     "items": {
-      "ibiyandike_mu_kifuliiru": {
-        "title": "Ibiyandike mu Kifuliiru",
+      "bitaabo-bya-bafuliiru": {
+        "title": "Ibitaabo bya'Bafuliiru",
         "type": "page"
       },
       "imikolwa": {
-        "title": "Ibikole mu Kifuliiru",
+        "title": "Imikolwa",
         "type": "page"
       },
       "invumo": {
-        "title": "Imvumo",
+        "title": "Ukufuma mu Kifuliiru",
         "type": "page"
       },
-      "tuganule_i_kifuliiru": {
+      "ibinamishwa-mu-kifuliiru": {
+        "title": "Ibinamishwa mu Kifuliiru",
+        "type": "page"
+      },
+      "ibufuliiru.com": {
+        "title": "Ibufuliiru.com",
+        "type": "page"
+      },
+      "tuganule-i-kifuliiru": {
         "title": "Tuganuule i Kifuliiru",
         "type": "page"
       }
