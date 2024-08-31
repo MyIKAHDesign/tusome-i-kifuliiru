@@ -19,6 +19,52 @@
     "title": "Amagambo ge'Kifuliiru",
     "type": "page"
   },
+  "ibufuliiru":{
+    "title":"Ibufuliiru",
+    "type":"menu",
+    "items":{
+      "ibufuliiru":{
+        "title":"Ibufuliiru",
+        "type":"page"
+    
+      },
+      "imigazi":{
+        "title":"Imigazi",
+        "type":"page"
+      },
+      "inyiji":{
+      "title":"Inyiji",
+      "type":"page"
+      },
+      "utwaya":{
+        "title":"Utwaya",
+        "type":"page"
+      }
+      
+    }
+  },
+  "bingi-ku-kifuliiru":{
+    "title":"Bingi ku Kifuliiru",
+    "type":"menu",
+    "items":{
+      "ibiyandike_mu_kifuliiru":{
+        "title":"Ibiyandike mu Kifuliiru",
+        "type":"page"
+      },
+      "imikolwa":{
+        "title":"Ibikole mu Kifuliiru",
+        "type":"page"
+      },
+      "invumo":{
+        "title":"Imvumo",
+        "type":"page"
+      },
+      "tuganule_i_kifuliiru":{
+        "title":"Tuganuule i Kifuliiru",
+        "type":"page"
+      }
+    }
+  },
   "twehe": {
     "title": "Twehe",
     "type": "menu",
