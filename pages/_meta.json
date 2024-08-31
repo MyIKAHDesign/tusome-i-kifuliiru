@@ -1,20 +1,89 @@
 {
-  "index":"Ndondeezo",
-  "kifuliiru":"Kifuliiru",
-  "magambo-ge-kifuliiru":"Magambo ge'Kifuliiru",
-  "imigeeza":"Imigeeza ye'Kifuliiru",
-  "imigani":"Imigani ye'Kifuliiru",
-  "invumo":"Invumo mu Kifuliiru",
-  "ibikakolwa":"Ibikakolwa na' Bafuliiru",  
-  "ibindi":"Ibindi",
-  "twehe": {
-    "title": "Guno mukolwa",
+  "index": {
+    "title": "Ndondeezo",
     "type": "page"
+  },
+  "tusome": {
+    "title": "Tusome",
+    "type": "page"
+  },
+  "kifuliiru": {
+    "title": "Kifuliiru",
+    "type": "page"
+  },
+  "imigani": {
+    "title": "Imigani",
+    "type": "page"
+  },
+  "amagambo": {
+    "title": "Amagambo ge'Kifuliiru",
+    "type": "page"
+  },
+  "ibufuliiru":{
+    "title":"Ibufuliiru",
+    "type":"menu",
+    "items":{
+      "imwitu_ibufuliiru":{
+        "title":"Ibufuliiru",
+        "type":"page"
+    
+      },
+      "imigazi":{
+        "title":"Imigazi",
+        "type":"page"
+      },
+      "inyiji":{
+      "title":"Inyiji",
+      "type":"page"
+      },
+      "utwaya":{
+        "title":"Utwaya",
+        "type":"page"
+      }
+      
+    }
+  },
+  "bingi-ku-kifuliiru":{
+    "title":"Bingi ku Kifuliiru",
+    "type":"menu",
+    "items":{
+      "ibiyandike_mu_kifuliiru":{
+        "title":"Ibiyandike mu Kifuliiru",
+        "type":"page"
+      },
+      "imikolwa":{
+        "title":"Ibikole mu Kifuliiru",
+        "type":"page"
+      },
+      "invumo":{
+        "title":"Imvumo",
+        "type":"page"
+      },
+      "tuganule_i_kifuliiru":{
+        "title":"Tuganuule i Kifuliiru",
+        "type":"page"
+      }
+    }
+  },
+  "twehe": {
+    "title": "Twehe",
+    "type": "menu",
+    "items": {
+      "twehe": {
+        "title": "Guno mukolwa",
+        "type": "page"
+      },
+
+      "umwandisi": {
+        "title": "Umwandisi",
+        "type": "page"
+      }
+    }
   },
   "contact": {
     "title": "Tuyandikire ↗",
     "type": "page",
-    "href": "https://ibufuliiru.io/ibufuliiru/tuyandikire",
+    "href": "https://ibufuliiru.editorx.io/ibufuliiru/tuyandikire",
     "newWindow": true
   }
 }
