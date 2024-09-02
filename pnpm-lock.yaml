@@ -1969,7 +1969,7 @@ packages:
       "@next/env": 13.0.6
       "@swc/helpers": 0.4.14
       caniuse-lite: 1.0.30001435
-      postcss: 8.4.31
+      postcss: 8.4.14
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       styled-jsx: 5.1.0_react@18.2.0
