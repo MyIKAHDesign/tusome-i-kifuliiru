@@ -70,7 +70,7 @@ const config: DocsThemeConfig = {
     // error: "Hali ibitagendeka bwija",
   },
   sidebar: {
-    toggleButton: true,
+    // toggleButton: true,
   },
 };
 
