@@ -53,8 +53,6 @@ const config: DocsThemeConfig = {
           <a href="https://kifuliiru.net/"> Tumenye Ibufuliiru</a>.
         </span>
         <span>
-          {" "}
-          Mukolwa gumwa{" "}
           <a href="https://ayivugwekabemba.me" target="_blank">
             Ayivugwe Kabemba Mukome
           </a>
