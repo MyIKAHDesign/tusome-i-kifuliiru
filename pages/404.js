@@ -9,7 +9,7 @@ export default function Custom404() {
         bikahamikizibwa mu kindi kibaaja, looza kandi li uhinduule ku
         ndondeero. Kongwa.
       </p>
-      <button onClick={() => window.location.href = './index'}>
+      <button onClick={() => window.location.href = '/index'}>
         Hinduula ku ndondeero
       </button>
     </>
