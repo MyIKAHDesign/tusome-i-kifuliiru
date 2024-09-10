@@ -7,7 +7,6 @@ const config: DocsThemeConfig = {
   project: {
     link: "https://github.com/MyIKAHDesign/tusome-i-kifuliiru",
   },
-  faviconGlyph: ,
 
   docsRepositoryBase: "https://github.com/MyIKAHDesign/tusome-i-kifuliiru",
   // footer: {
@@ -36,7 +35,7 @@ const config: DocsThemeConfig = {
       You may have been asking yourself about what this language is? How can I learn it? Here is a platform for the Kifuliiru language for learners or students and teachers as well."
       />
       <meta property="og:image" content=".github/DRCongo.png" />
-      <link rel="icon" href="/favicon.ico"/>
+      <link rel="icon" href="/favicon.ico" />
     </>
   ),
   banner: {
@@ -52,7 +51,7 @@ const config: DocsThemeConfig = {
       <div>
         <span>
           Tusome i Kifuliiru {new Date().getFullYear()} ©{" "}
-          <a href="https://kifuliiru.net/"> Tumenye Ibufuliiru </a>. 
+          <a href="https://kifuliiru.net/"> Tumenye Ibufuliiru </a>.
         </span>
         <span>
           <a href="https://ayivugwekabemba.me" target="_blank">
