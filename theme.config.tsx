@@ -35,7 +35,7 @@ const config: DocsThemeConfig = {
       You may have been asking yourself about what this language is? How can I learn it? Here is a platform for the Kifuliiru language for learners or students and teachers as well."
       />
       <meta property="og:image" content=".github/DRCongo.png" />
-      <link rel="icon" href="/kifuliiru.png" type="image/png" />
+      <link rel="icon" href="../kifuliiru.png" type="image/png" />
     </>
   ),
   banner: {
