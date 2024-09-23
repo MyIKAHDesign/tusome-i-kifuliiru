@@ -4,11 +4,11 @@ import { useRouter } from "next/router";
 
 const config: DocsThemeConfig = {
   logo: <span>Tusome i Kifuliiru</span>,
-  project: {
-    link: "https://github.com/MyIKAHDesign/tusome-i-kifuliiru",
-  },
+  // project: {
+  //   link: "https://github.com/MyIKAHDesign/tusome-i-kifuliiru",
+  // },
 
-  docsRepositoryBase: "https://github.com/MyIKAHDesign/tusome-i-kifuliiru",
+  //docsRepositoryBase: "https://github.com/MyIKAHDesign/tusome-i-kifuliiru",
   // footer: {
   //   text: 'Tusome i Kifuliiru',
   // },
