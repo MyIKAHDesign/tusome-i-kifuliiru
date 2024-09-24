@@ -4,6 +4,9 @@ import { useRouter } from "next/router";
 
 const config: DocsThemeConfig = {
   logo: <span>Tusome i Kifuliiru</span>,
+
+  //Remove GitHub link and icon on website. To display it, uncomment these lines below.
+
   // project: {
   //   link: "https://github.com/MyIKAHDesign/tusome-i-kifuliiru",
   // },
