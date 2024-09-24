@@ -5,11 +5,10 @@ import { useRouter } from "next/router";
 const config: DocsThemeConfig = {
   logo: <span>Tusome i Kifuliiru</span>,
   project: {
-    link: "https://ibufuliiru.editorx.io/ibufuliiru/tuyandikire",
+    link: "https://github.com/MyIKAHDesign/tusome-i-kifuliiru",
   },
 
-  docsRepositoryBase: "https://ibufuliiru.editorx.io/ibufuliiru/tuyandikire",
-  //docsRepositoryBase: "https://github.com/MyIKAHDesign/tusome-i-kifuliiru",
+  docsRepositoryBase: "https://github.com/MyIKAHDesign/tusome-i-kifuliiru",
   // footer: {
   //   text: 'Tusome i Kifuliiru',
   // },
@@ -52,7 +51,7 @@ const config: DocsThemeConfig = {
       <div>
         <span>
           Tusome i Kifuliiru {new Date().getFullYear()} ©{" "}
-          <a href="https://kifuliiru.net/"> Tumenye Ibufuliiru </a>.
+          <a href="https://kifuliiru.net/"> Tumenye Ibufuliiru </a>.  
         </span>
         <span>
           <a href="https://ayivugwekabemba.me" target="_blank">
