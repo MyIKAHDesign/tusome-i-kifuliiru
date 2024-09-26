@@ -106,9 +106,19 @@
     "title":"ENG/SWA/FRN",
     "type":"menu",
     "items":{
-      "kiswahili":"Kiswahili ",
-      "english":"English",
-      "francais":"Français"
+      "kiswahili":{
+        "title":"Kiswahili",
+        "type":"page"
+      },
+            
+      "english":{
+        "title":"English",
+        "type":"page"
+      },
+      "francais":{
+        "title":"Français",
+        "type":"page"
+      }
     }
   }
 }
