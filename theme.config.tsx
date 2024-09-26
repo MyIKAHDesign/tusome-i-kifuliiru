@@ -61,7 +61,7 @@ const config: DocsThemeConfig = {
           <a href="https://ayivugwekabemba.me" target="_blank">
            By Ayivugwe Kabemba Mukome
           </a>
-          .
+          
         </span>
       </div>
     ),
