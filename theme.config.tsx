@@ -54,11 +54,12 @@ const config: DocsThemeConfig = {
       <div>
         <span>
           Tusome i Kifuliiru {new Date().getFullYear()} ©{" "}
-          <a href="https://kifuliiru.net/"> Tumenye Ibufuliiru </a>.  
+          <a href="https://kifuliiru.net/"> Tumenye Ibufuliiru </a>  
         </span>
+       
         <span>
           <a href="https://ayivugwekabemba.me" target="_blank">
-            Ayivugwe Kabemba Mukome
+           By Ayivugwe Kabemba Mukome
           </a>
           .
         </span>
