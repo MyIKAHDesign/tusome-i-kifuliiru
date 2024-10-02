@@ -15,6 +15,11 @@
       "francais": {
         "title": "Français",
         "type": "page"
+      },
+
+      "tukole": {
+        "title": "Tukole",
+        "type": "page"
       }
     }
   }
