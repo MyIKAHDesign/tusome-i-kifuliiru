@@ -1,0 +1,21 @@
+{
+  "eng-frn-swa": {
+    "title": "ENG/FRN/SWA",
+    "type": "menu",
+    "items": {
+      "kiswahili": {
+        "title": "Kiswahili",
+        "type": "page"
+      },
+
+      "english": {
+        "title": "English",
+        "type": "page"
+      },
+      "francais": {
+        "title": "Français",
+        "type": "page"
+      }
+    }
+  }
+}

@@ -2,11 +2,11 @@
   "index": {
     "title": "Muyegerere"
   },
-  "tusome":{
-    "title":"Tusome",
-    "type":"page",
-    "href":"/",
-    "newWindow":false
+  "tusome": {
+    "title": "Tusome",
+    "type": "page",
+    "href": "/",
+    "newWindow": false
   },
   "ndondeero_tusome": "Menya bino",
   "ukuharura": "Ukuharura mu Kifuliiru",
@@ -102,22 +102,22 @@
     "newWindow": true
   },
 
-  "plus":{
-    "title":"ENG/SWA/FRN",
-    "type":"menu",
-    "items":{
-      "kiswahili":{
-        "title":"Kiswahili",
-        "type":"page"
+  "eng-frn-swa": {
+    "title": "ENG/SWA/FRN",
+    "type": "menu",
+    "items": {
+      "kiswahili": {
+        "title": "Kiswahili",
+        "type": "page"
       },
-            
-      "english":{
-        "title":"English",
-        "type":"page"
+
+      "english": {
+        "title": "English",
+        "type": "page"
       },
-      "francais":{
-        "title":"Français",
-        "type":"page"
+      "francais": {
+        "title": "Français",
+        "type": "page"
       }
     }
   }
