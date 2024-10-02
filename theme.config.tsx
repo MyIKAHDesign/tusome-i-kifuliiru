@@ -27,11 +27,7 @@ const config: DocsThemeConfig = {
   // </img>
   //   ),
 
-  logo: (
-    <img src="kifuliiru.png" alt="Kifuliiru logo">
-      <span>Tusome i Kifuliiru</span>{" "}
-    </img>
-  ),
+  logo: <span>Tusome i Kifuliiru</span>,
 
   //Remove GitHub link and icon on website. To display it, uncomment these lines below.
 
