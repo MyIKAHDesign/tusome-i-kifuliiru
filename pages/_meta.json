@@ -100,5 +100,25 @@
     "type": "page",
     "href": "https://ibufuliiru.editorx.io/ibufuliiru/tuyandikire",
     "newWindow": true
+  },
+
+  "eng-frn-swa": {
+    "title": "ENG/SWA/FRN",
+    "type": "menu",
+    "items": {
+      "kiswahili": {
+        "title": "Kiswahili",
+        "type": "page"
+      },
+
+      "english": {
+        "title": "English",
+        "type": "page"
+      },
+      "francais": {
+        "title": "Français",
+        "type": "page"
+      }
+    }
   }
 }
