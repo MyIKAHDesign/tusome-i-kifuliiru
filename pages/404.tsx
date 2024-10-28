@@ -74,17 +74,29 @@ const ArrowLeftIcon = () => (
 const NotFound404 = () => {
   React.useEffect(() => {
     const styleSheet = document.createElement("style");
-    styleSheet.textContent = `
+    const newLocal = (styleSheet.textContent = `
+      * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
       .container-404 {
         min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 1rem;
-        background-color: #fff;
-        color: #111827;
-        transition: background-color 0.2s, color 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* Remove the padding */
+  background-color: #fff;
+  color: #111827;
+  transition: background-color 0.2s, color 0.2s;
+  margin: 0; /* Ensure no margin */
+  width: 100%; /* Ensure full width */
       }
 
       .content-wrapper {
@@ -290,7 +302,7 @@ const NotFound404 = () => {
           height: 48px;
         }
       }
-    `;
+    `);
     document.head.appendChild(styleSheet);
 
     return () => {
