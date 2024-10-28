@@ -1,85 +1,259 @@
-import React from 'react';
-import { Search, Home, AlertCircle, ChevronRight, MoveLeft } from 'lucide-react';
+import React from "react";
+import {
+  Search,
+  Home,
+  AlertCircle,
+  MoveLeft,
+  ChevronRight,
+} from "lucide-react";
 
 const NotFound404 = () => {
+  React.useEffect(() => {
+    const styleSheet = document.createElement("style");
+    styleSheet.textContent = `
+      .container-404 {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        background-color: #fff;
+        color: #111827;
+        transition: background-color 0.2s, color 0.2s;
+      }
+
+      .content-wrapper {
+        max-width: 42rem;
+        width: 100%;
+        text-align: center;
+      }
+
+      .error-container {
+        position: relative;
+        height: 12rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 3rem;
+      }
+
+      .error-number {
+        font-size: 8rem;
+        font-weight: bold;
+        color: #2563eb;
+      }
+
+      .error-icon {
+        position: absolute;
+        top: -0.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #ef4444;
+        animation: bounce 1s infinite;
+      }
+
+      .main-heading {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 1rem 0;
+        padding: 0 1rem;
+      }
+
+      .support-text {
+        color: #4b5563;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+        font-size: 1rem;
+      }
+
+      .buttons-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 2rem;
+        padding: 0 1rem;
+      }
+
+      .button {
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        transition: all 0.2s;
+        font-size: 1rem;
+      }
+
+      .button-primary {
+        background-color: #2563eb;
+        color: white;
+      }
+
+      .button-primary:hover {
+        background-color: #1d4ed8;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .button-secondary {
+        background-color: #e5e7eb;
+        color: #111827;
+      }
+
+      .button-secondary:hover {
+        background-color: #d1d5db;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #2563eb;
+        text-decoration: none;
+        margin-top: 2rem;
+        font-size: 1rem;
+      }
+
+      .back-link:hover {
+        color: #1d4ed8;
+      }
+
+      .icon {
+        transition: transform 0.2s;
+      }
+
+      .button-primary:hover .icon-right {
+        transform: translateX(4px);
+      }
+
+      .button-primary:hover .icon-left {
+        transform: translateX(-4px);
+      }
+
+      .back-link:hover .icon-left {
+        transform: translateX(-4px);
+      }
+
+      @keyframes bounce {
+        0%, 100% {
+          transform: translateY(0) translateX(-50%);
+        }
+        50% {
+          transform: translateY(-10px) translateX(-50%);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .container-404 {
+          background-color: #111827;
+          color: white;
+        }
+
+        .support-text {
+          color: #9ca3af;
+        }
+
+        .button-secondary {
+          background-color: #374151;
+          color: white;
+        }
+
+        .button-secondary:hover {
+          background-color: #4b5563;
+        }
+      }
+
+      @media (min-width: 640px) {
+        .buttons-container {
+          flex-direction: row;
+        }
+
+        .error-number {
+          font-size: 9rem;
+        }
+
+        .main-heading {
+          font-size: 2rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .error-container {
+          height: 8rem;
+        }
+
+        .error-number {
+          font-size: 6rem;
+        }
+
+        .main-heading {
+          font-size: 1.25rem;
+        }
+      }
+    `;
+    document.head.appendChild(styleSheet);
+
+    return () => {
+      document.head.removeChild(styleSheet);
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col items-center justify-center p-4 transition-colors duration-200">
-      <div className="max-w-2xl w-full text-center space-y-8 px-4">
-        {/* Responsive 404 Container with Centered Icon */}
-        <div className="relative h-32 sm:h-48 flex items-center justify-center mb-12">
-          <h1 className="text-6xl sm:text-8xl md:text-9xl font-bold text-blue-600 dark:text-blue-500 transition-colors duration-200">
-            404
-          </h1>
-          <AlertCircle 
-            className="w-16 sm:w-20 h-16 sm:h-20 text-red-500 dark:text-red-400 absolute top-0 sm:-top-4 left-1/2 -translate-x-1/2 animate-bounce" 
-          />
+    <div className="container-404">
+      <div className="content-wrapper">
+        <div className="error-container">
+          <h1 className="error-number">404</h1>
+          <AlertCircle size={64} className="error-icon" />
         </div>
-        
-        {/* Main Message - Responsive Text */}
-        <div className="flex items-center justify-center gap-2 animate-fadeIn">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold px-4">
-            Ngisi biindu ushuba mulooza ndabyo twaloonga
-          </h2>
-        </div>
-        
-        {/* Supportive Text - Responsive */}
-        <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 transition-colors duration-200 animate-fadeIn max-w-prose mx-auto px-4">
-          Haliko bigaba bikahamikizibwa mu kindi kibaaja, looza kandi li uhinduule ku ndondeero
+
+        <h2 className="main-heading fade-in">
+          Ngisi biindu ushuba mulooza ndabyo twaloonga
+        </h2>
+
+        <p className="support-text fade-in">
+          Haliko bigaba bikahamikizibwa mu kindi kibaaja, looza kandi li
+          uhinduule ku ndondeero
         </p>
-        
-        {/* Responsive Navigation Links */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8 animate-fadeIn px-4">
-          <a 
-            href="/"
-            className="px-4 sm:px-6 py-3 bg-blue-600 dark:bg-blue-600 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-700 transition-all duration-200 flex items-center justify-center gap-2 group hover:shadow-lg text-sm sm:text-base"
-          >
-            <Home className="w-4 sm:w-5 h-4 sm:h-5 group-hover:-translate-x-1 transition-transform" />
+
+        <div className="buttons-container fade-in">
+          <a href="/" className="button button-primary">
+            <Home size={20} className="icon icon-left" />
             <span>Hindula ku ndondeero</span>
-            <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+            <ChevronRight size={20} className="icon icon-right" />
           </a>
-          
-          <a 
-            href="/search"
-            className="px-4 sm:px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-200 flex items-center justify-center gap-2 group hover:shadow-lg text-sm sm:text-base"
-          >
-            <Search className="w-4 sm:w-5 h-4 sm:h-5 group-hover:scale-110 transition-transform" />
+
+          <a href="/search" className="button button-secondary">
+            <Search size={20} className="icon" />
             <span>Looza hano</span>
           </a>
         </div>
 
-        {/* Responsive Return Link */}
-        <div className="mt-8 sm:mt-12 animate-fadeIn">
-          <a 
-            href="/"
-            className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors group text-sm sm:text-base"
-          >
-            <MoveLeft className="w-4 sm:w-5 h-4 sm:h-5 group-hover:-translate-x-2 transition-transform" />
-            <span>Garuka inyuma</span>
-          </a>
-        </div>
+        <a href="/" className="back-link fade-in">
+          <MoveLeft size={20} className="icon icon-left" />
+          <span>Garuka inyuma</span>
+        </a>
       </div>
     </div>
   );
 };
-
-// Add keyframe animations with responsive timing
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .animate-fadeIn {
-    animation: fadeIn 0.5s ease-out forwards;
-  }
-
-  @media (max-width: 640px) {
-    .animate-fadeIn {
-      animation-duration: 0.3s;
-    }
-  }
-`;
-document.head.appendChild(style);
 
 export default NotFound404;
