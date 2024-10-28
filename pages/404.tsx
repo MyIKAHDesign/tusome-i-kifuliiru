@@ -340,7 +340,7 @@ body {
             </span>
           </a>
 
-          <a href="/search" className="button button-secondary">
+          <a href="/" className="button button-secondary">
             <span className="icon">
               <SearchIcon />
             </span>
@@ -352,7 +352,7 @@ body {
           <span className="icon icon-left">
             <ArrowLeftIcon />
           </span>
-          <span>Garuka inyuma</span>
+          <span>Galuka inyuma</span>
         </a>
       </div>
     </div>
