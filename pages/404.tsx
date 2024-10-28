@@ -1,11 +1,75 @@
 import React from "react";
-import {
-  Search,
-  Home,
-  AlertCircle,
-  MoveLeft,
-  ChevronRight,
-} from "lucide-react";
+
+// SVG Icons as components
+const AlertIcon = () => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="12" r="10"></circle>
+    <line x1="12" y1="8" x2="12" y2="12"></line>
+    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+  </svg>
+);
+
+const HomeIcon = () => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+  </svg>
+);
+
+const SearchIcon = () => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="11" cy="11" r="8"></circle>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+);
+
+const ChevronRightIcon = () => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <polyline points="9 18 15 12 9 6"></polyline>
+  </svg>
+);
+
+const ArrowLeftIcon = () => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <line x1="19" y1="12" x2="5" y2="12"></line>
+    <polyline points="12 19 5 12 12 5"></polyline>
+  </svg>
+);
 
 const NotFound404 = () => {
   React.useEffect(() => {
@@ -51,6 +115,8 @@ const NotFound404 = () => {
         transform: translateX(-50%);
         color: #ef4444;
         animation: bounce 1s infinite;
+        width: 64px;
+        height: 64px;
       }
 
       .main-heading {
@@ -88,6 +154,11 @@ const NotFound404 = () => {
         font-size: 1rem;
       }
 
+      .button svg {
+        width: 20px;
+        height: 20px;
+      }
+
       .button-primary {
         background-color: #2563eb;
         color: white;
@@ -116,6 +187,11 @@ const NotFound404 = () => {
         text-decoration: none;
         margin-top: 2rem;
         font-size: 1rem;
+      }
+
+      .back-link svg {
+        width: 20px;
+        height: 20px;
       }
 
       .back-link:hover {
@@ -208,6 +284,11 @@ const NotFound404 = () => {
         .main-heading {
           font-size: 1.25rem;
         }
+
+        .error-icon {
+          width: 48px;
+          height: 48px;
+        }
       }
     `;
     document.head.appendChild(styleSheet);
@@ -222,7 +303,9 @@ const NotFound404 = () => {
       <div className="content-wrapper">
         <div className="error-container">
           <h1 className="error-number">404</h1>
-          <AlertCircle size={64} className="error-icon" />
+          <div className="error-icon">
+            <AlertIcon />
+          </div>
         </div>
 
         <h2 className="main-heading fade-in">
@@ -236,19 +319,27 @@ const NotFound404 = () => {
 
         <div className="buttons-container fade-in">
           <a href="/" className="button button-primary">
-            <Home size={20} className="icon icon-left" />
+            <span className="icon icon-left">
+              <HomeIcon />
+            </span>
             <span>Hindula ku ndondeero</span>
-            <ChevronRight size={20} className="icon icon-right" />
+            <span className="icon icon-right">
+              <ChevronRightIcon />
+            </span>
           </a>
 
           <a href="/search" className="button button-secondary">
-            <Search size={20} className="icon" />
+            <span className="icon">
+              <SearchIcon />
+            </span>
             <span>Looza hano</span>
           </a>
         </div>
 
         <a href="/" className="back-link fade-in">
-          <MoveLeft size={20} className="icon icon-left" />
+          <span className="icon icon-left">
+            <ArrowLeftIcon />
+          </span>
           <span>Garuka inyuma</span>
         </a>
       </div>
