@@ -1,6 +1,5 @@
 import React from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
-import { useRouter } from "next/router";
 
 const config: DocsThemeConfig = {
   //   logo: (<img src="kifuliiru.png"> <span>Tusome i Kifuliiru</span> ,
@@ -40,12 +39,9 @@ const config: DocsThemeConfig = {
   //   text: 'Tusome i Kifuliiru',
   // },
   useNextSeoProps() {
-    const { route } = useRouter();
-    if (route !== "/") {
-      return {
-        titleTemplate: "%s – Tusome i Kifuliiru",
-      };
-    }
+    return {
+      titleTemplate: "%s – Tusome i Kifuliiru",
+    };
   },
   head: (
     <>
