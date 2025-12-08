@@ -37,8 +37,18 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Brand Section */}
+          {/* Left Section: Sidebar Toggle + Brand */}
           <div className="flex items-center gap-4">
+            {/* Sidebar Toggle Button */}
+            <button
+              onClick={() => setSidebarOpen(!isSidebarOpen)}
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Toggle sidebar"
+            >
+              <Menu className={`w-5 h-5 transition-transform ${isSidebarOpen ? '' : 'rotate-90'}`} />
+            </button>
+            
+            {/* Brand Section */}
             <a href="/" className="flex items-center gap-3 group">
               <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-600 to-primary-700 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                 <BookOpen className="w-6 h-6 text-white" />
@@ -56,16 +66,6 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-4">
-            {/* Sidebar Toggle Button */}
-            <button
-              onClick={() => setSidebarOpen(!isSidebarOpen)}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              aria-label="Toggle sidebar"
-            >
-              <Menu className={`w-5 h-5 transition-transform ${isSidebarOpen ? '' : 'rotate-90'}`} />
-            </button>
-            
-            <div className="h-6 w-px bg-gray-300 dark:bg-gray-700" />
             <HeaderNavigation items={navMeta} />
             <div className="h-6 w-px bg-gray-300 dark:bg-gray-700" />
             <Search />
@@ -73,29 +73,17 @@ export default function Header() {
           </nav>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center gap-2">
-            {/* Sidebar Toggle Button */}
-            <button
-              onClick={() => setSidebarOpen(!isSidebarOpen)}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              aria-label="Toggle sidebar"
-            >
-              <Menu className={`w-5 h-5 transition-transform ${isSidebarOpen ? '' : 'rotate-90'}`} />
-            </button>
-            
-            {/* Mobile Menu Toggle */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
-          </div>
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </button>
         </div>
 
         {/* Mobile Menu */}
