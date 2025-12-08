@@ -3,6 +3,7 @@ import { BookOpen, Home, Search as SearchIcon, Menu, X } from 'lucide-react';
 import Search from './Search';
 import HeaderNavigation from './HeaderNavigation';
 import ThemeSwitch from './ThemeSwitch';
+import { useSidebar } from './SidebarContext';
 
 interface MetaItem {
   title?: string;
@@ -15,6 +16,7 @@ interface MetaItem {
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [navMeta, setNavMeta] = useState<Record<string, MetaItem | string>>({});
+  const { isOpen: isSidebarOpen, setIsOpen: setSidebarOpen } = useSidebar();
 
   useEffect(() => {
     const loadMeta = async () => {
@@ -54,6 +56,16 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-4">
+            {/* Sidebar Toggle Button */}
+            <button
+              onClick={() => setSidebarOpen(!isSidebarOpen)}
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Toggle sidebar"
+            >
+              <Menu className={`w-5 h-5 transition-transform ${isSidebarOpen ? '' : 'rotate-90'}`} />
+            </button>
+            
+            <div className="h-6 w-px bg-gray-300 dark:bg-gray-700" />
             <HeaderNavigation items={navMeta} />
             <div className="h-6 w-px bg-gray-300 dark:bg-gray-700" />
             <Search />
@@ -61,17 +73,29 @@ export default function Header() {
           </nav>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
+          <div className="lg:hidden flex items-center gap-2">
+            {/* Sidebar Toggle Button */}
+            <button
+              onClick={() => setSidebarOpen(!isSidebarOpen)}
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Toggle sidebar"
+            >
+              <Menu className={`w-5 h-5 transition-transform ${isSidebarOpen ? '' : 'rotate-90'}`} />
+            </button>
+            
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}

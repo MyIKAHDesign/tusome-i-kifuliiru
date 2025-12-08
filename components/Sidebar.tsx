@@ -179,15 +179,6 @@ export default function Sidebar({ meta }: SidebarProps) {
 
   return (
     <>
-      {/* Hamburger Menu Toggle - Works on all screen sizes */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-24 left-4 z-50 p-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-all hover:bg-gray-50 dark:hover:bg-gray-700"
-        aria-label="Toggle sidebar"
-      >
-        <Menu className={`w-5 h-5 transition-transform ${isOpen ? '' : 'rotate-90'}`} />
-      </button>
-
       {/* Overlay - Only on mobile */}
       {isOpen && (
         <div
