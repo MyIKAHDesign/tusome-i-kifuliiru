@@ -2,7 +2,6 @@ import React from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { getAllContentSlugs, getContentBySlug } from '../../lib/content-loader';
-import Layout from '../../components/Layout';
 import { mdxComponents } from '../../mdx-components';
 
 interface DocPageProps {
@@ -12,11 +11,9 @@ interface DocPageProps {
 
 export default function DocPage({ content, slug }: DocPageProps) {
   return (
-    <Layout>
-      <article className="mdx-content max-w-4xl mx-auto">
-        <MDXRemote source={content} components={mdxComponents} />
-      </article>
-    </Layout>
+    <article className="mdx-content max-w-4xl mx-auto">
+      <MDXRemote source={content} components={mdxComponents} />
+    </article>
   );
 }
 

@@ -1,11 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { BookOpen, Languages, Users, ArrowRight, Search } from 'lucide-react';
-import Layout from '../components/Layout';
 
 export default function Home() {
   return (
-    <Layout>
+    <>
       {/* Hero Section */}
       <section className="min-h-[80vh] flex items-center justify-center text-center px-4">
         <div className="max-w-4xl mx-auto">
@@ -78,6 +77,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </Layout>
+    </>
   );
 }
