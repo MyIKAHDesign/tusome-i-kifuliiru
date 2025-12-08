@@ -1,0 +1,127 @@
+{
+  "index": {
+    "title": "Muyegerere"
+  },
+  "tusome": {
+    "title": "Tusome",
+    "type": "page",
+    "href": "/",
+    "newWindow": false
+  },
+  "ndondeero_tusome": "Menya bino",
+  "ukuharura": "Ukuharura mu Kifuliiru",
+  "amagambo": "Tusome Amagambo",
+  "kifuliiru": {
+    "title": "Kifuliiru",
+    "type": "page"
+  },
+  "imigani": {
+    "title": "Imigani",
+    "type": "page"
+  },
+  "imigeeza": {
+    "title": "Imigeeza",
+    "type": "page"
+  },
+  "imwitu": {
+    "title": "Imwitu",
+    "type": "menu",
+    "items": {
+      "ibufuliiru": {
+        "title": "Ibufuliiru",
+        "type": "page"
+      },
+      "imigazi": {
+        "title": "Imigazi",
+        "type": "page"
+      },
+      "inyiji": {
+        "title": "Inyiji",
+        "type": "page"
+      },
+      "utwaya": {
+        "title": "Utwaya",
+        "type": "page"
+      }
+    }
+  },
+  "bingi-ku-kifuliiru": {
+    "title": "Bingi ku Kifuliiru",
+    "type": "menu",
+    "items": {
+      "amagambo": {
+        "title": "Amagambo ge'Kifuliiru",
+        "type": "page"
+      },
+      "bitaabo-bya-bafuliiru": {
+        "title": "Ibitaabo bya'Bafuliiru",
+        "type": "page"
+      },
+      "imikolwa": {
+        "title": "Imikolwa",
+        "type": "page"
+      },
+      "invumo": {
+        "title": "Ukufuma mu Kifuliiru",
+        "type": "page"
+      },
+      "ibinamishwa-mu-kifuliiru": {
+        "title": "Ibinamishwa mu Kifuliiru",
+        "type": "page"
+      },
+      "ibufuliiru.com": {
+        "title": "Ibufuliiru.com",
+        "type": "page"
+      },
+      "tuganule-i-kifuliiru": {
+        "title": "Tuganuule i Kifuliiru",
+        "type": "page"
+      }
+    }
+  },
+  "twehe": {
+    "title": "Twehe",
+    "type": "menu",
+    "items": {
+      "twehe": {
+        "title": "Guno mukolwa",
+        "type": "page"
+      },
+
+      "umwandisi": {
+        "title": "Umwandisi",
+        "type": "page"
+      }
+    }
+  },
+  "contact": {
+    "title": "Tuyandikire ↗",
+    "type": "page",
+    "href": "https://ibufuliiru.editorx.io/ibufuliiru/tuyandikire",
+    "newWindow": true
+  },
+
+  "eng-frn-swa": {
+    "title": "ENG/SWA/FRN",
+    "type": "menu",
+    "items": {
+      "kiswahili": {
+        "title": "Kiswahili",
+        "type": "page"
+      },
+
+      "english": {
+        "title": "English",
+        "type": "page"
+      },
+      "francais": {
+        "title": "Français",
+        "type": "page"
+      },
+      "tukole": {
+        "title": "Tukole",
+        "type": "page"
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getMetaData } from '../../lib/content-loader';
+import fs from 'fs';
+import path from 'path';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {
@@ -7,7 +8,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 
   try {
-    const meta = getMetaData();
+    const metaPath = path.join(process.cwd(), 'pages', '_meta.json');
+    const fileContents = fs.readFileSync(metaPath, 'utf8');
+    const meta = JSON.parse(fileContents);
     res.status(200).json(meta);
   } catch (error) {
     console.error('Error reading meta.json:', error);

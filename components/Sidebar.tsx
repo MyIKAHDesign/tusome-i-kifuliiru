@@ -77,10 +77,11 @@ export default function Sidebar({ meta }: SidebarProps) {
       const href = key === 'index' ? '/' : `/${key}`;
       const currentPath = router.asPath.split('?')[0];
       const isActive = currentPath === href || currentPath === `/${key}`;
+      const docHref = `/docs/${href === '/' ? '' : href.replace(/^\//, '')}`;
       return (
         <li key={key}>
           <a
-            href={href}
+            href={docHref}
             className={`
               flex items-center gap-3 px-4 py-2.5 text-sm rounded-lg transition-all
               ${isActive
@@ -102,7 +103,7 @@ export default function Sidebar({ meta }: SidebarProps) {
 
     if (type === 'menu' && items) {
       const currentPath = router.asPath.split('?')[0];
-      const isMenuActive = currentPath.startsWith(`/${key}`);
+      const isMenuActive = currentPath.startsWith(`/docs/${key}`);
       const isExpanded = expandedGroups.has(key);
       
       return (
@@ -134,14 +135,15 @@ export default function Sidebar({ meta }: SidebarProps) {
       );
     }
 
-    const linkHref = href || `/${key === 'index' ? '' : key}`;
+    const linkHref = href || (key === 'index' ? '' : key);
+    const docHref = href ? href : `/docs/${linkHref}`;
     const currentPath = router.asPath.split('?')[0];
-    const isActive = currentPath === linkHref || currentPath === `/${key}`;
+    const isActive = currentPath === docHref || currentPath === `/docs/${key}`;
 
     return (
       <li key={key}>
         <a
-          href={linkHref}
+          href={docHref}
           target={newWindow ? '_blank' : undefined}
           rel={newWindow ? 'noopener noreferrer' : undefined}
           className={`

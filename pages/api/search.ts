@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import fs from 'fs';
-import path from 'path';
+import { getMetaData, getAllContentSlugs, getContentBySlug } from '../../lib/content-loader';
 
 interface SearchResult {
   title: string;
@@ -19,16 +18,16 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   try {
     const results: SearchResult[] = [];
-    const pagesDir = path.join(process.cwd(), 'pages');
+    const meta = getMetaData();
 
-    // Simple search through _meta.json files
-    const searchInMeta = (dir: string, meta: any, basePath: string = '') => {
-      for (const [key, value] of Object.entries(meta)) {
+    // Search through meta.json
+    const searchInMeta = (metaObj: any, basePath: string = '') => {
+      for (const [key, value] of Object.entries(metaObj)) {
         if (typeof value === 'string') {
           if (value.toLowerCase().includes(query)) {
             results.push({
               title: value,
-              path: basePath ? `${basePath}/${key}` : `/${key === 'index' ? '' : key}`,
+              path: `/docs/${basePath ? `${basePath}/${key}` : (key === 'index' ? '' : key)}`,
             });
           }
         } else if (value && typeof value === 'object') {
@@ -37,36 +36,34 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           if (title.toLowerCase().includes(query)) {
             results.push({
               title,
-              path: item.href || (basePath ? `${basePath}/${key}` : `/${key === 'index' ? '' : key}`),
+              path: item.href || `/docs/${basePath ? `${basePath}/${key}` : (key === 'index' ? '' : key)}`,
             });
           }
           if (item.items) {
-            searchInMeta(dir, item.items, basePath ? `${basePath}/${key}` : `/${key}`);
+            searchInMeta(item.items, basePath ? `${basePath}/${key}` : key);
           }
         }
       }
     };
 
-    // Search in main _meta.json
-    const mainMetaPath = path.join(pagesDir, '_meta.json');
-    if (fs.existsSync(mainMetaPath)) {
-      const mainMeta = JSON.parse(fs.readFileSync(mainMetaPath, 'utf8'));
-      searchInMeta(pagesDir, mainMeta);
-    }
+    searchInMeta(meta);
 
-    // Search in subdirectory _meta.json files
-    const subdirs = fs.readdirSync(pagesDir, { withFileTypes: true });
-    for (const dirent of subdirs) {
-      if (dirent.isDirectory()) {
-        const subMetaPath = path.join(pagesDir, dirent.name, '_meta.json');
-        if (fs.existsSync(subMetaPath)) {
-          const subMeta = JSON.parse(fs.readFileSync(subMetaPath, 'utf8'));
-          searchInMeta(path.join(pagesDir, dirent.name), subMeta, `/${dirent.name}`);
+    // Also search in actual content
+    const slugs = getAllContentSlugs();
+    for (const slug of slugs.slice(0, 20)) { // Limit to avoid too many reads
+      const content = getContentBySlug(slug);
+      if (content && content.content.toLowerCase().includes(query)) {
+        const title = content.data.title || slug.split('/').pop() || 'Untitled';
+        if (!results.find(r => r.path === `/docs/${slug}`)) {
+          results.push({
+            title,
+            path: `/docs/${slug}`,
+          });
         }
       }
     }
 
-    res.status(200).json({ results: results.slice(0, 10) }); // Limit to 10 results
+    res.status(200).json({ results: results.slice(0, 10) });
   } catch (error) {
     console.error('Search error:', error);
     res.status(500).json({ error: 'Search failed' });
