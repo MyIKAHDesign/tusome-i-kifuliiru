@@ -7,10 +7,12 @@ export default function ThemeSwitch() {
 
   useEffect(() => {
     setMounted(true);
+    // Check if theme is already applied (from the script in _app.tsx)
+    const hasDarkClass = document.documentElement.classList.contains('dark');
     // Check localStorage or system preference
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    const initialTheme = savedTheme || systemTheme;
+    const initialTheme = savedTheme || (hasDarkClass ? 'dark' : systemTheme);
     
     setTheme(initialTheme);
     applyTheme(initialTheme);

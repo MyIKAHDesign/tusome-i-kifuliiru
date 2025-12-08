@@ -1,5 +1,6 @@
 import React from 'react';
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
 import { DefaultSeo } from 'next-seo';
 import Layout from '../components/Layout';
 import '../styles/globals.css';
@@ -29,6 +30,26 @@ const defaultSEO = {
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
+      <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const savedTheme = localStorage.getItem('theme');
+                  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                  const theme = savedTheme || systemTheme;
+                  if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </Head>
       <DefaultSeo {...defaultSEO} />
       <Layout>
         <Component {...pageProps} />
