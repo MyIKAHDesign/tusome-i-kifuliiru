@@ -204,9 +204,13 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                   <div className="space-y-1">
                     {left.map(([subKey, subItem]) => {
                       const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
-                      const subHref = typeof subItem === 'object' && subItem.href
-                        ? subItem.href
-                        : `/${subKey}`;
+                      let subHref: string;
+                      if (typeof subItem === 'object' && subItem.href) {
+                        subHref = subItem.href;
+                      } else {
+                        // Top-level pages: kifuliiru, imigani, imigeeza
+                        subHref = `/${subKey}`;
+                      }
                       const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
 
                       return (
@@ -226,7 +230,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                           className={`
                             flex items-center justify-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-colors
                             ${
-                              router.asPath === subHref || router.asPath.startsWith(`/${subKey}`)
+                              router.asPath === subHref || router.asPath.startsWith(`${subHref}/`)
                                 ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
                                 : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
                             }
@@ -248,9 +252,13 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                   <div className="space-y-1">
                     {right.map(([subKey, subItem]) => {
                       const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
-                      const subHref = typeof subItem === 'object' && subItem.href
-                        ? subItem.href
-                        : `/${subKey}`;
+                      let subHref: string;
+                      if (typeof subItem === 'object' && subItem.href) {
+                        subHref = subItem.href;
+                      } else {
+                        // Items from bingi-ku-kifuliiru menu
+                        subHref = `/bingi-ku-kifuliiru/${subKey}`;
+                      }
                       const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
 
                       return (
@@ -270,7 +278,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                           className={`
                             flex items-center justify-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-colors
                             ${
-                              router.asPath === subHref || router.asPath.startsWith(`/${subKey}`)
+                              router.asPath === subHref || router.asPath.startsWith(`${subHref}/`)
                                 ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
                                 : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
                             }
@@ -288,9 +296,22 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
               <div>
                 {itemEntries.map(([subKey, subItem]) => {
                   const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
-                  const subHref = typeof subItem === 'object' && subItem.href
-                    ? subItem.href
-                    : `/${subKey}`;
+                  let subHref: string;
+                  if (typeof subItem === 'object' && subItem.href) {
+                    subHref = subItem.href;
+                  } else {
+                    // Determine the correct path based on parent menu
+                    if (key === 'imwitu') {
+                      subHref = `/imwitu/${subKey}`;
+                    } else if (key === 'twehe') {
+                      subHref = `/twehe/${subKey}`;
+                    } else if (key === 'eng-frn-swa') {
+                      // Language pages are top-level
+                      subHref = `/${subKey}`;
+                    } else {
+                      subHref = `/${subKey}`;
+                    }
+                  }
                   const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
 
                   return (
@@ -310,7 +331,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                       className={`
                         flex items-center justify-center gap-3 px-4 py-3 text-sm transition-colors
                         ${
-                          router.asPath === subHref || router.asPath.startsWith(`/${subKey}`)
+                          router.asPath === subHref || router.asPath.startsWith(`${subHref}/`)
                             ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
                             : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
                         }
@@ -382,8 +403,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
           flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all
           ${
             isActive
-              ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20'
-              : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+              ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
+              : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900'
           }
         `}
       >
