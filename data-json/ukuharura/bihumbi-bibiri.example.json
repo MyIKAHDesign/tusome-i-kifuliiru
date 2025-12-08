@@ -1,0 +1,108 @@
+{
+  "id": "ukuharura/bihumbi-bibiri",
+  "slug": "ukuharura/bihumbi-bibiri",
+  "title": "Bihumbi bibiri (2.000 - 2.999)",
+  "contentType": "number-lesson",
+  "data": {
+    "type": "number-lesson",
+    "title": "Bihumbi bibiri",
+    "description": "Harura kushagira ku bihumbi bibiri ukuhisa ku bihumbi bibiri na gana galimweenda na makumi galimweenda na mweenda",
+    "range": "2.000 - 2.999",
+    "sections": [
+      {
+        "title": "Bihumbi bibiri na higuma ku Bihumbi bibiri na mweenda",
+        "range": "2.001 - 2.009",
+        "numbers": [
+          {
+            "value": 2001,
+            "kifuliiru": "Bihumbi bibiri na higuma"
+          },
+          {
+            "value": 2002,
+            "kifuliiru": "Bihumbi bibiri na bubiri"
+          },
+          {
+            "value": 2003,
+            "kifuliiru": "Bihumbi bibiri na bushatu"
+          },
+          {
+            "value": 2004,
+            "kifuliiru": "Bihumbi bibiri na buna"
+          },
+          {
+            "value": 2005,
+            "kifuliiru": "Bihumbi bibiri na butanu"
+          },
+          {
+            "value": 2006,
+            "kifuliiru": "Bihumbi bibiri na ndatu"
+          },
+          {
+            "value": 2007,
+            "kifuliiru": "Bihumbi bibiri na buliinda"
+          },
+          {
+            "value": 2008,
+            "kifuliiru": "Bihumbi bibiri na munaana"
+          },
+          {
+            "value": 2009,
+            "kifuliiru": "Bihumbi bibiri na mweenda"
+          }
+        ]
+      },
+      {
+        "title": "Bihumbi bibiri n'ikumi na higuma ku Bihumbi bibiri n'ikumi na mweenda",
+        "range": "2.010 - 2.019",
+        "numbers": [
+          {
+            "value": 2010,
+            "kifuliiru": "Bihumbi bibiri n'ikumi"
+          },
+          {
+            "value": 2011,
+            "kifuliiru": "Bihumbi bibiri n'ikumi na higuma"
+          },
+          {
+            "value": 2012,
+            "kifuliiru": "Bihumbi bibiri n'ikumi na bubiri"
+          },
+          {
+            "value": 2013,
+            "kifuliiru": "Bihumbi bibiri n'ikumi na bushatu"
+          },
+          {
+            "value": 2014,
+            "kifuliiru": "Bihumbi bibiri n'ikumi na buna"
+          },
+          {
+            "value": 2015,
+            "kifuliiru": "Bihumbi bibiri n'ikumi na butanu"
+          },
+          {
+            "value": 2016,
+            "kifuliiru": "Bihumbi bibiri n'ikumi na ndatu"
+          },
+          {
+            "value": 2017,
+            "kifuliiru": "Bihumbi bibiri n'ikumi na buliinda"
+          },
+          {
+            "value": 2018,
+            "kifuliiru": "Bihumbi bibiri n'ikumi na munaana"
+          },
+          {
+            "value": 2019,
+            "kifuliiru": "Bihumbi bibiri n'ikumi na mweenda"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2024-12-08T00:00:00.000Z",
+    "updatedAt": "2024-12-08T00:00:00.000Z",
+    "tags": ["numbers", "ukuharura", "bihumbi"]
+  }
+}
+
