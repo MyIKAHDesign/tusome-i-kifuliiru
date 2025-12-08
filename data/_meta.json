@@ -1,12 +1,13 @@
 {
-  "index": {
-    "title": "Muyegerere"
-  },
-  "tusome": {
-    "title": "Tusome",
+  "muyegerere": {
+    "title": "Muyegerere",
     "type": "page",
     "href": "/",
     "newWindow": false
+  },
+  "gwajiika": {
+    "title": "Gwajiika",
+    "type": "page"
   },
   "ndondeero_tusome": "Menya bino",
   "ukuharura": {

@@ -19,8 +19,8 @@ export default function Home() {
             <Image
               src="/.github/DRCongo.png"
               alt="DR Congo Flag"
-              width={200}
-              height={133}
+              width={400}
+              height={267}
               className="rounded-lg shadow-lg"
               priority
             />
