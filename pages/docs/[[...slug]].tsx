@@ -6,6 +6,7 @@ import { getAllContentSlugs, getContentBySlug } from '../../lib/content-loader';
 import { getContentData } from '../../lib/json-content-loader';
 import { mdxComponents } from '../../mdx-components';
 import ContentRenderer from '../../components/content/ContentRenderer';
+import PageNavigation from '../../components/PageNavigation';
 
 interface DocPageProps {
   mdxSource?: MDXRemoteSerializeResult;
@@ -14,17 +15,27 @@ interface DocPageProps {
   contentType: 'mdx' | 'json';
 }
 
-export default function DocPage({ mdxSource, jsonContent, contentType }: DocPageProps) {
+export default function DocPage({ mdxSource, jsonContent, contentType, slug }: DocPageProps) {
+  // Check if this is a ukuharura page for wider display
+  const isUkuharuraPage = slug.startsWith('ukuharura/') || slug === 'ukuharura';
+  const maxWidthClass = isUkuharuraPage ? 'max-w-[1800px]' : 'max-w-4xl';
+  
   // If JSON content, use the new component system
   if (contentType === 'json' && jsonContent) {
-    return <ContentRenderer content={jsonContent} />;
+    return (
+      <div className={maxWidthClass + ' mx-auto'}>
+        <ContentRenderer content={jsonContent} />
+        <PageNavigation currentSlug={slug} />
+      </div>
+    );
   }
 
   // Otherwise, fall back to MDX
   if (mdxSource) {
     return (
-      <article className="mdx-content max-w-4xl mx-auto">
+      <article className={`mdx-content ${maxWidthClass} mx-auto`}>
         <MDXRemote {...mdxSource} components={mdxComponents} />
+        <PageNavigation currentSlug={slug} />
       </article>
     );
   }

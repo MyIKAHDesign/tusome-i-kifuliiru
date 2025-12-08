@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Home, Book, Folder, ChevronRight, ExternalLink, FileText, Menu } from 'lucide-react';
+import { useSidebar } from './SidebarContext';
 
 interface MetaItem {
   title?: string;
@@ -18,9 +19,9 @@ const defaultMeta: Record<string, MetaItem | string> = {};
 
 export default function Sidebar({ meta }: SidebarProps) {
   const router = useRouter();
-  const [sidebarMeta, setSidebarMeta] = useState<Record<string, MetaItem | string>>(defaultMeta);
-  const [isOpen, setIsOpen] = useState(false);
-  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
+  const { isOpen, setIsOpen } = useSidebar();
+  const [sidebarMeta, setSidebarMeta] = React.useState<Record<string, MetaItem | string>>(defaultMeta);
+  const [expandedGroups, setExpandedGroups] = React.useState<Set<string>>(new Set());
 
   useEffect(() => {
     const loadMeta = async () => {
@@ -178,16 +179,16 @@ export default function Sidebar({ meta }: SidebarProps) {
 
   return (
     <>
-      {/* Mobile Toggle */}
+      {/* Hamburger Menu Toggle - Works on all screen sizes */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="lg:hidden fixed top-4 left-4 z-50 p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-all"
+        className="fixed top-24 left-4 z-50 p-2.5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-all hover:bg-gray-50 dark:hover:bg-gray-700"
         aria-label="Toggle sidebar"
       >
-        <Menu className="w-6 h-6" />
+        <Menu className={`w-5 h-5 transition-transform ${isOpen ? '' : 'rotate-90'}`} />
       </button>
 
-      {/* Overlay */}
+      {/* Overlay - Only on mobile */}
       {isOpen && (
         <div
           className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
@@ -195,16 +196,17 @@ export default function Sidebar({ meta }: SidebarProps) {
         />
       )}
 
-      {/* Sidebar */}
+      {/* Sidebar - Full height from header to footer */}
       <aside
         className={`
           w-72 h-[calc(100vh-5rem)] bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800
           border-r border-gray-200 dark:border-gray-800
           overflow-y-auto overflow-x-hidden
-          transition-transform duration-300
-          ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-          fixed lg:static z-40
-          shadow-xl lg:shadow-none
+          transition-transform duration-300 ease-in-out
+          ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+          fixed lg:fixed z-40
+          shadow-xl lg:shadow-lg
+          top-20
         `}
       >
         <div className="p-6">

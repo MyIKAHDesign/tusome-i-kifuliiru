@@ -6,6 +6,7 @@ import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import { mdxComponents } from '../mdx-components';
 import SEO from '../components/SEO';
+import PageNavigation from '../components/PageNavigation';
 
 interface GwajiikaPageProps {
   jsonContent?: any;
@@ -22,15 +23,22 @@ export default function GwajiikaPage({ jsonContent, mdxSource, contentType }: Gw
       />
       <div className="max-w-4xl mx-auto px-4 py-12">
         {contentType === 'json' && jsonContent ? (
-          <ContentRenderer content={jsonContent} />
+          <>
+            <ContentRenderer content={jsonContent} />
+            <PageNavigation currentSlug="gwajiika" />
+          </>
         ) : mdxSource ? (
-          <article className="mdx-content">
-            <MDXRemote {...mdxSource} components={mdxComponents} />
-          </article>
+          <>
+            <article className="mdx-content">
+              <MDXRemote {...mdxSource} components={mdxComponents} />
+            </article>
+            <PageNavigation currentSlug="gwajiika" />
+          </>
         ) : (
           <div className="text-center py-20">
             <h1 className="text-4xl font-bold mb-4">Gwajiika</h1>
             <p className="text-gray-600 dark:text-gray-400">Content coming soon...</p>
+            <PageNavigation currentSlug="gwajiika" />
           </div>
         )}
       </div>

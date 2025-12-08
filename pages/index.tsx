@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { BookOpen, ArrowRight, Search } from 'lucide-react';
+import PageNavigation from '../components/PageNavigation';
 
 export default function Home() {
   return (
@@ -50,6 +51,11 @@ export default function Home() {
               Browse Documentation
             </Link>
           </div>
+        </div>
+        
+        {/* Page Navigation */}
+        <div className="mt-12">
+          <PageNavigation currentSlug="" />
         </div>
       </section>
     </>
