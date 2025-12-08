@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { BookOpen, ArrowRight, Search } from 'lucide-react';
 
 export default function Home() {
@@ -11,6 +12,18 @@ export default function Home() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 text-sm font-medium mb-6">
             <BookOpen className="w-4 h-4" />
             <span>Learn Kifuliiru Language</span>
+          </div>
+          
+          {/* Flag Image */}
+          <div className="flex justify-center mb-6">
+            <Image
+              src="/.github/DRCongo.png"
+              alt="DR Congo Flag"
+              width={200}
+              height={133}
+              className="rounded-lg shadow-lg"
+              priority
+            />
           </div>
           
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
