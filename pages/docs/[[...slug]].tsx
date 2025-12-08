@@ -23,7 +23,7 @@ export default function DocPage({ mdxSource, jsonContent, contentType, slug }: D
   // If JSON content, use the new component system
   if (contentType === 'json' && jsonContent) {
     return (
-      <div className={maxWidthClass + ' mx-auto'}>
+      <div className={maxWidthClass + ' mx-auto w-full'}>
         <ContentRenderer content={jsonContent} />
         <PageNavigation currentSlug={slug} />
       </div>
@@ -33,7 +33,7 @@ export default function DocPage({ mdxSource, jsonContent, contentType, slug }: D
   // Otherwise, fall back to MDX
   if (mdxSource) {
     return (
-      <article className={`mdx-content ${maxWidthClass} mx-auto`}>
+      <article className={`mdx-content ${maxWidthClass} mx-auto w-full`}>
         <MDXRemote {...mdxSource} components={mdxComponents} />
         <PageNavigation currentSlug={slug} />
       </article>
