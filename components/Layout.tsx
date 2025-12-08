@@ -2,7 +2,6 @@ import React from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import Footer from './Footer';
-import '../styles/design-tokens.css';
 
 interface LayoutProps {
   children: React.ReactNode;

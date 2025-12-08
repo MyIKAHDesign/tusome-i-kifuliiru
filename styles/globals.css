@@ -1,2 +1,3 @@
-/* Global styles - additional customizations can go here */
+@import './design-tokens.css';
 
+/* Additional global styles can go here */

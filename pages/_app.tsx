@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
 import Layout from '../components/Layout';
 import '../styles/globals.css';
+import '../styles/design-tokens.css';
 
 const defaultSEO = {
   title: 'Tusome i Kifuliiru',
