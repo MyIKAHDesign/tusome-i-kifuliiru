@@ -1,0 +1,4024 @@
+{
+  "id": "ukuharura/bihumbi-magana-galindatu",
+  "slug": "ukuharura/bihumbi-magana-galindatu",
+  "title": "Bihumbi magana galindatu",
+  "contentType": "number-lesson",
+  "data": {
+    "type": "number-lesson",
+    "title": "Bihumbi magana galindatu",
+    "description": "600.980 = Bihumbi magana galindatu na magana galimweenda na makumi galimunaana  \n600.981 = Bihumbi magana galindatu na magana galimweenda na makumi galimunaana na higuma  \n600.982 = Bihumbi magana galindatu na magana galimweenda na makumi galimunaana na bubiri  \n600.983 = Bihumbi magana galindatu na magana galimweenda na makumi galimunaana na bushatu  \n600.984 = Bihumbi magana galindatu na magana galimweenda na makumi galimunaana na buna  \n600.985 = Bihumbi magana galindatu na magana galimweenda na makumi galimunaana na butanu  \n600.986 = Bihumbi magana galindatu na magana galimweenda na makumi galimunaana na ndaatu  \n600.987 = Bihumbi magana galindatu na magana galimweenda na makumi galimunaana na bulinda  \n600.988 = Bihumbi magana galindatu na magana galimweenda na makumi galimunaana na munaana  \n600.989 = Bihumbi magana galindatu na magana galimweenda na makumi galimunaana na mweenda",
+    "range": "600.000 - 600.999",
+    "sections": [
+      {
+        "title": "Numbers",
+        "range": "",
+        "numbers": [
+          {
+            "value": 600.001,
+            "kifuliiru": "Bihumbi magana galindatu na higuma"
+          },
+          {
+            "value": 600.002,
+            "kifuliiru": "Bihumbi magana galindatu na bubiri"
+          },
+          {
+            "value": 600.003,
+            "kifuliiru": "Bihumbi magana galindatu na bushatu"
+          },
+          {
+            "value": 600.004,
+            "kifuliiru": "Bihumbi magana galindatu na buna"
+          },
+          {
+            "value": 600.005,
+            "kifuliiru": "Bihumbi magana galindatu na butanu"
+          },
+          {
+            "value": 600.006,
+            "kifuliiru": "Bihumbi magana galindatu na ndatu"
+          },
+          {
+            "value": 600.007,
+            "kifuliiru": "Bihumbi magana galindatu na buliinda"
+          },
+          {
+            "value": 600.008,
+            "kifuliiru": "Bihumbi magana galindatu na munaana"
+          },
+          {
+            "value": 600.009,
+            "kifuliiru": "Bihumbi magana galindatu na mweenda"
+          },
+          {
+            "value": 600.01,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri"
+          },
+          {
+            "value": 600.011,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri na higuma"
+          },
+          {
+            "value": 600.012,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri na bubiri"
+          },
+          {
+            "value": 600.013,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri na bushatu"
+          },
+          {
+            "value": 600.014,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri na buna"
+          },
+          {
+            "value": 600.015,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri na butanu"
+          },
+          {
+            "value": 600.016,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri na ndatu"
+          },
+          {
+            "value": 600.017,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri na buliinda"
+          },
+          {
+            "value": 600.018,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri na munaana"
+          },
+          {
+            "value": 600.019,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri na mweenda"
+          },
+          {
+            "value": 600.02,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri"
+          },
+          {
+            "value": 600.021,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri na higuma"
+          },
+          {
+            "value": 600.022,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri na bubiri"
+          },
+          {
+            "value": 600.023,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri na bushatu"
+          },
+          {
+            "value": 600.024,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri na buna"
+          },
+          {
+            "value": 600.025,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri na butanu"
+          },
+          {
+            "value": 600.026,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri na ndatu"
+          },
+          {
+            "value": 600.027,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri na buliinda"
+          },
+          {
+            "value": 600.028,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri na munaana"
+          },
+          {
+            "value": 600.029,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gabiri na mweenda"
+          },
+          {
+            "value": 600.03,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gashatu"
+          },
+          {
+            "value": 600.031,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gashatu na higuma"
+          },
+          {
+            "value": 600.032,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gashatu na bubiri"
+          },
+          {
+            "value": 600.033,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gashatu na bushatu"
+          },
+          {
+            "value": 600.034,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gashatu na buna"
+          },
+          {
+            "value": 600.035,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gashatu na butanu"
+          },
+          {
+            "value": 600.036,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gashatu na ndatu"
+          },
+          {
+            "value": 600.037,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gashatu na buliinda"
+          },
+          {
+            "value": 600.038,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gashatu na munaana"
+          },
+          {
+            "value": 600.039,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gashatu na mweenda"
+          },
+          {
+            "value": 600.04,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gana"
+          },
+          {
+            "value": 600.041,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gana na higuma"
+          },
+          {
+            "value": 600.042,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gana na bubiri"
+          },
+          {
+            "value": 600.043,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gana na bushatu"
+          },
+          {
+            "value": 600.044,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gana na buna"
+          },
+          {
+            "value": 600.045,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gana na butanu"
+          },
+          {
+            "value": 600.046,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gana na ndatu"
+          },
+          {
+            "value": 600.047,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gana na buliinda"
+          },
+          {
+            "value": 600.048,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gana na munaana"
+          },
+          {
+            "value": 600.049,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gana na mweenda"
+          },
+          {
+            "value": 600.05,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gatanu"
+          },
+          {
+            "value": 600.051,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gatanu na higuma"
+          },
+          {
+            "value": 600.052,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gatanu na bubiri"
+          },
+          {
+            "value": 600.053,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gatanu na bushatu"
+          },
+          {
+            "value": 600.054,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gatanu na buna"
+          },
+          {
+            "value": 600.055,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gatanu na butanu"
+          },
+          {
+            "value": 600.056,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gatanu na ndatu"
+          },
+          {
+            "value": 600.057,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gatanu na buliinda"
+          },
+          {
+            "value": 600.058,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gatanu na munaana"
+          },
+          {
+            "value": 600.059,
+            "kifuliiru": "Bihumbi magana galindatu na makumi gatanu na mweenda"
+          },
+          {
+            "value": 600.06,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galindatu"
+          },
+          {
+            "value": 600.061,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galindatu na higuma"
+          },
+          {
+            "value": 600.062,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galindatu na bubiri"
+          },
+          {
+            "value": 600.063,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galindatu na bushatu"
+          },
+          {
+            "value": 600.064,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galindatu na buna"
+          },
+          {
+            "value": 600.065,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galindatu na butanu"
+          },
+          {
+            "value": 600.066,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galindatu na ndatu"
+          },
+          {
+            "value": 600.067,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galindatu na buliinda"
+          },
+          {
+            "value": 600.068,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galindatu na munaana"
+          },
+          {
+            "value": 600.069,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galindatu na mweenda"
+          },
+          {
+            "value": 600.07,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galiinda"
+          },
+          {
+            "value": 600.071,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galiinda na higuma"
+          },
+          {
+            "value": 600.072,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galiinda na bubiri"
+          },
+          {
+            "value": 600.073,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galiinda na bushatu"
+          },
+          {
+            "value": 600.074,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galiinda na buna"
+          },
+          {
+            "value": 600.075,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galiinda na butanu"
+          },
+          {
+            "value": 600.076,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galiinda na ndatu"
+          },
+          {
+            "value": 600.077,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galiinda na buliinda"
+          },
+          {
+            "value": 600.078,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galiinda na munaana"
+          },
+          {
+            "value": 600.079,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galiinda na mweenda"
+          },
+          {
+            "value": 600.08,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimunaana"
+          },
+          {
+            "value": 600.081,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimunaana na higuma"
+          },
+          {
+            "value": 600.082,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimunaana na bubiri"
+          },
+          {
+            "value": 600.083,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimunaana na bushatu"
+          },
+          {
+            "value": 600.084,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimunaana na buna"
+          },
+          {
+            "value": 600.085,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimunaana na butanu"
+          },
+          {
+            "value": 600.086,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimunaana na ndatu"
+          },
+          {
+            "value": 600.087,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimunaana na buliinda"
+          },
+          {
+            "value": 600.088,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimunaana na munaana"
+          },
+          {
+            "value": 600.089,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimunaana na mweenda"
+          },
+          {
+            "value": 600.09,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimweenda"
+          },
+          {
+            "value": 600.091,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimweenda na higuma"
+          },
+          {
+            "value": 600.092,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimweenda na bubiri"
+          },
+          {
+            "value": 600.093,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimweenda na bushatu"
+          },
+          {
+            "value": 600.094,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimweenda na buna"
+          },
+          {
+            "value": 600.095,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimweenda na butanu"
+          },
+          {
+            "value": 600.096,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimweenda na ndatu"
+          },
+          {
+            "value": 600.097,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimweenda na buliinda"
+          },
+          {
+            "value": 600.098,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimweenda na munaana"
+          },
+          {
+            "value": 600.099,
+            "kifuliiru": "Bihumbi magana galindatu na makumi galimweenda na mweenda"
+          },
+          {
+            "value": 600.1,
+            "kifuliiru": "Bihumbi magana galindatu na igana"
+          },
+          {
+            "value": 600.101,
+            "kifuliiru": "Bihumbi magana galindatu na igana na higuma"
+          },
+          {
+            "value": 600.102,
+            "kifuliiru": "Bihumbi magana galindatu na igana na bubiri"
+          },
+          {
+            "value": 600.103,
+            "kifuliiru": "Bihumbi magana galindatu na igana na bushatu"
+          },
+          {
+            "value": 600.104,
+            "kifuliiru": "Bihumbi magana galindatu na igana na buna"
+          },
+          {
+            "value": 600.105,
+            "kifuliiru": "Bihumbi magana galindatu na igana na butanu"
+          },
+          {
+            "value": 600.106,
+            "kifuliiru": "Bihumbi magana galindatu na igana na ndatu"
+          },
+          {
+            "value": 600.107,
+            "kifuliiru": "Bihumbi magana galindatu na igana na buliinda"
+          },
+          {
+            "value": 600.108,
+            "kifuliiru": "Bihumbi magana galindatu na igana na munaana"
+          },
+          {
+            "value": 600.109,
+            "kifuliiru": "Bihumbi magana galindatu na igana na mweenda"
+          },
+          {
+            "value": 600.11,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri"
+          },
+          {
+            "value": 600.111,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri na higuma"
+          },
+          {
+            "value": 600.112,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri na bubiri"
+          },
+          {
+            "value": 600.113,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri na bushatu"
+          },
+          {
+            "value": 600.114,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri na buna"
+          },
+          {
+            "value": 600.115,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri na butanu"
+          },
+          {
+            "value": 600.116,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri na ndatu"
+          },
+          {
+            "value": 600.117,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri na buliinda"
+          },
+          {
+            "value": 600.118,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri na munaana"
+          },
+          {
+            "value": 600.119,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri na mweenda"
+          },
+          {
+            "value": 600.12,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri"
+          },
+          {
+            "value": 600.121,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri na higuma"
+          },
+          {
+            "value": 600.122,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri na bubiri"
+          },
+          {
+            "value": 600.123,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri na bushatu"
+          },
+          {
+            "value": 600.124,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri na buna"
+          },
+          {
+            "value": 600.125,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri na butanu"
+          },
+          {
+            "value": 600.126,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri na ndatu"
+          },
+          {
+            "value": 600.127,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri na buliinda"
+          },
+          {
+            "value": 600.128,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri na munaana"
+          },
+          {
+            "value": 600.129,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gabiri na mweenda"
+          },
+          {
+            "value": 600.13,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gashatu"
+          },
+          {
+            "value": 600.131,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gashatu na higuma"
+          },
+          {
+            "value": 600.132,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gashatu na bubiri"
+          },
+          {
+            "value": 600.133,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gashatu na bushatu"
+          },
+          {
+            "value": 600.134,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gashatu na buna"
+          },
+          {
+            "value": 600.135,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gashatu na butanu"
+          },
+          {
+            "value": 600.136,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gashatu na ndatu"
+          },
+          {
+            "value": 600.137,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gashatu na buliinda"
+          },
+          {
+            "value": 600.138,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gashatu na munaana"
+          },
+          {
+            "value": 600.139,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gashatu na mweenda"
+          },
+          {
+            "value": 600.14,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gana"
+          },
+          {
+            "value": 600.141,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gana na higuma"
+          },
+          {
+            "value": 600.142,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gana na bubiri"
+          },
+          {
+            "value": 600.143,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gana na bushatu"
+          },
+          {
+            "value": 600.144,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gana na buna"
+          },
+          {
+            "value": 600.145,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gana na butanu"
+          },
+          {
+            "value": 600.146,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gana na ndatu"
+          },
+          {
+            "value": 600.147,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gana na buliinda"
+          },
+          {
+            "value": 600.148,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gana na munaana"
+          },
+          {
+            "value": 600.149,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gana na mweenda"
+          },
+          {
+            "value": 600.15,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gatanu"
+          },
+          {
+            "value": 600.151,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gatanu na higuma"
+          },
+          {
+            "value": 600.152,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gatanu na bubiri"
+          },
+          {
+            "value": 600.153,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gatanu na bushatu"
+          },
+          {
+            "value": 600.154,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gatanu na buna"
+          },
+          {
+            "value": 600.155,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gatanu na butanu"
+          },
+          {
+            "value": 600.156,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gatanu na ndatu"
+          },
+          {
+            "value": 600.157,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gatanu na buliinda"
+          },
+          {
+            "value": 600.158,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gatanu na munaana"
+          },
+          {
+            "value": 600.159,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi gatanu na mweenda"
+          },
+          {
+            "value": 600.16,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiindatu"
+          },
+          {
+            "value": 600.161,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiindatu na higuma"
+          },
+          {
+            "value": 600.162,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiindatu na bubiri"
+          },
+          {
+            "value": 600.163,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiindatu na bushatu"
+          },
+          {
+            "value": 600.164,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiindatu na buna"
+          },
+          {
+            "value": 600.165,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiindatu na butanu"
+          },
+          {
+            "value": 600.166,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiindatu na ndatu"
+          },
+          {
+            "value": 600.167,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiindatu na buliinda"
+          },
+          {
+            "value": 600.168,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiindatu na munaana"
+          },
+          {
+            "value": 600.169,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiindatu na mweenda"
+          },
+          {
+            "value": 600.17,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiinda"
+          },
+          {
+            "value": 600.171,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiinda na higuma"
+          },
+          {
+            "value": 600.172,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiinda na bubiri"
+          },
+          {
+            "value": 600.173,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiinda na bushatu"
+          },
+          {
+            "value": 600.174,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiinda na buna"
+          },
+          {
+            "value": 600.175,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiinda na butanu"
+          },
+          {
+            "value": 600.176,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiinda na ndatu"
+          },
+          {
+            "value": 600.177,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiinda na buliinda"
+          },
+          {
+            "value": 600.178,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiinda na munaana"
+          },
+          {
+            "value": 600.179,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galiinda na mweenda"
+          },
+          {
+            "value": 600.18,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimunaana"
+          },
+          {
+            "value": 600.181,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimunaana na higuma"
+          },
+          {
+            "value": 600.182,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimunaana na bubiri"
+          },
+          {
+            "value": 600.183,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimunaana na bushatu"
+          },
+          {
+            "value": 600.184,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimunaana na buna"
+          },
+          {
+            "value": 600.185,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimunaana na butanu"
+          },
+          {
+            "value": 600.186,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimunaana na ndatu"
+          },
+          {
+            "value": 600.187,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimunaana na buliinda"
+          },
+          {
+            "value": 600.188,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimunaana na munaana"
+          },
+          {
+            "value": 600.189,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimunaana na mweenda"
+          },
+          {
+            "value": 600.19,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimweenda"
+          },
+          {
+            "value": 600.191,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimweenda na higuma"
+          },
+          {
+            "value": 600.192,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimweenda na bubiri"
+          },
+          {
+            "value": 600.193,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimweenda na bushatu"
+          },
+          {
+            "value": 600.194,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimweenda na buna"
+          },
+          {
+            "value": 600.195,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimweenda na butanu"
+          },
+          {
+            "value": 600.196,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimweenda na ndatu"
+          },
+          {
+            "value": 600.197,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimweenda na buliinda"
+          },
+          {
+            "value": 600.198,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimweenda na munaana"
+          },
+          {
+            "value": 600.199,
+            "kifuliiru": "Bihumbi magana galindatu na igana na makumi galimweenda na mweenda"
+          },
+          {
+            "value": 600.2,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri"
+          },
+          {
+            "value": 600.201,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na higuma"
+          },
+          {
+            "value": 600.202,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na bubiri"
+          },
+          {
+            "value": 600.203,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na bushatu"
+          },
+          {
+            "value": 600.204,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na buna"
+          },
+          {
+            "value": 600.205,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na butanu"
+          },
+          {
+            "value": 600.206,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na ndaatu"
+          },
+          {
+            "value": 600.207,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na bulinda"
+          },
+          {
+            "value": 600.208,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na munaana"
+          },
+          {
+            "value": 600.209,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na mweenda"
+          },
+          {
+            "value": 600.21,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri"
+          },
+          {
+            "value": 600.211,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri na higuma"
+          },
+          {
+            "value": 600.212,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri na bubiri"
+          },
+          {
+            "value": 600.213,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri na bushatu"
+          },
+          {
+            "value": 600.214,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri na buna"
+          },
+          {
+            "value": 600.215,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri na butanu"
+          },
+          {
+            "value": 600.216,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri na ndaatu"
+          },
+          {
+            "value": 600.217,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri na bulinda"
+          },
+          {
+            "value": 600.218,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri na munaana"
+          },
+          {
+            "value": 600.219,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri na mweenda"
+          },
+          {
+            "value": 600.22,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri"
+          },
+          {
+            "value": 600.221,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri na higuma"
+          },
+          {
+            "value": 600.222,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri na bubiri"
+          },
+          {
+            "value": 600.223,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri na bushatu"
+          },
+          {
+            "value": 600.224,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri na buna"
+          },
+          {
+            "value": 600.225,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri na butanu"
+          },
+          {
+            "value": 600.226,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri na ndaatu"
+          },
+          {
+            "value": 600.227,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri na bulinda"
+          },
+          {
+            "value": 600.228,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri na munaana"
+          },
+          {
+            "value": 600.229,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gabiri na mweenda"
+          },
+          {
+            "value": 600.23,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gashatu"
+          },
+          {
+            "value": 600.231,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gashatu na higuma"
+          },
+          {
+            "value": 600.232,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gashatu na bubiri"
+          },
+          {
+            "value": 600.233,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gashatu na bushatu"
+          },
+          {
+            "value": 600.234,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gashatu na buna"
+          },
+          {
+            "value": 600.235,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gashatu na butanu"
+          },
+          {
+            "value": 600.236,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gashatu na ndaatu"
+          },
+          {
+            "value": 600.237,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gashatu na bulinda"
+          },
+          {
+            "value": 600.238,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gashatu na munaana"
+          },
+          {
+            "value": 600.239,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gashatu na mweenda"
+          },
+          {
+            "value": 600.24,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gana"
+          },
+          {
+            "value": 600.241,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gana na higuma"
+          },
+          {
+            "value": 600.242,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gana na bubiri"
+          },
+          {
+            "value": 600.243,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gana na bushatu"
+          },
+          {
+            "value": 600.244,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gana na buna"
+          },
+          {
+            "value": 600.245,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gana na butanu"
+          },
+          {
+            "value": 600.246,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.247,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gana na bulinda"
+          },
+          {
+            "value": 600.248,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gana na munaana"
+          },
+          {
+            "value": 600.249,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gana na mweenda"
+          },
+          {
+            "value": 600.25,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gatanu"
+          },
+          {
+            "value": 600.251,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gatanu na higuma"
+          },
+          {
+            "value": 600.252,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gatanu na bubiri"
+          },
+          {
+            "value": 600.253,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gatanu na bushatu"
+          },
+          {
+            "value": 600.254,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gatanu na buna"
+          },
+          {
+            "value": 600.255,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gatanu na butanu"
+          },
+          {
+            "value": 600.256,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gatanu na ndaatu"
+          },
+          {
+            "value": 600.257,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gatanu na bulinda"
+          },
+          {
+            "value": 600.258,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gatanu na munaana"
+          },
+          {
+            "value": 600.259,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi gatanu na mweenda"
+          },
+          {
+            "value": 600.26,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galindatu"
+          },
+          {
+            "value": 600.261,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galindatu na higuma"
+          },
+          {
+            "value": 600.262,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galindatu na bubiri"
+          },
+          {
+            "value": 600.263,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galindatu na bushatu"
+          },
+          {
+            "value": 600.264,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galindatu na buna"
+          },
+          {
+            "value": 600.265,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galindatu na butanu"
+          },
+          {
+            "value": 600.266,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galindatu na ndaatu"
+          },
+          {
+            "value": 600.267,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galindatu na bulinda"
+          },
+          {
+            "value": 600.268,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galindatu na munaana"
+          },
+          {
+            "value": 600.269,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galindatu na mweenda"
+          },
+          {
+            "value": 600.27,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galinda"
+          },
+          {
+            "value": 600.271,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galinda na higuma"
+          },
+          {
+            "value": 600.272,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galinda na bubiri"
+          },
+          {
+            "value": 600.273,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galinda na bushatu"
+          },
+          {
+            "value": 600.274,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galinda na buna"
+          },
+          {
+            "value": 600.275,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galinda na butanu"
+          },
+          {
+            "value": 600.276,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galinda na ndaatu"
+          },
+          {
+            "value": 600.277,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galinda na bulinda"
+          },
+          {
+            "value": 600.278,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galinda na munaana"
+          },
+          {
+            "value": 600.279,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galinda na mweenda"
+          },
+          {
+            "value": 600.28,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimunaana"
+          },
+          {
+            "value": 600.281,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimunaana na higuma"
+          },
+          {
+            "value": 600.282,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimunaana na bubiri"
+          },
+          {
+            "value": 600.283,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimunaana na bushatu"
+          },
+          {
+            "value": 600.284,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimunaana na buna"
+          },
+          {
+            "value": 600.285,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimunaana na butanu"
+          },
+          {
+            "value": 600.286,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimunaana na ndaatu"
+          },
+          {
+            "value": 600.287,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimunaana na bulinda"
+          },
+          {
+            "value": 600.288,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimunaana na munaana"
+          },
+          {
+            "value": 600.289,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimunaana na mweenda"
+          },
+          {
+            "value": 600.29,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimweenda"
+          },
+          {
+            "value": 600.291,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimweenda na higuma"
+          },
+          {
+            "value": 600.292,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimweenda na bubiri"
+          },
+          {
+            "value": 600.293,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimweenda na bushatu"
+          },
+          {
+            "value": 600.294,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimweenda na buna"
+          },
+          {
+            "value": 600.295,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimweenda na butanu"
+          },
+          {
+            "value": 600.296,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimweenda na ndaatu"
+          },
+          {
+            "value": 600.297,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimweenda na bulinda"
+          },
+          {
+            "value": 600.298,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimweenda na munaana"
+          },
+          {
+            "value": 600.299,
+            "kifuliiru": "Bihumbi magana galindatu na magana gabiri na makumi galimweenda na mweenda"
+          },
+          {
+            "value": 600.3,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu"
+          },
+          {
+            "value": 600.301,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na higuma"
+          },
+          {
+            "value": 600.302,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na bubiri"
+          },
+          {
+            "value": 600.303,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na bushatu"
+          },
+          {
+            "value": 600.304,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na buna"
+          },
+          {
+            "value": 600.305,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na butanu"
+          },
+          {
+            "value": 600.306,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na ndaatu"
+          },
+          {
+            "value": 600.307,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na bulinda"
+          },
+          {
+            "value": 600.308,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na munaana"
+          },
+          {
+            "value": 600.309,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na mweenda"
+          },
+          {
+            "value": 600.31,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gabiri"
+          },
+          {
+            "value": 600.311,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gabiri na higuma"
+          },
+          {
+            "value": 600.312,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gabiri na bubiri"
+          },
+          {
+            "value": 600.313,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gabiri na bushatu"
+          },
+          {
+            "value": 600.314,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gabiri na buna"
+          },
+          {
+            "value": 600.315,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gabiri na butanu"
+          },
+          {
+            "value": 600.316,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gabiri na ndaatu"
+          },
+          {
+            "value": 600.317,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gabiri na bulinda"
+          },
+          {
+            "value": 600.318,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gabiri na munaana"
+          },
+          {
+            "value": 600.319,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gabiri na mweenda"
+          },
+          {
+            "value": 600.32,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu"
+          },
+          {
+            "value": 600.321,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu na higuma"
+          },
+          {
+            "value": 600.322,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu na bubiri"
+          },
+          {
+            "value": 600.323,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu na bushatu"
+          },
+          {
+            "value": 600.324,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu na buna"
+          },
+          {
+            "value": 600.325,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu na butanu"
+          },
+          {
+            "value": 600.326,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu na ndaatu"
+          },
+          {
+            "value": 600.327,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu na bulinda"
+          },
+          {
+            "value": 600.328,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu na munaana"
+          },
+          {
+            "value": 600.329,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu na mweenda"
+          },
+          {
+            "value": 600.33,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu"
+          },
+          {
+            "value": 600.331,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu na higuma"
+          },
+          {
+            "value": 600.332,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu na bubiri"
+          },
+          {
+            "value": 600.333,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu na bushatu"
+          },
+          {
+            "value": 600.334,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu na buna"
+          },
+          {
+            "value": 600.335,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu na butanu"
+          },
+          {
+            "value": 600.336,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu na ndaatu"
+          },
+          {
+            "value": 600.337,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu na bulinda"
+          },
+          {
+            "value": 600.338,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu na munaana"
+          },
+          {
+            "value": 600.339,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gashatu na mweenda"
+          },
+          {
+            "value": 600.34,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gana"
+          },
+          {
+            "value": 600.341,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gana na higuma"
+          },
+          {
+            "value": 600.342,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gana na bubiri"
+          },
+          {
+            "value": 600.343,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gana na bushatu"
+          },
+          {
+            "value": 600.344,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gana na buna"
+          },
+          {
+            "value": 600.345,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gana na butanu"
+          },
+          {
+            "value": 600.346,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.347,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gana na bulinda"
+          },
+          {
+            "value": 600.348,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gana na munaana"
+          },
+          {
+            "value": 600.349,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gana na mweenda"
+          },
+          {
+            "value": 600.35,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gatanu"
+          },
+          {
+            "value": 600.351,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gatanu na higuma"
+          },
+          {
+            "value": 600.352,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gatanu na bubiri"
+          },
+          {
+            "value": 600.353,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gatanu na bushatu"
+          },
+          {
+            "value": 600.354,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gatanu na buna"
+          },
+          {
+            "value": 600.355,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gatanu na butanu"
+          },
+          {
+            "value": 600.356,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gatanu na ndaatu"
+          },
+          {
+            "value": 600.357,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gatanu na bulinda"
+          },
+          {
+            "value": 600.358,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gatanu na munaana"
+          },
+          {
+            "value": 600.359,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi gatanu na mweenda"
+          },
+          {
+            "value": 600.36,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galindatu"
+          },
+          {
+            "value": 600.361,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galindatu na higuma"
+          },
+          {
+            "value": 600.362,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galindatu na bubiri"
+          },
+          {
+            "value": 600.363,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galindatu na bushatu"
+          },
+          {
+            "value": 600.364,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galindatu na buna"
+          },
+          {
+            "value": 600.365,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galindatu na butanu"
+          },
+          {
+            "value": 600.366,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galindatu na ndaatu"
+          },
+          {
+            "value": 600.367,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galindatu na bulinda"
+          },
+          {
+            "value": 600.368,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galindatu na munaana"
+          },
+          {
+            "value": 600.369,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galindatu na mweenda"
+          },
+          {
+            "value": 600.37,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galinda"
+          },
+          {
+            "value": 600.371,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galinda na higuma"
+          },
+          {
+            "value": 600.372,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galinda na bubiri"
+          },
+          {
+            "value": 600.373,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galinda na bushatu"
+          },
+          {
+            "value": 600.374,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galinda na buna"
+          },
+          {
+            "value": 600.375,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galinda na butanu"
+          },
+          {
+            "value": 600.376,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galinda na ndaatu"
+          },
+          {
+            "value": 600.377,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galinda na bulinda"
+          },
+          {
+            "value": 600.378,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galinda na munaana"
+          },
+          {
+            "value": 600.379,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galinda na mweenda"
+          },
+          {
+            "value": 600.38,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimunaana"
+          },
+          {
+            "value": 600.381,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimunaana na higuma"
+          },
+          {
+            "value": 600.382,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimunaana na bubiri"
+          },
+          {
+            "value": 600.383,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimunaana na bushatu"
+          },
+          {
+            "value": 600.384,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimunaana na buna"
+          },
+          {
+            "value": 600.385,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimunaana na butanu"
+          },
+          {
+            "value": 600.386,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimunaana na ndaatu"
+          },
+          {
+            "value": 600.387,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimunaana na bulinda"
+          },
+          {
+            "value": 600.388,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimunaana na munaana"
+          },
+          {
+            "value": 600.389,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimunaana na mweenda"
+          },
+          {
+            "value": 600.39,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimweenda"
+          },
+          {
+            "value": 600.391,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimweenda na higuma"
+          },
+          {
+            "value": 600.392,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimweenda na bubiri"
+          },
+          {
+            "value": 600.393,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimweenda na bushatu"
+          },
+          {
+            "value": 600.394,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimweenda na buna"
+          },
+          {
+            "value": 600.395,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimweenda na butanu"
+          },
+          {
+            "value": 600.396,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimweenda na ndaatu"
+          },
+          {
+            "value": 600.397,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimweenda na bulinda"
+          },
+          {
+            "value": 600.398,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimweenda na munaana"
+          },
+          {
+            "value": 600.399,
+            "kifuliiru": "Bihumbi magana galindatu na magana gashatu na makumi galimweenda na mweenda"
+          },
+          {
+            "value": 600.4,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana"
+          },
+          {
+            "value": 600.401,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na higuma"
+          },
+          {
+            "value": 600.402,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na bubiri"
+          },
+          {
+            "value": 600.403,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na bushatu"
+          },
+          {
+            "value": 600.404,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na buna"
+          },
+          {
+            "value": 600.405,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na butanu"
+          },
+          {
+            "value": 600.406,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na ndaatu"
+          },
+          {
+            "value": 600.407,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na bulinda"
+          },
+          {
+            "value": 600.408,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na munaana"
+          },
+          {
+            "value": 600.409,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na mweenda"
+          },
+          {
+            "value": 600.41,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gabiri"
+          },
+          {
+            "value": 600.411,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gabiri na higuma"
+          },
+          {
+            "value": 600.412,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gabiri na bubiri"
+          },
+          {
+            "value": 600.413,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gabiri na bushatu"
+          },
+          {
+            "value": 600.414,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gabiri na buna"
+          },
+          {
+            "value": 600.415,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gabiri na butanu"
+          },
+          {
+            "value": 600.416,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gabiri na ndaatu"
+          },
+          {
+            "value": 600.417,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gabiri na bulinda"
+          },
+          {
+            "value": 600.418,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gabiri na munaana"
+          },
+          {
+            "value": 600.419,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gabiri na mweenda"
+          },
+          {
+            "value": 600.42,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana"
+          },
+          {
+            "value": 600.421,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na higuma"
+          },
+          {
+            "value": 600.422,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na bubiri"
+          },
+          {
+            "value": 600.423,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na bushatu"
+          },
+          {
+            "value": 600.424,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na buna"
+          },
+          {
+            "value": 600.425,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na butanu"
+          },
+          {
+            "value": 600.426,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.427,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na bulinda"
+          },
+          {
+            "value": 600.428,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na munaana"
+          },
+          {
+            "value": 600.429,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na mweenda"
+          },
+          {
+            "value": 600.43,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana"
+          },
+          {
+            "value": 600.431,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na higuma"
+          },
+          {
+            "value": 600.432,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na bubiri"
+          },
+          {
+            "value": 600.433,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na bushatu"
+          },
+          {
+            "value": 600.434,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na buna"
+          },
+          {
+            "value": 600.435,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na butanu"
+          },
+          {
+            "value": 600.436,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.437,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na bulinda"
+          },
+          {
+            "value": 600.438,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na munaana"
+          },
+          {
+            "value": 600.439,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na mweenda"
+          },
+          {
+            "value": 600.44,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana"
+          },
+          {
+            "value": 600.441,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na higuma"
+          },
+          {
+            "value": 600.442,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na bubiri"
+          },
+          {
+            "value": 600.443,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na bushatu"
+          },
+          {
+            "value": 600.444,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na buna"
+          },
+          {
+            "value": 600.445,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na butanu"
+          },
+          {
+            "value": 600.446,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.447,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na bulinda"
+          },
+          {
+            "value": 600.448,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na munaana"
+          },
+          {
+            "value": 600.449,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gana na mweenda"
+          },
+          {
+            "value": 600.45,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gatanu"
+          },
+          {
+            "value": 600.451,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gatanu na higuma"
+          },
+          {
+            "value": 600.452,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gatanu na bubiri"
+          },
+          {
+            "value": 600.453,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gatanu na bushatu"
+          },
+          {
+            "value": 600.454,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gatanu na buna"
+          },
+          {
+            "value": 600.455,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gatanu na butanu"
+          },
+          {
+            "value": 600.456,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gatanu na ndaatu"
+          },
+          {
+            "value": 600.457,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gatanu na bulinda"
+          },
+          {
+            "value": 600.458,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gatanu na munaana"
+          },
+          {
+            "value": 600.459,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi gatanu na mweenda"
+          },
+          {
+            "value": 600.46,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galindatu"
+          },
+          {
+            "value": 600.461,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galindatu na higuma"
+          },
+          {
+            "value": 600.462,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galindatu na bubiri"
+          },
+          {
+            "value": 600.463,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galindatu na bushatu"
+          },
+          {
+            "value": 600.464,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galindatu na buna"
+          },
+          {
+            "value": 600.465,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galindatu na butanu"
+          },
+          {
+            "value": 600.466,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galindatu na ndaatu"
+          },
+          {
+            "value": 600.467,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galindatu na bulinda"
+          },
+          {
+            "value": 600.468,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galindatu na munaana"
+          },
+          {
+            "value": 600.469,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galindatu na mweenda"
+          },
+          {
+            "value": 600.47,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galinda"
+          },
+          {
+            "value": 600.471,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galinda na higuma"
+          },
+          {
+            "value": 600.472,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galinda na bubiri"
+          },
+          {
+            "value": 600.473,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galinda na bushatu"
+          },
+          {
+            "value": 600.474,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galinda na buna"
+          },
+          {
+            "value": 600.475,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galinda na butanu"
+          },
+          {
+            "value": 600.476,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galinda na ndaatu"
+          },
+          {
+            "value": 600.477,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galinda na bulinda"
+          },
+          {
+            "value": 600.478,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galinda na munaana"
+          },
+          {
+            "value": 600.479,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galinda na mweenda"
+          },
+          {
+            "value": 600.48,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimunaana"
+          },
+          {
+            "value": 600.481,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimunaana na higuma"
+          },
+          {
+            "value": 600.482,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimunaana na bubiri"
+          },
+          {
+            "value": 600.483,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimunaana na bushatu"
+          },
+          {
+            "value": 600.484,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimunaana na buna"
+          },
+          {
+            "value": 600.485,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimunaana na butanu"
+          },
+          {
+            "value": 600.486,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimunaana na ndaatu"
+          },
+          {
+            "value": 600.487,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimunaana na bulinda"
+          },
+          {
+            "value": 600.488,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimunaana na munaana"
+          },
+          {
+            "value": 600.489,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimunaana na mweenda"
+          },
+          {
+            "value": 600.49,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimweenda"
+          },
+          {
+            "value": 600.491,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimweenda na higuma"
+          },
+          {
+            "value": 600.492,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimweenda na bubiri"
+          },
+          {
+            "value": 600.493,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimweenda na bushatu"
+          },
+          {
+            "value": 600.494,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimweenda na buna"
+          },
+          {
+            "value": 600.495,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimweenda na butanu"
+          },
+          {
+            "value": 600.496,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimweenda na ndaatu"
+          },
+          {
+            "value": 600.497,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimweenda na bulinda"
+          },
+          {
+            "value": 600.498,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimweenda na munaana"
+          },
+          {
+            "value": 600.499,
+            "kifuliiru": "Bihumbi magana galindatu na magana gana na makumi galimweenda na mweenda"
+          },
+          {
+            "value": 600.4,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu"
+          },
+          {
+            "value": 600.401,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na higuma"
+          },
+          {
+            "value": 600.402,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na bubiri"
+          },
+          {
+            "value": 600.403,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na bushatu"
+          },
+          {
+            "value": 600.404,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na buna"
+          },
+          {
+            "value": 600.405,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na butanu"
+          },
+          {
+            "value": 600.406,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na ndaatu"
+          },
+          {
+            "value": 600.407,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na bulinda"
+          },
+          {
+            "value": 600.408,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na munaana"
+          },
+          {
+            "value": 600.409,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na mweenda"
+          },
+          {
+            "value": 600.51,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gabiri"
+          },
+          {
+            "value": 600.511,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gabiri na higuma"
+          },
+          {
+            "value": 600.512,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gabiri na bubiri"
+          },
+          {
+            "value": 600.513,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gabiri na bushatu"
+          },
+          {
+            "value": 600.514,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gabiri na buna"
+          },
+          {
+            "value": 600.515,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gabiri na butanu"
+          },
+          {
+            "value": 600.516,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gabiri na ndaatu"
+          },
+          {
+            "value": 600.517,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gabiri na bulinda"
+          },
+          {
+            "value": 600.518,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gabiri na munaana"
+          },
+          {
+            "value": 600.519,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gabiri na mweenda"
+          },
+          {
+            "value": 600.52,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana"
+          },
+          {
+            "value": 600.521,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na higuma"
+          },
+          {
+            "value": 600.522,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na bubiri"
+          },
+          {
+            "value": 600.523,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na bushatu"
+          },
+          {
+            "value": 600.524,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na buna"
+          },
+          {
+            "value": 600.525,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na butanu"
+          },
+          {
+            "value": 600.526,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.527,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na bulinda"
+          },
+          {
+            "value": 600.528,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na munaana"
+          },
+          {
+            "value": 600.529,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na mweenda"
+          },
+          {
+            "value": 600.53,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana"
+          },
+          {
+            "value": 600.531,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na higuma"
+          },
+          {
+            "value": 600.532,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na bubiri"
+          },
+          {
+            "value": 600.533,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na bushatu"
+          },
+          {
+            "value": 600.534,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na buna"
+          },
+          {
+            "value": 600.535,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na butanu"
+          },
+          {
+            "value": 600.536,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.537,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na bulinda"
+          },
+          {
+            "value": 600.538,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na munaana"
+          },
+          {
+            "value": 600.539,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na mweenda"
+          },
+          {
+            "value": 600.54,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana"
+          },
+          {
+            "value": 600.541,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na higuma"
+          },
+          {
+            "value": 600.542,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na bubiri"
+          },
+          {
+            "value": 600.543,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na bushatu"
+          },
+          {
+            "value": 600.544,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na buna"
+          },
+          {
+            "value": 600.545,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na butanu"
+          },
+          {
+            "value": 600.546,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.547,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na bulinda"
+          },
+          {
+            "value": 600.548,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na munaana"
+          },
+          {
+            "value": 600.549,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gana na mweenda"
+          },
+          {
+            "value": 600.55,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gatanu"
+          },
+          {
+            "value": 600.551,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gatanu na higuma"
+          },
+          {
+            "value": 600.552,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gatanu na bubiri"
+          },
+          {
+            "value": 600.553,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gatanu na bushatu"
+          },
+          {
+            "value": 600.554,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gatanu na buna"
+          },
+          {
+            "value": 600.555,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gatanu na butanu"
+          },
+          {
+            "value": 600.556,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gatanu na ndaatu"
+          },
+          {
+            "value": 600.557,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gatanu na bulinda"
+          },
+          {
+            "value": 600.558,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gatanu na munaana"
+          },
+          {
+            "value": 600.559,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi gatanu na mweenda"
+          },
+          {
+            "value": 600.56,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galindatu"
+          },
+          {
+            "value": 600.561,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galindatu na higuma"
+          },
+          {
+            "value": 600.562,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galindatu na bubiri"
+          },
+          {
+            "value": 600.563,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galindatu na bushatu"
+          },
+          {
+            "value": 600.564,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galindatu na buna"
+          },
+          {
+            "value": 600.565,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galindatu na butanu"
+          },
+          {
+            "value": 600.566,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galindatu na ndaatu"
+          },
+          {
+            "value": 600.567,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galindatu na bulinda"
+          },
+          {
+            "value": 600.568,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galindatu na munaana"
+          },
+          {
+            "value": 600.569,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galindatu na mweenda"
+          },
+          {
+            "value": 600.57,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galinda"
+          },
+          {
+            "value": 600.571,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galinda na higuma"
+          },
+          {
+            "value": 600.572,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galinda na bubiri"
+          },
+          {
+            "value": 600.573,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galinda na bushatu"
+          },
+          {
+            "value": 600.574,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galinda na buna"
+          },
+          {
+            "value": 600.575,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galinda na butanu"
+          },
+          {
+            "value": 600.576,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galinda na ndaatu"
+          },
+          {
+            "value": 600.577,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galinda na bulinda"
+          },
+          {
+            "value": 600.578,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galinda na munaana"
+          },
+          {
+            "value": 600.579,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galinda na mweenda"
+          },
+          {
+            "value": 600.58,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimunaana"
+          },
+          {
+            "value": 600.581,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimunaana na higuma"
+          },
+          {
+            "value": 600.582,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimunaana na bubiri"
+          },
+          {
+            "value": 600.583,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimunaana na bushatu"
+          },
+          {
+            "value": 600.584,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimunaana na buna"
+          },
+          {
+            "value": 600.585,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimunaana na butanu"
+          },
+          {
+            "value": 600.586,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimunaana na ndaatu"
+          },
+          {
+            "value": 600.587,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimunaana na bulinda"
+          },
+          {
+            "value": 600.588,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimunaana na munaana"
+          },
+          {
+            "value": 600.589,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimunaana na mweenda"
+          },
+          {
+            "value": 600.59,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimweenda"
+          },
+          {
+            "value": 600.591,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimweenda na higuma"
+          },
+          {
+            "value": 600.592,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimweenda na bubiri"
+          },
+          {
+            "value": 600.593,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimweenda na bushatu"
+          },
+          {
+            "value": 600.594,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimweenda na buna"
+          },
+          {
+            "value": 600.595,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimweenda na butanu"
+          },
+          {
+            "value": 600.596,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimweenda na ndaatu"
+          },
+          {
+            "value": 600.597,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimweenda na bulinda"
+          },
+          {
+            "value": 600.598,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimweenda na munaana"
+          },
+          {
+            "value": 600.599,
+            "kifuliiru": "Bihumbi magana galindatu na magana gatanu na makumi galimweenda na mweenda"
+          },
+          {
+            "value": 600.6,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu"
+          },
+          {
+            "value": 600.601,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na higuma"
+          },
+          {
+            "value": 600.602,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na bubiri"
+          },
+          {
+            "value": 600.603,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na bushatu"
+          },
+          {
+            "value": 600.604,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na buna"
+          },
+          {
+            "value": 600.605,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na butanu"
+          },
+          {
+            "value": 600.606,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na ndaatu"
+          },
+          {
+            "value": 600.607,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na bulinda"
+          },
+          {
+            "value": 600.608,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na munaana"
+          },
+          {
+            "value": 600.609,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na mweenda"
+          },
+          {
+            "value": 600.61,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gabiri"
+          },
+          {
+            "value": 600.611,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gabiri na higuma"
+          },
+          {
+            "value": 600.612,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gabiri na bubiri"
+          },
+          {
+            "value": 600.613,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gabiri na bushatu"
+          },
+          {
+            "value": 600.614,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gabiri na buna"
+          },
+          {
+            "value": 600.615,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gabiri na butanu"
+          },
+          {
+            "value": 600.616,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gabiri na ndaatu"
+          },
+          {
+            "value": 600.617,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gabiri na bulinda"
+          },
+          {
+            "value": 600.618,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gabiri na munaana"
+          },
+          {
+            "value": 600.619,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gabiri na mweenda"
+          },
+          {
+            "value": 600.62,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana"
+          },
+          {
+            "value": 600.621,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na higuma"
+          },
+          {
+            "value": 600.622,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na bubiri"
+          },
+          {
+            "value": 600.623,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na bushatu"
+          },
+          {
+            "value": 600.624,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na buna"
+          },
+          {
+            "value": 600.625,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na butanu"
+          },
+          {
+            "value": 600.626,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.627,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na bulinda"
+          },
+          {
+            "value": 600.628,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na munaana"
+          },
+          {
+            "value": 600.629,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na mweenda"
+          },
+          {
+            "value": 600.63,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana"
+          },
+          {
+            "value": 600.631,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na higuma"
+          },
+          {
+            "value": 600.632,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na bubiri"
+          },
+          {
+            "value": 600.633,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na bushatu"
+          },
+          {
+            "value": 600.634,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na buna"
+          },
+          {
+            "value": 600.635,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na butanu"
+          },
+          {
+            "value": 600.636,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.637,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na bulinda"
+          },
+          {
+            "value": 600.638,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na munaana"
+          },
+          {
+            "value": 600.639,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na mweenda"
+          },
+          {
+            "value": 600.64,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana"
+          },
+          {
+            "value": 600.641,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na higuma"
+          },
+          {
+            "value": 600.642,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na bubiri"
+          },
+          {
+            "value": 600.643,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na bushatu"
+          },
+          {
+            "value": 600.644,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na buna"
+          },
+          {
+            "value": 600.645,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na butanu"
+          },
+          {
+            "value": 600.646,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.647,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na bulinda"
+          },
+          {
+            "value": 600.648,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na munaana"
+          },
+          {
+            "value": 600.649,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi gana na mweenda"
+          },
+          {
+            "value": 600.65,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galiindatu"
+          },
+          {
+            "value": 600.651,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galiindatu na higuma"
+          },
+          {
+            "value": 600.652,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galiindatu na bubiri"
+          },
+          {
+            "value": 600.653,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galiindatu na bushatu"
+          },
+          {
+            "value": 600.654,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galiindatu na buna"
+          },
+          {
+            "value": 600.655,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galiindatu na butanu"
+          },
+          {
+            "value": 600.656,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galiindatu na ndaatu"
+          },
+          {
+            "value": 600.657,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galiindatu na bulinda"
+          },
+          {
+            "value": 600.658,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galiindatu na munaana"
+          },
+          {
+            "value": 600.659,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galiindatu na mweenda"
+          },
+          {
+            "value": 600.66,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galindatu"
+          },
+          {
+            "value": 600.661,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galindatu na higuma"
+          },
+          {
+            "value": 600.662,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galindatu na bubiri"
+          },
+          {
+            "value": 600.663,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galindatu na bushatu"
+          },
+          {
+            "value": 600.664,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galindatu na buna"
+          },
+          {
+            "value": 600.665,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galindatu na butanu"
+          },
+          {
+            "value": 600.666,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galindatu na ndaatu"
+          },
+          {
+            "value": 600.667,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galindatu na bulinda"
+          },
+          {
+            "value": 600.668,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galindatu na munaana"
+          },
+          {
+            "value": 600.669,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galindatu na mweenda"
+          },
+          {
+            "value": 600.67,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galinda"
+          },
+          {
+            "value": 600.671,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galinda na higuma"
+          },
+          {
+            "value": 600.672,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galinda na bubiri"
+          },
+          {
+            "value": 600.673,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galinda na bushatu"
+          },
+          {
+            "value": 600.674,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galinda na buna"
+          },
+          {
+            "value": 600.675,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galinda na butanu"
+          },
+          {
+            "value": 600.676,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galinda na ndaatu"
+          },
+          {
+            "value": 600.677,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galinda na bulinda"
+          },
+          {
+            "value": 600.678,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galinda na munaana"
+          },
+          {
+            "value": 600.679,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galinda na mweenda"
+          },
+          {
+            "value": 600.68,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimunaana"
+          },
+          {
+            "value": 600.681,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimunaana na higuma"
+          },
+          {
+            "value": 600.682,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimunaana na bubiri"
+          },
+          {
+            "value": 600.683,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimunaana na bushatu"
+          },
+          {
+            "value": 600.684,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimunaana na buna"
+          },
+          {
+            "value": 600.685,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimunaana na butanu"
+          },
+          {
+            "value": 600.686,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimunaana na ndaatu"
+          },
+          {
+            "value": 600.687,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimunaana na bulinda"
+          },
+          {
+            "value": 600.688,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimunaana na munaana"
+          },
+          {
+            "value": 600.689,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimunaana na mweenda"
+          },
+          {
+            "value": 600.69,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimweenda"
+          },
+          {
+            "value": 600.691,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimweenda na higuma"
+          },
+          {
+            "value": 600.692,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimweenda na bubiri"
+          },
+          {
+            "value": 600.693,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimweenda na bushatu"
+          },
+          {
+            "value": 600.694,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimweenda na buna"
+          },
+          {
+            "value": 600.695,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimweenda na butanu"
+          },
+          {
+            "value": 600.696,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimweenda na ndaatu"
+          },
+          {
+            "value": 600.697,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimweenda na bulinda"
+          },
+          {
+            "value": 600.698,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimweenda na munaana"
+          },
+          {
+            "value": 600.699,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiindatu na makumi galimweenda na mweenda"
+          },
+          {
+            "value": 600.7,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda"
+          },
+          {
+            "value": 600.701,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na higuma"
+          },
+          {
+            "value": 600.702,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na bubiri"
+          },
+          {
+            "value": 600.703,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na bushatu"
+          },
+          {
+            "value": 600.704,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na buna"
+          },
+          {
+            "value": 600.705,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na butanu"
+          },
+          {
+            "value": 600.706,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na ndaatu"
+          },
+          {
+            "value": 600.707,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na bulinda"
+          },
+          {
+            "value": 600.708,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na munaana"
+          },
+          {
+            "value": 600.709,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na mweenda"
+          },
+          {
+            "value": 600.71,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gabiri"
+          },
+          {
+            "value": 600.711,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gabiri na higuma"
+          },
+          {
+            "value": 600.712,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gabiri na bubiri"
+          },
+          {
+            "value": 600.713,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gabiri na bushatu"
+          },
+          {
+            "value": 600.714,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gabiri na buna"
+          },
+          {
+            "value": 600.715,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gabiri na butanu"
+          },
+          {
+            "value": 600.716,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gabiri na ndaatu"
+          },
+          {
+            "value": 600.717,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gabiri na bulinda"
+          },
+          {
+            "value": 600.718,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gabiri na munaana"
+          },
+          {
+            "value": 600.719,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gabiri na mweenda"
+          },
+          {
+            "value": 600.72,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana"
+          },
+          {
+            "value": 600.721,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na higuma"
+          },
+          {
+            "value": 600.722,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na bubiri"
+          },
+          {
+            "value": 600.723,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na bushatu"
+          },
+          {
+            "value": 600.724,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na buna"
+          },
+          {
+            "value": 600.725,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na butanu"
+          },
+          {
+            "value": 600.726,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.727,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na bulinda"
+          },
+          {
+            "value": 600.728,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na munaana"
+          },
+          {
+            "value": 600.729,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na mweenda"
+          },
+          {
+            "value": 600.73,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana"
+          },
+          {
+            "value": 600.731,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na higuma"
+          },
+          {
+            "value": 600.732,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na bubiri"
+          },
+          {
+            "value": 600.733,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na bushatu"
+          },
+          {
+            "value": 600.734,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na buna"
+          },
+          {
+            "value": 600.735,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na butanu"
+          },
+          {
+            "value": 600.736,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.737,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na bulinda"
+          },
+          {
+            "value": 600.738,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na munaana"
+          },
+          {
+            "value": 600.739,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na mweenda"
+          },
+          {
+            "value": 600.74,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana"
+          },
+          {
+            "value": 600.741,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na higuma"
+          },
+          {
+            "value": 600.742,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na bubiri"
+          },
+          {
+            "value": 600.743,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na bushatu"
+          },
+          {
+            "value": 600.744,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na buna"
+          },
+          {
+            "value": 600.745,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na butanu"
+          },
+          {
+            "value": 600.746,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.747,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na bulinda"
+          },
+          {
+            "value": 600.748,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na munaana"
+          },
+          {
+            "value": 600.749,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi gana na mweenda"
+          },
+          {
+            "value": 600.75,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galiindatu"
+          },
+          {
+            "value": 600.751,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galiindatu na higuma"
+          },
+          {
+            "value": 600.752,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galiindatu na bubiri"
+          },
+          {
+            "value": 600.753,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galiindatu na bushatu"
+          },
+          {
+            "value": 600.754,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galiindatu na buna"
+          },
+          {
+            "value": 600.755,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galiindatu na butanu"
+          },
+          {
+            "value": 600.756,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galiindatu na ndaatu"
+          },
+          {
+            "value": 600.757,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galiindatu na bulinda"
+          },
+          {
+            "value": 600.758,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galiindatu na munaana"
+          },
+          {
+            "value": 600.759,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galiindatu na mweenda"
+          },
+          {
+            "value": 600.76,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galindatu"
+          },
+          {
+            "value": 600.761,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galindatu na higuma"
+          },
+          {
+            "value": 600.762,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galindatu na bubiri"
+          },
+          {
+            "value": 600.763,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galindatu na bushatu"
+          },
+          {
+            "value": 600.764,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galindatu na buna"
+          },
+          {
+            "value": 600.765,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galindatu na butanu"
+          },
+          {
+            "value": 600.766,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galindatu na ndaatu"
+          },
+          {
+            "value": 600.767,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galindatu na bulinda"
+          },
+          {
+            "value": 600.768,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galindatu na munaana"
+          },
+          {
+            "value": 600.769,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galindatu na mweenda"
+          },
+          {
+            "value": 600.77,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galinda"
+          },
+          {
+            "value": 600.771,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galinda na higuma"
+          },
+          {
+            "value": 600.772,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galinda na bubiri"
+          },
+          {
+            "value": 600.773,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galinda na bushatu"
+          },
+          {
+            "value": 600.774,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galinda na buna"
+          },
+          {
+            "value": 600.775,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galinda na butanu"
+          },
+          {
+            "value": 600.776,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galinda na ndaatu"
+          },
+          {
+            "value": 600.777,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galinda na bulinda"
+          },
+          {
+            "value": 600.778,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galinda na munaana"
+          },
+          {
+            "value": 600.779,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galinda na mweenda"
+          },
+          {
+            "value": 600.78,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimunaana"
+          },
+          {
+            "value": 600.781,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimunaana na higuma"
+          },
+          {
+            "value": 600.782,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimunaana na bubiri"
+          },
+          {
+            "value": 600.783,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimunaana na bushatu"
+          },
+          {
+            "value": 600.784,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimunaana na buna"
+          },
+          {
+            "value": 600.785,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimunaana na butanu"
+          },
+          {
+            "value": 600.786,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimunaana na ndaatu"
+          },
+          {
+            "value": 600.787,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimunaana na bulinda"
+          },
+          {
+            "value": 600.788,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimunaana na munaana"
+          },
+          {
+            "value": 600.789,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimunaana na mweenda"
+          },
+          {
+            "value": 600.79,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimweenda"
+          },
+          {
+            "value": 600.791,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimweenda na higuma"
+          },
+          {
+            "value": 600.792,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimweenda na bubiri"
+          },
+          {
+            "value": 600.793,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimweenda na bushatu"
+          },
+          {
+            "value": 600.794,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimweenda na buna"
+          },
+          {
+            "value": 600.795,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimweenda na butanu"
+          },
+          {
+            "value": 600.796,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimweenda na ndaatu"
+          },
+          {
+            "value": 600.797,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimweenda na bulinda"
+          },
+          {
+            "value": 600.798,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimweenda na munaana"
+          },
+          {
+            "value": 600.799,
+            "kifuliiru": "Bihumbi magana galindatu na magana galiinda na makumi galimweenda na mweenda"
+          },
+          {
+            "value": 600.8,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana"
+          },
+          {
+            "value": 600.801,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na higuma"
+          },
+          {
+            "value": 600.802,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na bubiri"
+          },
+          {
+            "value": 600.803,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na bushatu"
+          },
+          {
+            "value": 600.804,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na buna"
+          },
+          {
+            "value": 600.805,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na butanu"
+          },
+          {
+            "value": 600.806,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na ndaatu"
+          },
+          {
+            "value": 600.807,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na bulinda"
+          },
+          {
+            "value": 600.808,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na munaana"
+          },
+          {
+            "value": 600.809,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na mweenda"
+          },
+          {
+            "value": 600.81,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gabiri"
+          },
+          {
+            "value": 600.811,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gabiri na higuma"
+          },
+          {
+            "value": 600.812,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gabiri na bubiri"
+          },
+          {
+            "value": 600.813,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gabiri na bushatu"
+          },
+          {
+            "value": 600.814,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gabiri na buna"
+          },
+          {
+            "value": 600.815,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gabiri na butanu"
+          },
+          {
+            "value": 600.816,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gabiri na ndaatu"
+          },
+          {
+            "value": 600.817,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gabiri na bulinda"
+          },
+          {
+            "value": 600.818,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gabiri na munaana"
+          },
+          {
+            "value": 600.819,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gabiri na mweenda"
+          },
+          {
+            "value": 600.82,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana"
+          },
+          {
+            "value": 600.821,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na higuma"
+          },
+          {
+            "value": 600.822,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na bubiri"
+          },
+          {
+            "value": 600.823,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na bushatu"
+          },
+          {
+            "value": 600.824,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na buna"
+          },
+          {
+            "value": 600.825,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na butanu"
+          },
+          {
+            "value": 600.826,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.827,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na bulinda"
+          },
+          {
+            "value": 600.828,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na munaana"
+          },
+          {
+            "value": 600.829,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na mweenda"
+          },
+          {
+            "value": 600.83,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana"
+          },
+          {
+            "value": 600.831,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na higuma"
+          },
+          {
+            "value": 600.832,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na bubiri"
+          },
+          {
+            "value": 600.833,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na bushatu"
+          },
+          {
+            "value": 600.834,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na buna"
+          },
+          {
+            "value": 600.835,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na butanu"
+          },
+          {
+            "value": 600.836,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.837,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na bulinda"
+          },
+          {
+            "value": 600.838,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na munaana"
+          },
+          {
+            "value": 600.839,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na mweenda"
+          },
+          {
+            "value": 600.84,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana"
+          },
+          {
+            "value": 600.841,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na higuma"
+          },
+          {
+            "value": 600.842,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na bubiri"
+          },
+          {
+            "value": 600.843,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na bushatu"
+          },
+          {
+            "value": 600.844,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na buna"
+          },
+          {
+            "value": 600.845,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na butanu"
+          },
+          {
+            "value": 600.846,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.847,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na bulinda"
+          },
+          {
+            "value": 600.848,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na munaana"
+          },
+          {
+            "value": 600.849,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi gana na mweenda"
+          },
+          {
+            "value": 600.85,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galiindatu"
+          },
+          {
+            "value": 600.851,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galiindatu na higuma"
+          },
+          {
+            "value": 600.852,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galiindatu na bubiri"
+          },
+          {
+            "value": 600.853,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galiindatu na bushatu"
+          },
+          {
+            "value": 600.854,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galiindatu na buna"
+          },
+          {
+            "value": 600.855,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galiindatu na butanu"
+          },
+          {
+            "value": 600.856,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galiindatu na ndaatu"
+          },
+          {
+            "value": 600.857,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galiindatu na bulinda"
+          },
+          {
+            "value": 600.858,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galiindatu na munaana"
+          },
+          {
+            "value": 600.859,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galiindatu na mweenda"
+          },
+          {
+            "value": 600.86,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galindatu"
+          },
+          {
+            "value": 600.861,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galindatu na higuma"
+          },
+          {
+            "value": 600.862,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galindatu na bubiri"
+          },
+          {
+            "value": 600.863,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galindatu na bushatu"
+          },
+          {
+            "value": 600.864,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galindatu na buna"
+          },
+          {
+            "value": 600.865,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galindatu na butanu"
+          },
+          {
+            "value": 600.866,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galindatu na ndaatu"
+          },
+          {
+            "value": 600.867,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galindatu na bulinda"
+          },
+          {
+            "value": 600.868,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galindatu na munaana"
+          },
+          {
+            "value": 600.869,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galindatu na mweenda"
+          },
+          {
+            "value": 600.87,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galinda"
+          },
+          {
+            "value": 600.871,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galinda na higuma"
+          },
+          {
+            "value": 600.872,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galinda na bubiri"
+          },
+          {
+            "value": 600.873,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galinda na bushatu"
+          },
+          {
+            "value": 600.874,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galinda na buna"
+          },
+          {
+            "value": 600.875,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galinda na butanu"
+          },
+          {
+            "value": 600.876,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galinda na ndaatu"
+          },
+          {
+            "value": 600.877,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galinda na bulinda"
+          },
+          {
+            "value": 600.878,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galinda na munaana"
+          },
+          {
+            "value": 600.879,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galinda na mweenda"
+          },
+          {
+            "value": 600.88,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimunaana"
+          },
+          {
+            "value": 600.881,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimunaana na higuma"
+          },
+          {
+            "value": 600.882,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimunaana na bubiri"
+          },
+          {
+            "value": 600.883,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimunaana na bushatu"
+          },
+          {
+            "value": 600.884,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimunaana na buna"
+          },
+          {
+            "value": 600.885,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimunaana na butanu"
+          },
+          {
+            "value": 600.886,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimunaana na ndaatu"
+          },
+          {
+            "value": 600.887,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimunaana na bulinda"
+          },
+          {
+            "value": 600.888,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimunaana na munaana"
+          },
+          {
+            "value": 600.889,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimunaana na mweenda"
+          },
+          {
+            "value": 600.89,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimweenda"
+          },
+          {
+            "value": 600.891,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimweenda na higuma"
+          },
+          {
+            "value": 600.892,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimweenda na bubiri"
+          },
+          {
+            "value": 600.893,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimweenda na bushatu"
+          },
+          {
+            "value": 600.894,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimweenda na buna"
+          },
+          {
+            "value": 600.895,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimweenda na butanu"
+          },
+          {
+            "value": 600.896,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimweenda na ndaatu"
+          },
+          {
+            "value": 600.897,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimweenda na bulinda"
+          },
+          {
+            "value": 600.898,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimweenda na munaana"
+          },
+          {
+            "value": 600.899,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimunaana na makumi galimweenda na mweenda"
+          },
+          {
+            "value": 600.9,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda"
+          },
+          {
+            "value": 600.901,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na higuma"
+          },
+          {
+            "value": 600.902,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na bubiri"
+          },
+          {
+            "value": 600.903,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na bushatu"
+          },
+          {
+            "value": 600.904,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na buna"
+          },
+          {
+            "value": 600.905,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na butanu"
+          },
+          {
+            "value": 600.906,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na ndaatu"
+          },
+          {
+            "value": 600.907,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na bulinda"
+          },
+          {
+            "value": 600.908,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na munaana"
+          },
+          {
+            "value": 600.909,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na mweenda"
+          },
+          {
+            "value": 600.91,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gabiri"
+          },
+          {
+            "value": 600.911,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gabiri na higuma"
+          },
+          {
+            "value": 600.912,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gabiri na bubiri"
+          },
+          {
+            "value": 600.913,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gabiri na bushatu"
+          },
+          {
+            "value": 600.914,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gabiri na buna"
+          },
+          {
+            "value": 600.915,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gabiri na butanu"
+          },
+          {
+            "value": 600.916,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gabiri na ndaatu"
+          },
+          {
+            "value": 600.917,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gabiri na bulinda"
+          },
+          {
+            "value": 600.918,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gabiri na munaana"
+          },
+          {
+            "value": 600.919,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gabiri na mweenda"
+          },
+          {
+            "value": 600.92,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana"
+          },
+          {
+            "value": 600.921,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na higuma"
+          },
+          {
+            "value": 600.922,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na bubiri"
+          },
+          {
+            "value": 600.923,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na bushatu"
+          },
+          {
+            "value": 600.924,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na buna"
+          },
+          {
+            "value": 600.925,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na butanu"
+          },
+          {
+            "value": 600.926,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.927,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na bulinda"
+          },
+          {
+            "value": 600.928,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na munaana"
+          },
+          {
+            "value": 600.929,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na mweenda"
+          },
+          {
+            "value": 600.93,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana"
+          },
+          {
+            "value": 600.931,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na higuma"
+          },
+          {
+            "value": 600.932,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na bubiri"
+          },
+          {
+            "value": 600.933,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na bushatu"
+          },
+          {
+            "value": 600.934,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na buna"
+          },
+          {
+            "value": 600.935,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na butanu"
+          },
+          {
+            "value": 600.936,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.937,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na bulinda"
+          },
+          {
+            "value": 600.938,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na munaana"
+          },
+          {
+            "value": 600.939,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na mweenda"
+          },
+          {
+            "value": 600.94,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana"
+          },
+          {
+            "value": 600.941,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na higuma"
+          },
+          {
+            "value": 600.942,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na bubiri"
+          },
+          {
+            "value": 600.943,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na bushatu"
+          },
+          {
+            "value": 600.944,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na buna"
+          },
+          {
+            "value": 600.945,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na butanu"
+          },
+          {
+            "value": 600.946,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na ndaatu"
+          },
+          {
+            "value": 600.947,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na bulinda"
+          },
+          {
+            "value": 600.948,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na munaana"
+          },
+          {
+            "value": 600.949,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi gana na mweenda"
+          },
+          {
+            "value": 600.95,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galiindatu"
+          },
+          {
+            "value": 600.951,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galiindatu na higuma"
+          },
+          {
+            "value": 600.952,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galiindatu na bubiri"
+          },
+          {
+            "value": 600.953,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galiindatu na bushatu"
+          },
+          {
+            "value": 600.954,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galiindatu na buna"
+          },
+          {
+            "value": 600.955,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galiindatu na butanu"
+          },
+          {
+            "value": 600.956,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galiindatu na ndaatu"
+          },
+          {
+            "value": 600.957,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galiindatu na bulinda"
+          },
+          {
+            "value": 600.958,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galiindatu na munaana"
+          },
+          {
+            "value": 600.959,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galiindatu na mweenda"
+          },
+          {
+            "value": 600.96,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galindatu"
+          },
+          {
+            "value": 600.961,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galindatu na higuma"
+          },
+          {
+            "value": 600.962,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galindatu na bubiri"
+          },
+          {
+            "value": 600.963,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galindatu na bushatu"
+          },
+          {
+            "value": 600.964,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galindatu na buna"
+          },
+          {
+            "value": 600.965,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galindatu na butanu"
+          },
+          {
+            "value": 600.966,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galindatu na ndaatu"
+          },
+          {
+            "value": 600.967,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galindatu na bulinda"
+          },
+          {
+            "value": 600.968,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galindatu na munaana"
+          },
+          {
+            "value": 600.969,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galindatu na mweenda"
+          },
+          {
+            "value": 600.97,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galinda"
+          },
+          {
+            "value": 600.971,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galinda na higuma"
+          },
+          {
+            "value": 600.972,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galinda na bubiri"
+          },
+          {
+            "value": 600.973,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galinda na bushatu"
+          },
+          {
+            "value": 600.974,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galinda na buna"
+          },
+          {
+            "value": 600.975,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galinda na butanu"
+          },
+          {
+            "value": 600.976,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galinda na ndaatu"
+          },
+          {
+            "value": 600.977,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galinda na bulinda"
+          },
+          {
+            "value": 600.978,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galinda na munaana"
+          },
+          {
+            "value": 600.979,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galinda na mweenda"
+          },
+          {
+            "value": 600.98,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimunaana"
+          },
+          {
+            "value": 600.981,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimunaana na higuma"
+          },
+          {
+            "value": 600.982,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimunaana na bubiri"
+          },
+          {
+            "value": 600.983,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimunaana na bushatu"
+          },
+          {
+            "value": 600.984,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimunaana na buna"
+          },
+          {
+            "value": 600.985,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimunaana na butanu"
+          },
+          {
+            "value": 600.986,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimunaana na ndaatu"
+          },
+          {
+            "value": 600.987,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimunaana na bulinda"
+          },
+          {
+            "value": 600.988,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimunaana na munaana"
+          },
+          {
+            "value": 600.989,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimunaana na mweenda"
+          },
+          {
+            "value": 600.99,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimweenda"
+          },
+          {
+            "value": 600.991,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimweenda na higuma"
+          },
+          {
+            "value": 600.992,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimweenda na bubiri"
+          },
+          {
+            "value": 600.993,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimweenda na bushatu"
+          },
+          {
+            "value": 600.994,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimweenda na buna"
+          },
+          {
+            "value": 600.995,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimweenda na butanu"
+          },
+          {
+            "value": 600.996,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimweenda na ndaatu"
+          },
+          {
+            "value": 600.997,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimweenda na bulinda"
+          },
+          {
+            "value": 600.998,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimweenda na munaana"
+          },
+          {
+            "value": 600.999,
+            "kifuliiru": "Bihumbi magana galindatu na magana galimweenda na makumi galimweenda na mweenda"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.627Z",
+    "updatedAt": "2025-12-08T22:02:08.627Z",
+    "tags": [
+      "numbers",
+      "ukuharura"
+    ]
+  }
+}

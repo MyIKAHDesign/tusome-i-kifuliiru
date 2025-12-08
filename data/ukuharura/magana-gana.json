@@ -1,0 +1,427 @@
+{
+  "id": "ukuharura/magana-gana",
+  "slug": "ukuharura/magana-gana",
+  "title": "Magana gana",
+  "contentType": "number-lesson",
+  "data": {
+    "type": "number-lesson",
+    "title": "Magana gana",
+    "range": "400-499",
+    "sections": [
+      {
+        "title": "Numbers",
+        "range": "",
+        "numbers": [
+          {
+            "value": 400,
+            "kifuliiru": "Magana gana"
+          },
+          {
+            "value": 401,
+            "kifuliiru": "Magana gana na higuma"
+          },
+          {
+            "value": 402,
+            "kifuliiru": "Magana gana na na bubiri"
+          },
+          {
+            "value": 403,
+            "kifuliiru": "Magana gana na bushatu"
+          },
+          {
+            "value": 404,
+            "kifuliiru": "Magana gana na buna"
+          },
+          {
+            "value": 405,
+            "kifuliiru": "Magana gana na butanu"
+          },
+          {
+            "value": 406,
+            "kifuliiru": "Magana gana na ndaatu"
+          },
+          {
+            "value": 407,
+            "kifuliiru": "Magana gana na bulinda"
+          },
+          {
+            "value": 408,
+            "kifuliiru": "Magana gana na munaana"
+          },
+          {
+            "value": 409,
+            "kifuliiru": "Magana gana na mweenda"
+          },
+          {
+            "value": 410,
+            "kifuliiru": "Magana gana n'ikumi"
+          },
+          {
+            "value": 411,
+            "kifuliiru": "Magana gana n'ikumi na higuma"
+          },
+          {
+            "value": 412,
+            "kifuliiru": "Magana gana n'ikumi na bubiri"
+          },
+          {
+            "value": 413,
+            "kifuliiru": "Magana gana n'ikumi na bushatu"
+          },
+          {
+            "value": 414,
+            "kifuliiru": "Magana gana n'ikumi na buna"
+          },
+          {
+            "value": 415,
+            "kifuliiru": "Magana gana n'ikumi na butanu"
+          },
+          {
+            "value": 416,
+            "kifuliiru": "Magana gana n'ikumi na ndaatu"
+          },
+          {
+            "value": 417,
+            "kifuliiru": "Magana gana n'ikumi na bulinda"
+          },
+          {
+            "value": 418,
+            "kifuliiru": "Magana gana n'ikumi na munaana"
+          },
+          {
+            "value": 419,
+            "kifuliiru": "Magana gana n'ikumi na mweenda"
+          },
+          {
+            "value": 420,
+            "kifuliiru": "Magana gana na makumi gabiri"
+          },
+          {
+            "value": 421,
+            "kifuliiru": "Magana gana na makumi gabiri na higuma"
+          },
+          {
+            "value": 422,
+            "kifuliiru": "Magana gana na makumi gabiri na bubiri"
+          },
+          {
+            "value": 423,
+            "kifuliiru": "Magana gana na makumi gabiri na bushatu"
+          },
+          {
+            "value": 424,
+            "kifuliiru": "Magana gana na makumi gabiri na buna"
+          },
+          {
+            "value": 425,
+            "kifuliiru": "Magana gana na makumi gabiri na butanu"
+          },
+          {
+            "value": 426,
+            "kifuliiru": "Magana gana na makumi gabiri na ndaatu"
+          },
+          {
+            "value": 427,
+            "kifuliiru": "Magana gana na makumi gabiri na bulinda"
+          },
+          {
+            "value": 428,
+            "kifuliiru": "Magana gana na makumi gabiri na munaana"
+          },
+          {
+            "value": 429,
+            "kifuliiru": "Magana gana na makumi gabiri na mweenda"
+          },
+          {
+            "value": 430,
+            "kifuliiru": "Magana gana na makumi gashatu"
+          },
+          {
+            "value": 431,
+            "kifuliiru": "Magana gana na makumi gashatu na higuma"
+          },
+          {
+            "value": 432,
+            "kifuliiru": "Magana gana na makumi gashatu na bubiri"
+          },
+          {
+            "value": 433,
+            "kifuliiru": "Magana gana na makumi gashatu na bushatu"
+          },
+          {
+            "value": 434,
+            "kifuliiru": "Magana gana na makumi gashatu na buna"
+          },
+          {
+            "value": 435,
+            "kifuliiru": "Magana gana na makumi gashatu na butanu"
+          },
+          {
+            "value": 436,
+            "kifuliiru": "Magana gana na makumi gashatu na ndaatu"
+          },
+          {
+            "value": 437,
+            "kifuliiru": "Magana gana na makumi gashatu na bulinda"
+          },
+          {
+            "value": 438,
+            "kifuliiru": "Magana gana na makumi gashatu na munaana"
+          },
+          {
+            "value": 439,
+            "kifuliiru": "Magana gana na makumi gashatu na mweenda"
+          },
+          {
+            "value": 440,
+            "kifuliiru": "Magana gana na makumi gana"
+          },
+          {
+            "value": 441,
+            "kifuliiru": "Magana gana na makumi gana na higuma"
+          },
+          {
+            "value": 442,
+            "kifuliiru": "Magana gana na makumi gana na bubiri"
+          },
+          {
+            "value": 443,
+            "kifuliiru": "Magana gana na makumi gana na bushatu"
+          },
+          {
+            "value": 444,
+            "kifuliiru": "Magana gana na makumi gana na buna"
+          },
+          {
+            "value": 445,
+            "kifuliiru": "Magana gana na makumi gana na butanu"
+          },
+          {
+            "value": 446,
+            "kifuliiru": "Magana gana na makumi gana na ndaatu"
+          },
+          {
+            "value": 447,
+            "kifuliiru": "Magana gana na makumi gana na bulinda"
+          },
+          {
+            "value": 448,
+            "kifuliiru": "Magana gana na makumi gana na munaana"
+          },
+          {
+            "value": 449,
+            "kifuliiru": "Magana gana na makumi gana na mweenda"
+          },
+          {
+            "value": 450,
+            "kifuliiru": "Magana gana na makumi gatanu"
+          },
+          {
+            "value": 451,
+            "kifuliiru": "Magana gana na makumi gatanu na higuma"
+          },
+          {
+            "value": 452,
+            "kifuliiru": "Magana gana na makumi gatanu na bubiri"
+          },
+          {
+            "value": 453,
+            "kifuliiru": "Magana gana na makumi gatanu na bushatu"
+          },
+          {
+            "value": 454,
+            "kifuliiru": "Magana gana na makumi gatanu na buna"
+          },
+          {
+            "value": 455,
+            "kifuliiru": "Magana gana na makumi gatanu na butanu"
+          },
+          {
+            "value": 456,
+            "kifuliiru": "Magana gana na makumi gatanu na ndaatu"
+          },
+          {
+            "value": 457,
+            "kifuliiru": "Magana gana na makumi gatanu na bulinda"
+          },
+          {
+            "value": 458,
+            "kifuliiru": "Magana gana na makumi gatanu na munaana"
+          },
+          {
+            "value": 459,
+            "kifuliiru": "Magana gana na makumi gatanu na mweenda"
+          },
+          {
+            "value": 460,
+            "kifuliiru": "Magana gana na makumi galindatu"
+          },
+          {
+            "value": 461,
+            "kifuliiru": "Magana gana na makumi galindatu na higuma"
+          },
+          {
+            "value": 462,
+            "kifuliiru": "Magana gana na makumi galindatu na bubiri"
+          },
+          {
+            "value": 463,
+            "kifuliiru": "Magana gana na makumi galindatu na bushatu"
+          },
+          {
+            "value": 464,
+            "kifuliiru": "Magana gana na makumi galindatu na buna"
+          },
+          {
+            "value": 465,
+            "kifuliiru": "Magana gana na makumi galindatu na butanu"
+          },
+          {
+            "value": 466,
+            "kifuliiru": "Magana gana na makumi galindatu na ndaatu"
+          },
+          {
+            "value": 467,
+            "kifuliiru": "Magana gana na makumi galindatu na bulinda"
+          },
+          {
+            "value": 468,
+            "kifuliiru": "Magana gana na makumi galindatu na munaana"
+          },
+          {
+            "value": 469,
+            "kifuliiru": "Magana gana na makumi galindatu na mweenda"
+          },
+          {
+            "value": 470,
+            "kifuliiru": "Magana gana na makumi galinda"
+          },
+          {
+            "value": 471,
+            "kifuliiru": "Magana gana na makumi galinda na higuma"
+          },
+          {
+            "value": 472,
+            "kifuliiru": "Magana gana na makumi galinda na bubiri"
+          },
+          {
+            "value": 473,
+            "kifuliiru": "Magana gana na makumi galinda na bushatu"
+          },
+          {
+            "value": 474,
+            "kifuliiru": "Magana gana na makumi galinda na buna"
+          },
+          {
+            "value": 475,
+            "kifuliiru": "Magana gana na makumi galinda na butanu"
+          },
+          {
+            "value": 476,
+            "kifuliiru": "Magana gana na makumi galinda na ndaatu"
+          },
+          {
+            "value": 477,
+            "kifuliiru": "Magana gana na makumi galinda na bulinda"
+          },
+          {
+            "value": 478,
+            "kifuliiru": "Magana gana na makumi galinda na munaana"
+          },
+          {
+            "value": 479,
+            "kifuliiru": "Magana gana na makumi galinda na mweenda"
+          },
+          {
+            "value": 480,
+            "kifuliiru": "Magana gana na makumi galimunaana"
+          },
+          {
+            "value": 481,
+            "kifuliiru": "Magana gana na makumi galimunaana na higuma"
+          },
+          {
+            "value": 482,
+            "kifuliiru": "Magana gana na makumi galimunaana na bubiri"
+          },
+          {
+            "value": 483,
+            "kifuliiru": "Magana gana na makumi galimunaana na bushatu"
+          },
+          {
+            "value": 484,
+            "kifuliiru": "Magana gana na makumi galimunaana na buna"
+          },
+          {
+            "value": 485,
+            "kifuliiru": "Magana gana na makumi galimunaana na butanu"
+          },
+          {
+            "value": 486,
+            "kifuliiru": "Magana gana na makumi galimunaana na ndaatu"
+          },
+          {
+            "value": 487,
+            "kifuliiru": "Magana gana na makumi galimunaana na bulinda"
+          },
+          {
+            "value": 488,
+            "kifuliiru": "Magana gana na makumi galimunaana na munaana"
+          },
+          {
+            "value": 489,
+            "kifuliiru": "Magana gana na makumi galimunaana na mweenda"
+          },
+          {
+            "value": 490,
+            "kifuliiru": "Magana gana na makumi galimweenda"
+          },
+          {
+            "value": 491,
+            "kifuliiru": "Magana gana na makumi galimweenda na higuma"
+          },
+          {
+            "value": 492,
+            "kifuliiru": "Magana gana na makumi galimweenda na bubiri"
+          },
+          {
+            "value": 493,
+            "kifuliiru": "Magana gana na makumi galimweenda na bushatu"
+          },
+          {
+            "value": 494,
+            "kifuliiru": "Magana gana na makumi galimweenda na buna"
+          },
+          {
+            "value": 495,
+            "kifuliiru": "Magana gana na makumi galimweenda na butanu"
+          },
+          {
+            "value": 496,
+            "kifuliiru": "Magana gana na makumi galimweenda na ndaatu"
+          },
+          {
+            "value": 497,
+            "kifuliiru": "Magana gana na makumi galimweenda na bulinda"
+          },
+          {
+            "value": 498,
+            "kifuliiru": "Magana gana na makumi galimweenda na munaana"
+          },
+          {
+            "value": 499,
+            "kifuliiru": "Magana gana na makumi galimweenda na mweenda"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.653Z",
+    "updatedAt": "2025-12-08T22:02:08.653Z",
+    "tags": [
+      "numbers",
+      "ukuharura"
+    ]
+  }
+}

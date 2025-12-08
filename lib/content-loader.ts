@@ -20,7 +20,7 @@ export function getAllContentSlugs(): string[] {
     const files = fs.readdirSync(dir);
     
     for (const file of files) {
-      // Skip _meta.json and other non-MDX files
+      // Skip _meta.json and other non-content files
       if (file === '_meta.json' || file.startsWith('.')) {
         continue;
       }
@@ -31,8 +31,9 @@ export function getAllContentSlugs(): string[] {
       if (stat.isDirectory()) {
         // Recursively scan subdirectories
         scanDirectory(fullPath, path.join(basePath, file));
-      } else if (file.endsWith('.mdx')) {
-        const slug = path.join(basePath, file.replace(/\.mdx$/, ''));
+      } else if (file.endsWith('.mdx') || file.endsWith('.json')) {
+        // Support both MDX and JSON files
+        const slug = path.join(basePath, file.replace(/\.(mdx|json)$/, ''));
         // Convert to URL-friendly slug (handle both Windows and Unix paths)
         const urlSlug = slug === 'index' ? '' : slug.replace(/\\/g, '/');
         slugs.push(urlSlug);

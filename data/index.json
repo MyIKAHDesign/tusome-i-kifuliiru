@@ -1,0 +1,48 @@
+{
+  "id": "index",
+  "slug": "index",
+  "title": "Muyegerere, Tusome i Kifuliiru mu Kifuliiru",
+  "contentType": "article",
+  "data": {
+    "type": "article",
+    "title": "Muyegerere, Tusome i Kifuliiru mu Kifuliiru",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 1,
+        "content": "Muyegerere, Tusome i Kifuliiru mu Kifuliiru"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "content": "Ndondeezo"
+      },
+      {
+        "type": "paragraph",
+        "content": "Mu kihugo kya zene, abandu booshi bagweti bagakola kwoshi bashobwiri higulu lyo' kudeta kwo bazamuule indeto zabo. Mu bindu bihamu ibija ku ndeto ne'byangatuma indeto igasikama inamale ne' kyanya kingi halinde ihikire ibibusi ibigayija, haliri ukusome no kusomeesa iyo ndeto. Ukusomeesa kwoshi ngisi kwo kwangaba kuliri kusoma nakwo, nga ngisi kwo tumubwirwa na'bakoli komiri ukusomeesa. Umuundu ugasomesa i Kifuliiru, akwaniini atebera ayiji bingi mu ino ndeto."
+      },
+      {
+        "type": "paragraph",
+        "content": "Abandu bingi batayiji kwo ikyanya indeto yayandikwa bimutuma igasikama, inagire ikise, inalonge injira yo'kulama. Ku balya ngisi kera abasobanukirwa yibyo bagweti bagakola higulu indeto zaabo zitatereeke. Na nitu ku Kifuliiru tugweti tugakola ngisi kwo tushobwiri, higulu indeto yitu Kifuliiru itakengeri lenga nga mbusi."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "content": "Hayi tugasomera?"
+      },
+      {
+        "type": "paragraph",
+        "content": "Ukudeta kwo utole ngisi byo ugasoma, lenga yaho higulu mu menu, utole i menu Tusome kandi li ulenge uhume hano tugakutwala ku [Ndondeero yo'kusoma](tusome/ndondeero_tusome)."
+      },
+      {
+        "type": "paragraph",
+        "content": "Kongwa. Tuyegerere tweeshi."
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.605Z",
+    "updatedAt": "2025-12-08T22:02:08.605Z",
+    "tags": []
+  }
+}

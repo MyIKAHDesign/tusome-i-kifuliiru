@@ -1,0 +1,140 @@
+{
+  "id": "ukuharura/kihumbi-no-kuzamuuka",
+  "slug": "ukuharura/kihumbi-no-kuzamuuka",
+  "title": "Kihumbi ukuzamuuka",
+  "contentType": "number-lesson",
+  "data": {
+    "type": "number-lesson",
+    "title": "Kihumbi ukuzamuuka",
+    "description": "Ikyanya kera waharura ukuhisa ku bihumbi magana galimwenda, unahise na ku bihumbi magana galimwendwa na makumi galimweenda na mweenda na magana galimweenda na makumi galimweenda na mweenda **(999.999)**, hanakulikirage umuharuro tumuberangira **Umulyoni (1.000.000)**.",
+    "range": "1000-",
+    "sections": [
+      {
+        "title": "Numbers",
+        "range": "",
+        "numbers": [
+          {
+            "value": 1000,
+            "kifuliiru": "Kihumbi"
+          },
+          {
+            "value": 2000,
+            "kifuliiru": "Bihumbi bibiri"
+          },
+          {
+            "value": 3000,
+            "kifuliiru": "Bihumbi bishatu"
+          },
+          {
+            "value": 4000,
+            "kifuliiru": "Bihumbi bina"
+          },
+          {
+            "value": 5000,
+            "kifuliiru": "Bihumbi bitanu"
+          },
+          {
+            "value": 6000,
+            "kifuliiru": "Bihumbi ndatu"
+          },
+          {
+            "value": 7000,
+            "kifuliiru": "Bihumbi birinda"
+          },
+          {
+            "value": 8000,
+            "kifuliiru": "Bihumbi munaana"
+          },
+          {
+            "value": 9000,
+            "kifuliiru": "Bihumbi mweenda"
+          },
+          {
+            "value": 10,
+            "kifuliiru": "Bihumbi ikumi"
+          },
+          {
+            "value": 20,
+            "kifuliiru": "Bihumbi makumi gabiri"
+          },
+          {
+            "value": 30,
+            "kifuliiru": "Bihumbi makumi gashatu"
+          },
+          {
+            "value": 40,
+            "kifuliiru": "Bihumbi makumi gana"
+          },
+          {
+            "value": 50,
+            "kifuliiru": "Bihumbi makumi gatanu"
+          },
+          {
+            "value": 60,
+            "kifuliiru": "Bihumbi makumi galindatu"
+          },
+          {
+            "value": 70,
+            "kifuliiru": "Bihumbi makumi galinda"
+          },
+          {
+            "value": 80,
+            "kifuliiru": "Bihumbi makumi galimunaana"
+          },
+          {
+            "value": 90,
+            "kifuliiru": "Bihumbi makumi galimweenda"
+          },
+          {
+            "value": 100,
+            "kifuliiru": "Bihumbi igana"
+          },
+          {
+            "value": 100,
+            "kifuliiru": "Bihumbi igana"
+          },
+          {
+            "value": 200,
+            "kifuliiru": "Bihumbi magana gabiri"
+          },
+          {
+            "value": 300,
+            "kifuliiru": "Bihumbi magana gashatu"
+          },
+          {
+            "value": 400,
+            "kifuliiru": "Bihumbi magana gana"
+          },
+          {
+            "value": 500,
+            "kifuliiru": "Bihumbi magana gatanu"
+          },
+          {
+            "value": 600,
+            "kifuliiru": "Bihumbi magana galindatu"
+          },
+          {
+            "value": 700,
+            "kifuliiru": "Bihumbi magana galinda"
+          },
+          {
+            "value": 800,
+            "kifuliiru": "Bihumbi magana galimunaana"
+          },
+          {
+            "value": 900,
+            "kifuliiru": "Bihumbi magana galimweenda"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.651Z",
+    "updatedAt": "2025-12-08T22:02:08.651Z",
+    "tags": [
+      "numbers",
+      "ukuharura"
+    ]
+  }
+}

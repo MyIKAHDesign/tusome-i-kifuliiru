@@ -1,45 +1,41 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import { NumberLessonContent, ContentItem, ContentType, LessonContent } from './content-schema';
-
+#!/usr/bin/env node
 /**
- * Converts a number lesson MDX file to JSON format
+ * Migration script to convert MDX files to JSON format
+ * Run with: node scripts/migrate-to-json.js
  */
-export function convertNumberLessonMDXToJSON(mdxContent: string, slug: string): NumberLessonContent | null {
+
+const fs = require('fs');
+const path = require('path');
+const matter = require('gray-matter');
+
+const dataDir = path.join(process.cwd(), 'data');
+
+function convertNumberLessonMDXToJSON(mdxContent, slug) {
   const { content, data } = matter(mdxContent);
   
-  // Extract title and range from first heading
   const titleMatch = content.match(/^#\s+(.+?)(?:\s*\(([^)]+)\))?$/m);
   const title = data.title || titleMatch?.[1]?.trim() || slug;
   const range = titleMatch?.[2] || data.range || '';
   
-  // Extract description (text after title, before first ##)
   const descMatch = content.match(/^#.+\n\n(.+?)(?=\n##)/s);
   const description = descMatch?.[1]?.trim() || '';
   
-  // Extract sections - look for ### headings
-  const sections: any[] = [];
-  
-  // Split by ### headings
-  const sectionParts = content.split(/^###\s+/gm).slice(1); // Skip first part (before first ###)
+  const sections = [];
+  const sectionParts = content.split(/^###\s+/gm).slice(1);
   
   for (const sectionPart of sectionParts) {
     const lines = sectionPart.split('\n');
     const sectionTitleLine = lines[0]?.trim() || '';
     
-    // Extract section title and range
     const sectionTitleMatch = sectionTitleLine.match(/^(.+?)(?:\s*\(([^)]+)\))?$/);
     const sectionTitle = sectionTitleMatch?.[1]?.trim() || sectionTitleLine;
     const sectionRange = sectionTitleMatch?.[2] || '';
     
-    // Extract numbers from remaining lines
-    const numbers: any[] = [];
+    const numbers = [];
     for (let i = 1; i < lines.length; i++) {
       const line = lines[i].trim();
-      if (!line || line.startsWith('#')) break; // Stop at next heading or empty
+      if (!line || line.startsWith('#')) break;
       
-      // Match patterns like "2.001 = Bihumbi bibiri na higuma" or "2001 = ..."
       const numberMatch = line.match(/^([0-9.,]+)\s*=\s*(.+?)(?:\s*$|$)/);
       if (numberMatch) {
         const valueStr = numberMatch[1].replace(/,/g, '');
@@ -60,42 +56,6 @@ export function convertNumberLessonMDXToJSON(mdxContent: string, slug: string): 
     }
   }
   
-  // If no sections found with ###, try to extract from ## sections or flat list
-  if (sections.length === 0) {
-    // Try extracting from ## sections
-    const mainSections = content.split(/^##\s+/gm).slice(1);
-    
-    for (const mainSection of mainSections) {
-      const lines = mainSection.split('\n');
-      const sectionTitle = lines[0]?.trim() || '';
-      
-      const numbers: any[] = [];
-      for (let i = 1; i < lines.length; i++) {
-        const line = lines[i].trim();
-        if (!line || line.startsWith('#')) continue;
-        
-        const numberMatch = line.match(/^([0-9.,]+)\s*=\s*(.+?)(?:\s*$|$)/);
-        if (numberMatch) {
-          const valueStr = numberMatch[1].replace(/,/g, '');
-          const value = valueStr.includes('.') ? parseFloat(valueStr) : parseInt(valueStr);
-          const kifuliiru = numberMatch[2].trim();
-          if (!isNaN(value) && kifuliiru) {
-            numbers.push({ value, kifuliiru });
-          }
-        }
-      }
-      
-      if (numbers.length > 0) {
-        sections.push({
-          title: sectionTitle,
-          range: '',
-          numbers,
-        });
-      }
-    }
-  }
-  
-  // Last resort: extract all number lines from entire content
   if (sections.length === 0) {
     const numberLines = content.split('\n').filter(line => {
       const trimmed = line.trim();
@@ -114,7 +74,7 @@ export function convertNumberLessonMDXToJSON(mdxContent: string, slug: string): 
           };
         }
         return null;
-      }).filter(Boolean) as any[];
+      }).filter(Boolean);
       
       if (numbers.length > 0) {
         sections.push({
@@ -139,27 +99,23 @@ export function convertNumberLessonMDXToJSON(mdxContent: string, slug: string): 
   };
 }
 
-/**
- * Converts narrative/lesson MDX to JSON
- */
-export function convertLessonMDXToJSON(mdxContent: string, slug: string): LessonContent {
+function convertLessonMDXToJSON(mdxContent, slug) {
   const { content, data } = matter(mdxContent);
   
   const titleMatch = content.match(/^#\s+(.+)$/m);
   const title = data.title || titleMatch?.[1]?.trim() || slug;
   
-  const blocks: any[] = [];
+  const blocks = [];
   const lines = content.split('\n');
   
-  let currentParagraph: string[] = [];
+  let currentParagraph = [];
   let inList = false;
-  let listItems: string[] = [];
+  let listItems = [];
   
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     const trimmed = line.trim();
     
-    // Headings
     if (trimmed.startsWith('# ')) {
       if (currentParagraph.length > 0) {
         blocks.push({ type: 'paragraph', content: currentParagraph.join(' ').trim() });
@@ -193,9 +149,7 @@ export function convertLessonMDXToJSON(mdxContent: string, slug: string): Lesson
         inList = false;
       }
       blocks.push({ type: 'heading', level: 3, content: trimmed.replace(/^###\s+/, '') });
-    } 
-    // Images
-    else if (trimmed.startsWith('![')) {
+    } else if (trimmed.startsWith('![')) {
       if (currentParagraph.length > 0) {
         blocks.push({ type: 'paragraph', content: currentParagraph.join(' ').trim() });
         currentParagraph = [];
@@ -209,18 +163,14 @@ export function convertLessonMDXToJSON(mdxContent: string, slug: string): Lesson
       if (imgMatch) {
         blocks.push({ type: 'image', src: imgMatch[2], alt: imgMatch[1] || '' });
       }
-    }
-    // Lists
-    else if (trimmed.startsWith('- ') || trimmed.startsWith('* ') || /^\d+\.\s/.test(trimmed)) {
+    } else if (trimmed.startsWith('- ') || trimmed.startsWith('* ') || /^\d+\.\s/.test(trimmed)) {
       if (currentParagraph.length > 0) {
         blocks.push({ type: 'paragraph', content: currentParagraph.join(' ').trim() });
         currentParagraph = [];
       }
       inList = true;
       listItems.push(trimmed.replace(/^[-*]\s+/, '').replace(/^\d+\.\s+/, ''));
-    }
-    // Empty line
-    else if (!trimmed) {
+    } else if (!trimmed) {
       if (currentParagraph.length > 0) {
         blocks.push({ type: 'paragraph', content: currentParagraph.join(' ').trim() });
         currentParagraph = [];
@@ -230,14 +180,11 @@ export function convertLessonMDXToJSON(mdxContent: string, slug: string): Lesson
         listItems = [];
         inList = false;
       }
-    }
-    // Regular paragraph text
-    else if (!trimmed.startsWith('|') && !trimmed.startsWith('```')) {
+    } else if (!trimmed.startsWith('|') && !trimmed.startsWith('```')) {
       currentParagraph.push(trimmed);
     }
   }
   
-  // Add remaining content
   if (currentParagraph.length > 0) {
     blocks.push({ type: 'paragraph', content: currentParagraph.join(' ').trim() });
   }
@@ -248,26 +195,21 @@ export function convertLessonMDXToJSON(mdxContent: string, slug: string): Lesson
   return {
     type: 'article',
     title,
-    blocks: blocks.filter(b => b.content || b.items?.length > 0),
+    blocks: blocks.filter(b => b.content || (b.items && b.items.length > 0)),
   };
 }
 
-/**
- * Migrate a single MDX file to JSON
- */
-export function migrateMDXToJSON(mdxPath: string, outputPath: string): boolean {
+function migrateMDXToJSON(mdxPath, outputPath) {
   try {
     const mdxContent = fs.readFileSync(mdxPath, 'utf8');
     const slug = path.basename(mdxPath, '.mdx');
     const dir = path.dirname(mdxPath);
-    const relativeDir = path.relative(path.join(process.cwd(), 'data'), dir);
+    const relativeDir = path.relative(dataDir, dir);
     const fullSlug = relativeDir === '.' || relativeDir === '' ? slug : `${relativeDir}/${slug}`;
     
-    // Detect content type
-    let contentData: any = null;
-    let contentType: ContentType = 'article';
+    let contentData = null;
+    let contentType = 'article';
     
-    // Check if it's a number lesson (ukuharura folder or number-related files)
     const isNumberLesson = 
       mdxPath.includes('ukuharura') || 
       mdxPath.includes('bihumbi') || 
@@ -287,13 +229,12 @@ export function migrateMDXToJSON(mdxPath: string, outputPath: string): boolean {
       }
     }
     
-    // If not a number lesson or conversion failed, convert to article
     if (!contentData) {
       contentData = convertLessonMDXToJSON(mdxContent, slug);
       contentType = 'article';
     }
     
-    const jsonContent: ContentItem = {
+    const jsonContent = {
       id: fullSlug,
       slug: fullSlug,
       title: contentData.title,
@@ -306,7 +247,6 @@ export function migrateMDXToJSON(mdxPath: string, outputPath: string): boolean {
       },
     };
     
-    // Ensure output directory exists
     const outputDir = path.dirname(outputPath);
     if (!fs.existsSync(outputDir)) {
       fs.mkdirSync(outputDir, { recursive: true });
@@ -315,7 +255,50 @@ export function migrateMDXToJSON(mdxPath: string, outputPath: string): boolean {
     fs.writeFileSync(outputPath, JSON.stringify(jsonContent, null, 2), 'utf8');
     return true;
   } catch (error) {
-    console.error(`Error migrating ${mdxPath}:`, error);
+    console.error(`Error migrating ${mdxPath}:`, error.message);
     return false;
   }
 }
+
+let migratedCount = 0;
+let failedCount = 0;
+
+function migrateDirectory(dir, baseOutput = dataDir) {
+  const files = fs.readdirSync(dir);
+  
+  for (const file of files) {
+    if (file === '_meta.json' || file.startsWith('.') || file.endsWith('.json')) {
+      continue;
+    }
+    
+    const fullPath = path.join(dir, file);
+    const stat = fs.statSync(fullPath);
+    
+    if (stat.isDirectory()) {
+      migrateDirectory(fullPath, baseOutput);
+    } else if (file.endsWith('.mdx')) {
+      const relativePath = path.relative(dataDir, fullPath);
+      const outputPath = path.join(baseOutput, relativePath.replace('.mdx', '.json'));
+      
+      process.stdout.write(`Migrating: ${relativePath}... `);
+      const success = migrateMDXToJSON(fullPath, outputPath);
+      
+      if (success) {
+        migratedCount++;
+        console.log('✓');
+      } else {
+        failedCount++;
+        console.log('✗');
+      }
+    }
+  }
+}
+
+console.log('Starting migration from MDX to JSON...\n');
+migrateDirectory(dataDir);
+console.log(`\nMigration complete!`);
+console.log(`✓ Successfully migrated: ${migratedCount} files`);
+if (failedCount > 0) {
+  console.log(`✗ Failed: ${failedCount} files`);
+}
+

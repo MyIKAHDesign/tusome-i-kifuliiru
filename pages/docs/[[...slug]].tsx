@@ -39,10 +39,10 @@ export default function DocPage({ mdxSource, jsonContent, contentType }: DocPage
 export const getStaticPaths: GetStaticPaths = async () => {
   // Get slugs from both MDX and JSON
   const mdxSlugs = getAllContentSlugs();
-  const jsonSlugs: string[] = []; // Will be populated when we migrate
+  const jsonSlugs = getAllContentSlugs(); // JSON files are in same directory, just different extension
   
-  // For now, use MDX slugs
-  const allSlugs = [...new Set([...mdxSlugs, ...jsonSlugs])];
+  // Combine and deduplicate (JSON takes priority, so if both exist, JSON will be used)
+  const allSlugs = [...new Set([...jsonSlugs, ...mdxSlugs])];
   
   return {
     paths: allSlugs.map((slug) => ({
@@ -56,7 +56,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slugArray = params?.slug as string[] || [];
   const slug = slugArray.join('/') || 'index';
   
-  // Try JSON first (new format)
+  // Try JSON first (new format - prioritized)
   const jsonContent = getContentData(slug);
   if (jsonContent) {
     return {
@@ -68,7 +68,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   }
   
-  // Fall back to MDX (legacy format)
+  // Fall back to MDX (legacy format - for files not yet migrated)
   const mdxContent = getContentBySlug(slug);
   
   if (!mdxContent) {

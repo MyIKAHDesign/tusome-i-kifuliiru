@@ -1,0 +1,26 @@
+{
+  "id": "imigazi",
+  "slug": "imigazi",
+  "title": "Imigazi ye'Bufuliiru",
+  "contentType": "article",
+  "data": {
+    "type": "article",
+    "title": "Imigazi ye'Bufuliiru",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 1,
+        "content": "Imigazi ye'Bufuliiru"
+      },
+      {
+        "type": "paragraph",
+        "content": "Menya imigazi ye'Bufuliiru"
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.605Z",
+    "updatedAt": "2025-12-08T22:02:08.605Z",
+    "tags": []
+  }
+}

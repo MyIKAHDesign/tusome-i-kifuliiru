@@ -1,0 +1,427 @@
+{
+  "id": "ukuharura/igana",
+  "slug": "ukuharura/igana",
+  "title": "Igana",
+  "contentType": "number-lesson",
+  "data": {
+    "type": "number-lesson",
+    "title": "Igana",
+    "range": "100-199",
+    "sections": [
+      {
+        "title": "Numbers",
+        "range": "",
+        "numbers": [
+          {
+            "value": 100,
+            "kifuliiru": "Igana"
+          },
+          {
+            "value": 101,
+            "kifuliiru": "Igana na higuma"
+          },
+          {
+            "value": 102,
+            "kifuliiru": "Igana na na bubiri"
+          },
+          {
+            "value": 103,
+            "kifuliiru": "Igana na bushatu"
+          },
+          {
+            "value": 104,
+            "kifuliiru": "Igana na buna"
+          },
+          {
+            "value": 105,
+            "kifuliiru": "Igana na butanu"
+          },
+          {
+            "value": 106,
+            "kifuliiru": "Igana na ndaatu"
+          },
+          {
+            "value": 107,
+            "kifuliiru": "Igana na bulinda"
+          },
+          {
+            "value": 108,
+            "kifuliiru": "Igana na munaana"
+          },
+          {
+            "value": 109,
+            "kifuliiru": "Igana na mweenda"
+          },
+          {
+            "value": 110,
+            "kifuliiru": "Igana n'ikumi"
+          },
+          {
+            "value": 111,
+            "kifuliiru": "Igana n'ikumi na higuma"
+          },
+          {
+            "value": 112,
+            "kifuliiru": "Igana n'ikumi na bubiri"
+          },
+          {
+            "value": 113,
+            "kifuliiru": "Igana n'ikumi na bushatu"
+          },
+          {
+            "value": 114,
+            "kifuliiru": "Igana n'ikumi na buna"
+          },
+          {
+            "value": 115,
+            "kifuliiru": "Igana n'ikumi na butanu"
+          },
+          {
+            "value": 116,
+            "kifuliiru": "Igana n'ikumi na ndaatu"
+          },
+          {
+            "value": 117,
+            "kifuliiru": "Igana n'ikumi na bulinda"
+          },
+          {
+            "value": 118,
+            "kifuliiru": "Igana n'ikumi na munaana"
+          },
+          {
+            "value": 119,
+            "kifuliiru": "Igana n'ikumi na mweenda"
+          },
+          {
+            "value": 120,
+            "kifuliiru": "Igana na makumi gabiri"
+          },
+          {
+            "value": 121,
+            "kifuliiru": "Igana na makumi gabiri na higuma"
+          },
+          {
+            "value": 122,
+            "kifuliiru": "Igana na makumi gabiri na bubiri"
+          },
+          {
+            "value": 123,
+            "kifuliiru": "Igana na makumi gabiri na bushatu"
+          },
+          {
+            "value": 124,
+            "kifuliiru": "Igana na makumi gabiri na buna"
+          },
+          {
+            "value": 125,
+            "kifuliiru": "Igana na makumi gabiri na butanu"
+          },
+          {
+            "value": 126,
+            "kifuliiru": "Igana na makumi gabiri na ndaatu"
+          },
+          {
+            "value": 127,
+            "kifuliiru": "Igana na makumi gabiri na bulinda"
+          },
+          {
+            "value": 128,
+            "kifuliiru": "Igana na makumi gabiri na munaana"
+          },
+          {
+            "value": 129,
+            "kifuliiru": "Igana na makumi gabiri na mweenda"
+          },
+          {
+            "value": 130,
+            "kifuliiru": "Igana na makumi gashatu"
+          },
+          {
+            "value": 131,
+            "kifuliiru": "Igana na makumi gashatu na higuma"
+          },
+          {
+            "value": 132,
+            "kifuliiru": "Igana na makumi gashatu na bubiri"
+          },
+          {
+            "value": 133,
+            "kifuliiru": "Igana na makumi gashatu na bushatu"
+          },
+          {
+            "value": 134,
+            "kifuliiru": "Igana na makumi gashatu na buna"
+          },
+          {
+            "value": 135,
+            "kifuliiru": "Igana na makumi gashatu na butanu"
+          },
+          {
+            "value": 136,
+            "kifuliiru": "Igana na makumi gashatu na ndaatu"
+          },
+          {
+            "value": 137,
+            "kifuliiru": "Igana na makumi gashatu na bulinda"
+          },
+          {
+            "value": 138,
+            "kifuliiru": "Igana na makumi gashatu na munaana"
+          },
+          {
+            "value": 139,
+            "kifuliiru": "Igana na makumi gashatu na mweenda"
+          },
+          {
+            "value": 140,
+            "kifuliiru": "Igana na makumi gana"
+          },
+          {
+            "value": 141,
+            "kifuliiru": "Igana na makumi gana na higuma"
+          },
+          {
+            "value": 142,
+            "kifuliiru": "Igana na makumi gana na bubiri"
+          },
+          {
+            "value": 143,
+            "kifuliiru": "Igana na makumi gana na bushatu"
+          },
+          {
+            "value": 144,
+            "kifuliiru": "Igana na makumi gana na buna"
+          },
+          {
+            "value": 145,
+            "kifuliiru": "Igana na makumi gana na butanu"
+          },
+          {
+            "value": 146,
+            "kifuliiru": "Igana na makumi gana na ndaatu"
+          },
+          {
+            "value": 147,
+            "kifuliiru": "Igana na makumi gana na bulinda"
+          },
+          {
+            "value": 148,
+            "kifuliiru": "Igana na makumi gana na munaana"
+          },
+          {
+            "value": 149,
+            "kifuliiru": "Igana na makumi gana na mweenda"
+          },
+          {
+            "value": 150,
+            "kifuliiru": "Igana na makumi gatanu"
+          },
+          {
+            "value": 151,
+            "kifuliiru": "Igana na makumi gatanu na higuma"
+          },
+          {
+            "value": 152,
+            "kifuliiru": "Igana na makumi gatanu na bubiri"
+          },
+          {
+            "value": 153,
+            "kifuliiru": "Igana na makumi gatanu na bushatu"
+          },
+          {
+            "value": 154,
+            "kifuliiru": "Igana na makumi gatanu na buna"
+          },
+          {
+            "value": 155,
+            "kifuliiru": "Igana na makumi gatanu na butanu"
+          },
+          {
+            "value": 156,
+            "kifuliiru": "Igana na makumi gatanu na ndaatu"
+          },
+          {
+            "value": 157,
+            "kifuliiru": "Igana na makumi gatanu na bulinda"
+          },
+          {
+            "value": 158,
+            "kifuliiru": "Igana na makumi gatanu na munaana"
+          },
+          {
+            "value": 159,
+            "kifuliiru": "Igana na makumi gatanu na mweenda"
+          },
+          {
+            "value": 160,
+            "kifuliiru": "Igana na makumi galindatu"
+          },
+          {
+            "value": 161,
+            "kifuliiru": "Igana na makumi galindatu na higuma"
+          },
+          {
+            "value": 162,
+            "kifuliiru": "Igana na makumi galindatu na bubiri"
+          },
+          {
+            "value": 163,
+            "kifuliiru": "Igana na makumi galindatu na bushatu"
+          },
+          {
+            "value": 164,
+            "kifuliiru": "Igana na makumi galindatu na buna"
+          },
+          {
+            "value": 165,
+            "kifuliiru": "Igana na makumi galindatu na butanu"
+          },
+          {
+            "value": 166,
+            "kifuliiru": "Igana na makumi galindatu na ndaatu"
+          },
+          {
+            "value": 167,
+            "kifuliiru": "Igana na makumi galindatu na bulinda"
+          },
+          {
+            "value": 168,
+            "kifuliiru": "Igana na makumi galindatu na munaana"
+          },
+          {
+            "value": 169,
+            "kifuliiru": "Igana na makumi galindatu na mweenda"
+          },
+          {
+            "value": 170,
+            "kifuliiru": "Igana na makumi galinda"
+          },
+          {
+            "value": 171,
+            "kifuliiru": "Igana na makumi galinda na higuma"
+          },
+          {
+            "value": 172,
+            "kifuliiru": "Igana na makumi galinda na bubiri"
+          },
+          {
+            "value": 173,
+            "kifuliiru": "Igana na makumi galinda na bushatu"
+          },
+          {
+            "value": 174,
+            "kifuliiru": "Igana na makumi galinda na buna"
+          },
+          {
+            "value": 175,
+            "kifuliiru": "Igana na makumi galinda na butanu"
+          },
+          {
+            "value": 176,
+            "kifuliiru": "Igana na makumi galinda na ndaatu"
+          },
+          {
+            "value": 177,
+            "kifuliiru": "Igana na makumi galinda na bulinda"
+          },
+          {
+            "value": 178,
+            "kifuliiru": "Igana na makumi galinda na munaana"
+          },
+          {
+            "value": 179,
+            "kifuliiru": "Igana na makumi galinda na mweenda"
+          },
+          {
+            "value": 180,
+            "kifuliiru": "Igana na makumi galimunaana"
+          },
+          {
+            "value": 181,
+            "kifuliiru": "Igana na makumi galimunaana na higuma"
+          },
+          {
+            "value": 182,
+            "kifuliiru": "Igana na makumi galimunaana na bubiri"
+          },
+          {
+            "value": 183,
+            "kifuliiru": "Igana na makumi galimunaana na bushatu"
+          },
+          {
+            "value": 184,
+            "kifuliiru": "Igana na makumi galimunaana na buna"
+          },
+          {
+            "value": 185,
+            "kifuliiru": "Igana na makumi galimunaana na butanu"
+          },
+          {
+            "value": 186,
+            "kifuliiru": "Igana na makumi galimunaana na ndaatu"
+          },
+          {
+            "value": 187,
+            "kifuliiru": "Igana na makumi galimunaana na bulinda"
+          },
+          {
+            "value": 188,
+            "kifuliiru": "Igana na makumi galimunaana na munaana"
+          },
+          {
+            "value": 189,
+            "kifuliiru": "Igana na makumi galimunaana na mweenda"
+          },
+          {
+            "value": 190,
+            "kifuliiru": "Igana na makumi galimweenda"
+          },
+          {
+            "value": 191,
+            "kifuliiru": "Igana na makumi galimweenda na higuma"
+          },
+          {
+            "value": 192,
+            "kifuliiru": "Igana na makumi galimweenda na bubiri"
+          },
+          {
+            "value": 193,
+            "kifuliiru": "Igana na makumi galimweenda na bushatu"
+          },
+          {
+            "value": 194,
+            "kifuliiru": "Igana na makumi galimweenda na buna"
+          },
+          {
+            "value": 195,
+            "kifuliiru": "Igana na makumi galimweenda na butanu"
+          },
+          {
+            "value": 196,
+            "kifuliiru": "Igana na makumi galimweenda na ndaatu"
+          },
+          {
+            "value": 197,
+            "kifuliiru": "Igana na makumi galimweenda na bulinda"
+          },
+          {
+            "value": 198,
+            "kifuliiru": "Igana na makumi galimweenda na munaana"
+          },
+          {
+            "value": 199,
+            "kifuliiru": "Igana na makumi galimweenda na mweenda"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.650Z",
+    "updatedAt": "2025-12-08T22:02:08.650Z",
+    "tags": [
+      "numbers",
+      "ukuharura"
+    ]
+  }
+}

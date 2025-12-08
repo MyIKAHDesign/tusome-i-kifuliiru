@@ -1,0 +1,57 @@
+{
+  "id": "menya-bino",
+  "slug": "menya-bino",
+  "title": "Menya bino",
+  "contentType": "article",
+  "data": {
+    "type": "article",
+    "title": "Menya bino",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 1,
+        "content": "Menya bino"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "content": "Menya bino ku kuharura ibiindu mu Kifuliiru"
+      },
+      {
+        "type": "paragraph",
+        "content": "Mu kuharura kwooshi, ukuharura ibiindu kwo kukatu bweene. Tukasalira bweneene higulu lya ngisi kwo Umufuliiru amukoleesa injira yo'kuharura ibiindu mu Kifuliiru, twanayiji gwaana kwo bitaliri binovu bweneene."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "content": "Ubukayu bwo'kuwahura ibiindu mu Kifuliiru bushaziri hayi?"
+      },
+      {
+        "type": "paragraph",
+        "content": "Ukuharura kwooshi tumuharura kuliri mu kubiri: Haliri [ukuharura ngaana](../ukuharura/ndondeero.mdx), haliri [no'kuharura bino ibikoligwatiniini](../ukuharura/ibindu). Hano twasiima tubiike ikibaaja ikigaaba kwo'kuharura naho bino biindu higulu biliri mu kwiingi."
+      },
+      {
+        "type": "paragraph",
+        "content": "Li twangayitegereza tugaboona kwo ukuharura ngaana tumukoleesa naho umuharura. Haliko ukuharura ibiindu tukola tugakoleesa umuharuuro ngana tunabikage kwo n'igaambo."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "content": "Tugwajiike kwo kuno"
+      },
+      {
+        "type": "paragraph",
+        "content": "Hano tugagwaata ibiindu nga ngisi kiindu kyoshi twangasalira: ibiindu, ibinamishwa, abaandu, ibizimu, inyiiji, imigazi, utwaya,..."
+      },
+      {
+        "type": "paragraph",
+        "content": "Ukuharura kwiitu kugayubaakira ku [bwiingi no buniini bw'amagambo](../amagambo/buniini-bwingi.mdx)"
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.606Z",
+    "updatedAt": "2025-12-08T22:02:08.606Z",
+    "tags": []
+  }
+}

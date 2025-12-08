@@ -1,0 +1,34 @@
+{
+  "id": "invumo",
+  "slug": "invumo",
+  "title": "Invumo ze' Kifuliiru",
+  "contentType": "article",
+  "data": {
+    "type": "article",
+    "title": "Invumo ze' Kifuliiru",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 1,
+        "content": "Invumo ze' Kifuliiru"
+      },
+      {
+        "type": "paragraph",
+        "content": "Invumo bili biki?"
+      },
+      {
+        "type": "paragraph",
+        "content": "Menya bingi ku nvumo mu Kifuliiru na ngisi kwo zidesiri."
+      },
+      {
+        "type": "paragraph",
+        "content": "##Loonga invumo ze'Kifuliiru na'Bafuliiru mu Kifuliiru"
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.606Z",
+    "updatedAt": "2025-12-08T22:02:08.606Z",
+    "tags": []
+  }
+}

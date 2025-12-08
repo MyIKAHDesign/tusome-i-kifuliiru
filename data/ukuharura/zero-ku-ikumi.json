@@ -1,0 +1,71 @@
+{
+  "id": "ukuharura/zero-ku-ikumi",
+  "slug": "ukuharura/zero-ku-ikumi",
+  "title": "zero-ku-ikumi",
+  "contentType": "number-lesson",
+  "data": {
+    "type": "number-lesson",
+    "title": "zero-ku-ikumi",
+    "range": "",
+    "sections": [
+      {
+        "title": "Numbers",
+        "range": "",
+        "numbers": [
+          {
+            "value": 0,
+            "kifuliiru": "Ubusha/Namuteneka"
+          },
+          {
+            "value": 1,
+            "kifuliiru": "Higuma"
+          },
+          {
+            "value": 2,
+            "kifuliiru": "Bubiri"
+          },
+          {
+            "value": 3,
+            "kifuliiru": "Bushatu"
+          },
+          {
+            "value": 4,
+            "kifuliiru": "Buna"
+          },
+          {
+            "value": 5,
+            "kifuliiru": "Butanu"
+          },
+          {
+            "value": 6,
+            "kifuliiru": "Ndatu"
+          },
+          {
+            "value": 7,
+            "kifuliiru": "Bulinda"
+          },
+          {
+            "value": 8,
+            "kifuliiru": "Munaana"
+          },
+          {
+            "value": 9,
+            "kifuliiru": "Mweenda"
+          },
+          {
+            "value": 10,
+            "kifuliiru": "Ikumi"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.655Z",
+    "updatedAt": "2025-12-08T22:02:08.655Z",
+    "tags": [
+      "numbers",
+      "ukuharura"
+    ]
+  }
+}
