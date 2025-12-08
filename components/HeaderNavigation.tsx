@@ -330,8 +330,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                       // Twehe items are in /docs/ route
                       subHref = `/docs/${subKey}`;
                     } else if (key === 'eng-frn-swa') {
-                      // Language pages are in /docs/ route
-                      subHref = `/docs/${subKey}`;
+                      // Language pages are in /eng-frn-swa/ route
+                      subHref = `/eng-frn-swa/${subKey}`;
                     } else {
                       subHref = `/${subKey}`;
                     }
