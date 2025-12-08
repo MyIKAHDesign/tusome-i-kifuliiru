@@ -20,7 +20,7 @@ export default function KifuliiruPage({ jsonContent, mdxSource, contentType }: K
         title="Kifuliiru - Tusome i Kifuliiru"
         description="Learn about the Kifuliiru language"
       />
-      <div className="max-w-3xl mx-auto px-4 py-12">
+      <div className="max-w-3xl mx-auto w-full">
         {contentType === 'json' && jsonContent ? (
           <ContentRenderer content={jsonContent} />
         ) : mdxSource ? (

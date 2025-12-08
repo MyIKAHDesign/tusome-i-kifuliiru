@@ -187,16 +187,16 @@ export default function Sidebar({ meta }: SidebarProps) {
         />
       )}
 
-      {/* Sidebar - Full height from header to footer */}
+      {/* Sidebar - Contained between header and footer */}
       <aside
         className={`
-          w-72 h-[calc(100vh-5rem)] bg-white dark:bg-gray-950
+          w-72 h-full bg-white dark:bg-gray-950
           border-r border-gray-200 dark:border-gray-800
           overflow-y-auto overflow-x-hidden
           transition-transform duration-300 ease-in-out
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-          fixed z-40
-          top-20
+          absolute z-40
+          top-0
         `}
       >
         <div className="p-6">

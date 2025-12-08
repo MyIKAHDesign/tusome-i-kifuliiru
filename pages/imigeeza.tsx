@@ -20,7 +20,7 @@ export default function ImigeezaPage({ jsonContent, mdxSource, contentType }: Im
         title="Imigeeza - Tusome i Kifuliiru"
         description="Learn Kifuliiru stories and narratives"
       />
-      <div className="max-w-3xl mx-auto px-4 py-12">
+      <div className="max-w-3xl mx-auto w-full">
         {contentType === 'json' && jsonContent ? (
           <ContentRenderer content={jsonContent} />
         ) : mdxSource ? (
