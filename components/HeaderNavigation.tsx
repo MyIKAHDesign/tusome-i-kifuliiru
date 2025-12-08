@@ -122,6 +122,30 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
 
     const isOpen = openDropdown === key;
     const itemEntries = Object.entries(item.items);
+    const isMegaMenu = key === 'kifuliiru';
+
+    // For mega menu, split items into two columns
+    const splitItems = (items: [string, NavItem | string][]) => {
+      if (!isMegaMenu) return { left: items, right: [] };
+      
+      // Column 1: Kifuliiru, Imigani, Imigeeza
+      const leftItems: [string, NavItem | string][] = [];
+      const rightItems: [string, NavItem | string][] = [];
+      
+      const mainItems = ['kifuliiru', 'imigani', 'imigeeza'];
+      
+      items.forEach(([subKey, subItem]) => {
+        if (mainItems.includes(subKey)) {
+          leftItems.push([subKey, subItem]);
+        } else {
+          rightItems.push([subKey, subItem]);
+        }
+      });
+      
+      return { left: leftItems, right: rightItems };
+    };
+
+    const { left, right } = splitItems(itemEntries);
 
     return (
       <div
@@ -150,42 +174,139 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         </button>
 
         {isOpen && (
-          <div className="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200 max-h-96 overflow-y-auto">
-            {itemEntries.map(([subKey, subItem]) => {
-              const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
-              const subHref = typeof subItem === 'object' && subItem.href
-                ? subItem.href
-                : `/${subKey}`;
-              const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
+          <div className={`
+            absolute top-full left-0 mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50 animate-in fade-in slide-in-from-top-2 duration-200
+            ${isMegaMenu ? 'w-[600px] p-6' : 'w-64 py-2 max-h-96 overflow-y-auto'}
+          `}>
+            {isMegaMenu ? (
+              <div className="grid grid-cols-2 gap-6">
+                {/* Left Column */}
+                <div>
+                  <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2">
+                    Kifuliiru
+                  </h3>
+                  <div className="space-y-1">
+                    {left.map(([subKey, subItem]) => {
+                      const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
+                      const subHref = typeof subItem === 'object' && subItem.href
+                        ? subItem.href
+                        : `/${subKey}`;
+                      const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
 
-              return (
-                <a
-                  key={subKey}
-                  href={subHref}
-                  target={isExternal ? '_blank' : undefined}
-                  rel={isExternal ? 'noopener noreferrer' : undefined}
-                  onClick={(e) => {
-                    if (!isExternal) {
-                      e.preventDefault();
-                      router.push(subHref).then(() => setOpenDropdown(null));
-                    } else {
-                      setOpenDropdown(null);
-                    }
-                  }}
-                  className={`
-                    flex items-center gap-3 px-4 py-3 text-sm transition-colors
-                    ${
-                      router.asPath === subHref || router.asPath.startsWith(`/${subKey}`)
-                        ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-medium'
-                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-primary-600 dark:hover:text-primary-400'
-                    }
-                  `}
-                >
-                  <span className="flex-1">{subTitle}</span>
-                  {isExternal && <ExternalLink className="w-4 h-4 opacity-50" />}
-                </a>
-              );
-            })}
+                      return (
+                        <a
+                          key={subKey}
+                          href={subHref}
+                          target={isExternal ? '_blank' : undefined}
+                          rel={isExternal ? 'noopener noreferrer' : undefined}
+                          onClick={(e) => {
+                            if (!isExternal) {
+                              e.preventDefault();
+                              router.push(subHref).then(() => setOpenDropdown(null));
+                            } else {
+                              setOpenDropdown(null);
+                            }
+                          }}
+                          className={`
+                            flex items-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-colors
+                            ${
+                              router.asPath === subHref || router.asPath.startsWith(`/${subKey}`)
+                                ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-medium'
+                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-primary-600 dark:hover:text-primary-400'
+                            }
+                          `}
+                        >
+                          <span className="flex-1">{subTitle}</span>
+                          {isExternal && <ExternalLink className="w-4 h-4 opacity-50" />}
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Right Column */}
+                <div>
+                  <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2">
+                    Bingi ku Kifuliiru
+                  </h3>
+                  <div className="space-y-1">
+                    {right.map(([subKey, subItem]) => {
+                      const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
+                      const subHref = typeof subItem === 'object' && subItem.href
+                        ? subItem.href
+                        : `/${subKey}`;
+                      const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
+
+                      return (
+                        <a
+                          key={subKey}
+                          href={subHref}
+                          target={isExternal ? '_blank' : undefined}
+                          rel={isExternal ? 'noopener noreferrer' : undefined}
+                          onClick={(e) => {
+                            if (!isExternal) {
+                              e.preventDefault();
+                              router.push(subHref).then(() => setOpenDropdown(null));
+                            } else {
+                              setOpenDropdown(null);
+                            }
+                          }}
+                          className={`
+                            flex items-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-colors
+                            ${
+                              router.asPath === subHref || router.asPath.startsWith(`/${subKey}`)
+                                ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-medium'
+                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-primary-600 dark:hover:text-primary-400'
+                            }
+                          `}
+                        >
+                          <span className="flex-1">{subTitle}</span>
+                          {isExternal && <ExternalLink className="w-4 h-4 opacity-50" />}
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div>
+                {itemEntries.map(([subKey, subItem]) => {
+                  const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
+                  const subHref = typeof subItem === 'object' && subItem.href
+                    ? subItem.href
+                    : `/${subKey}`;
+                  const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
+
+                  return (
+                    <a
+                      key={subKey}
+                      href={subHref}
+                      target={isExternal ? '_blank' : undefined}
+                      rel={isExternal ? 'noopener noreferrer' : undefined}
+                      onClick={(e) => {
+                        if (!isExternal) {
+                          e.preventDefault();
+                          router.push(subHref).then(() => setOpenDropdown(null));
+                        } else {
+                          setOpenDropdown(null);
+                        }
+                      }}
+                      className={`
+                        flex items-center gap-3 px-4 py-3 text-sm transition-colors
+                        ${
+                          router.asPath === subHref || router.asPath.startsWith(`/${subKey}`)
+                            ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-medium'
+                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-primary-600 dark:hover:text-primary-400'
+                        }
+                      `}
+                    >
+                      <span className="flex-1">{subTitle}</span>
+                      {isExternal && <ExternalLink className="w-4 h-4 opacity-50" />}
+                    </a>
+                  );
+                })}
+              </div>
+            )}
           </div>
         )}
       </div>
