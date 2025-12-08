@@ -1,4 +1,5 @@
 import React from 'react';
+import ThemeSwitch from './ThemeSwitch';
 
 export default function Footer() {
   return (
@@ -14,7 +15,8 @@ export default function Footer() {
               Tumenye Ibufuliiru
             </a>
           </div>
-          <div>
+          <div className="flex items-center gap-4">
+            <ThemeSwitch />
             <a
               href="https://ayivugwekabemba.me"
               target="_blank"

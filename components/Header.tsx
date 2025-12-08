@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BookOpen, Home, Search as SearchIcon, Menu, X } from 'lucide-react';
 import Search from './Search';
 import HeaderNavigation from './HeaderNavigation';
+import ThemeSwitch from './ThemeSwitch';
 
 interface MetaItem {
   title?: string;
@@ -56,6 +57,7 @@ export default function Header() {
             <HeaderNavigation items={navMeta} />
             <div className="h-6 w-px bg-gray-300 dark:bg-gray-700" />
             <Search />
+            <ThemeSwitch />
           </nav>
 
           {/* Mobile Menu Button */}
@@ -78,7 +80,10 @@ export default function Header() {
             <div className="flex flex-col gap-4">
               <HeaderNavigation items={navMeta} />
               <div className="h-px bg-gray-200 dark:bg-gray-700" />
-              <Search />
+              <div className="flex items-center justify-between">
+                <Search />
+                <ThemeSwitch />
+              </div>
             </div>
           </div>
         )}
