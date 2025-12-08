@@ -204,7 +204,7 @@ export default function Sidebar({ meta }: SidebarProps) {
           overflow-y-auto overflow-x-hidden
           transition-transform duration-300 ease-in-out
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-          fixed lg:fixed z-40
+          fixed z-40
           shadow-xl lg:shadow-lg
           top-20
         `}
