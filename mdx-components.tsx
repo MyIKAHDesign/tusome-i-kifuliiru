@@ -26,7 +26,7 @@ function normalizeImageSrc(src: string | undefined): string {
   return normalized;
 }
 
-export function useMDXComponents(components: MDXComponents): MDXComponents {
+export function useMDXComponents(components: Partial<MDXComponents>): MDXComponents {
   return {
     // Allows customizing built-in components, e.g. to add styling.
     img: (props) => {
