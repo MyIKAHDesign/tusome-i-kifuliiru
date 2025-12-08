@@ -13,7 +13,6 @@ interface SidebarProps {
   meta?: Record<string, MetaItem | string>;
 }
 
-// Default meta structure - fallback if API fails
 const defaultMeta: Record<string, MetaItem | string> = {};
 
 export default function Sidebar({ meta }: SidebarProps) {
@@ -22,7 +21,6 @@ export default function Sidebar({ meta }: SidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // Load meta.json via API or use provided meta
     const loadMeta = async () => {
       try {
         const response = await fetch('/api/meta');
@@ -49,20 +47,8 @@ export default function Sidebar({ meta }: SidebarProps) {
       const currentPath = router.asPath.split('?')[0];
       const isActive = currentPath === href || currentPath === `/${key}`;
       return (
-        <li key={key} style={{ marginLeft: `${level * 1}rem` }}>
-          <a
-            href={href}
-            className={isActive ? 'active' : ''}
-            style={{
-              display: 'block',
-              padding: '0.5rem 1rem',
-              color: isActive ? '#2563eb' : '#374151',
-              fontWeight: isActive ? 600 : 400,
-              textDecoration: 'none',
-              borderRadius: '0.375rem',
-              transition: 'all 0.2s',
-            }}
-          >
+        <li key={key} className={`nav-item ${isActive ? 'active' : ''}`} style={{ paddingLeft: `${level * 1.25}rem` }}>
+          <a href={href} className="nav-link">
             {item}
           </a>
         </li>
@@ -76,20 +62,11 @@ export default function Sidebar({ meta }: SidebarProps) {
       const currentPath = router.asPath.split('?')[0];
       const isMenuActive = currentPath.startsWith(`/${key}`);
       return (
-        <li key={key} style={{ marginTop: level > 0 ? '0.5rem' : '0' }}>
-          <div
-            style={{
-              padding: '0.5rem 1rem',
-              fontWeight: 600,
-              fontSize: '0.875rem',
-              color: isMenuActive ? '#2563eb' : '#6b7280',
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-            }}
-          >
+        <li key={key} className="nav-group">
+          <div className={`nav-group-header ${isMenuActive ? 'active' : ''}`}>
             {displayTitle}
           </div>
-          <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+          <ul className="nav-group-list">
             {Object.entries(items).map(([subKey, subItem]) =>
               renderMenuItem(subKey, subItem, level + 1, `/${key}`)
             )}
@@ -103,21 +80,12 @@ export default function Sidebar({ meta }: SidebarProps) {
     const isActive = currentPath === linkHref || currentPath === `/${key}` || (parentPath && currentPath.startsWith(parentPath));
 
     return (
-      <li key={key} style={{ marginLeft: `${level * 1}rem` }}>
+      <li key={key} className={`nav-item ${isActive ? 'active' : ''}`} style={{ paddingLeft: `${level * 1.25}rem` }}>
         <a
           href={linkHref}
           target={newWindow ? '_blank' : undefined}
           rel={newWindow ? 'noopener noreferrer' : undefined}
-          className={isActive ? 'active' : ''}
-          style={{
-            display: 'block',
-            padding: '0.5rem 1rem',
-            color: isActive ? '#2563eb' : '#374151',
-            fontWeight: isActive ? 600 : 400,
-            textDecoration: 'none',
-            borderRadius: '0.375rem',
-            transition: 'all 0.2s',
-          }}
+          className="nav-link"
         >
           {displayTitle}
         </a>
@@ -130,55 +98,24 @@ export default function Sidebar({ meta }: SidebarProps) {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="sidebar-toggle"
-        style={{
-          display: 'none',
-          position: 'fixed',
-          top: '1rem',
-          left: '1rem',
-          zIndex: 1000,
-          padding: '0.5rem',
-          background: '#ffffff',
-          border: '1px solid #e5e7eb',
-          borderRadius: '0.375rem',
-          cursor: 'pointer',
-        }}
+        aria-label="Toggle sidebar"
       >
-        ☰
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
       </button>
-      <aside
-        className={`sidebar ${isOpen ? 'open' : ''}`}
-        style={{
-          width: '280px',
-          minHeight: '100vh',
-          borderRight: '1px solid #e5e7eb',
-          padding: '2rem 0',
-          backgroundColor: '#f9fafb',
-          position: 'sticky',
-          top: 0,
-          alignSelf: 'flex-start',
-          overflowY: 'auto',
-          maxHeight: '100vh',
-        }}
-      >
-        <div style={{ padding: '0 1rem' }}>
-          <h2
-            style={{
-              fontSize: '1.25rem',
-              fontWeight: 700,
-              marginBottom: '1.5rem',
-              padding: '0 1rem',
-            }}
-          >
-            Tusome i Kifuliiru
-          </h2>
-          <nav>
-            <ul
-              style={{
-                listStyle: 'none',
-                margin: 0,
-                padding: 0,
-              }}
-            >
+      {isOpen && (
+        <div className="sidebar-overlay" onClick={() => setIsOpen(false)}></div>
+      )}
+      <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
+        <div className="sidebar-content">
+          <div className="sidebar-header">
+            <h2 className="sidebar-title">Tusome i Kifuliiru</h2>
+          </div>
+          <nav className="sidebar-nav">
+            <ul className="nav-list">
               {Object.entries(sidebarMeta).map(([key, item]) =>
                 renderMenuItem(key, item)
               )}
@@ -186,27 +123,171 @@ export default function Sidebar({ meta }: SidebarProps) {
           </nav>
         </div>
         <style jsx>{`
+          .sidebar {
+            width: var(--sidebar-width);
+            min-height: 100vh;
+            background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-secondary) 100%);
+            border-right: 1px solid var(--color-border);
+            position: sticky;
+            top: var(--header-height);
+            align-self: flex-start;
+            overflow-y: auto;
+            max-height: calc(100vh - var(--header-height));
+            transition: transform var(--transition-base);
+          }
+
+          .sidebar-content {
+            padding: var(--spacing-6) 0;
+          }
+
+          .sidebar-header {
+            padding: 0 var(--spacing-6);
+            margin-bottom: var(--spacing-6);
+            padding-bottom: var(--spacing-4);
+            border-bottom: 1px solid var(--color-border);
+          }
+
+          .sidebar-title {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text);
+            margin: 0;
+            letter-spacing: -0.02em;
+          }
+
+          .sidebar-nav {
+            padding: 0 var(--spacing-4);
+          }
+
+          .nav-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+          }
+
+          .nav-group {
+            margin-top: var(--spacing-4);
+          }
+
+          .nav-group-header {
+            padding: var(--spacing-2) var(--spacing-4);
+            font-weight: var(--font-weight-semibold);
+            font-size: var(--font-size-xs);
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--spacing-2);
+            transition: color var(--transition-base);
+          }
+
+          .nav-group-header.active {
+            color: var(--color-primary);
+          }
+
+          .nav-item {
+            margin: var(--spacing-1) 0;
+          }
+
+          .nav-link {
+            display: block;
+            padding: var(--spacing-2) var(--spacing-4);
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-base);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-normal);
+            position: relative;
+          }
+
+          .nav-link:hover {
+            background-color: var(--color-bg-tertiary);
+            color: var(--color-primary);
+            transform: translateX(4px);
+          }
+
+          .nav-item.active .nav-link {
+            background: linear-gradient(90deg, var(--color-primary-bg) 0%, transparent 100%);
+            color: var(--color-primary);
+            font-weight: var(--font-weight-semibold);
+            border-left: 3px solid var(--color-primary);
+            padding-left: calc(var(--spacing-4) - 3px);
+          }
+
+          .nav-group-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+          }
+
+          .sidebar-toggle {
+            display: none;
+            position: fixed;
+            top: var(--spacing-4);
+            left: var(--spacing-4);
+            z-index: 1001;
+            padding: var(--spacing-3);
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            color: var(--color-text);
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-base);
+          }
+
+          .sidebar-toggle:hover {
+            background: var(--color-bg-secondary);
+            transform: scale(1.05);
+          }
+
+          .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            backdrop-filter: blur(4px);
+          }
+
           @media (max-width: 768px) {
             .sidebar-toggle {
-              display: block !important;
+              display: block;
+            }
+
+            .sidebar-overlay {
+              display: block;
             }
 
             .sidebar {
               position: fixed;
-              left: ${isOpen ? '0' : '-280px'};
+              left: ${isOpen ? '0' : 'calc(-1 * var(--sidebar-width))'};
               top: 0;
               z-index: 999;
-              transition: left 0.3s ease;
-              box-shadow: ${isOpen ? '2px 0 8px rgba(0,0,0,0.1)' : 'none'};
+              box-shadow: ${isOpen ? 'var(--shadow-xl)' : 'none'};
+              max-height: 100vh;
             }
           }
 
-          .sidebar :global(a:hover) {
-            background-color: #f3f4f6;
+          /* Scrollbar styling */
+          .sidebar::-webkit-scrollbar {
+            width: 6px;
           }
 
-          .sidebar :global(.active) {
-            background-color: #eff6ff;
+          .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+          }
+
+          .sidebar::-webkit-scrollbar-thumb {
+            background: var(--color-border);
+            border-radius: var(--radius-full);
+          }
+
+          .sidebar::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-muted);
           }
         `}</style>
       </aside>

@@ -2,6 +2,7 @@ import React from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import Footer from './Footer';
+import '../styles/design-tokens.css';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -14,7 +15,9 @@ export default function Layout({ children }: LayoutProps) {
       <div className="layout-content">
         <Sidebar />
         <main className="main-content">
-          {children}
+          <article className="content-wrapper">
+            {children}
+          </article>
         </main>
       </div>
       <Footer />
@@ -25,14 +28,17 @@ export default function Layout({ children }: LayoutProps) {
           box-sizing: border-box;
         }
 
+        html {
+          scroll-behavior: smooth;
+        }
+
         body {
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-            'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-            sans-serif;
+          font-family: var(--font-sans);
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
-          color: #111827;
-          background-color: #ffffff;
+          color: var(--color-text);
+          background-color: var(--color-bg);
+          line-height: var(--line-height-relaxed);
         }
 
         .layout-container {
@@ -49,10 +55,16 @@ export default function Layout({ children }: LayoutProps) {
 
         .main-content {
           flex: 1;
-          padding: 2rem;
-          max-width: 1200px;
+          padding: var(--spacing-8) var(--spacing-6);
+          max-width: var(--content-max-width);
           margin: 0 auto;
           width: 100%;
+          min-height: calc(100vh - var(--header-height));
+        }
+
+        .content-wrapper {
+          max-width: 65ch;
+          margin: 0 auto;
         }
 
         @media (max-width: 768px) {
@@ -61,113 +73,172 @@ export default function Layout({ children }: LayoutProps) {
           }
 
           .main-content {
-            padding: 1rem;
+            padding: var(--spacing-4);
           }
         }
 
-        /* MDX Content Styles */
+        /* Modern Typography for MDX Content */
         .main-content :global(h1) {
-          font-size: 2.5rem;
-          font-weight: 700;
-          margin-top: 2rem;
-          margin-bottom: 1rem;
-          line-height: 1.2;
+          font-size: var(--font-size-4xl);
+          font-weight: var(--font-weight-bold);
+          margin-top: var(--spacing-8);
+          margin-bottom: var(--spacing-6);
+          line-height: var(--line-height-tight);
+          color: var(--color-text);
+          letter-spacing: -0.025em;
         }
 
         .main-content :global(h2) {
-          font-size: 2rem;
-          font-weight: 600;
-          margin-top: 2rem;
-          margin-bottom: 1rem;
-          line-height: 1.3;
+          font-size: var(--font-size-3xl);
+          font-weight: var(--font-weight-bold);
+          margin-top: var(--spacing-10);
+          margin-bottom: var(--spacing-4);
+          line-height: var(--line-height-tight);
+          color: var(--color-text);
+          letter-spacing: -0.025em;
+          padding-bottom: var(--spacing-2);
+          border-bottom: 2px solid var(--color-border);
         }
 
         .main-content :global(h3) {
-          font-size: 1.5rem;
-          font-weight: 600;
-          margin-top: 1.5rem;
-          margin-bottom: 0.75rem;
-          line-height: 1.4;
+          font-size: var(--font-size-2xl);
+          font-weight: var(--font-weight-semibold);
+          margin-top: var(--spacing-8);
+          margin-bottom: var(--spacing-4);
+          line-height: var(--line-height-normal);
+          color: var(--color-text);
+        }
+
+        .main-content :global(h4) {
+          font-size: var(--font-size-xl);
+          font-weight: var(--font-weight-semibold);
+          margin-top: var(--spacing-6);
+          margin-bottom: var(--spacing-3);
+          color: var(--color-text);
         }
 
         .main-content :global(p) {
-          margin-bottom: 1rem;
-          line-height: 1.7;
-          font-size: 1rem;
+          margin-bottom: var(--spacing-6);
+          line-height: var(--line-height-relaxed);
+          font-size: var(--font-size-base);
+          color: var(--color-text);
         }
 
         .main-content :global(ul),
         .main-content :global(ol) {
-          margin-bottom: 1rem;
-          padding-left: 2rem;
+          margin-bottom: var(--spacing-6);
+          padding-left: var(--spacing-8);
+          color: var(--color-text);
         }
 
         .main-content :global(li) {
-          margin-bottom: 0.5rem;
-          line-height: 1.7;
+          margin-bottom: var(--spacing-3);
+          line-height: var(--line-height-relaxed);
+        }
+
+        .main-content :global(li::marker) {
+          color: var(--color-primary);
         }
 
         .main-content :global(a) {
-          color: #2563eb;
+          color: var(--color-primary);
           text-decoration: none;
-          transition: color 0.2s;
+          font-weight: var(--font-weight-medium);
+          transition: color var(--transition-base);
+          border-bottom: 1px solid transparent;
+          padding-bottom: 1px;
         }
 
         .main-content :global(a:hover) {
-          color: #1d4ed8;
-          text-decoration: underline;
+          color: var(--color-primary-dark);
+          border-bottom-color: var(--color-primary);
         }
 
         .main-content :global(img) {
           max-width: 100%;
           height: auto;
-          border-radius: 0.5rem;
-          margin: 1.5rem 0;
+          border-radius: var(--radius-lg);
+          margin: var(--spacing-8) 0;
+          box-shadow: var(--shadow-lg);
+          transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+        }
+
+        .main-content :global(img:hover) {
+          transform: translateY(-2px);
+          box-shadow: var(--shadow-xl);
         }
 
         .main-content :global(code) {
-          background-color: #f3f4f6;
-          padding: 0.125rem 0.375rem;
-          border-radius: 0.25rem;
-          font-size: 0.875em;
-          font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+          background-color: var(--color-bg-tertiary);
+          color: var(--color-primary-dark);
+          padding: var(--spacing-1) var(--spacing-2);
+          border-radius: var(--radius-sm);
+          font-size: 0.9em;
+          font-family: var(--font-mono);
+          font-weight: var(--font-weight-medium);
         }
 
         .main-content :global(pre) {
-          background-color: #1f2937;
+          background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
           color: #f9fafb;
-          padding: 1rem;
-          border-radius: 0.5rem;
+          padding: var(--spacing-6);
+          border-radius: var(--radius-lg);
           overflow-x: auto;
-          margin: 1.5rem 0;
+          margin: var(--spacing-8) 0;
+          box-shadow: var(--shadow-lg);
+          border: 1px solid var(--color-border);
         }
 
         .main-content :global(pre code) {
           background-color: transparent;
           padding: 0;
           color: inherit;
+          font-size: var(--font-size-sm);
         }
 
         .main-content :global(blockquote) {
-          border-left: 4px solid #2563eb;
-          padding-left: 1rem;
-          margin: 1.5rem 0;
-          color: #6b7280;
+          border-left: 4px solid var(--color-primary);
+          padding-left: var(--spacing-6);
+          margin: var(--spacing-8) 0;
+          color: var(--color-text-secondary);
           font-style: italic;
+          background-color: var(--color-bg-secondary);
+          padding: var(--spacing-4) var(--spacing-6);
+          border-radius: var(--radius-md);
         }
 
-        @media (prefers-color-scheme: dark) {
-          body {
-            background-color: #111827;
-            color: #f9fafb;
-          }
+        .main-content :global(hr) {
+          border: none;
+          border-top: 2px solid var(--color-border);
+          margin: var(--spacing-10) 0;
+        }
 
-          .main-content :global(code) {
-            background-color: #374151;
-          }
+        .main-content :global(table) {
+          width: 100%;
+          border-collapse: collapse;
+          margin: var(--spacing-8) 0;
+          border-radius: var(--radius-md);
+          overflow: hidden;
+          box-shadow: var(--shadow-md);
+        }
+
+        .main-content :global(th),
+        .main-content :global(td) {
+          padding: var(--spacing-4);
+          text-align: left;
+          border-bottom: 1px solid var(--color-border);
+        }
+
+        .main-content :global(th) {
+          background-color: var(--color-bg-secondary);
+          font-weight: var(--font-weight-semibold);
+          color: var(--color-text);
+        }
+
+        .main-content :global(tr:hover) {
+          background-color: var(--color-bg-secondary);
         }
       `}</style>
     </div>
   );
 }
-
