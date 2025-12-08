@@ -97,6 +97,11 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         type: 'menu' as const,
         items: tweheItems,
       },
+      'eng-frn-swa': items['eng-frn-swa'] || {
+        title: 'ENG/SWA/FRN',
+        type: 'menu' as const,
+        items: {},
+      },
     };
   };
 
@@ -112,6 +117,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         return <BookOpen className="w-4 h-4" />;
       case 'twehe':
         return <Info className="w-4 h-4" />;
+      case 'eng-frn-swa':
+        return <Languages className="w-4 h-4" />;
       default:
         return null;
     }
@@ -304,8 +311,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                         flex items-center justify-center gap-3 px-4 py-3 text-sm transition-colors
                         ${
                           router.asPath === subHref || router.asPath.startsWith(`/${subKey}`)
-                            ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-medium'
-                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-primary-600 dark:hover:text-primary-400'
+                            ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
+                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
                         }
                       `}
                     >
@@ -340,8 +347,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
             flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all
             ${
               isActive
-                ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20'
-                : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+                ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
+                : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900'
             }
           `}
         >
