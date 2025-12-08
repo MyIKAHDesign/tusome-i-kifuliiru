@@ -1,9 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BookOpen, Home, Search as SearchIcon, Menu, X } from 'lucide-react';
 import Search from './Search';
+import HeaderNavigation from './HeaderNavigation';
+
+interface MetaItem {
+  title?: string;
+  type?: 'page' | 'menu';
+  href?: string;
+  newWindow?: boolean;
+  items?: Record<string, MetaItem>;
+}
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [navMeta, setNavMeta] = useState<Record<string, MetaItem | string>>({});
+
+  useEffect(() => {
+    const loadMeta = async () => {
+      try {
+        const response = await fetch('/api/meta');
+        if (response.ok) {
+          const parsed = await response.json();
+          setNavMeta(parsed);
+        }
+      } catch (error) {
+        console.error('Error loading meta.json:', error);
+      }
+    };
+    loadMeta();
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 shadow-sm">
@@ -27,21 +52,16 @@ export default function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-4">
+            <HeaderNavigation items={navMeta} />
+            <div className="h-6 w-px bg-gray-300 dark:bg-gray-700" />
             <Search />
-            <a
-              href="/"
-              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            >
-              <Home className="w-5 h-5" />
-              <span>Ndondeero</span>
-            </a>
           </nav>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
@@ -54,17 +74,11 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-800">
+          <div className="lg:hidden py-4 border-t border-gray-200 dark:border-gray-800">
             <div className="flex flex-col gap-4">
+              <HeaderNavigation items={navMeta} />
+              <div className="h-px bg-gray-200 dark:bg-gray-700" />
               <Search />
-              <a
-                href="/"
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 rounded-lg hover:bg-gray-100 transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <Home className="w-5 h-5" />
-                <span>Ndondeero</span>
-              </a>
             </div>
           </div>
         )}

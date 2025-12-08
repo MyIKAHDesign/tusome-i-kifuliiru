@@ -72,7 +72,17 @@ export default function Sidebar({ meta }: SidebarProps) {
     return <FileText className="w-4 h-4" />;
   };
 
+  // Exclude header navigation items from sidebar
+  const isHeaderNavItem = (key: string): boolean => {
+    return ['kifuliiru', 'imigani', 'imigeeza', 'imwitu', 'bingi-ku-kifuliiru', 'twehe', 'contact', 'eng-frn-swa'].includes(key);
+  };
+
   const renderMenuItem = (key: string, item: MetaItem | string, level: number = 0, parentKey: string = ''): React.ReactNode => {
+    // Skip header navigation items
+    if (isHeaderNavItem(key)) {
+      return null;
+    }
+
     if (typeof item === 'string') {
       // Build the path: if parentKey exists, it's nested like "ukuharura/abandu"
       const fullPath = parentKey ? `${parentKey}/${key}` : key;
@@ -200,9 +210,11 @@ export default function Sidebar({ meta }: SidebarProps) {
         <div className="p-6">
           <nav>
             <ul className="space-y-1">
-              {Object.entries(sidebarMeta).map(([key, item]) =>
-                renderMenuItem(key, item)
-              )}
+              {Object.entries(sidebarMeta)
+                .filter(([key]) => !isHeaderNavItem(key))
+                .map(([key, item]) =>
+                  renderMenuItem(key, item)
+                )}
             </ul>
           </nav>
         </div>

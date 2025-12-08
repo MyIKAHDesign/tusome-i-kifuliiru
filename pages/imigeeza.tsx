@@ -1,0 +1,71 @@
+import React from 'react';
+import { getContentData } from '../lib/json-content-loader';
+import { getContentBySlug } from '../lib/content-loader';
+import ContentRenderer from '../components/content/ContentRenderer';
+import { MDXRemote } from 'next-mdx-remote';
+import { serialize } from 'next-mdx-remote/serialize';
+import { mdxComponents } from '../mdx-components';
+import SEO from '../components/SEO';
+
+interface ImigeezaPageProps {
+  jsonContent?: any;
+  mdxSource?: any;
+  contentType: 'json' | 'mdx';
+}
+
+export default function ImigeezaPage({ jsonContent, mdxSource, contentType }: ImigeezaPageProps) {
+  return (
+    <>
+      <SEO
+        title="Imigeeza - Tusome i Kifuliiru"
+        description="Learn Kifuliiru stories and narratives"
+      />
+      <div className="max-w-4xl mx-auto px-4 py-12">
+        {contentType === 'json' && jsonContent ? (
+          <ContentRenderer content={jsonContent} />
+        ) : mdxSource ? (
+          <article className="mdx-content">
+            <MDXRemote {...mdxSource} components={mdxComponents} />
+          </article>
+        ) : (
+          <div className="text-center py-20">
+            <h1 className="text-4xl font-bold mb-4">Imigeeza</h1>
+            <p className="text-gray-600 dark:text-gray-400">Content coming soon...</p>
+          </div>
+        )}
+      </div>
+    </>
+  );
+}
+
+export async function getStaticProps() {
+  const jsonContent = getContentData('imigeeza');
+  if (jsonContent) {
+    return {
+      props: {
+        jsonContent,
+        contentType: 'json' as const,
+      },
+    };
+  }
+
+  const mdxContent = getContentBySlug('imigeeza');
+  if (mdxContent) {
+    const mdxSource = await serialize(mdxContent.content, {
+      parseFrontmatter: true,
+    });
+    return {
+      props: {
+        mdxSource,
+        contentType: 'mdx' as const,
+      },
+    };
+  }
+
+  return {
+    props: {
+      contentType: 'json' as const,
+    },
+  };
+}
+
