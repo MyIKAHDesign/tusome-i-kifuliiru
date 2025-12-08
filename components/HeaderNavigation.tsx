@@ -175,14 +175,17 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
 
         {isOpen && (
           <div className={`
-            absolute top-full left-0 mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50 animate-in fade-in slide-in-from-top-2 duration-200
-            ${isMegaMenu ? 'w-[600px] p-6' : 'w-64 py-2 max-h-96 overflow-y-auto'}
+            absolute top-full mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50 animate-in fade-in slide-in-from-top-2 duration-200
+            ${isMegaMenu 
+              ? 'w-[600px] p-6 left-1/2 -translate-x-1/2' 
+              : 'w-64 py-2 max-h-96 overflow-y-auto left-1/2 -translate-x-1/2'
+            }
           `}>
             {isMegaMenu ? (
               <div className="grid grid-cols-2 gap-6">
                 {/* Left Column */}
                 <div>
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2">
+                  <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2 text-center">
                     Kifuliiru
                   </h3>
                   <div className="space-y-1">
@@ -208,7 +211,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                             }
                           }}
                           className={`
-                            flex items-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-colors
+                            flex items-center justify-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-colors
                             ${
                               router.asPath === subHref || router.asPath.startsWith(`/${subKey}`)
                                 ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-medium'
@@ -216,7 +219,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                             }
                           `}
                         >
-                          <span className="flex-1">{subTitle}</span>
+                          <span>{subTitle}</span>
                           {isExternal && <ExternalLink className="w-4 h-4 opacity-50" />}
                         </a>
                       );
@@ -226,7 +229,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
 
                 {/* Right Column */}
                 <div>
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2">
+                  <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2 text-center">
                     Bingi ku Kifuliiru
                   </h3>
                   <div className="space-y-1">
@@ -252,7 +255,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                             }
                           }}
                           className={`
-                            flex items-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-colors
+                            flex items-center justify-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-colors
                             ${
                               router.asPath === subHref || router.asPath.startsWith(`/${subKey}`)
                                 ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-medium'
@@ -260,7 +263,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                             }
                           `}
                         >
-                          <span className="flex-1">{subTitle}</span>
+                          <span>{subTitle}</span>
                           {isExternal && <ExternalLink className="w-4 h-4 opacity-50" />}
                         </a>
                       );
@@ -292,7 +295,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                         }
                       }}
                       className={`
-                        flex items-center gap-3 px-4 py-3 text-sm transition-colors
+                        flex items-center justify-center gap-3 px-4 py-3 text-sm transition-colors
                         ${
                           router.asPath === subHref || router.asPath.startsWith(`/${subKey}`)
                             ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-medium'
@@ -300,7 +303,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                         }
                       `}
                     >
-                      <span className="flex-1">{subTitle}</span>
+                      <span>{subTitle}</span>
                       {isExternal && <ExternalLink className="w-4 h-4 opacity-50" />}
                     </a>
                   );
