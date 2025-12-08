@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { Home, Book, Folder, ChevronRight, ExternalLink, FileText, Menu } from 'lucide-react';
 
 interface MetaItem {
   title?: string;
@@ -15,33 +16,6 @@ interface SidebarProps {
 
 const defaultMeta: Record<string, MetaItem | string> = {};
 
-// Icon components
-const ChevronRightIcon = ({ className }: { className?: string }) => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-    <polyline points="9 18 15 12 9 6"></polyline>
-  </svg>
-);
-
-const HomeIcon = ({ className }: { className?: string }) => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-  </svg>
-);
-
-const BookIcon = ({ className }: { className?: string }) => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-  </svg>
-);
-
-const FolderIcon = ({ className }: { className?: string }) => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-  </svg>
-);
-
 export default function Sidebar({ meta }: SidebarProps) {
   const router = useRouter();
   const [sidebarMeta, setSidebarMeta] = useState<Record<string, MetaItem | string>>(defaultMeta);
@@ -55,7 +29,6 @@ export default function Sidebar({ meta }: SidebarProps) {
         if (response.ok) {
           const parsed = await response.json();
           setSidebarMeta(parsed);
-          // Auto-expand groups that contain the current page
           const currentPath = router.asPath.split('?')[0];
           const groups = Object.keys(parsed).filter(key => {
             const item = parsed[key];
@@ -94,24 +67,31 @@ export default function Sidebar({ meta }: SidebarProps) {
 
   const getIcon = (key: string, level: number) => {
     if (level === 0 && key === 'index') {
-      return <HomeIcon className="nav-icon" />;
+      return <Home className="w-4 h-4" />;
     }
-    if (level === 0) {
-      return <BookIcon className="nav-icon" />;
-    }
-    return null;
+    return <FileText className="w-4 h-4" />;
   };
 
-  const renderMenuItem = (key: string, item: MetaItem | string, level: number = 0, parentPath: string = ''): React.ReactNode => {
+  const renderMenuItem = (key: string, item: MetaItem | string, level: number = 0): React.ReactNode => {
     if (typeof item === 'string') {
       const href = key === 'index' ? '/' : `/${key}`;
       const currentPath = router.asPath.split('?')[0];
       const isActive = currentPath === href || currentPath === `/${key}`;
       return (
-        <li key={key} className={`nav-item ${isActive ? 'active' : ''}`}>
-          <a href={href} className="nav-link">
+        <li key={key}>
+          <a
+            href={href}
+            className={`
+              flex items-center gap-3 px-4 py-2.5 text-sm rounded-lg transition-all
+              ${isActive
+                ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-semibold border-l-3 border-primary-600'
+                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400'
+              }
+            `}
+            style={{ paddingLeft: `${level * 1.5 + 1}rem` }}
+          >
             {getIcon(key, level)}
-            <span className="nav-link-text">{item}</span>
+            <span>{item}</span>
           </a>
         </li>
       );
@@ -126,19 +106,27 @@ export default function Sidebar({ meta }: SidebarProps) {
       const isExpanded = expandedGroups.has(key);
       
       return (
-        <li key={key} className="nav-group">
+        <li key={key} className="mb-2">
           <button
-            className={`nav-group-header ${isMenuActive ? 'active' : ''} ${isExpanded ? 'expanded' : ''}`}
             onClick={() => toggleGroup(key)}
+            className={`
+              w-full flex items-center justify-between gap-2 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider rounded-lg transition-all
+              ${isMenuActive
+                ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20'
+                : 'text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+              }
+            `}
           >
-            <FolderIcon className="nav-group-icon" />
-            <span className="nav-group-text">{displayTitle}</span>
-            <ChevronRightIcon className={`nav-group-chevron ${isExpanded ? 'expanded' : ''}`} />
+            <div className="flex items-center gap-2">
+              <Folder className="w-4 h-4" />
+              <span>{displayTitle}</span>
+            </div>
+            <ChevronRight className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
           </button>
           {isExpanded && (
-            <ul className="nav-group-list">
+            <ul className="mt-1 ml-6 pl-4 border-l-2 border-gray-200 dark:border-gray-700 space-y-1">
               {Object.entries(items).map(([subKey, subItem]) =>
-                renderMenuItem(subKey, subItem, level + 1, `/${key}`)
+                renderMenuItem(subKey, subItem, level + 1)
               )}
             </ul>
           )}
@@ -148,25 +136,25 @@ export default function Sidebar({ meta }: SidebarProps) {
 
     const linkHref = href || `/${key === 'index' ? '' : key}`;
     const currentPath = router.asPath.split('?')[0];
-    const isActive = currentPath === linkHref || currentPath === `/${key}` || (parentPath && currentPath.startsWith(parentPath));
+    const isActive = currentPath === linkHref || currentPath === `/${key}`;
 
     return (
-      <li key={key} className={`nav-item ${isActive ? 'active' : ''}`}>
+      <li key={key}>
         <a
           href={linkHref}
           target={newWindow ? '_blank' : undefined}
           rel={newWindow ? 'noopener noreferrer' : undefined}
-          className="nav-link"
+          className={`
+            flex items-center gap-3 px-4 py-2.5 text-sm rounded-lg transition-all
+            ${isActive
+              ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-semibold border-l-3 border-primary-600'
+              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400'
+            }
+          `}
         >
-          {getIcon(key, level)}
-          <span className="nav-link-text">{displayTitle}</span>
-          {newWindow && (
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="external-icon">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-              <polyline points="15 3 21 3 21 9"></polyline>
-              <line x1="10" y1="14" x2="21" y2="3"></line>
-            </svg>
-          )}
+          <Book className="w-4 h-4" />
+          <span>{displayTitle}</span>
+          {newWindow && <ExternalLink className="w-3 h-3 ml-auto opacity-40" />}
         </a>
       </li>
     );
@@ -174,337 +162,44 @@ export default function Sidebar({ meta }: SidebarProps) {
 
   return (
     <>
+      {/* Mobile Toggle */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="sidebar-toggle"
+        className="lg:hidden fixed top-4 left-4 z-50 p-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-all"
         aria-label="Toggle sidebar"
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
+        <Menu className="w-6 h-6" />
       </button>
+
+      {/* Overlay */}
       {isOpen && (
-        <div className="sidebar-overlay" onClick={() => setIsOpen(false)}></div>
+        <div
+          className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+          onClick={() => setIsOpen(false)}
+        />
       )}
-      <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
-        <div className="sidebar-content">
-          <div className="sidebar-header">
-            <div className="sidebar-brand">
-              <div className="brand-icon">
-                <BookIcon className="brand-icon-svg" />
-              </div>
-              <h2 className="sidebar-title">Tusome i Kifuliiru</h2>
-            </div>
-          </div>
-          <nav className="sidebar-nav">
-            <ul className="nav-list">
+
+      {/* Sidebar */}
+      <aside
+        className={`
+          w-72 min-h-[calc(100vh-5rem)] bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800
+          border-r border-gray-200 dark:border-gray-800
+          sticky top-20 self-start overflow-y-auto
+          transition-transform duration-300
+          ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+          fixed lg:static z-40
+          shadow-xl lg:shadow-none
+        `}
+      >
+        <div className="p-6">
+          <nav>
+            <ul className="space-y-1">
               {Object.entries(sidebarMeta).map(([key, item]) =>
                 renderMenuItem(key, item)
               )}
             </ul>
           </nav>
         </div>
-        <style jsx>{`
-          .sidebar {
-            width: var(--sidebar-width);
-            min-height: calc(100vh - var(--header-height));
-            background: var(--color-bg);
-            border-right: 1px solid var(--color-border);
-            position: sticky;
-            top: var(--header-height);
-            align-self: flex-start;
-            overflow-y: auto;
-            overflow-x: hidden;
-            max-height: calc(100vh - var(--header-height));
-            transition: transform var(--transition-base);
-          }
-
-          .sidebar-content {
-            padding: var(--spacing-6) 0;
-          }
-
-          .sidebar-header {
-            padding: 0 var(--spacing-6);
-            margin-bottom: var(--spacing-6);
-            padding-bottom: var(--spacing-6);
-            border-bottom: 2px solid var(--color-border);
-          }
-
-          .sidebar-brand {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-3);
-          }
-
-          .brand-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: var(--radius-lg);
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            box-shadow: var(--shadow-md);
-          }
-
-          .brand-icon-svg {
-            width: 20px;
-            height: 20px;
-            color: white;
-          }
-
-          .sidebar-title {
-            font-size: var(--font-size-lg);
-            font-weight: var(--font-weight-bold);
-            color: var(--color-text);
-            margin: 0;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-          }
-
-          .sidebar-nav {
-            padding: 0 var(--spacing-3);
-          }
-
-          .nav-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-          }
-
-          .nav-group {
-            margin: var(--spacing-2) 0;
-          }
-
-          .nav-group-header {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-2);
-            padding: var(--spacing-3) var(--spacing-4);
-            font-weight: var(--font-weight-semibold);
-            font-size: var(--font-size-xs);
-            color: var(--color-text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            background: transparent;
-            border: none;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            transition: all var(--transition-base);
-            text-align: left;
-            margin-bottom: var(--spacing-1);
-          }
-
-          .nav-group-header:hover {
-            background-color: var(--color-bg-secondary);
-            color: var(--color-primary);
-          }
-
-          .nav-group-header.active {
-            color: var(--color-primary);
-            background-color: var(--color-primary-bg);
-          }
-
-          .nav-group-icon {
-            width: 14px;
-            height: 14px;
-            flex-shrink: 0;
-            opacity: 0.7;
-          }
-
-          .nav-group-text {
-            flex: 1;
-          }
-
-          .nav-group-chevron {
-            width: 14px;
-            height: 14px;
-            flex-shrink: 0;
-            transition: transform var(--transition-base);
-            opacity: 0.5;
-          }
-
-          .nav-group-chevron.expanded {
-            transform: rotate(90deg);
-          }
-
-          .nav-group-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            padding-left: var(--spacing-6);
-            border-left: 2px solid var(--color-border-light);
-            margin-left: var(--spacing-4);
-            animation: slideDown 0.2s ease-out;
-          }
-
-          @keyframes slideDown {
-            from {
-              opacity: 0;
-              transform: translateY(-10px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-
-          .nav-item {
-            margin: var(--spacing-1) 0;
-          }
-
-          .nav-link {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-3);
-            padding: var(--spacing-3) var(--spacing-4);
-            color: var(--color-text);
-            text-decoration: none;
-            border-radius: var(--radius-md);
-            transition: all var(--transition-base);
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-normal);
-            position: relative;
-            line-height: 1.5;
-          }
-
-          .nav-link:hover {
-            background-color: var(--color-bg-secondary);
-            color: var(--color-primary);
-            transform: translateX(4px);
-          }
-
-          .nav-icon {
-            width: 16px;
-            height: 16px;
-            flex-shrink: 0;
-            opacity: 0.6;
-            transition: opacity var(--transition-base);
-          }
-
-          .nav-link:hover .nav-icon {
-            opacity: 1;
-          }
-
-          .nav-link-text {
-            flex: 1;
-          }
-
-          .external-icon {
-            width: 12px;
-            height: 12px;
-            opacity: 0.4;
-            flex-shrink: 0;
-          }
-
-          .nav-item.active .nav-link {
-            background: linear-gradient(90deg, var(--color-primary-bg) 0%, transparent 100%);
-            color: var(--color-primary);
-            font-weight: var(--font-weight-semibold);
-            border-left: 3px solid var(--color-primary);
-            padding-left: calc(var(--spacing-4) - 3px);
-          }
-
-          .nav-item.active .nav-icon {
-            opacity: 1;
-            color: var(--color-primary);
-          }
-
-          .sidebar-toggle {
-            display: none;
-            position: fixed;
-            top: var(--spacing-4);
-            left: var(--spacing-4);
-            z-index: 1001;
-            padding: var(--spacing-3);
-            background: var(--color-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            color: var(--color-text);
-            box-shadow: var(--shadow-lg);
-            transition: all var(--transition-base);
-          }
-
-          .sidebar-toggle:hover {
-            background: var(--color-bg-secondary);
-            transform: scale(1.05);
-            box-shadow: var(--shadow-xl);
-          }
-
-          .sidebar-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 998;
-            backdrop-filter: blur(4px);
-            animation: fadeIn 0.2s ease-out;
-          }
-
-          @keyframes fadeIn {
-            from {
-              opacity: 0;
-            }
-            to {
-              opacity: 1;
-            }
-          }
-
-          @media (max-width: 768px) {
-            .sidebar-toggle {
-              display: block;
-            }
-
-            .sidebar-overlay {
-              display: block;
-            }
-
-            .sidebar {
-              position: fixed;
-              left: ${isOpen ? '0' : 'calc(-1 * var(--sidebar-width))'};
-              top: 0;
-              z-index: 999;
-              box-shadow: ${isOpen ? 'var(--shadow-xl)' : 'none'};
-              max-height: 100vh;
-              min-height: 100vh;
-            }
-          }
-
-          /* Enhanced Scrollbar styling */
-          .sidebar::-webkit-scrollbar {
-            width: 8px;
-          }
-
-          .sidebar::-webkit-scrollbar-track {
-            background: transparent;
-          }
-
-          .sidebar::-webkit-scrollbar-thumb {
-            background: var(--color-border);
-            border-radius: var(--radius-full);
-            border: 2px solid transparent;
-            background-clip: padding-box;
-          }
-
-          .sidebar::-webkit-scrollbar-thumb:hover {
-            background: var(--color-text-muted);
-            background-clip: padding-box;
-          }
-
-          /* Smooth transitions for all interactive elements */
-          .nav-link,
-          .nav-group-header {
-            will-change: transform;
-          }
-        `}</style>
       </aside>
     </>
   );

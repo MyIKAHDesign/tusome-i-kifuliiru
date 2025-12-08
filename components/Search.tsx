@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { Search as SearchIcon, FileText, Loader2 } from 'lucide-react';
 
 interface SearchResult {
   title: string;
@@ -54,20 +55,9 @@ export default function Search() {
   };
 
   return (
-    <div ref={searchRef} className="search-container">
-      <div className="search-input-wrapper">
-        <svg
-          className="search-icon"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-        >
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="m21 21-4.35-4.35"></path>
-        </svg>
+    <div ref={searchRef} className="relative min-w-[200px] sm:min-w-[280px]">
+      <div className="flex items-center gap-3 px-4 py-2.5 border border-gray-200 dark:border-gray-700 rounded-full bg-white dark:bg-gray-800 transition-all focus-within:border-primary-500 focus-within:ring-2 focus-within:ring-primary-500/20">
+        <SearchIcon className="w-5 h-5 text-gray-400 flex-shrink-0" />
         <input
           ref={inputRef}
           type="text"
@@ -79,21 +69,22 @@ export default function Search() {
               setIsOpen(true);
             }
           }}
-          className="search-input"
+          className="flex-1 bg-transparent border-0 outline-0 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400"
         />
         {isLoading && (
-          <div className="search-loading">
-            <div className="spinner"></div>
-          </div>
+          <Loader2 className="w-4 h-4 text-primary-600 animate-spin flex-shrink-0" />
         )}
       </div>
 
       {isOpen && (results.length > 0 || (query.length >= 2 && !isLoading)) && (
-        <div className="search-results">
+        <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl max-h-96 overflow-y-auto z-50">
           {isLoading ? (
-            <div className="search-loading-state">Tugweeti tugalooza...</div>
+            <div className="p-6 text-center text-sm text-gray-500 dark:text-gray-400 flex items-center justify-center gap-2">
+              <Loader2 className="w-4 h-4 animate-spin" />
+              <span>Tugweeti tugalooza...</span>
+            </div>
           ) : results.length > 0 ? (
-            <>
+            <div className="py-2">
               {results.map((result, index) => (
                 <a
                   key={index}
@@ -104,151 +95,20 @@ export default function Search() {
                     setIsOpen(false);
                     setQuery('');
                   }}
-                  className="search-result-item"
+                  className="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-primary-600 dark:hover:text-primary-400 transition-colors border-b border-gray-100 dark:border-gray-700 last:border-0"
                 >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    className="result-icon"
-                  >
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                  </svg>
+                  <FileText className="w-4 h-4 flex-shrink-0 text-gray-400" />
                   <span>{result.title}</span>
                 </a>
               ))}
-            </>
+            </div>
           ) : (
-            <div className="search-empty-state">Ndabyo twaloonga</div>
+            <div className="p-6 text-center text-sm text-gray-500 dark:text-gray-400">
+              Ndabyo twaloonga
+            </div>
           )}
         </div>
       )}
-
-      <style jsx>{`
-        .search-container {
-          position: relative;
-          min-width: 280px;
-        }
-
-        .search-input-wrapper {
-          display: flex;
-          align-items: center;
-          gap: var(--spacing-3);
-          padding: var(--spacing-2) var(--spacing-4);
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-full);
-          background-color: var(--color-bg);
-          transition: all var(--transition-base);
-          cursor: text;
-        }
-
-        .search-input-wrapper:focus-within {
-          border-color: var(--color-primary);
-          box-shadow: 0 0 0 3px var(--color-primary-bg);
-          outline: none;
-        }
-
-        .search-icon {
-          color: var(--color-text-muted);
-          flex-shrink: 0;
-        }
-
-        .search-input {
-          border: none;
-          outline: none;
-          flex: 1;
-          font-size: var(--font-size-sm);
-          background: transparent;
-          color: var(--color-text);
-          min-width: 0;
-        }
-
-        .search-input::placeholder {
-          color: var(--color-text-muted);
-        }
-
-        .search-loading {
-          display: flex;
-          align-items: center;
-        }
-
-        .spinner {
-          width: 16px;
-          height: 16px;
-          border: 2px solid var(--color-border);
-          border-top-color: var(--color-primary);
-          border-radius: 50%;
-          animation: spin 0.6s linear infinite;
-        }
-
-        @keyframes spin {
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
-        .search-results {
-          position: absolute;
-          top: calc(100% + var(--spacing-2));
-          left: 0;
-          right: 0;
-          background-color: var(--color-bg);
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-lg);
-          box-shadow: var(--shadow-xl);
-          max-height: 400px;
-          overflow-y: auto;
-          z-index: 1000;
-          margin-top: var(--spacing-2);
-        }
-
-        .search-result-item {
-          display: flex;
-          align-items: center;
-          gap: var(--spacing-3);
-          padding: var(--spacing-3) var(--spacing-4);
-          color: var(--color-text);
-          text-decoration: none;
-          transition: all var(--transition-base);
-          border-bottom: 1px solid var(--color-border-light);
-        }
-
-        .search-result-item:last-child {
-          border-bottom: none;
-        }
-
-        .search-result-item:hover {
-          background-color: var(--color-bg-secondary);
-          color: var(--color-primary);
-        }
-
-        .result-icon {
-          flex-shrink: 0;
-          color: var(--color-text-muted);
-        }
-
-        .search-result-item:hover .result-icon {
-          color: var(--color-primary);
-        }
-
-        .search-loading-state,
-        .search-empty-state {
-          padding: var(--spacing-6);
-          text-align: center;
-          color: var(--color-text-secondary);
-          font-size: var(--font-size-sm);
-        }
-
-        @media (max-width: 768px) {
-          .search-container {
-            min-width: 200px;
-          }
-        }
-      `}</style>
     </div>
   );
 }
