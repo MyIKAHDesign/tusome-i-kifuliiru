@@ -72,12 +72,14 @@ export default function Sidebar({ meta }: SidebarProps) {
     return <FileText className="w-4 h-4" />;
   };
 
-  const renderMenuItem = (key: string, item: MetaItem | string, level: number = 0): React.ReactNode => {
+  const renderMenuItem = (key: string, item: MetaItem | string, level: number = 0, parentKey: string = ''): React.ReactNode => {
     if (typeof item === 'string') {
-      const href = key === 'index' ? '/' : `/${key}`;
+      // Build the path: if parentKey exists, it's nested like "ukuharura/abandu"
+      const fullPath = parentKey ? `${parentKey}/${key}` : key;
+      const docHref = key === 'index' ? '/docs' : `/docs/${fullPath}`;
       const currentPath = router.asPath.split('?')[0];
-      const isActive = currentPath === href || currentPath === `/${key}`;
-      const docHref = `/docs/${href === '/' ? '' : href.replace(/^\//, '')}`;
+      const isActive = currentPath === docHref || currentPath === `/docs/${key}`;
+      
       return (
         <li key={key}>
           <a
@@ -127,7 +129,7 @@ export default function Sidebar({ meta }: SidebarProps) {
           {isExpanded && (
             <ul className="mt-1 ml-6 pl-4 border-l-2 border-gray-200 dark:border-gray-700 space-y-1">
               {Object.entries(items).map(([subKey, subItem]) =>
-                renderMenuItem(subKey, subItem, level + 1)
+                renderMenuItem(subKey, subItem, level + 1, key)
               )}
             </ul>
           )}
@@ -136,9 +138,11 @@ export default function Sidebar({ meta }: SidebarProps) {
     }
 
     const linkHref = href || (key === 'index' ? '' : key);
-    const docHref = href ? href : `/docs/${linkHref}`;
+    // Build nested path if parentKey exists
+    const fullPath = parentKey ? `${parentKey}/${linkHref}` : linkHref;
+    const docHref = href ? href : `/docs/${fullPath}`;
     const currentPath = router.asPath.split('?')[0];
-    const isActive = currentPath === docHref || currentPath === `/docs/${key}`;
+    const isActive = currentPath === docHref || currentPath === `/docs/${fullPath}` || currentPath === `/docs/${key}`;
 
     return (
       <li key={key}>

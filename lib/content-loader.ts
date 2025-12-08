@@ -29,10 +29,11 @@ export function getAllContentSlugs(): string[] {
       const stat = fs.statSync(fullPath);
       
       if (stat.isDirectory()) {
+        // Recursively scan subdirectories
         scanDirectory(fullPath, path.join(basePath, file));
       } else if (file.endsWith('.mdx')) {
         const slug = path.join(basePath, file.replace(/\.mdx$/, ''));
-        // Convert to URL-friendly slug
+        // Convert to URL-friendly slug (handle both Windows and Unix paths)
         const urlSlug = slug === 'index' ? '' : slug.replace(/\\/g, '/');
         slugs.push(urlSlug);
       }
@@ -51,17 +52,20 @@ export function getContentBySlug(slug: string): ContentItem | null {
     if (slug === '' || slug === 'index') {
       filePath = path.join(dataDirectory, 'index.mdx');
     } else {
-      // Try direct file first
-      filePath = path.join(dataDirectory, `${slug}.mdx`);
+      // Handle nested paths like "ukuharura/abandu"
+      const slugParts = slug.split('/');
       
-      // If not found, try with directory structure
-      if (!fs.existsSync(filePath)) {
-        filePath = path.join(dataDirectory, slug.split('/').join(path.sep) + '.mdx');
-      }
+      // Build the file path - join all parts with path.sep
+      filePath = path.join(dataDirectory, ...slugParts) + '.mdx';
     }
     
     if (!fs.existsSync(filePath)) {
-      return null;
+      // Try alternative path formats
+      filePath = path.join(dataDirectory, slug.replace(/\//g, path.sep) + '.mdx');
+      
+      if (!fs.existsSync(filePath)) {
+        return null;
+      }
     }
     
     const fileContents = fs.readFileSync(filePath, 'utf8');
@@ -78,9 +82,12 @@ export function getContentBySlug(slug: string): ContentItem | null {
   }
 }
 
-export function getMetaData() {
+export function getMetaData(subPath?: string) {
   try {
-    const metaPath = path.join(dataDirectory, '_meta.json');
+    const metaPath = subPath 
+      ? path.join(dataDirectory, subPath, '_meta.json')
+      : path.join(dataDirectory, '_meta.json');
+      
     if (fs.existsSync(metaPath)) {
       const metaContents = fs.readFileSync(metaPath, 'utf8');
       return JSON.parse(metaContents);
