@@ -11,9 +11,9 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900">
       <Header />
-      <div className="flex flex-1">
+      <div className="flex flex-1 overflow-hidden">
         <Sidebar />
-        <main className="flex-1">
+        <main className="flex-1 overflow-y-auto">
           <div className="max-w-4xl mx-auto px-6 py-12">
             <article className="mdx-content">
               {children}

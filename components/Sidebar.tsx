@@ -198,9 +198,9 @@ export default function Sidebar({ meta }: SidebarProps) {
       {/* Sidebar */}
       <aside
         className={`
-          w-72 min-h-[calc(100vh-5rem)] bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800
+          w-72 h-[calc(100vh-5rem)] bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800
           border-r border-gray-200 dark:border-gray-800
-          sticky top-20 self-start overflow-y-auto
+          overflow-y-auto overflow-x-hidden
           transition-transform duration-300
           ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
           fixed lg:static z-40

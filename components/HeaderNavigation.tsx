@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { ChevronDown, ExternalLink, Globe, BookOpen, Heart, Info, Languages } from 'lucide-react';
+import { ChevronDown, ExternalLink, Home, BookOpen, Info, Languages } from 'lucide-react';
 
 interface NavItem {
   title?: string;
@@ -35,37 +35,87 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
     }
   }, [openDropdown]);
 
-  // Extract navigation items (excluding documentation items)
-  const navItems: Record<string, NavItem | string> = {};
-  
-  Object.entries(items).forEach(([key, value]) => {
-    if (['kifuliiru', 'imigani', 'imigeeza', 'imwitu', 'bingi-ku-kifuliiru', 'twehe', 'contact', 'eng-frn-swa'].includes(key)) {
-      navItems[key] = value;
+  // Build the new navigation structure
+  const buildNavigation = () => {
+    const kifuliiruItems: Record<string, NavItem | string> = {};
+    
+    // Add Kifuliiru, Imigani, Imigeeza
+    if (items.kifuliiru) {
+      kifuliiruItems.kifuliiru = items.kifuliiru;
     }
-  });
+    if (items.imigani) {
+      kifuliiruItems.imigani = items.imigani;
+    }
+    if (items.imigeeza) {
+      kifuliiruItems.imigeeza = items.imigeeza;
+    }
+    
+    // Add all Bingi ku Kifuliiru items
+    if (typeof items['bingi-ku-kifuliiru'] === 'object' && items['bingi-ku-kifuliiru'] !== null) {
+      const bingi = items['bingi-ku-kifuliiru'] as NavItem;
+      if (bingi.items) {
+        Object.assign(kifuliiruItems, bingi.items);
+      }
+    }
+    
+    // Build Imwitu items (Ibufuliiru and others)
+    const imwituItems: Record<string, NavItem | string> = {};
+    if (typeof items.imwitu === 'object' && items.imwitu !== null) {
+      const imwitu = items.imwitu as NavItem;
+      if (imwitu.items) {
+        Object.assign(imwituItems, imwitu.items);
+      }
+    }
+    
+    // Build Twehe items (include Tuyandikire)
+    const tweheItems: Record<string, NavItem | string> = {};
+    if (typeof items.twehe === 'object' && items.twehe !== null) {
+      const twehe = items.twehe as NavItem;
+      if (twehe.items) {
+        Object.assign(tweheItems, twehe.items);
+      }
+    }
+    // Add Tuyandikire to Twehe
+    if (items.contact) {
+      tweheItems.contact = items.contact;
+    }
+    
+    return {
+      home: { title: 'Home', type: 'page' as const, href: '/' },
+      kifuliiru: {
+        title: 'Kifuliiru',
+        type: 'menu' as const,
+        items: kifuliiruItems,
+      },
+      imwitu: {
+        title: 'Imwitu',
+        type: 'menu' as const,
+        items: imwituItems,
+      },
+      twehe: {
+        title: 'Twehe',
+        type: 'menu' as const,
+        items: tweheItems,
+      },
+    };
+  };
+
+  const navItems = buildNavigation();
 
   const getIcon = (key: string) => {
     switch (key) {
+      case 'home':
+        return <Home className="w-4 h-4" />;
       case 'kifuliiru':
         return <BookOpen className="w-4 h-4" />;
-      case 'imigani':
-        return <Heart className="w-4 h-4" />;
-      case 'imigeeza':
-        return <Heart className="w-4 h-4" />;
       case 'imwitu':
         return <BookOpen className="w-4 h-4" />;
-      case 'bingi-ku-kifuliiru':
-        return <Info className="w-4 h-4" />;
       case 'twehe':
         return <Info className="w-4 h-4" />;
-      case 'eng-frn-swa':
-        return <Languages className="w-4 h-4" />;
       default:
         return null;
     }
   };
-
-  // No need for handleItemClick - we handle it in the render functions
 
   const renderDropdown = (key: string, item: NavItem | string) => {
     if (typeof item === 'string' || !item.items) return null;
@@ -100,13 +150,13 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         </button>
 
         {isOpen && (
-          <div className="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200 max-h-96 overflow-y-auto">
             {itemEntries.map(([subKey, subItem]) => {
               const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
               const subHref = typeof subItem === 'object' && subItem.href
                 ? subItem.href
-                : `/${key}/${subKey}`;
-              const isExternal = typeof subItem === 'object' && subItem.newWindow;
+                : `/${subKey}`;
+              const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
 
               return (
                 <a
@@ -125,7 +175,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                   className={`
                     flex items-center gap-3 px-4 py-3 text-sm transition-colors
                     ${
-                      router.asPath === subHref || router.asPath.startsWith(`/${key}/${subKey}`)
+                      router.asPath === subHref || router.asPath.startsWith(`/${subKey}`)
                         ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-medium'
                         : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-primary-600 dark:hover:text-primary-400'
                     }
@@ -212,4 +262,3 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
     </nav>
   );
 }
-
