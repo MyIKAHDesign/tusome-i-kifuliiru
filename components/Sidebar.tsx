@@ -15,10 +15,38 @@ interface SidebarProps {
 
 const defaultMeta: Record<string, MetaItem | string> = {};
 
+// Icon components
+const ChevronRightIcon = ({ className }: { className?: string }) => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
+    <polyline points="9 18 15 12 9 6"></polyline>
+  </svg>
+);
+
+const HomeIcon = ({ className }: { className?: string }) => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
+    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+  </svg>
+);
+
+const BookIcon = ({ className }: { className?: string }) => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
+    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+  </svg>
+);
+
+const FolderIcon = ({ className }: { className?: string }) => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
+    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+  </svg>
+);
+
 export default function Sidebar({ meta }: SidebarProps) {
   const router = useRouter();
   const [sidebarMeta, setSidebarMeta] = useState<Record<string, MetaItem | string>>(defaultMeta);
   const [isOpen, setIsOpen] = useState(false);
+  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const loadMeta = async () => {
@@ -27,6 +55,17 @@ export default function Sidebar({ meta }: SidebarProps) {
         if (response.ok) {
           const parsed = await response.json();
           setSidebarMeta(parsed);
+          // Auto-expand groups that contain the current page
+          const currentPath = router.asPath.split('?')[0];
+          const groups = Object.keys(parsed).filter(key => {
+            const item = parsed[key];
+            return typeof item === 'object' && item.type === 'menu' && item.items;
+          });
+          const activeGroups = groups.filter(key => {
+            const item = parsed[key] as MetaItem;
+            return currentPath.startsWith(`/${key}`);
+          });
+          setExpandedGroups(new Set(activeGroups));
         } else if (meta) {
           setSidebarMeta(meta);
         }
@@ -39,7 +78,29 @@ export default function Sidebar({ meta }: SidebarProps) {
     };
 
     loadMeta();
-  }, [meta]);
+  }, [meta, router.asPath]);
+
+  const toggleGroup = (key: string) => {
+    setExpandedGroups(prev => {
+      const next = new Set(prev);
+      if (next.has(key)) {
+        next.delete(key);
+      } else {
+        next.add(key);
+      }
+      return next;
+    });
+  };
+
+  const getIcon = (key: string, level: number) => {
+    if (level === 0 && key === 'index') {
+      return <HomeIcon className="nav-icon" />;
+    }
+    if (level === 0) {
+      return <BookIcon className="nav-icon" />;
+    }
+    return null;
+  };
 
   const renderMenuItem = (key: string, item: MetaItem | string, level: number = 0, parentPath: string = ''): React.ReactNode => {
     if (typeof item === 'string') {
@@ -47,9 +108,10 @@ export default function Sidebar({ meta }: SidebarProps) {
       const currentPath = router.asPath.split('?')[0];
       const isActive = currentPath === href || currentPath === `/${key}`;
       return (
-        <li key={key} className={`nav-item ${isActive ? 'active' : ''}`} style={{ paddingLeft: `${level * 1.25}rem` }}>
+        <li key={key} className={`nav-item ${isActive ? 'active' : ''}`}>
           <a href={href} className="nav-link">
-            {item}
+            {getIcon(key, level)}
+            <span className="nav-link-text">{item}</span>
           </a>
         </li>
       );
@@ -61,16 +123,25 @@ export default function Sidebar({ meta }: SidebarProps) {
     if (type === 'menu' && items) {
       const currentPath = router.asPath.split('?')[0];
       const isMenuActive = currentPath.startsWith(`/${key}`);
+      const isExpanded = expandedGroups.has(key);
+      
       return (
         <li key={key} className="nav-group">
-          <div className={`nav-group-header ${isMenuActive ? 'active' : ''}`}>
-            {displayTitle}
-          </div>
-          <ul className="nav-group-list">
-            {Object.entries(items).map(([subKey, subItem]) =>
-              renderMenuItem(subKey, subItem, level + 1, `/${key}`)
-            )}
-          </ul>
+          <button
+            className={`nav-group-header ${isMenuActive ? 'active' : ''} ${isExpanded ? 'expanded' : ''}`}
+            onClick={() => toggleGroup(key)}
+          >
+            <FolderIcon className="nav-group-icon" />
+            <span className="nav-group-text">{displayTitle}</span>
+            <ChevronRightIcon className={`nav-group-chevron ${isExpanded ? 'expanded' : ''}`} />
+          </button>
+          {isExpanded && (
+            <ul className="nav-group-list">
+              {Object.entries(items).map(([subKey, subItem]) =>
+                renderMenuItem(subKey, subItem, level + 1, `/${key}`)
+              )}
+            </ul>
+          )}
         </li>
       );
     }
@@ -80,14 +151,22 @@ export default function Sidebar({ meta }: SidebarProps) {
     const isActive = currentPath === linkHref || currentPath === `/${key}` || (parentPath && currentPath.startsWith(parentPath));
 
     return (
-      <li key={key} className={`nav-item ${isActive ? 'active' : ''}`} style={{ paddingLeft: `${level * 1.25}rem` }}>
+      <li key={key} className={`nav-item ${isActive ? 'active' : ''}`}>
         <a
           href={linkHref}
           target={newWindow ? '_blank' : undefined}
           rel={newWindow ? 'noopener noreferrer' : undefined}
           className="nav-link"
         >
-          {displayTitle}
+          {getIcon(key, level)}
+          <span className="nav-link-text">{displayTitle}</span>
+          {newWindow && (
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="external-icon">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          )}
         </a>
       </li>
     );
@@ -112,7 +191,12 @@ export default function Sidebar({ meta }: SidebarProps) {
       <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
         <div className="sidebar-content">
           <div className="sidebar-header">
-            <h2 className="sidebar-title">Tusome i Kifuliiru</h2>
+            <div className="sidebar-brand">
+              <div className="brand-icon">
+                <BookIcon className="brand-icon-svg" />
+              </div>
+              <h2 className="sidebar-title">Tusome i Kifuliiru</h2>
+            </div>
           </div>
           <nav className="sidebar-nav">
             <ul className="nav-list">
@@ -125,13 +209,14 @@ export default function Sidebar({ meta }: SidebarProps) {
         <style jsx>{`
           .sidebar {
             width: var(--sidebar-width);
-            min-height: 100vh;
-            background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-secondary) 100%);
+            min-height: calc(100vh - var(--header-height));
+            background: var(--color-bg);
             border-right: 1px solid var(--color-border);
             position: sticky;
             top: var(--header-height);
             align-self: flex-start;
             overflow-y: auto;
+            overflow-x: hidden;
             max-height: calc(100vh - var(--header-height));
             transition: transform var(--transition-base);
           }
@@ -143,20 +228,45 @@ export default function Sidebar({ meta }: SidebarProps) {
           .sidebar-header {
             padding: 0 var(--spacing-6);
             margin-bottom: var(--spacing-6);
-            padding-bottom: var(--spacing-4);
-            border-bottom: 1px solid var(--color-border);
+            padding-bottom: var(--spacing-6);
+            border-bottom: 2px solid var(--color-border);
+          }
+
+          .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+          }
+
+          .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-md);
+          }
+
+          .brand-icon-svg {
+            width: 20px;
+            height: 20px;
+            color: white;
           }
 
           .sidebar-title {
-            font-size: var(--font-size-xl);
+            font-size: var(--font-size-lg);
             font-weight: var(--font-weight-bold);
             color: var(--color-text);
             margin: 0;
             letter-spacing: -0.02em;
+            line-height: 1.2;
           }
 
           .sidebar-nav {
-            padding: 0 var(--spacing-4);
+            padding: 0 var(--spacing-3);
           }
 
           .nav-list {
@@ -166,22 +276,81 @@ export default function Sidebar({ meta }: SidebarProps) {
           }
 
           .nav-group {
-            margin-top: var(--spacing-4);
+            margin: var(--spacing-2) 0;
           }
 
           .nav-group-header {
-            padding: var(--spacing-2) var(--spacing-4);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            padding: var(--spacing-3) var(--spacing-4);
             font-weight: var(--font-weight-semibold);
             font-size: var(--font-size-xs);
             color: var(--color-text-secondary);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: var(--spacing-2);
-            transition: color var(--transition-base);
+            letter-spacing: 0.08em;
+            background: transparent;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            text-align: left;
+            margin-bottom: var(--spacing-1);
+          }
+
+          .nav-group-header:hover {
+            background-color: var(--color-bg-secondary);
+            color: var(--color-primary);
           }
 
           .nav-group-header.active {
             color: var(--color-primary);
+            background-color: var(--color-primary-bg);
+          }
+
+          .nav-group-icon {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+            opacity: 0.7;
+          }
+
+          .nav-group-text {
+            flex: 1;
+          }
+
+          .nav-group-chevron {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+            transition: transform var(--transition-base);
+            opacity: 0.5;
+          }
+
+          .nav-group-chevron.expanded {
+            transform: rotate(90deg);
+          }
+
+          .nav-group-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            padding-left: var(--spacing-6);
+            border-left: 2px solid var(--color-border-light);
+            margin-left: var(--spacing-4);
+            animation: slideDown 0.2s ease-out;
+          }
+
+          @keyframes slideDown {
+            from {
+              opacity: 0;
+              transform: translateY(-10px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
           }
 
           .nav-item {
@@ -189,8 +358,10 @@ export default function Sidebar({ meta }: SidebarProps) {
           }
 
           .nav-link {
-            display: block;
-            padding: var(--spacing-2) var(--spacing-4);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            padding: var(--spacing-3) var(--spacing-4);
             color: var(--color-text);
             text-decoration: none;
             border-radius: var(--radius-md);
@@ -198,12 +369,36 @@ export default function Sidebar({ meta }: SidebarProps) {
             font-size: var(--font-size-sm);
             font-weight: var(--font-weight-normal);
             position: relative;
+            line-height: 1.5;
           }
 
           .nav-link:hover {
-            background-color: var(--color-bg-tertiary);
+            background-color: var(--color-bg-secondary);
             color: var(--color-primary);
             transform: translateX(4px);
+          }
+
+          .nav-icon {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            opacity: 0.6;
+            transition: opacity var(--transition-base);
+          }
+
+          .nav-link:hover .nav-icon {
+            opacity: 1;
+          }
+
+          .nav-link-text {
+            flex: 1;
+          }
+
+          .external-icon {
+            width: 12px;
+            height: 12px;
+            opacity: 0.4;
+            flex-shrink: 0;
           }
 
           .nav-item.active .nav-link {
@@ -214,10 +409,9 @@ export default function Sidebar({ meta }: SidebarProps) {
             padding-left: calc(var(--spacing-4) - 3px);
           }
 
-          .nav-group-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
+          .nav-item.active .nav-icon {
+            opacity: 1;
+            color: var(--color-primary);
           }
 
           .sidebar-toggle {
@@ -239,6 +433,7 @@ export default function Sidebar({ meta }: SidebarProps) {
           .sidebar-toggle:hover {
             background: var(--color-bg-secondary);
             transform: scale(1.05);
+            box-shadow: var(--shadow-xl);
           }
 
           .sidebar-overlay {
@@ -251,6 +446,16 @@ export default function Sidebar({ meta }: SidebarProps) {
             background: rgba(0, 0, 0, 0.5);
             z-index: 998;
             backdrop-filter: blur(4px);
+            animation: fadeIn 0.2s ease-out;
+          }
+
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+            }
           }
 
           @media (max-width: 768px) {
@@ -269,12 +474,13 @@ export default function Sidebar({ meta }: SidebarProps) {
               z-index: 999;
               box-shadow: ${isOpen ? 'var(--shadow-xl)' : 'none'};
               max-height: 100vh;
+              min-height: 100vh;
             }
           }
 
-          /* Scrollbar styling */
+          /* Enhanced Scrollbar styling */
           .sidebar::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
           }
 
           .sidebar::-webkit-scrollbar-track {
@@ -284,14 +490,22 @@ export default function Sidebar({ meta }: SidebarProps) {
           .sidebar::-webkit-scrollbar-thumb {
             background: var(--color-border);
             border-radius: var(--radius-full);
+            border: 2px solid transparent;
+            background-clip: padding-box;
           }
 
           .sidebar::-webkit-scrollbar-thumb:hover {
             background: var(--color-text-muted);
+            background-clip: padding-box;
+          }
+
+          /* Smooth transitions for all interactive elements */
+          .nav-link,
+          .nav-group-header {
+            will-change: transform;
           }
         `}</style>
       </aside>
     </>
   );
 }
-
