@@ -174,13 +174,19 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         </button>
 
         {isOpen && (
-          <div className={`
-            absolute top-full mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50 animate-in fade-in slide-in-from-top-2 duration-200
-            ${isMegaMenu 
-              ? 'w-[600px] p-6 left-1/2 -translate-x-1/2' 
-              : 'w-64 py-2 max-h-96 overflow-y-auto left-1/2 -translate-x-1/2'
-            }
-          `}>
+          <>
+            {/* Indicator Arrow */}
+            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-white dark:border-b-gray-800 z-[51]" />
+            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-0 h-0 border-l-[9px] border-r-[9px] border-b-[9px] border-l-transparent border-r-transparent border-b-gray-200 dark:border-b-gray-700 z-50" />
+            
+            {/* Dropdown/Mega Menu */}
+            <div className={`
+              absolute top-full mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50 animate-in fade-in slide-in-from-top-2 duration-200
+              ${isMegaMenu 
+                ? 'w-[600px] p-6 left-1/2 -translate-x-1/2' 
+                : 'w-64 py-2 max-h-96 overflow-y-auto left-1/2 -translate-x-1/2'
+              }
+            `}>
             {isMegaMenu ? (
               <div className="grid grid-cols-2 gap-6">
                 {/* Left Column */}
@@ -310,7 +316,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                 })}
               </div>
             )}
-          </div>
+            </div>
+          </>
         )}
       </div>
     );
