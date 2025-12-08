@@ -16,9 +16,8 @@ interface DocPageProps {
 }
 
 export default function DocPage({ mdxSource, jsonContent, contentType, slug }: DocPageProps) {
-  // Check if this is a ukuharura page for wider display
-  const isUkuharuraPage = slug.startsWith('ukuharura/') || slug === 'ukuharura';
-  const maxWidthClass = isUkuharuraPage ? 'max-w-[1400px]' : 'max-w-3xl';
+  // Use wider display for all pages (same as ukuharura pages)
+  const maxWidthClass = 'max-w-[1400px]';
   
   // If JSON content, use the new component system
   if (contentType === 'json' && jsonContent) {

@@ -21,7 +21,7 @@ export default function GwajiikaPage({ jsonContent, mdxSource, contentType }: Gw
         title="Gwajiika - Tusome i Kifuliiru"
         description="Start learning Kifuliiru language"
       />
-      <div className="max-w-3xl mx-auto w-full">
+      <div className="max-w-[1400px] mx-auto w-full">
         {contentType === 'json' && jsonContent ? (
           <>
             <ContentRenderer content={jsonContent} />
