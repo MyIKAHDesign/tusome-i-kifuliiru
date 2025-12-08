@@ -35,5 +35,8 @@
     "typescript": "^5.7.2"
   },
   "main": "next.config.mjs",
-  "keywords": []
+  "keywords": [],
+  "engines": {
+    "node": ">=24.0.0"
+  }
 }
