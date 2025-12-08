@@ -175,9 +175,9 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
 
         {isOpen && (
           <>
-            {/* Indicator Arrow */}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1.5 w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-white dark:border-b-gray-800 z-[51]" />
-            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-0 h-0 border-l-[9px] border-r-[9px] border-b-[9px] border-l-transparent border-r-transparent border-b-gray-200 dark:border-b-gray-700 z-50" />
+            {/* Indicator Arrow - More visible with larger size and shadow */}
+            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[12px] border-r-[12px] border-b-[12px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-gray-600 z-[51] shadow-lg" />
+            <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[11px] border-r-[11px] border-b-[11px] border-l-transparent border-r-transparent border-b-white dark:border-b-gray-800 z-[52]" />
             
             {/* Dropdown/Mega Menu */}
             <div className={`
