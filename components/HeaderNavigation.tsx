@@ -22,8 +22,18 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+      // Don't close if clicking on a link or button inside the dropdown
+      if (target instanceof Element) {
+        const isLink = target.closest('a');
+        const isButton = target.closest('button');
+        if (isLink || isButton) {
+          return; // Let the link/button handle the click
+        }
+      }
+      
       Object.values(dropdownRefs.current).forEach((ref) => {
-        if (ref && !ref.contains(event.target as Node)) {
+        if (ref && !ref.contains(target)) {
           setOpenDropdown(null);
         }
       });
@@ -220,9 +230,15 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                           target={isExternal ? '_blank' : undefined}
                           rel={isExternal ? 'noopener noreferrer' : undefined}
                           onClick={(e) => {
+                            e.stopPropagation(); // Prevent click from bubbling to parent
                             if (!isExternal) {
                               e.preventDefault();
-                              router.push(subHref).then(() => setOpenDropdown(null));
+                              setOpenDropdown(null); // Close dropdown first
+                              router.push(subHref).catch(err => {
+                                console.error('Navigation error:', err);
+                                // Fallback to regular navigation if router.push fails
+                                window.location.href = subHref;
+                              });
                             } else {
                               setOpenDropdown(null);
                             }
@@ -268,9 +284,15 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                           target={isExternal ? '_blank' : undefined}
                           rel={isExternal ? 'noopener noreferrer' : undefined}
                           onClick={(e) => {
+                            e.stopPropagation(); // Prevent click from bubbling to parent
                             if (!isExternal) {
                               e.preventDefault();
-                              router.push(subHref).then(() => setOpenDropdown(null));
+                              setOpenDropdown(null); // Close dropdown first
+                              router.push(subHref).catch(err => {
+                                console.error('Navigation error:', err);
+                                // Fallback to regular navigation if router.push fails
+                                window.location.href = subHref;
+                              });
                             } else {
                               setOpenDropdown(null);
                             }
@@ -321,9 +343,15 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                       target={isExternal ? '_blank' : undefined}
                       rel={isExternal ? 'noopener noreferrer' : undefined}
                       onClick={(e) => {
+                        e.stopPropagation(); // Prevent click from bubbling to parent
                         if (!isExternal) {
                           e.preventDefault();
-                          router.push(subHref).then(() => setOpenDropdown(null));
+                          setOpenDropdown(null); // Close dropdown first
+                          router.push(subHref).catch(err => {
+                            console.error('Navigation error:', err);
+                            // Fallback to regular navigation if router.push fails
+                            window.location.href = subHref;
+                          });
                         } else {
                           setOpenDropdown(null);
                         }
