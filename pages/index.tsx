@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { BookOpen, Languages, Users, ArrowRight, Search } from 'lucide-react';
+import { BookOpen, ArrowRight, Search } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -36,44 +36,6 @@ export default function Home() {
               <Search className="w-5 h-5" />
               Browse Documentation
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Learn Kifuliiru?</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-6 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-              <div className="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-4">
-                <Languages className="w-6 h-6 text-primary-600 dark:text-primary-400" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Comprehensive Learning</h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Learn vocabulary, grammar, numbers, and expressions in Kifuliiru with structured lessons.
-              </p>
-            </div>
-            
-            <div className="p-6 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-              <div className="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-4">
-                <BookOpen className="w-6 h-6 text-primary-600 dark:text-primary-400" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Rich Documentation</h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Access extensive documentation covering all aspects of the Kifuliiru language and culture.
-              </p>
-            </div>
-            
-            <div className="p-6 rounded-xl bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-              <div className="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center mb-4">
-                <Users className="w-6 h-6 text-primary-600 dark:text-primary-400" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">For Everyone</h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Whether you're a student, teacher, or language enthusiast, find resources tailored to your needs.
-              </p>
-            </div>
           </div>
         </div>
       </section>
