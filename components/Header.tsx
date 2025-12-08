@@ -34,7 +34,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 shadow-sm">
+    <header className="sticky top-0 z-50 bg-gray-50/95 dark:bg-gray-950/95 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Left Section: Sidebar Toggle + Brand */}
@@ -42,7 +42,7 @@ export default function Header() {
             {/* Sidebar Toggle Button */}
             <button
               onClick={() => setSidebarOpen(!isSidebarOpen)}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="p-2 rounded-lg hover:bg-white dark:hover:bg-gray-900 transition-colors"
               aria-label="Toggle sidebar"
             >
               <Menu className={`w-5 h-5 transition-transform ${isSidebarOpen ? '' : 'rotate-90'}`} />
@@ -50,14 +50,14 @@ export default function Header() {
             
             {/* Brand Section */}
             <a href="/" className="flex items-center gap-3 group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-600 to-primary-700 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+              <div className="w-12 h-12 rounded-xl bg-primary-600 flex items-center justify-center transition-all duration-300">
                 <BookOpen className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
+                <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-50">
                   Tusome i Kifuliiru
                 </h1>
-                <p className="text-xs text-gray-500 dark:text-gray-400 hidden sm:block">
+                <p className="text-xs text-gray-600 dark:text-gray-400 hidden sm:block">
                   Learn Kifuliiru Language
                 </p>
               </div>
@@ -67,7 +67,7 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-4">
             <HeaderNavigation items={navMeta} />
-            <div className="h-6 w-px bg-gray-300 dark:bg-gray-700" />
+            <div className="h-6 w-px bg-gray-200 dark:bg-gray-800" />
             <Search />
             <ThemeSwitch />
           </nav>
@@ -91,7 +91,7 @@ export default function Header() {
           <div className="lg:hidden py-4 border-t border-gray-200 dark:border-gray-800">
             <div className="flex flex-col gap-4">
               <HeaderNavigation items={navMeta} />
-              <div className="h-px bg-gray-200 dark:bg-gray-700" />
+              <div className="h-px bg-gray-200 dark:bg-gray-800" />
               <div className="flex items-center justify-between">
                 <Search />
                 <ThemeSwitch />

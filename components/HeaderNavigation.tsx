@@ -161,8 +161,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
             flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all
             ${
               router.asPath.startsWith(`/${key}`)
-                ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20'
-                : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+                ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
+                : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900'
             }
           `}
         >
@@ -181,7 +181,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
             
             {/* Dropdown/Mega Menu */}
             <div className={`
-              absolute top-full mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 z-50 animate-in fade-in slide-in-from-top-2 duration-200
+              absolute top-full mt-2 bg-white dark:bg-gray-950 rounded-xl shadow-lg border border-gray-200 dark:border-gray-800 z-50 animate-in fade-in slide-in-from-top-2 duration-200
               ${isMegaMenu 
                 ? 'w-[600px] p-6 left-1/2 -translate-x-1/2' 
                 : 'w-64 py-2 max-h-96 overflow-y-auto left-1/2 -translate-x-1/2'
@@ -220,8 +220,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                             flex items-center justify-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-colors
                             ${
                               router.asPath === subHref || router.asPath.startsWith(`/${subKey}`)
-                                ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-medium'
-                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-primary-600 dark:hover:text-primary-400'
+                                ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
+                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
                             }
                           `}
                         >
@@ -264,8 +264,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                             flex items-center justify-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-colors
                             ${
                               router.asPath === subHref || router.asPath.startsWith(`/${subKey}`)
-                                ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-medium'
-                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-primary-600 dark:hover:text-primary-400'
+                                ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
+                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
                             }
                           `}
                         >

@@ -98,8 +98,8 @@ export default function Sidebar({ meta }: SidebarProps) {
             className={`
               flex items-center gap-3 px-4 py-2.5 text-sm rounded-lg transition-all
               ${isActive
-                ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-semibold border-l-3 border-primary-600'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400'
+                ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-semibold'
+                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
               }
             `}
             style={{ paddingLeft: `${level * 1.5 + 1}rem` }}
@@ -126,8 +126,8 @@ export default function Sidebar({ meta }: SidebarProps) {
             className={`
               w-full flex items-center justify-between gap-2 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider rounded-lg transition-all
               ${isMenuActive
-                ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20'
-                : 'text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-gray-800'
+                ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
+                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900'
               }
             `}
           >
@@ -138,7 +138,7 @@ export default function Sidebar({ meta }: SidebarProps) {
             <ChevronRight className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
           </button>
           {isExpanded && (
-            <ul className="mt-1 ml-6 pl-4 border-l-2 border-gray-200 dark:border-gray-700 space-y-1">
+            <ul className="mt-1 ml-6 pl-4 border-l border-gray-200 dark:border-gray-800 space-y-1">
               {Object.entries(items).map(([subKey, subItem]) =>
                 renderMenuItem(subKey, subItem, level + 1, key)
               )}
@@ -164,8 +164,8 @@ export default function Sidebar({ meta }: SidebarProps) {
           className={`
             flex items-center gap-3 px-4 py-2.5 text-sm rounded-lg transition-all
             ${isActive
-              ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 font-semibold border-l-3 border-primary-600'
-              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400'
+              ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-semibold'
+              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
             }
           `}
         >
@@ -190,13 +190,12 @@ export default function Sidebar({ meta }: SidebarProps) {
       {/* Sidebar - Full height from header to footer */}
       <aside
         className={`
-          w-72 h-[calc(100vh-5rem)] bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800
+          w-72 h-[calc(100vh-5rem)] bg-white dark:bg-gray-950
           border-r border-gray-200 dark:border-gray-800
           overflow-y-auto overflow-x-hidden
           transition-transform duration-300 ease-in-out
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
           fixed z-40
-          shadow-xl lg:shadow-lg
           top-20
         `}
       >

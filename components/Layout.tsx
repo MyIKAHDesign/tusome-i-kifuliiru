@@ -13,7 +13,7 @@ function LayoutContent({ children }: LayoutContentProps) {
   const sidebarWidth = 288; // w-72 = 18rem = 288px
 
   return (
-    <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900">
+    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-950">
       <Header />
       <div className="flex flex-1 overflow-hidden relative">
         <Sidebar />
