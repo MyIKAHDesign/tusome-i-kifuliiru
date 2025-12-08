@@ -178,7 +178,7 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
   return (
     <>
       {/* Floating Navigation Bar - Centered with both buttons */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border border-gray-200 dark:border-gray-700 rounded-full shadow-2xl px-6 py-3 max-w-2xl mx-auto">
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 bg-white dark:bg-gray-950 backdrop-blur-lg border border-gray-200 dark:border-gray-800 rounded-full shadow-lg px-6 py-3 max-w-2xl mx-auto">
         {prevSlug ? (
           <a
             href={getHref(prevSlug)}
@@ -186,19 +186,19 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
               e.preventDefault();
               router.push(getHref(prevSlug));
             }}
-            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group"
+            className="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors group"
           >
             <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
             <div className="flex flex-col">
               <span className="text-xs text-gray-500 dark:text-gray-400">Previous</span>
-              <span className="max-w-[150px] truncate">{getPageTitle(prevSlug)}</span>
+              <span className="max-w-[150px] truncate font-medium">{getPageTitle(prevSlug)}</span>
             </div>
           </a>
         ) : (
           <div className="w-1" />
         )}
         
-        <div className="h-8 w-px bg-gray-200 dark:bg-gray-700" />
+        <div className="h-8 w-px bg-gray-200 dark:bg-gray-800" />
         
         {nextSlug && (
           <a
@@ -207,11 +207,11 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
               e.preventDefault();
               router.push(getHref(nextSlug));
             }}
-            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group ml-auto"
+            className="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors group ml-auto"
           >
             <div className="flex flex-col text-right">
               <span className="text-xs text-gray-500 dark:text-gray-400">Next</span>
-              <span className="max-w-[150px] truncate">{getPageTitle(nextSlug)}</span>
+              <span className="max-w-[150px] truncate font-medium">{getPageTitle(nextSlug)}</span>
             </div>
             <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </a>
