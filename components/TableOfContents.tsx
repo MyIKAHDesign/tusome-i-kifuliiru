@@ -82,33 +82,33 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
         )}
       </button>
 
-      {/* Floating Popover Card */}
+      {/* Dialog Modal Overlay */}
       {isOpen && (
-        <>
-          {/* Backdrop Overlay */}
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Backdrop */}
           <div
-            className="fixed inset-0 z-30"
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setIsOpen(false)}
           />
 
-          {/* Floating Card - Positioned above button */}
-          <div className="fixed right-6 bottom-20 lg:right-8 lg:bottom-24 z-40 w-72 max-w-[calc(100vw-3rem)] max-h-[60vh] bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col animate-in fade-in slide-in-from-bottom-2 duration-200">
+          {/* Dialog Card - Centered */}
+          <div className="relative w-full max-w-md max-h-[70vh] bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
             {/* Header */}
-            <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between flex-shrink-0 bg-gray-50 dark:bg-gray-900/50">
-              <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
-                On this page
+            <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between flex-shrink-0 bg-gray-50 dark:bg-gray-900/50">
+              <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100">
+                Table of Contents
               </h2>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 aria-label="Close table of contents"
               >
-                <X className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                <X className="w-5 h-5 text-gray-600 dark:text-gray-400" />
               </button>
             </div>
 
             {/* Scrollable Content */}
-            <nav className="overflow-y-auto flex-1 p-3 min-h-0">
+            <nav className="overflow-y-auto flex-1 p-4 min-h-0">
               <ul className="space-y-1">
                 {headings.map((heading) => {
                   const isActive = activeId === heading.id;
@@ -124,19 +124,19 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                           setIsOpen(false);
                         }}
                         className={`
-                          relative block py-1.5 px-3 rounded-md text-xs transition-all duration-150
+                          relative block py-2 px-3 rounded-md text-sm transition-all duration-150
                           ${isActive
                             ? 'text-gray-900 dark:text-gray-100 font-medium bg-gray-100 dark:bg-gray-900 border-l-2 border-primary-500'
                             : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-900/50'
                           }
                         `}
                         style={{
-                          paddingLeft: indentLevel > 0 ? `${0.75 + indentLevel * 0.75}rem` : '0.75rem',
+                          paddingLeft: indentLevel > 0 ? `${1 + indentLevel * 1}rem` : '0.75rem',
                         }}
                       >
-                        <span className="relative z-10 line-clamp-2">{heading.text}</span>
+                        <span className="relative z-10">{heading.text}</span>
                         {isActive && (
-                          <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-4 bg-primary-500 rounded-r-full" />
+                          <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-6 bg-primary-500 rounded-r-full" />
                         )}
                       </a>
                     </li>
@@ -145,7 +145,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
               </ul>
             </nav>
           </div>
-        </>
+        </div>
       )}
     </>
   );
