@@ -231,7 +231,8 @@ const parseNumberTranslationList = (text: string): Array<{ number: string; trans
 };
 
 // Render content that may contain tables or number translation lists
-const renderContentWithTables = (text: string): React.ReactNode => {
+// skipNumberLists: if true, skip rendering number translation lists (to avoid duplicates with sections)
+const renderContentWithTables = (text: string, skipNumberLists: boolean = false): React.ReactNode => {
   // Try to parse as table first
   const tableData = parseMarkdownTable(text);
   if (tableData) {
@@ -272,28 +273,30 @@ const renderContentWithTables = (text: string): React.ReactNode => {
     );
   }
   
-  // Try to parse as number translation list
-  const translationList = parseNumberTranslationList(text);
-  if (translationList && translationList.length > 0) {
-    return (
-      <div className="my-8">
-        <div className="space-y-3">
-          {translationList.map((item, index) => (
-            <div
-              key={index}
-              className="flex items-baseline gap-4 py-2"
-            >
-              <span className="font-mono text-base font-semibold text-primary-600 dark:text-primary-400 min-w-[90px] flex-shrink-0">
-                {item.number}
-              </span>
-              <span className="text-gray-700 dark:text-gray-300 flex-1 leading-relaxed">
-                {parseMarkdown(item.translation)}
-              </span>
-            </div>
-          ))}
+  // Try to parse as number translation list (skip if sections exist to avoid duplicates)
+  if (!skipNumberLists) {
+    const translationList = parseNumberTranslationList(text);
+    if (translationList && translationList.length > 0) {
+      return (
+        <div className="my-8">
+          <div className="space-y-3">
+            {translationList.map((item, index) => (
+              <div
+                key={index}
+                className="flex items-baseline gap-4 py-2"
+              >
+                <span className="font-mono text-base font-semibold text-primary-600 dark:text-primary-400 min-w-[90px] flex-shrink-0">
+                  {item.number}
+                </span>
+                <span className="text-gray-700 dark:text-gray-300 flex-1 leading-relaxed">
+                  {parseMarkdown(item.translation)}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
   
   // Otherwise render as regular markdown
@@ -345,7 +348,7 @@ export default function NumberLesson({ content }: NumberLessonProps) {
         </div>
         {content.description && (
           <div>
-            {renderContentWithTables(content.description)}
+            {renderContentWithTables(content.description, content.sections.length > 0)}
           </div>
         )}
       </div>
