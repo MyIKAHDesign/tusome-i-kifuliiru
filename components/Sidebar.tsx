@@ -1,6 +1,20 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Home, Book, Folder, ChevronRight, ExternalLink, FileText, Menu } from 'lucide-react';
+import { 
+  Home, 
+  Book, 
+  Folder, 
+  ChevronRight, 
+  ExternalLink, 
+  FileText, 
+  Menu,
+  Info,
+  GraduationCap,
+  Calculator,
+  BookOpen,
+  HelpCircle,
+  Sparkles
+} from 'lucide-react';
 import { useSidebar } from './SidebarContext';
 
 interface MetaItem {
@@ -67,9 +81,25 @@ export default function Sidebar({ meta }: SidebarProps) {
   };
 
   const getIcon = (key: string, level: number) => {
-    if (level === 0 && key === 'index') {
-      return <Home className="w-4 h-4" />;
+    // Main level items get specific icons
+    if (level === 0) {
+      switch (key) {
+        case 'index':
+        case 'muyegerere':
+          return <Home className="w-4 h-4" />;
+        case 'gwajiika':
+          return <Info className="w-4 h-4" />;
+        case 'ndondeero_tusome':
+          return <BookOpen className="w-4 h-4" />;
+        case 'ukuharura':
+          return <Calculator className="w-4 h-4" />;
+        case 'amagambo':
+          return <Sparkles className="w-4 h-4" />;
+        default:
+          return <FileText className="w-4 h-4" />;
+      }
     }
+    // Nested items (ukuharura sub-items) use FileText
     return <FileText className="w-4 h-4" />;
   };
 
@@ -119,6 +149,16 @@ export default function Sidebar({ meta }: SidebarProps) {
       const isMenuActive = currentPath.startsWith(`/docs/${key}`);
       const isExpanded = expandedGroups.has(key);
       
+      // Get appropriate icon for menu items
+      const menuIcon = (() => {
+        switch (key) {
+          case 'ukuharura':
+            return <Calculator className="w-4 h-4" />;
+          default:
+            return <Folder className="w-4 h-4" />;
+        }
+      })();
+      
       return (
         <li key={key} className="mb-2">
           <button
@@ -132,7 +172,7 @@ export default function Sidebar({ meta }: SidebarProps) {
             `}
           >
             <div className="flex items-center gap-2">
-              <Folder className="w-4 h-4" />
+              {menuIcon}
               <span>{displayTitle}</span>
             </div>
             <ChevronRight className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
@@ -155,6 +195,23 @@ export default function Sidebar({ meta }: SidebarProps) {
     const currentPath = router.asPath.split('?')[0];
     const isActive = currentPath === docHref || currentPath === `/docs/${fullPath}` || currentPath === `/docs/${key}`;
 
+    // Get appropriate icon for page items
+    const pageIcon = (() => {
+      switch (key) {
+        case 'muyegerere':
+        case 'index':
+          return <Home className="w-4 h-4" />;
+        case 'gwajiika':
+          return <Info className="w-4 h-4" />;
+        case 'ndondeero_tusome':
+          return <BookOpen className="w-4 h-4" />;
+        case 'amagambo':
+          return <Sparkles className="w-4 h-4" />;
+        default:
+          return <Book className="w-4 h-4" />;
+      }
+    })();
+
     return (
       <li key={key}>
         <a
@@ -169,7 +226,7 @@ export default function Sidebar({ meta }: SidebarProps) {
             }
           `}
         >
-          <Book className="w-4 h-4" />
+          {pageIcon}
           <span>{displayTitle}</span>
           {newWindow && <ExternalLink className="w-3 h-3 ml-auto opacity-40" />}
         </a>
