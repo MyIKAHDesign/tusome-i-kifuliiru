@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState, useRef, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { usePathname, useRouter } from 'next/navigation';
 import { ChevronDown, ExternalLink, Home, BookOpen, Info, Languages } from 'lucide-react';
 
 interface NavItem {
@@ -16,6 +18,7 @@ interface HeaderNavigationProps {
 
 export default function HeaderNavigation({ items }: HeaderNavigationProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
@@ -177,7 +180,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
           className={`
             flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all
             ${
-              router.asPath.startsWith(`/${key}`)
+              pathname?.startsWith(`/${key}`)
                 ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
                 : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900/50'
             }
@@ -221,7 +224,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                         subHref = `/${subKey}`;
                       }
                       const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
-                      const isActive = router.asPath === subHref || router.asPath.startsWith(`${subHref}/`);
+                      const isActive = pathname === subHref || pathname?.startsWith(`${subHref}/`);
 
                       return (
                         <a
@@ -234,10 +237,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                             if (!isExternal) {
                               e.preventDefault();
                               setOpenDropdown(null);
-                              router.push(subHref).catch(err => {
-                                console.error('Navigation error:', err);
-                                window.location.href = subHref;
-                              });
+                              router.push(subHref);
                             } else {
                               setOpenDropdown(null);
                             }
@@ -274,7 +274,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                         subHref = `/${subKey}`;
                       }
                       const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
-                      const isActive = router.asPath === subHref || router.asPath.startsWith(`${subHref}/`);
+                      const isActive = pathname === subHref || pathname?.startsWith(`${subHref}/`);
 
                       return (
                         <a
@@ -287,10 +287,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                             if (!isExternal) {
                               e.preventDefault();
                               setOpenDropdown(null);
-                              router.push(subHref).catch(err => {
-                                console.error('Navigation error:', err);
-                                window.location.href = subHref;
-                              });
+                              router.push(subHref);
                             } else {
                               setOpenDropdown(null);
                             }
@@ -331,7 +328,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                     }
                   }
                   const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
-                  const isActive = router.asPath === subHref || router.asPath.startsWith(`${subHref}/`);
+                  const isActive = pathname === subHref || pathname?.startsWith(`${subHref}/`);
 
                   return (
                     <a
@@ -344,10 +341,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                         if (!isExternal) {
                           e.preventDefault();
                           setOpenDropdown(null);
-                          router.push(subHref).catch(err => {
-                            console.error('Navigation error:', err);
-                            window.location.href = subHref;
-                          });
+                          router.push(subHref);
                         } else {
                           setOpenDropdown(null);
                         }
@@ -378,7 +372,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
   const renderNavItem = (key: string, item: NavItem | string) => {
     if (typeof item === 'string') {
       const href = `/${key}`;
-      const isActive = router.asPath === href || router.asPath.startsWith(`/${key}/`);
+      const isActive = pathname === href || pathname?.startsWith(`/${key}/`);
       
       return (
         <a
@@ -408,7 +402,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
     }
 
     const href = item.href || `/${key}`;
-    const isActive = router.asPath === href || router.asPath.startsWith(`/${key}/`);
+    const isActive = pathname === href || pathname?.startsWith(`/${key}/`);
     const isExternal = item.newWindow || href.startsWith('http');
 
     return (

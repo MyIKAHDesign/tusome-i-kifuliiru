@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { usePathname, useRouter } from 'next/navigation';
 import { 
   Home, 
   Book, 
@@ -27,6 +29,7 @@ const defaultMeta: Record<string, MetaItem | string> = {};
 
 export default function SiteNavigation() {
   const router = useRouter();
+  const pathname = usePathname();
   const { isOpen, setIsOpen } = useSidebar();
   const [sidebarMeta, setSidebarMeta] = React.useState<Record<string, MetaItem | string>>(defaultMeta);
   const [expandedGroups, setExpandedGroups] = React.useState<Set<string>>(new Set());
@@ -38,7 +41,7 @@ export default function SiteNavigation() {
         if (response.ok) {
           const parsed = await response.json();
           setSidebarMeta(parsed);
-          const currentPath = router.asPath.split('?')[0];
+          const currentPath = pathname || '/';
           const groups = Object.keys(parsed).filter(key => {
             const item = parsed[key];
             return typeof item === 'object' && item.type === 'menu' && item.items;
@@ -69,7 +72,7 @@ export default function SiteNavigation() {
     };
 
     loadMeta();
-  }, [router.asPath]);
+  }, [pathname]);
 
   const toggleGroup = (key: string) => {
     setExpandedGroups(prev => {
@@ -118,7 +121,7 @@ export default function SiteNavigation() {
     if (typeof item === 'string') {
       const fullPath = parentKey ? `${parentKey}/${key}` : key;
       const docHref = key === 'index' ? '/' : `/${fullPath}`;
-      const currentPath = router.asPath.split('?')[0];
+      const currentPath = pathname || '/';
       const isActive = currentPath === docHref || currentPath === `/${key}`;
       
       const isUkuharuraItem = parentKey === 'ukuharura' || level > 0;
@@ -160,7 +163,7 @@ export default function SiteNavigation() {
     const displayTitle = title || key;
 
     if (type === 'menu' && items) {
-      const currentPath = router.asPath.split('?')[0];
+      const currentPath = pathname || '/';
       const isMenuActive = currentPath.startsWith(`/${key}`);
       const isExpanded = expandedGroups.has(key);
       
@@ -206,7 +209,7 @@ export default function SiteNavigation() {
     const linkHref = href || (key === 'index' ? '' : key);
     const fullPath = parentKey ? `${parentKey}/${linkHref}` : linkHref;
     const docHref = href ? href : `/${fullPath}`;
-    const currentPath = router.asPath.split('?')[0];
+    const currentPath = pathname || '/';
     const isActive = currentPath === docHref || currentPath === `/${fullPath}` || currentPath === `/${key}`;
 
     const iconClass = "w-3.5 h-3.5 flex-shrink-0";

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { BookOpen, Home, Search as SearchIcon, Menu, X, List } from 'lucide-react';
 import Search from './Search';

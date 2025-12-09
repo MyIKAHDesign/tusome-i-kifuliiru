@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState, useRef, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { Search as SearchIcon, FileText, Loader2, X } from 'lucide-react';
 
 interface SearchResult {

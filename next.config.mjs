@@ -6,6 +6,10 @@ const nextConfig = {
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   // Optionally, add any other Next.js config below
   reactStrictMode: true,
+  // Enable App Router
+  experimental: {
+    mdxRs: false,
+  },
 };
 
 const withMDX = createMDX({
