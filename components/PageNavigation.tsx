@@ -309,43 +309,51 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
   }
   
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40">
-      <div className="flex items-center gap-3 bg-white dark:bg-gray-900 shadow-lg border border-gray-200 dark:border-gray-800 rounded-lg px-2 py-2 backdrop-blur-sm">
-        {prevSlug ? (
+    <>
+      {/* Previous Button - Left Side */}
+      {prevSlug && (
+        <div className="fixed left-4 top-1/2 -translate-y-1/2 z-40">
           <a
             href={getHref(prevSlug)}
             onClick={(e) => {
               e.preventDefault();
               router.push(getHref(prevSlug));
             }}
-            className="group flex items-center gap-2 px-4 py-2.5 text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-all"
+            className="group flex items-center gap-2 px-4 py-3 text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 rounded-lg bg-white dark:bg-gray-900 shadow-lg border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-all hover:shadow-xl backdrop-blur-sm"
             title={getPageTitle(prevSlug)}
           >
             <ChevronLeft className="w-4 h-4 flex-shrink-0 group-hover:-translate-x-0.5 transition-transform text-gray-500 dark:text-gray-400" />
-            <span className="hidden sm:inline truncate max-w-[120px]">{getPageTitle(prevSlug)}</span>
-            <span className="sm:hidden">Prev</span>
+            <div className="flex flex-col min-w-0">
+              <span className="text-[10px] text-gray-500 dark:text-gray-400 uppercase tracking-wide">Previous</span>
+              <span className="hidden sm:inline truncate max-w-[100px] text-sm font-medium">{getPageTitle(prevSlug)}</span>
+              <span className="sm:hidden text-sm font-medium">Prev</span>
+            </div>
           </a>
-        ) : (
-          <div className="px-4 py-2.5" />
-        )}
-        
-        {nextSlug && (
+        </div>
+      )}
+      
+      {/* Next Button - Right Side */}
+      {nextSlug && (
+        <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40">
           <a
             href={getHref(nextSlug)}
             onClick={(e) => {
               e.preventDefault();
               router.push(getHref(nextSlug));
             }}
-            className="group flex items-center gap-2 px-4 py-2.5 text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800 transition-all"
+            className="group flex items-center gap-2 px-4 py-3 text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 rounded-lg bg-white dark:bg-gray-900 shadow-lg border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-all hover:shadow-xl backdrop-blur-sm"
             title={getPageTitle(nextSlug)}
           >
-            <span className="hidden sm:inline truncate max-w-[120px]">{getPageTitle(nextSlug)}</span>
-            <span className="sm:hidden">Next</span>
+            <div className="flex flex-col min-w-0 text-right">
+              <span className="text-[10px] text-gray-500 dark:text-gray-400 uppercase tracking-wide">Next</span>
+              <span className="hidden sm:inline truncate max-w-[100px] text-sm font-medium">{getPageTitle(nextSlug)}</span>
+              <span className="sm:hidden text-sm font-medium">Next</span>
+            </div>
             <ChevronRight className="w-4 h-4 flex-shrink-0 group-hover:translate-x-0.5 transition-transform text-gray-500 dark:text-gray-400" />
           </a>
-        )}
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 }
 
