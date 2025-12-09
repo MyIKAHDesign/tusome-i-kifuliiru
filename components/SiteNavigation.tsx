@@ -253,15 +253,15 @@ export default function SiteNavigation() {
     <>
       {/* Dialog Modal Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50">
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setIsOpen(false)}
           />
 
-          {/* Dialog Card - Centered */}
-          <div className="relative w-full max-w-lg max-h-[80vh] bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          {/* Dialog Card - Positioned from left */}
+          <div className="absolute left-4 top-20 bottom-4 w-full max-w-sm bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col animate-in fade-in slide-in-from-left-2 duration-200">
             {/* Header */}
             <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between flex-shrink-0 bg-gray-50 dark:bg-gray-900/50">
               <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
