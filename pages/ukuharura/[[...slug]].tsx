@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
-import { getAllContentSlugs, getContentBySlug } from '../lib/content-loader';
-import { getContentData } from '../lib/json-content-loader';
-import { mdxComponents } from '../mdx-components';
-import ContentRenderer from '../components/content/ContentRenderer';
-import PageNavigation from '../components/PageNavigation';
-import TableOfContents from '../components/TableOfContents';
+import { getAllContentSlugs, getContentBySlug } from '../../lib/content-loader';
+import { getContentData } from '../../lib/json-content-loader';
+import { mdxComponents } from '../../mdx-components';
+import ContentRenderer from '../../components/content/ContentRenderer';
+import PageNavigation from '../../components/PageNavigation';
+import TableOfContents from '../../components/TableOfContents';
 
-interface DocPageProps {
+interface UkuharuraPageProps {
   mdxSource?: MDXRemoteSerializeResult;
   jsonContent?: any;
   slug: string;
@@ -50,7 +50,7 @@ function MDXPage({ mdxSource, slug, maxWidthClass }: { mdxSource: MDXRemoteSeria
   );
 }
 
-export default function DocPage({ mdxSource, jsonContent, contentType, slug }: DocPageProps) {
+export default function UkuharuraPage({ mdxSource, jsonContent, contentType, slug }: UkuharuraPageProps) {
   // Use wider display for all pages (same as ukuharura pages)
   const maxWidthClass = 'max-w-[1400px]';
   
@@ -77,39 +77,44 @@ export default function DocPage({ mdxSource, jsonContent, contentType, slug }: D
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // Get slugs from both MDX and JSON
-  const mdxSlugs = getAllContentSlugs();
-  const jsonSlugs = getAllContentSlugs(); // JSON files are in same directory, just different extension
-  
-  // Combine and deduplicate (JSON takes priority, so if both exist, JSON will be used)
-  const allSlugs = [...new Set([...jsonSlugs, ...mdxSlugs])];
-  
-  // Filter out routes that are handled by other page files
-  // Important: exclude empty string and 'index' to avoid conflict with pages/index.tsx
-  const excludedRoutes = ['', 'index', 'gwajiika', 'kifuliiru', 'imigani', 'imigeeza'];
-  const filteredSlugs = allSlugs.filter(slug => {
-    // Exclude empty, index, and other specific routes
-    if (excludedRoutes.includes(slug)) return false;
-    // Exclude if slug is empty after filtering
-    if (!slug || slug.trim() === '') return false;
-    return true;
-  });
+  const allSlugs = getAllContentSlugs();
+  // Filter for ukuharura content
+  const ukuharuraSlugs = allSlugs.filter(slug => 
+    slug.startsWith('ukuharura/') || 
+    slug === 'ukuharura' ||
+    // Also include standalone pages that are part of ukuharura
+    slug === 'harura' ||
+    slug === 'ndondeero' ||
+    slug === 'zero-ku-ikumi' ||
+    slug === 'ikumi-ku-igana' ||
+    slug === 'igana-ku-kihumbi' ||
+    slug === 'igana' ||
+    slug.startsWith('magana-') ||
+    slug.startsWith('kihumbi') ||
+    slug.startsWith('bihumbi-') ||
+    slug === 'umulyoni' ||
+    slug === 'umulyari' ||
+    slug.startsWith('umulyari-')
+  );
   
   return {
-    paths: filteredSlugs.map((slug) => ({
-      params: { slug: slug.split('/') },
-    })),
+    paths: ukuharuraSlugs.map((slug) => {
+      if (slug === 'ukuharura') {
+        return { params: { slug: [] } };
+      }
+      if (slug.startsWith('ukuharura/')) {
+        return { params: { slug: slug.replace('ukuharura/', '').split('/') } };
+      }
+      // For standalone ukuharura pages, use the slug directly
+      return { params: { slug: [slug] } };
+    }),
     fallback: false,
   };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slugArray = params?.slug as string[] || [];
-  // If slug is empty, this shouldn't happen due to getStaticPaths filtering, but handle it
-  if (slugArray.length === 0) {
-    return { notFound: true };
-  }
-  const slug = slugArray.join('/');
+  const slug = slugArray.length === 0 ? 'ukuharura' : `ukuharura/${slugArray.join('/')}`;
   
   // Try JSON first (new format - prioritized)
   const jsonContent = getContentData(slug);
