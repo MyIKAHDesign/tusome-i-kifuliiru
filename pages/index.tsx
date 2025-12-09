@@ -29,18 +29,22 @@ export default function Home() {
           {/* Flag Image */}
           <div className="flex justify-center mb-6 px-4">
             <div className="relative inline-block max-w-full group">
-              <div className="relative rounded-[1.5rem] overflow-hidden transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                <Image
-                  src="/.github/DRCongo.png"
-                  alt="DR Congo Flag"
-                  width={400}
-                  height={267}
-                  className="rounded-[1.5rem] object-cover w-full h-auto"
-                  priority
-                />
-                {/* Inner glow effect using flag colors - Blue, Yellow, Red */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-yellow-400/8 to-red-500/10 rounded-[1.5rem] pointer-events-none"></div>
-                <div className="absolute inset-0 bg-gradient-to-tr from-blue-400/8 via-yellow-300/6 to-red-400/8 rounded-[1.5rem] pointer-events-none"></div>
+              <div className="relative transition-transform duration-300 ease-out group-hover:scale-[1.02]">
+                {/* Glow effect behind the image using flag colors - Blue, Yellow, Red */}
+                <div className="absolute -inset-4 bg-gradient-to-br from-blue-500/20 via-yellow-400/15 to-red-500/20 blur-2xl rounded-full dark:from-blue-500/15 dark:via-yellow-400/10 dark:to-red-500/15"></div>
+                <div className="absolute -inset-3 bg-gradient-to-tr from-blue-400/15 via-yellow-300/10 to-red-400/15 blur-xl rounded-full dark:from-blue-400/10 dark:via-yellow-300/8 dark:to-red-400/10"></div>
+                
+                {/* Image */}
+                <div className="relative z-10" style={{ clipPath: 'polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)' }}>
+                  <Image
+                    src="/.github/DRCongo.png"
+                    alt="DR Congo Flag"
+                    width={400}
+                    height={267}
+                    className="object-cover w-full h-auto"
+                    priority
+                  />
+                </div>
               </div>
             </div>
           </div>
