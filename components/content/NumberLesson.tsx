@@ -406,33 +406,35 @@ export default function NumberLesson({ content }: NumberLessonProps) {
             </div>
           )}
 
-          {/* Numbers Grid - Wider display with more cards per row for ukuharura pages */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {section.numbers.map((number, index) => (
-              <div
-                key={index}
-                className="group p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-md transition-all"
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-2xl font-bold text-primary-600 dark:text-primary-400">
+          {/* Numbers List - Clean list format for clarity */}
+          <div className="my-8">
+            <div className="space-y-3">
+              {section.numbers.map((number, index) => (
+                <div
+                  key={index}
+                  className="flex items-baseline gap-4 py-2"
+                >
+                  <span className="font-mono text-base font-semibold text-primary-600 dark:text-primary-400 min-w-[90px] flex-shrink-0">
                     {number.value.toLocaleString()}
                   </span>
-                  {number.pronunciation && (
-                    <span className="text-xs text-gray-500 dark:text-gray-400 italic">
-                      {number.pronunciation}
+                  <div className="flex-1">
+                    <span className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      {number.kifuliiru}
                     </span>
-                  )}
+                    {number.pronunciation && (
+                      <span className="text-sm text-gray-500 dark:text-gray-400 italic ml-2">
+                        ({number.pronunciation})
+                      </span>
+                    )}
+                    {number.notes && (
+                      <span className="text-sm text-gray-600 dark:text-gray-400 italic ml-2">
+                        — {parseMarkdown(number.notes)}
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <div className="text-lg font-medium text-gray-900 dark:text-gray-100">
-                  {number.kifuliiru}
-                </div>
-                {number.notes && (
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 italic">
-                    {parseMarkdown(number.notes)}
-                  </p>
-                )}
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       ))
