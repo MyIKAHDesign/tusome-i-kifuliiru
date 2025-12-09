@@ -76,10 +76,6 @@ export default function NdondeeroTusomePage({ jsonContent, mdxSource, contentTyp
           <p className="text-gray-600 dark:text-gray-400">Content coming soon...</p>
         </div>
       )}
-      
-      <div className="mt-12">
-        <PageNavigation currentSlug="ndondeero_tusome" />
-      </div>
     </div>
   );
 }

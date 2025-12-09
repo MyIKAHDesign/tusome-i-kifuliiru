@@ -90,11 +90,6 @@ export default function Home() {
             </button>
           </div>
         </div>
-        
-        {/* Page Navigation */}
-        <div className="mt-12">
-          <PageNavigation currentSlug="" />
-        </div>
       </section>
     </>
   );

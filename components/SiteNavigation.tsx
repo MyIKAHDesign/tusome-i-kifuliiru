@@ -84,7 +84,7 @@ export default function SiteNavigation() {
   };
 
   const getIcon = (key: string, level: number) => {
-    const iconClass = "w-4 h-4 flex-shrink-0";
+    const iconClass = "w-3.5 h-3.5 flex-shrink-0";
     
     if (level === 0) {
       switch (key) {
@@ -141,10 +141,10 @@ export default function SiteNavigation() {
               setIsOpen(false);
             }}
             className={`
-              flex items-center gap-2 px-3 py-2.5 text-sm rounded-lg transition-all whitespace-nowrap
+              flex items-center gap-2 px-3 py-2 text-xs rounded-md transition-all whitespace-nowrap
               ${isActive
-                ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-semibold'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
+                ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
+                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900/50 hover:text-gray-900 dark:hover:text-gray-50'
               }
             `}
             style={{ paddingLeft: leftPadding }}
@@ -164,7 +164,7 @@ export default function SiteNavigation() {
       const isMenuActive = currentPath.startsWith(`/${key}`);
       const isExpanded = expandedGroups.has(key);
       
-      const iconClass = "w-4 h-4 flex-shrink-0";
+      const iconClass = "w-3.5 h-3.5 flex-shrink-0";
       const menuIcon = (() => {
         switch (key) {
           case 'ukuharura':
@@ -175,25 +175,25 @@ export default function SiteNavigation() {
       })();
       
       return (
-        <li key={key} className="mb-2">
+        <li key={key} className="mb-1">
           <button
             onClick={() => toggleGroup(key)}
             className={`
-              w-full flex items-center justify-between gap-2 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider rounded-lg transition-all
+              w-full flex items-center justify-between gap-2 px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-md transition-all
               ${isMenuActive
                 ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
-                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900'
+                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900/50'
               }
             `}
           >
             <div className="flex items-center gap-2">
               {menuIcon}
-              <span>{displayTitle}</span>
+              <span className="truncate">{displayTitle}</span>
             </div>
-            <ChevronRight className={`w-4 h-4 flex-shrink-0 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
+            <ChevronRight className={`w-3.5 h-3.5 flex-shrink-0 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
           </button>
           {isExpanded && (
-            <ul className={`mt-1 space-y-1 ${key === 'ukuharura' ? 'ml-2 pl-2 border-l border-gray-200 dark:border-gray-800' : 'ml-6 pl-4 border-l border-gray-200 dark:border-gray-800'}`}>
+            <ul className={`mt-0.5 space-y-0.5 ${key === 'ukuharura' ? 'ml-2 pl-2 border-l border-gray-200 dark:border-gray-800' : 'ml-4 pl-3 border-l border-gray-200 dark:border-gray-800'}`}>
               {Object.entries(items).map(([subKey, subItem]) =>
                 renderMenuItem(subKey, subItem, level + 1, key)
               )}
@@ -209,7 +209,7 @@ export default function SiteNavigation() {
     const currentPath = router.asPath.split('?')[0];
     const isActive = currentPath === docHref || currentPath === `/${fullPath}` || currentPath === `/${key}`;
 
-    const iconClass = "w-4 h-4 flex-shrink-0";
+    const iconClass = "w-3.5 h-3.5 flex-shrink-0";
     const pageIcon = (() => {
       switch (key) {
         case 'muyegerere':
@@ -234,10 +234,10 @@ export default function SiteNavigation() {
           rel={newWindow ? 'noopener noreferrer' : undefined}
           onClick={() => setIsOpen(false)}
           className={`
-            flex items-center gap-2 px-3 py-2.5 text-sm rounded-lg transition-all whitespace-nowrap
+            flex items-center gap-2 px-3 py-2 text-xs rounded-md transition-all whitespace-nowrap
             ${isActive
-              ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-semibold'
-              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
+              ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
+              : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900/50 hover:text-gray-900 dark:hover:text-gray-50'
             }
           `}
         >
@@ -260,25 +260,25 @@ export default function SiteNavigation() {
             onClick={() => setIsOpen(false)}
           />
 
-          {/* Dialog Card - Positioned from left */}
-          <div className="absolute left-4 top-20 bottom-4 w-full max-w-sm bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col animate-in fade-in slide-in-from-left-2 duration-200">
-            {/* Header */}
-            <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between flex-shrink-0 bg-gray-50 dark:bg-gray-900/50">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                Site Navigation
+          {/* Dialog Card - Positioned from left, compact and professional */}
+          <div className="absolute left-4 top-20 bottom-4 w-full max-w-xs bg-white dark:bg-gray-950 rounded-lg shadow-xl border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col animate-in fade-in slide-in-from-left-2 duration-200">
+            {/* Header - Compact */}
+            <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between flex-shrink-0 bg-gray-50/50 dark:bg-gray-900/30">
+              <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wider">
+                Navigation
               </h2>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 aria-label="Close navigation"
               >
-                <X className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                <X className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               </button>
             </div>
 
-            {/* Scrollable Content */}
-            <nav className="overflow-y-auto flex-1 p-6 min-h-0">
-              <ul className="space-y-1">
+            {/* Scrollable Content - Compact spacing */}
+            <nav className="overflow-y-auto flex-1 p-3 min-h-0">
+              <ul className="space-y-0.5">
                 {Object.entries(sidebarMeta)
                   .filter(([key]) => !isHeaderNavItem(key))
                   .map(([key, item]) =>

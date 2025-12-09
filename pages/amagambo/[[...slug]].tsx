@@ -66,9 +66,6 @@ export default function AmagamboPage({ mdxSource, jsonContent, contentType, slug
           </div>
         )}
         <ContentRenderer content={jsonContent} />
-        <div className="mt-12">
-          <PageNavigation currentSlug={slug} />
-        </div>
       </div>
     );
   }
@@ -86,9 +83,6 @@ export default function AmagamboPage({ mdxSource, jsonContent, contentType, slug
         <article className="mdx-content">
           <MDXRemote {...mdxSource} components={mdxComponents} />
         </article>
-        <div className="mt-12">
-          <PageNavigation currentSlug={slug} />
-        </div>
       </div>
     );
   }

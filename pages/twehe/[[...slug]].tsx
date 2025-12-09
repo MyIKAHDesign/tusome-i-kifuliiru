@@ -95,10 +95,6 @@ export default function TwehePage({ jsonContent, mdxSource, slug, contentType }:
             <p className="text-gray-600 dark:text-gray-400">Content coming soon...</p>
           </div>
         )}
-        
-        <div className="mt-12">
-          <PageNavigation currentSlug={slug} />
-        </div>
       </div>
     </>
   );

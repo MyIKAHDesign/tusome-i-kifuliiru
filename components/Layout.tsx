@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import SiteNavigation from './SiteNavigation';
+import PageNavigation from './PageNavigation';
 import { SidebarProvider } from './SidebarContext';
 
 interface LayoutProps {
@@ -23,6 +24,8 @@ export default function Layout({ children }: LayoutProps) {
         <Footer />
         {/* Global Site Navigation Dialog */}
         <SiteNavigation />
+        {/* Floating Page Navigation */}
+        <PageNavigation />
       </div>
     </SidebarProvider>
   );

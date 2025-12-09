@@ -80,10 +80,6 @@ export default function KifuliiruPage({ jsonContent, mdxSource, contentType }: K
             <p className="text-gray-600 dark:text-gray-400">Content coming soon...</p>
           </div>
         )}
-        
-        <div className="mt-12">
-          <PageNavigation currentSlug="kifuliiru" />
-        </div>
       </div>
     </>
   );
