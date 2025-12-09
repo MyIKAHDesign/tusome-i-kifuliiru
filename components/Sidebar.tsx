@@ -51,7 +51,24 @@ export default function Sidebar({ meta }: SidebarProps) {
           });
           const activeGroups = groups.filter(key => {
             const item = parsed[key] as MetaItem;
-            return currentPath.startsWith(`/${key}`);
+            // Check if current path matches this menu or any of its children
+            if (currentPath.startsWith(`/docs/${key}/`) || currentPath === `/docs/${key}`) {
+              return true;
+            }
+            // Also check if any child path matches
+            if (item.items) {
+              return Object.keys(item.items).some(subKey => {
+                const subItem = item.items![subKey];
+                if (typeof subItem === 'string') {
+                  return currentPath === `/docs/${key}/${subKey}` || currentPath === `/docs/${subKey}`;
+                } else if (subItem.href) {
+                  return currentPath === subItem.href;
+                } else {
+                  return currentPath === `/docs/${key}/${subKey}` || currentPath === `/docs/${subKey}`;
+                }
+              });
+            }
+            return false;
           });
           setExpandedGroups(new Set(activeGroups));
         } else if (meta) {
@@ -134,6 +151,16 @@ export default function Sidebar({ meta }: SidebarProps) {
         <li key={key}>
           <a
             href={docHref}
+            onClick={() => {
+              // Ensure parent menu stays open when clicking child
+              if (parentKey) {
+                setExpandedGroups(prev => {
+                  const next = new Set(prev);
+                  next.add(parentKey);
+                  return next;
+                });
+              }
+            }}
             className={`
               flex items-center gap-2 px-3 py-2.5 text-sm rounded-lg transition-all whitespace-nowrap
               ${isActive
