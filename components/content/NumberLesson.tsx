@@ -277,16 +277,16 @@ const renderContentWithTables = (text: string): React.ReactNode => {
   if (translationList && translationList.length > 0) {
     return (
       <div className="my-8">
-        <div className="space-y-2">
+        <div className="space-y-3">
           {translationList.map((item, index) => (
             <div
               key={index}
-              className="flex items-start gap-4 py-2 border-b border-gray-100 dark:border-gray-900 last:border-0"
+              className="flex items-baseline gap-4 py-2"
             >
-              <span className="font-mono text-sm font-semibold text-primary-600 dark:text-primary-400 min-w-[80px] flex-shrink-0">
+              <span className="font-mono text-base font-semibold text-gray-900 dark:text-gray-100 min-w-[90px] flex-shrink-0">
                 {item.number}
               </span>
-              <span className="text-gray-700 dark:text-gray-300 flex-1">
+              <span className="text-gray-700 dark:text-gray-300 flex-1 leading-relaxed">
                 {parseMarkdown(item.translation)}
               </span>
             </div>
