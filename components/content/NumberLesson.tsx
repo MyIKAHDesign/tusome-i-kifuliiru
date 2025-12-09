@@ -385,7 +385,7 @@ export default function NumberLesson({ content }: NumberLessonProps) {
           </div>
         </div>
       ))
-      ) : (
+      ) : content.sections.length > 0 && searchTerm ? (
         <div className="text-center py-12 text-gray-500 dark:text-gray-400">
           <p>No results found for "{searchTerm}"</p>
           <button
@@ -395,7 +395,7 @@ export default function NumberLesson({ content }: NumberLessonProps) {
             Clear search
           </button>
         </div>
-      )}
+      ) : null}
 
       {/* Table section - displayed after numbers */}
       {content.table && (
