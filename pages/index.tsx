@@ -26,10 +26,6 @@ export default function Home() {
             <span>Tusome i Kifuliiru</span>
           </div>
           
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
-            Tusome i Kifuliiru
-          </h1>
-          
           {/* Flag Image - Glowing Container */}
           <div className="flex justify-center mb-6 px-4">
             <div className="relative inline-block max-w-full">
