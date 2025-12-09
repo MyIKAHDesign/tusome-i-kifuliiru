@@ -203,7 +203,34 @@ const parseMarkdownTable = (text: string): { headers: string[], rows: string[][]
   return { headers, rows };
 };
 
-// Render content that may contain tables
+// Parse number translation list (e.g., "17.980 = Bihumbi ikumi...")
+const parseNumberTranslationList = (text: string): Array<{ number: string; translation: string }> | null => {
+  const lines = text.trim().split('\n').map(line => line.trim()).filter(line => line.length > 0);
+  if (lines.length === 0) return null;
+  
+  // Check if it looks like number translations (contains "=" pattern)
+  const pattern = /^(\d+(?:\.\d+)?)\s*=\s*(.+)$/;
+  const translations: Array<{ number: string; translation: string }> = [];
+  
+  for (const line of lines) {
+    const match = line.match(pattern);
+    if (match) {
+      translations.push({
+        number: match[1],
+        translation: match[2].trim(),
+      });
+    } else {
+      // If we find a line that doesn't match, it's not a number translation list
+      if (translations.length > 0 && translations.length < lines.length * 0.8) {
+        return null; // Not enough matches to be a translation list
+      }
+    }
+  }
+  
+  return translations.length > 0 ? translations : null;
+};
+
+// Render content that may contain tables or number translation lists
 const renderContentWithTables = (text: string): React.ReactNode => {
   // Try to parse as table first
   const tableData = parseMarkdownTable(text);
@@ -241,6 +268,30 @@ const renderContentWithTables = (text: string): React.ReactNode => {
             ))}
           </tbody>
         </table>
+      </div>
+    );
+  }
+  
+  // Try to parse as number translation list
+  const translationList = parseNumberTranslationList(text);
+  if (translationList && translationList.length > 0) {
+    return (
+      <div className="my-8">
+        <div className="space-y-2">
+          {translationList.map((item, index) => (
+            <div
+              key={index}
+              className="flex items-start gap-4 py-2 border-b border-gray-100 dark:border-gray-900 last:border-0"
+            >
+              <span className="font-mono text-sm font-semibold text-primary-600 dark:text-primary-400 min-w-[80px] flex-shrink-0">
+                {item.number}
+              </span>
+              <span className="text-gray-700 dark:text-gray-300 flex-1">
+                {parseMarkdown(item.translation)}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
