@@ -55,26 +55,32 @@ export default function NdondeeroTusomePage({ jsonContent, mdxSource, contentTyp
   }, [mdxSource, jsonContent, contentType]);
 
   return (
-    <>
-      <div className="w-full">
-        {contentType === 'json' && jsonContent ? (
-          <ContentRenderer content={jsonContent} />
-        ) : mdxSource ? (
-          <article className="mdx-content">
-            <MDXRemote {...mdxSource} components={mdxComponents} />
-          </article>
-        ) : (
-          <div className="text-center py-20">
-            <h1 className="text-4xl font-bold mb-4">Menya Bino</h1>
-            <p className="text-gray-600 dark:text-gray-400">Content coming soon...</p>
-          </div>
-        )}
-        <div className="mt-12">
-          <PageNavigation currentSlug="ndondeero_tusome" />
+    <div className="w-full">
+      {/* Page TOC - Inline at top */}
+      {headings.length > 0 && (
+        <div className="mb-8">
+          <TableOfContents headings={headings} />
         </div>
+      )}
+      
+      {/* Content */}
+      {contentType === 'json' && jsonContent ? (
+        <ContentRenderer content={jsonContent} />
+      ) : mdxSource ? (
+        <article className="mdx-content">
+          <MDXRemote {...mdxSource} components={mdxComponents} />
+        </article>
+      ) : (
+        <div className="text-center py-20">
+          <h1 className="text-4xl font-bold mb-4">Menya Bino</h1>
+          <p className="text-gray-600 dark:text-gray-400">Content coming soon...</p>
+        </div>
+      )}
+      
+      <div className="mt-12">
+        <PageNavigation currentSlug="ndondeero_tusome" />
       </div>
-      <TableOfContents headings={headings} />
-    </>
+    </div>
   );
 }
 

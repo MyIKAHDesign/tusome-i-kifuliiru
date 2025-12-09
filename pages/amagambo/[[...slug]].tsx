@@ -58,32 +58,38 @@ export default function AmagamboPage({ mdxSource, jsonContent, contentType, slug
   // If JSON content, use the new component system
   if (contentType === 'json' && jsonContent) {
     return (
-      <>
-        <div className="w-full">
-          <ContentRenderer content={jsonContent} />
-          <div className="mt-12">
-            <PageNavigation currentSlug={slug} />
+      <div className="w-full">
+        {/* Page TOC - Inline at top */}
+        {headings.length > 0 && (
+          <div className="mb-8">
+            <TableOfContents headings={headings} />
           </div>
+        )}
+        <ContentRenderer content={jsonContent} />
+        <div className="mt-12">
+          <PageNavigation currentSlug={slug} />
         </div>
-        <TableOfContents headings={headings} />
-      </>
+      </div>
     );
   }
 
   // Otherwise, fall back to MDX
   if (mdxSource) {
     return (
-      <>
-        <div className="w-full">
-          <article className="mdx-content">
-            <MDXRemote {...mdxSource} components={mdxComponents} />
-          </article>
-          <div className="mt-12">
-            <PageNavigation currentSlug={slug} />
+      <div className="w-full">
+        {/* Page TOC - Inline at top */}
+        {headings.length > 0 && (
+          <div className="mb-8">
+            <TableOfContents headings={headings} />
           </div>
+        )}
+        <article className="mdx-content">
+          <MDXRemote {...mdxSource} components={mdxComponents} />
+        </article>
+        <div className="mt-12">
+          <PageNavigation currentSlug={slug} />
         </div>
-        <TableOfContents headings={headings} />
-      </>
+      </div>
     );
   }
 
