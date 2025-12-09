@@ -23,7 +23,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-400 text-sm font-medium mb-6">
             <BookOpen className="w-4 h-4" />
-            <span>Learn Kifuliiru Language</span>
+            <span>Tusome i Kifuliiru</span>
           </div>
           
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
@@ -31,22 +31,24 @@ export default function Home() {
           </h1>
           
           {/* Flag Image - Glowing Container */}
-          <div className="flex justify-center mb-6">
-            <div className="relative inline-block">
+          <div className="flex justify-center mb-6 px-4">
+            <div className="relative inline-block max-w-full">
               {/* Subtle glow effect using flag colors - Blue, Yellow, Red */}
-              <div className="absolute -inset-4 bg-gradient-to-br from-blue-500/20 via-yellow-400/15 to-red-500/20 rounded-2xl blur-2xl dark:from-blue-500/15 dark:via-yellow-400/10 dark:to-red-500/15"></div>
-              <div className="absolute -inset-3 bg-gradient-to-tr from-blue-400/15 via-yellow-300/10 to-red-400/15 rounded-xl blur-xl dark:from-blue-400/10 dark:via-yellow-300/8 dark:to-red-400/10"></div>
+              <div className="absolute -inset-6 bg-gradient-to-br from-blue-500/20 via-yellow-400/15 to-red-500/20 rounded-[2.5rem] blur-2xl dark:from-blue-500/15 dark:via-yellow-400/10 dark:to-red-500/15"></div>
+              <div className="absolute -inset-4 bg-gradient-to-tr from-blue-400/15 via-yellow-300/10 to-red-400/15 rounded-[2rem] blur-xl dark:from-blue-400/10 dark:via-yellow-300/8 dark:to-red-400/10"></div>
               
-              {/* Image container */}
-              <div className="relative rounded-xl overflow-hidden">
-                <Image
-                  src="/.github/DRCongo.png"
-                  alt="DR Congo Flag"
-                  width={400}
-                  height={267}
-                  className="rounded-xl object-cover relative z-10"
-                  priority
-                />
+              {/* Organic container with generous padding and rounded corners */}
+              <div className="relative rounded-[2rem] overflow-hidden p-3 bg-gradient-to-br from-white/80 via-gray-50/60 to-white/80 dark:from-gray-900/80 dark:via-gray-800/60 dark:to-gray-900/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50">
+                <div className="relative rounded-[1.5rem] overflow-hidden">
+                  <Image
+                    src="/.github/DRCongo.png"
+                    alt="DR Congo Flag"
+                    width={400}
+                    height={267}
+                    className="rounded-[1.5rem] object-cover relative z-10 w-full h-auto"
+                    priority
+                  />
+                </div>
               </div>
             </div>
           </div>
