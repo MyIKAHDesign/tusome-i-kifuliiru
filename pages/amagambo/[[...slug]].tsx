@@ -108,40 +108,51 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slugArray = params?.slug as string[] || [];
-  const slug = slugArray.length === 0 ? 'amagambo' : `amagambo/${slugArray.join('/')}`;
+  const nestedSlug = slugArray.length === 0 ? 'amagambo' : `amagambo/${slugArray.join('/')}`;
+  const rootSlug = slugArray.length === 0 ? 'amagambo' : slugArray.join('/');
+  
+  // Try nested path first (e.g., amagambo/herufi)
+  let jsonContent = getContentData(nestedSlug);
+  let mdxContent = getContentBySlug(nestedSlug);
+  
+  // If not found, try root-level slug (e.g., herufi)
+  if (!jsonContent && !mdxContent) {
+    jsonContent = getContentData(rootSlug);
+    mdxContent = getContentBySlug(rootSlug);
+  }
+  
+  // Use the slug that worked (prefer nested for consistency)
+  const finalSlug = jsonContent || mdxContent ? nestedSlug : rootSlug;
   
   // Try JSON first (new format - prioritized)
-  const jsonContent = getContentData(slug);
   if (jsonContent) {
     return {
       props: {
         jsonContent,
-        slug,
+        slug: finalSlug,
         contentType: 'json' as const,
       },
     };
   }
   
   // Fall back to MDX (legacy format - for files not yet migrated)
-  const mdxContent = getContentBySlug(slug);
-  
-  if (!mdxContent) {
+  if (mdxContent) {
+    // Serialize the MDX content
+    const mdxSource = await serialize(mdxContent.content, {
+      parseFrontmatter: true,
+    });
+
     return {
-      notFound: true,
+      props: {
+        mdxSource,
+        slug: finalSlug,
+        contentType: 'mdx' as const,
+      },
     };
   }
-
-  // Serialize the MDX content
-  const mdxSource = await serialize(mdxContent.content, {
-    parseFrontmatter: true,
-  });
-
+  
   return {
-    props: {
-      mdxSource,
-      slug,
-      contentType: 'mdx' as const,
-    },
+    notFound: true,
   };
 };
 
