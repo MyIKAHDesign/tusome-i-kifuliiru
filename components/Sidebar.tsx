@@ -51,20 +51,21 @@ export default function Sidebar({ meta }: SidebarProps) {
           });
           const activeGroups = groups.filter(key => {
             const item = parsed[key] as MetaItem;
-            // Check if current path matches this menu or any of its children
-            if (currentPath.startsWith(`/docs/${key}/`) || currentPath === `/docs/${key}`) {
-              return true;
-            }
-            // Also check if any child path matches
+            // Check if any child path matches exactly
             if (item.items) {
               return Object.keys(item.items).some(subKey => {
                 const subItem = item.items![subKey];
                 if (typeof subItem === 'string') {
-                  return currentPath === `/docs/${key}/${subKey}` || currentPath === `/docs/${subKey}`;
+                  // For string items, check if path matches exactly
+                  const fullPath = `${key}/${subKey}`;
+                  return currentPath === `/docs/${fullPath}` || currentPath === `/docs/${subKey}`;
                 } else if (subItem.href) {
+                  // For items with href, check the href exactly (don't use startsWith to avoid false matches)
                   return currentPath === subItem.href;
                 } else {
-                  return currentPath === `/docs/${key}/${subKey}` || currentPath === `/docs/${subKey}`;
+                  // Fallback: check standard paths exactly
+                  const fullPath = `${key}/${subKey}`;
+                  return currentPath === `/docs/${fullPath}` || currentPath === `/docs/${subKey}`;
                 }
               });
             }

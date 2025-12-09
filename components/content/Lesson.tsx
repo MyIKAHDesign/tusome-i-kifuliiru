@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Link from 'next/link';
 import { LessonContent } from '../../lib/content-schema';
 import Image from 'next/image';
 import { FileText, Quote } from 'lucide-react';
+import TableOfContents from '../TableOfContents';
 
 interface LessonProps {
   content: LessonContent;
@@ -214,14 +215,41 @@ const parseMarkdown = (text: string): React.ReactNode[] => {
   return parseSegment(text);
 };
 
+// Generate ID from heading text
+const generateHeadingId = (text: string): string => {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .trim();
+};
+
 export default function Lesson({ content }: LessonProps) {
+  // Extract headings for TOC
+  const headings = useMemo(() => {
+    return content.blocks
+      .filter((block: any) => block.type === 'heading' && block.level && block.level >= 2 && block.level <= 4)
+      .map((block: any) => {
+        const text = typeof block.content === 'string' ? block.content : '';
+        return {
+          id: generateHeadingId(text),
+          text,
+          level: block.level || 2,
+        };
+      });
+  }, [content.blocks]);
+
   const renderBlock = (block: any, index: number) => {
     switch (block.type) {
       case 'heading':
         const level = block.level || 2;
+        const headingText = typeof block.content === 'string' ? block.content : '';
+        const headingId = generateHeadingId(headingText);
         const headingProps = {
           key: index,
-          className: `font-bold text-gray-900 dark:text-gray-100 mb-4 mt-8 ${
+          id: headingId,
+          className: `font-bold text-gray-900 dark:text-gray-100 mb-4 mt-8 scroll-mt-24 ${
             level === 1 ? 'text-4xl' :
             level === 2 ? 'text-3xl border-b border-gray-200 dark:border-gray-700 pb-2' :
             level === 3 ? 'text-2xl' :
@@ -369,28 +397,34 @@ export default function Lesson({ content }: LessonProps) {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="border-b border-gray-200 dark:border-gray-700 pb-6">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center">
-            <FileText className="w-6 h-6 text-primary-600 dark:text-primary-400" />
+    <div className="flex gap-8">
+      {/* Main Content */}
+      <div className="flex-1 space-y-6 min-w-0">
+        {/* Header */}
+        <div className="border-b border-gray-200 dark:border-gray-700 pb-6">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center">
+              <FileText className="w-6 h-6 text-primary-600 dark:text-primary-400" />
+            </div>
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
+              {content.title}
+            </h1>
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
-            {content.title}
-          </h1>
+          {content.description && (
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+              {content.description}
+            </p>
+          )}
         </div>
-        {content.description && (
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            {content.description}
-          </p>
-        )}
+
+        {/* Content Blocks */}
+        <div className="prose prose-lg dark:prose-invert max-w-none">
+          {content.blocks.map((block, index) => renderBlock(block, index))}
+        </div>
       </div>
 
-      {/* Content Blocks */}
-      <div className="prose prose-lg dark:prose-invert max-w-none">
-        {content.blocks.map((block, index) => renderBlock(block, index))}
-      </div>
+      {/* Table of Contents */}
+      <TableOfContents headings={headings} />
     </div>
   );
 }

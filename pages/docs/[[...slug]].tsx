@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
@@ -7,12 +7,47 @@ import { getContentData } from '../../lib/json-content-loader';
 import { mdxComponents } from '../../mdx-components';
 import ContentRenderer from '../../components/content/ContentRenderer';
 import PageNavigation from '../../components/PageNavigation';
+import TableOfContents from '../../components/TableOfContents';
 
 interface DocPageProps {
   mdxSource?: MDXRemoteSerializeResult;
   jsonContent?: any;
   slug: string;
   contentType: 'mdx' | 'json';
+}
+
+// Component for MDX pages with TOC
+function MDXPage({ mdxSource, slug, maxWidthClass }: { mdxSource: MDXRemoteSerializeResult; slug: string; maxWidthClass: string }) {
+  const [headings, setHeadings] = useState<Array<{ id: string; text: string; level: number }>>([]);
+
+  useEffect(() => {
+    // Extract headings from MDX content after render
+    const headingElements = document.querySelectorAll('.mdx-content h2, .mdx-content h3, .mdx-content h4');
+    const extractedHeadings = Array.from(headingElements).map((el) => {
+      const id = el.id || el.textContent?.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').trim() || '';
+      if (!el.id && id) {
+        el.id = id;
+      }
+      return {
+        id: el.id,
+        text: el.textContent || '',
+        level: parseInt(el.tagName.charAt(1)) || 2,
+      };
+    });
+    setHeadings(extractedHeadings);
+  }, [mdxSource]);
+
+  return (
+    <div className={`${maxWidthClass} mx-auto w-full`}>
+      <div className="flex gap-8">
+        <article className={`mdx-content flex-1 min-w-0`}>
+          <MDXRemote {...mdxSource} components={mdxComponents} />
+          <PageNavigation currentSlug={slug} />
+        </article>
+        <TableOfContents headings={headings} />
+      </div>
+    </div>
+  );
 }
 
 export default function DocPage({ mdxSource, jsonContent, contentType, slug }: DocPageProps) {
@@ -31,12 +66,7 @@ export default function DocPage({ mdxSource, jsonContent, contentType, slug }: D
 
   // Otherwise, fall back to MDX
   if (mdxSource) {
-    return (
-      <article className={`mdx-content ${maxWidthClass} mx-auto w-full`}>
-        <MDXRemote {...mdxSource} components={mdxComponents} />
-        <PageNavigation currentSlug={slug} />
-      </article>
-    );
+    return <MDXPage mdxSource={mdxSource} slug={slug} maxWidthClass={maxWidthClass} />;
   }
 
   return (
