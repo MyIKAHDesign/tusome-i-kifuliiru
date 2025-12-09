@@ -322,6 +322,10 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                   } else {
                     if (key === 'eng-frn-swa') {
                       subHref = `/eng-frn-swa/${subKey}`;
+                    } else if (key === 'imwitu') {
+                      subHref = `/imwitu/${subKey}`;
+                    } else if (key === 'twehe') {
+                      subHref = `/twehe/${subKey}`;
                     } else {
                       subHref = `/${subKey}`;
                     }
