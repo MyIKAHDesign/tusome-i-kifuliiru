@@ -33,18 +33,16 @@ export default function Home() {
               <div className="absolute -inset-6 bg-gradient-to-br from-blue-500/20 via-yellow-400/15 to-red-500/20 rounded-[2.5rem] blur-2xl dark:from-blue-500/15 dark:via-yellow-400/10 dark:to-red-500/15"></div>
               <div className="absolute -inset-4 bg-gradient-to-tr from-blue-400/15 via-yellow-300/10 to-red-400/15 rounded-[2rem] blur-xl dark:from-blue-400/10 dark:via-yellow-300/8 dark:to-red-400/10"></div>
               
-              {/* Organic container with generous padding and rounded corners */}
-              <div className="relative rounded-[2rem] overflow-hidden p-3 bg-gradient-to-br from-white/80 via-gray-50/60 to-white/80 dark:from-gray-900/80 dark:via-gray-800/60 dark:to-gray-900/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50">
-                <div className="relative rounded-[1.5rem] overflow-hidden">
-                  <Image
-                    src="/.github/DRCongo.png"
-                    alt="DR Congo Flag"
-                    width={400}
-                    height={267}
-                    className="rounded-[1.5rem] object-cover relative z-10 w-full h-auto"
-                    priority
-                  />
-                </div>
+              {/* Image without card/elevation */}
+              <div className="relative rounded-[1.5rem] overflow-hidden">
+                <Image
+                  src="/.github/DRCongo.png"
+                  alt="DR Congo Flag"
+                  width={400}
+                  height={267}
+                  className="rounded-[1.5rem] object-cover relative z-10 w-full h-auto"
+                  priority
+                />
               </div>
             </div>
           </div>
