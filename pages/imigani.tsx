@@ -21,7 +21,7 @@ export default function ImiganiPage({ jsonContent, mdxSource, contentType }: Imi
         title="Imigani - Tusome i Kifuliiru"
         description="Learn Kifuliiru proverbs and sayings"
       />
-      <div className="max-w-[1400px] mx-auto w-full">
+      <div className="w-full">
         {contentType === 'json' && jsonContent ? (
           <ContentRenderer content={jsonContent} />
         ) : mdxSource ? (

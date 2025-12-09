@@ -1,12 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { Home, Search, ArrowLeft, AlertCircle } from 'lucide-react';
-import Layout from '../components/Layout';
 
 const NotFound404 = () => {
   return (
-    <Layout>
-      <div className="min-h-[60vh] flex items-center justify-center py-16 px-4">
+    <div className="min-h-[60vh] flex items-center justify-center py-16 px-4">
         <div className="max-w-2xl w-full text-center">
           {/* 404 Number with Icon */}
           <div className="relative mb-8">
@@ -93,7 +91,7 @@ const NotFound404 = () => {
           animation-delay: 0.4s;
         }
       `}</style>
-    </Layout>
+    </div>
   );
 };
 
