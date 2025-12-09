@@ -406,9 +406,9 @@ export default function NumberLesson({ content }: NumberLessonProps) {
             </div>
           )}
 
-          {/* Numbers List - Clean list format for clarity */}
+          {/* Numbers List - Two columns for better space utilization */}
           <div className="my-8">
-            <div className="space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
               {section.numbers.map((number, index) => (
                 <div
                   key={index}
