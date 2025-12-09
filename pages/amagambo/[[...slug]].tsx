@@ -88,8 +88,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     slug === 'menya-bino' ||
     slug === 'ndondeero-amagambo' ||
     slug === 'buniini-bwingi' ||
-    slug === 'abaana' ||
-    slug === 'ndondeero_tusome'
+    slug === 'abaana'
   );
   
   return {
