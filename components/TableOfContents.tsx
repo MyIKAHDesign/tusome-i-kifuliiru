@@ -84,15 +84,15 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
 
       {/* Dialog Modal Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50">
           {/* Backdrop */}
           <div
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setIsOpen(false)}
           />
 
-          {/* Dialog Card - Centered */}
-          <div className="relative w-full max-w-md max-h-[70vh] bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          {/* Dialog Card - Positioned on the right */}
+          <div className="absolute right-4 top-20 bottom-4 w-full max-w-sm bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col animate-in fade-in slide-in-from-right-2 duration-200">
             {/* Header */}
             <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between flex-shrink-0 bg-gray-50 dark:bg-gray-900/50">
               <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100">
