@@ -52,24 +52,36 @@ export default function PageContent({ jsonContent, mdxSource, contentType }: Pag
   }, [mdxSource, jsonContent, contentType]);
 
   return (
-    <div className="w-full">
-      {/* Page TOC - Inline at top */}
-      {headings.length > 0 && (
-        <div className="mb-8">
-          <TableOfContents headings={headings} />
-        </div>
-      )}
+    <div className="w-full flex flex-col xl:flex-row gap-12">
+      {/* Main Content */}
+      <div className="flex-1 min-w-0">
+        {/* Mobile TOC - At top on small screens */}
+        {headings.length > 0 && (
+          <div className="xl:hidden mb-8">
+            <TableOfContents headings={headings} />
+          </div>
+        )}
+        
+        {contentType === 'json' && jsonContent ? (
+          <ContentRenderer content={jsonContent} />
+        ) : mdxSource ? (
+          <article className="mdx-content">
+            <MDXRemote {...mdxSource} components={mdxComponents} />
+          </article>
+        ) : (
+          <div className="text-center py-12 text-gray-500 dark:text-gray-400">
+            <p>Content not found</p>
+          </div>
+        )}
+      </div>
       
-      {contentType === 'json' && jsonContent ? (
-        <ContentRenderer content={jsonContent} />
-      ) : mdxSource ? (
-        <article className="mdx-content">
-          <MDXRemote {...mdxSource} components={mdxComponents} />
-        </article>
-      ) : (
-        <div className="text-center py-12 text-gray-500 dark:text-gray-400">
-          <p>Content not found</p>
-        </div>
+      {/* Page TOC - Sticky on the right for desktop */}
+      {headings.length > 0 && (
+        <aside className="hidden xl:block w-64 flex-shrink-0">
+          <div className="sticky top-24">
+            <TableOfContents headings={headings} />
+          </div>
+        </aside>
       )}
     </div>
   );

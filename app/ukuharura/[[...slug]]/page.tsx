@@ -1,5 +1,5 @@
 import React from 'react';
-import { getContentData } from '../../../lib/json-content-loader';
+import { getContentData, getAllContentSlugs as getAllJsonContentSlugs } from '../../../lib/json-content-loader';
 import { getContentBySlug, getAllContentSlugs } from '../../../lib/content-loader';
 import { serialize } from 'next-mdx-remote/serialize';
 import PageContent from '../../../components/PageContent';
@@ -11,10 +11,13 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  const allSlugs = getAllContentSlugs();
+  // Get slugs from both JSON and MDX content loaders
+  const jsonSlugs = getAllJsonContentSlugs();
+  const mdxSlugs = getAllContentSlugs();
+  const allSlugs = [...new Set([...jsonSlugs, ...mdxSlugs])];
+  
   const ukuharuraSlugs = allSlugs.filter(slug => 
     slug.startsWith('ukuharura/') || 
-    slug === 'ukuharura' ||
     slug === 'harura' ||
     slug === 'ndondeero' ||
     slug === 'zero-ku-ikumi' ||
@@ -30,9 +33,6 @@ export async function generateStaticParams() {
   );
   
   return ukuharuraSlugs.map((slug) => {
-    if (slug === 'ukuharura') {
-      return { slug: [] };
-    }
     if (slug.startsWith('ukuharura/')) {
       return { slug: slug.replace('ukuharura/', '').split('/') };
     }
@@ -41,32 +41,50 @@ export async function generateStaticParams() {
 }
 
 async function getPageData(slugArray: string[]) {
-  const slug = slugArray.length === 0 ? 'ukuharura' : `ukuharura/${slugArray.join('/')}`;
-  
-  const jsonContent = getContentData(slug);
-  if (jsonContent) {
-    return {
-      jsonContent,
-      slug,
-      contentType: 'json' as const,
-    };
-  }
-  
-  const mdxContent = getContentBySlug(slug);
-  if (!mdxContent) {
+  // If empty slugArray, there's no root ukuharura.json file - return not found
+  if (slugArray.length === 0) {
     return {
       notFound: true,
     };
   }
-
-  const mdxSource = await serialize(mdxContent.content, {
-    parseFrontmatter: true,
-  });
+  
+  const nestedSlug = `ukuharura/${slugArray.join('/')}`;
+  const rootSlug = slugArray.join('/');
+  
+  // Try nested path first (e.g., ukuharura/abandu)
+  let jsonContent = getContentData(nestedSlug);
+  let mdxContent = getContentBySlug(nestedSlug);
+  
+  // If not found, try root-level slug (e.g., harura, abandu)
+  if (!jsonContent && !mdxContent) {
+    jsonContent = getContentData(rootSlug);
+    mdxContent = getContentBySlug(rootSlug);
+  }
+  
+  // Use the slug that worked (prefer nested for consistency)
+  const finalSlug = jsonContent || mdxContent ? nestedSlug : rootSlug;
+  
+  if (jsonContent) {
+    return {
+      jsonContent,
+      slug: finalSlug,
+      contentType: 'json' as const,
+    };
+  }
+  
+  if (mdxContent) {
+    const mdxSource = await serialize(mdxContent.content, {
+      parseFrontmatter: true,
+    });
+    return {
+      mdxSource,
+      slug: finalSlug,
+      contentType: 'mdx' as const,
+    };
+  }
 
   return {
-    mdxSource,
-    slug,
-    contentType: 'mdx' as const,
+    notFound: true,
   };
 }
 

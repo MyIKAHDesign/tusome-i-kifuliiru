@@ -232,7 +232,7 @@ export default function Lesson({ content }: LessonProps) {
         const level = block.level || 2;
         const headingText = typeof block.content === 'string' ? block.content : '';
         const headingId = generateHeadingId(headingText);
-        const headingProps = {
+        const { key, ...headingProps } = {
           key: index,
           id: headingId,
           className: `font-bold text-gray-900 dark:text-gray-100 mb-6 mt-12 scroll-mt-24 ${
@@ -244,11 +244,11 @@ export default function Lesson({ content }: LessonProps) {
           children: block.content,
         };
         
-        if (level === 1) return <h1 {...headingProps} />;
-        if (level === 2) return <h2 {...headingProps} />;
-        if (level === 3) return <h3 {...headingProps} />;
-        if (level === 4) return <h4 {...headingProps} />;
-        return <h2 {...headingProps} />;
+        if (level === 1) return <h1 key={key} {...headingProps} />;
+        if (level === 2) return <h2 key={key} {...headingProps} />;
+        if (level === 3) return <h3 key={key} {...headingProps} />;
+        if (level === 4) return <h4 key={key} {...headingProps} />;
+        return <h2 key={key} {...headingProps} />;
 
       case 'paragraph':
         // Check if content contains a markdown table
@@ -402,9 +402,15 @@ export default function Lesson({ content }: LessonProps) {
       </div>
 
       {/* Content Blocks */}
-      <div className="space-y-8">
-        {content.blocks.map((block, index) => renderBlock(block, index))}
-      </div>
+      {content.blocks && content.blocks.length > 0 ? (
+        <div className="space-y-8">
+          {content.blocks.map((block, index) => renderBlock(block, index))}
+        </div>
+      ) : (
+        <div className="text-center py-12 text-gray-500 dark:text-gray-400">
+          <p>Content is being prepared...</p>
+        </div>
+      )}
     </div>
   );
 }
