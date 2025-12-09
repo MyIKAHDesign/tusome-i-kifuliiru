@@ -312,7 +312,7 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
     <>
       {/* Previous Button - Left Side */}
       {prevSlug && (
-        <div className="fixed left-8 lg:left-[calc((100vw-1024px)/2-80px)] top-1/2 -translate-y-1/2 z-40">
+        <div className="hidden xl:fixed xl:left-4 xl:top-1/2 xl:-translate-y-1/2 xl:z-40">
           <a
             href={getHref(prevSlug)}
             onClick={(e) => {
@@ -325,8 +325,7 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
             <ChevronLeft className="w-4 h-4 flex-shrink-0 group-hover:-translate-x-0.5 transition-transform text-gray-500 dark:text-gray-400" />
             <div className="flex flex-col min-w-0">
               <span className="text-[10px] text-gray-500 dark:text-gray-400 uppercase tracking-wide">Previous</span>
-              <span className="hidden sm:inline truncate max-w-[100px] text-sm font-medium">{getPageTitle(prevSlug)}</span>
-              <span className="sm:hidden text-sm font-medium">Prev</span>
+              <span className="truncate max-w-[100px] text-sm font-medium">{getPageTitle(prevSlug)}</span>
             </div>
           </a>
         </div>
@@ -334,7 +333,7 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
       
       {/* Next Button - Right Side */}
       {nextSlug && (
-        <div className="fixed right-8 lg:right-[calc((100vw-1024px)/2-80px)] top-1/2 -translate-y-1/2 z-40">
+        <div className="hidden xl:fixed xl:right-4 xl:top-1/2 xl:-translate-y-1/2 xl:z-40">
           <a
             href={getHref(nextSlug)}
             onClick={(e) => {
@@ -346,8 +345,7 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
           >
             <div className="flex flex-col min-w-0 text-right">
               <span className="text-[10px] text-gray-500 dark:text-gray-400 uppercase tracking-wide">Next</span>
-              <span className="hidden sm:inline truncate max-w-[100px] text-sm font-medium">{getPageTitle(nextSlug)}</span>
-              <span className="sm:hidden text-sm font-medium">Next</span>
+              <span className="truncate max-w-[100px] text-sm font-medium">{getPageTitle(nextSlug)}</span>
             </div>
             <ChevronRight className="w-4 h-4 flex-shrink-0 group-hover:translate-x-0.5 transition-transform text-gray-500 dark:text-gray-400" />
           </a>
