@@ -124,21 +124,27 @@ export default function Sidebar({ meta }: SidebarProps) {
       const currentPath = router.asPath.split('?')[0];
       const isActive = currentPath === docHref || currentPath === `/docs/${key}`;
       
+      // Reduce left margin for ukuharura items (level > 0)
+      const isUkuharuraItem = parentKey === 'ukuharura' || level > 0;
+      const leftPadding = isUkuharuraItem 
+        ? `${level * 0.75 + 0.75}rem`  // Reduced margin for ukuharura items
+        : `${level * 1.5 + 1}rem`;      // Normal margin for other items
+      
       return (
         <li key={key}>
           <a
             href={docHref}
             className={`
-              flex items-center gap-3 px-4 py-2.5 text-sm rounded-lg transition-all
+              flex items-center gap-2 px-3 py-2.5 text-sm rounded-lg transition-all whitespace-nowrap
               ${isActive
                 ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-semibold'
                 : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
               }
             `}
-            style={{ paddingLeft: `${level * 1.5 + 1}rem` }}
+            style={{ paddingLeft: leftPadding }}
           >
             {getIcon(key, level)}
-            <span>{item}</span>
+            <span className="truncate">{item}</span>
           </a>
         </li>
       );
@@ -182,7 +188,7 @@ export default function Sidebar({ meta }: SidebarProps) {
             <ChevronRight className={`w-4 h-4 flex-shrink-0 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
           </button>
           {isExpanded && (
-            <ul className="mt-1 ml-6 pl-4 border-l border-gray-200 dark:border-gray-800 space-y-1">
+            <ul className={`mt-1 space-y-1 ${key === 'ukuharura' ? 'ml-2 pl-2 border-l border-gray-200 dark:border-gray-800' : 'ml-6 pl-4 border-l border-gray-200 dark:border-gray-800'}`}>
               {Object.entries(items).map(([subKey, subItem]) =>
                 renderMenuItem(subKey, subItem, level + 1, key)
               )}
@@ -224,7 +230,7 @@ export default function Sidebar({ meta }: SidebarProps) {
           target={newWindow ? '_blank' : undefined}
           rel={newWindow ? 'noopener noreferrer' : undefined}
           className={`
-            flex items-center gap-3 px-4 py-2.5 text-sm rounded-lg transition-all
+            flex items-center gap-2 px-3 py-2.5 text-sm rounded-lg transition-all whitespace-nowrap
             ${isActive
               ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-semibold'
               : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
@@ -232,8 +238,8 @@ export default function Sidebar({ meta }: SidebarProps) {
           `}
         >
           {pageIcon}
-          <span>{displayTitle}</span>
-          {newWindow && <ExternalLink className="w-3 h-3 ml-auto opacity-40" />}
+          <span className="truncate">{displayTitle}</span>
+          {newWindow && <ExternalLink className="w-3 h-3 ml-auto opacity-40 flex-shrink-0" />}
         </a>
       </li>
     );
@@ -252,7 +258,7 @@ export default function Sidebar({ meta }: SidebarProps) {
       {/* Sidebar - Contained between header and footer */}
       <aside
         className={`
-          w-72 h-full bg-white dark:bg-gray-950
+          w-80 h-full bg-white dark:bg-gray-950
           border-r border-gray-200 dark:border-gray-800
           overflow-y-auto overflow-x-hidden
           transition-transform duration-300 ease-in-out
