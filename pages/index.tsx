@@ -26,6 +26,10 @@ export default function Home() {
             <span>Learn Kifuliiru Language</span>
           </div>
           
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
+            Tusome i Kifuliiru
+          </h1>
+          
           {/* Flag Image */}
           <div className="flex justify-center mb-6">
             <Image
@@ -38,15 +42,31 @@ export default function Home() {
             />
           </div>
           
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
-            Tusome i Kifuliiru
-          </h1>
-          
-          <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-            Discover and learn the Kifuliiru language. A comprehensive platform for learners, students, and teachers to explore this beautiful language spoken in the Eastern DRC.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-16">
+          {/* Gwajiika Content - Hero Text */}
+          <div className="text-left max-w-3xl mx-auto mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">Ndondeezo</h2>
+            
+            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+              Mu kihugo kya zene, abandu booshi bagweti bagakola kwoshi bashobwiri higulu lyo' kudeta kwo bazamuule indeto zabo. Mu bindu bihamu ibija ku ndeto ne'byangatuma indeto igasikama inamale ne' kyanya kingi halinde ihikire ibibusi ibigayija, haliri ukusome no kusomeesa iyo ndeto. Ukusomeesa kwoshi ngisi kwo kwangaba kuliri kusoma nakwo, nga ngisi kwo tumubwirwa na'bakoli komiri ukusomeesa. Umuundu ugasomesa i Kifuliiru, akwaniini atebera ayiji bingi mu ino ndeto.
+            </p>
+            
+            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+              Abandu bingi batayiji kwo ikyanya indeto yayandikwa bimutuma igasikama, inagire ikise, inalonge injira yo'kulama. Ku balya ngisi kera abasobanukirwa yibyo bagweti bagakola higulu indeto zaabo zitatereeke. Na nitu ku Kifuliiru tugweti tugakola ngisi kwo tushobwiri, higulu indeto yitu Kifuliiru itakengeri lenga nga mbusi.
+            </p>
+
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">Hayi tugasomera?</h2>
+            
+            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+              Ukudeta kwo utole ngisi byo ugasoma, lenga yaho higulu mu menu, utole i menu Tusome kandi li ulenge uhume hano tugakutwala ku <Link href="/docs/ndondeero_tusome" className="text-primary-600 dark:text-primary-400 hover:underline font-medium">Ndondeero yo'kusoma</Link>.
+            </p>
+            
+            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-10">
+              Kongwa. Tuyegerere tweeshi.
+            </p>
+          </div>
+
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <button
               onClick={handleStartLearning}
               className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-primary-600 hover:bg-primary-700 active:bg-primary-800 text-white font-medium text-sm rounded-md shadow-sm hover:shadow transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
@@ -62,31 +82,6 @@ export default function Home() {
               Browse Documentation
             </button>
           </div>
-        </div>
-      </section>
-
-      {/* Gwajiika Content Section */}
-      <section className="max-w-4xl mx-auto px-4 py-12">
-        <div className="prose prose-lg dark:prose-invert max-w-none">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">Ndondeezo</h2>
-          
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-            Mu kihugo kya zene, abandu booshi bagweti bagakola kwoshi bashobwiri higulu lyo' kudeta kwo bazamuule indeto zabo. Mu bindu bihamu ibija ku ndeto ne'byangatuma indeto igasikama inamale ne' kyanya kingi halinde ihikire ibibusi ibigayija, haliri ukusome no kusomeesa iyo ndeto. Ukusomeesa kwoshi ngisi kwo kwangaba kuliri kusoma nakwo, nga ngisi kwo tumubwirwa na'bakoli komiri ukusomeesa. Umuundu ugasomesa i Kifuliiru, akwaniini atebera ayiji bingi mu ino ndeto.
-          </p>
-          
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
-            Abandu bingi batayiji kwo ikyanya indeto yayandikwa bimutuma igasikama, inagire ikise, inalonge injira yo'kulama. Ku balya ngisi kera abasobanukirwa yibyo bagweti bagakola higulu indeto zaabo zitatereeke. Na nitu ku Kifuliiru tugweti tugakola ngisi kwo tushobwiri, higulu indeto yitu Kifuliiru itakengeri lenga nga mbusi.
-          </p>
-
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">Hayi tugasomera?</h2>
-          
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-            Ukudeta kwo utole ngisi byo ugasoma, lenga yaho higulu mu menu, utole i menu Tusome kandi li ulenge uhume hano tugakutwala ku <Link href="/docs/ndondeero_tusome" className="text-primary-600 dark:text-primary-400 hover:underline font-medium">Ndondeero yo'kusoma</Link>.
-          </p>
-          
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            Kongwa. Tuyegerere tweeshi.
-          </p>
         </div>
         
         {/* Page Navigation */}
