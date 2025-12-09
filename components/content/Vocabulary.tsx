@@ -15,7 +15,7 @@ const parseMarkdown = (text: string): React.ReactNode[] => {
     
     // Parse bold+italic: ***text*** or _**text**_
     const boldItalicRegex = /(\*\*\*|_\*\*)([^*_]+?)(\*\*\*|\*\*_)/g;
-    let match;
+    let match: RegExpExecArray | null;
     const boldItalicMatches: Array<{start: number, end: number, text: string}> = [];
     
     while ((match = boldItalicRegex.exec(segment)) !== null) {
@@ -32,7 +32,7 @@ const parseMarkdown = (text: string): React.ReactNode[] => {
     
     while ((match = boldRegex.exec(segment)) !== null) {
       const isCovered = boldItalicMatches.some(m => 
-        match.index >= m.start && match.index + match[0].length <= m.end
+        match!.index >= m.start && match!.index + match![0].length <= m.end
       );
       if (!isCovered) {
         boldMatches.push({
@@ -51,9 +51,9 @@ const parseMarkdown = (text: string): React.ReactNode[] => {
     while ((match = italicRegex.exec(segment)) !== null) {
       const matchText = match[1] || match[2];
       const isCovered = boldItalicMatches.some(m => 
-        match.index >= m.start && match.index + match[0].length <= m.end
+        match!.index >= m.start && match!.index + match![0].length <= m.end
       ) || boldMatches.some(m => 
-        match.index >= m.start && match.index + match[0].length <= m.end
+        match!.index >= m.start && match!.index + match![0].length <= m.end
       );
       if (!isCovered) {
         italicMatches.push({
