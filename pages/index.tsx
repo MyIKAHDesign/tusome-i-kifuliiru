@@ -33,9 +33,9 @@ export default function Home() {
           {/* Flag Image - Glowing Container */}
           <div className="flex justify-center mb-6">
             <div className="relative inline-block">
-              {/* Glow effect using flag colors - Blue, Yellow, Red */}
-              <div className="absolute -inset-4 bg-gradient-to-br from-blue-500 via-yellow-400 to-red-500 rounded-2xl blur-2xl opacity-60 dark:opacity-40 animate-pulse"></div>
-              <div className="absolute -inset-3 bg-gradient-to-tr from-blue-400 via-yellow-300 to-red-400 rounded-xl blur-xl opacity-50 dark:opacity-30"></div>
+              {/* Subtle glow effect using flag colors - Blue, Yellow, Red */}
+              <div className="absolute -inset-4 bg-gradient-to-br from-blue-500/20 via-yellow-400/15 to-red-500/20 rounded-2xl blur-2xl dark:from-blue-500/15 dark:via-yellow-400/10 dark:to-red-500/15"></div>
+              <div className="absolute -inset-3 bg-gradient-to-tr from-blue-400/15 via-yellow-300/10 to-red-400/15 rounded-xl blur-xl dark:from-blue-400/10 dark:via-yellow-300/8 dark:to-red-400/10"></div>
               
               {/* Image container */}
               <div className="relative rounded-xl overflow-hidden">
