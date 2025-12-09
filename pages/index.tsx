@@ -29,14 +29,13 @@ export default function Home() {
           {/* Flag Image */}
           <div className="flex justify-center mb-6 px-4">
             <div className="relative inline-block max-w-full group">
-              {/* Image */}
               <div className="relative rounded-[1.5rem] overflow-hidden transition-transform duration-300 ease-out group-hover:scale-[1.02]">
                 <Image
                   src="/.github/DRCongo.png"
                   alt="DR Congo Flag"
                   width={400}
                   height={267}
-                  className="rounded-[1.5rem] object-cover relative z-10 w-full h-auto"
+                  className="rounded-[1.5rem] object-cover w-full h-auto"
                   priority
                 />
                 {/* Inner glow effect using flag colors - Blue, Yellow, Red */}
