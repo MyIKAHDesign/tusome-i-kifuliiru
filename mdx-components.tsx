@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import React from 'react';
 
 function normalizeImageSrc(src: string | undefined): string {
   if (!src) return '/';
@@ -19,6 +20,24 @@ function normalizeImageSrc(src: string | undefined): string {
   
   return normalized;
 }
+
+// Generate ID from heading text
+const generateHeadingId = (text: string): string => {
+  if (typeof text !== 'string') {
+    // If text is React node, try to extract string
+    if (React.isValidElement(text)) {
+      text = text.props?.children || '';
+    } else {
+      text = String(text);
+    }
+  }
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .trim();
+};
 
 export const mdxComponents = {
   img: (props: any) => {
@@ -46,5 +65,24 @@ export const mdxComponents = {
       />
     );
   },
+  h1: ({ children, ...props }: any) => {
+    const text = typeof children === 'string' ? children : React.Children.toArray(children).join('');
+    const id = generateHeadingId(text);
+    return <h1 id={id} className="scroll-mt-24" {...props}>{children}</h1>;
+  },
+  h2: ({ children, ...props }: any) => {
+    const text = typeof children === 'string' ? children : React.Children.toArray(children).join('');
+    const id = generateHeadingId(text);
+    return <h2 id={id} className="scroll-mt-24" {...props}>{children}</h2>;
+  },
+  h3: ({ children, ...props }: any) => {
+    const text = typeof children === 'string' ? children : React.Children.toArray(children).join('');
+    const id = generateHeadingId(text);
+    return <h3 id={id} className="scroll-mt-24" {...props}>{children}</h3>;
+  },
+  h4: ({ children, ...props }: any) => {
+    const text = typeof children === 'string' ? children : React.Children.toArray(children).join('');
+    const id = generateHeadingId(text);
+    return <h4 id={id} className="scroll-mt-24" {...props}>{children}</h4>;
+  },
 };
-
