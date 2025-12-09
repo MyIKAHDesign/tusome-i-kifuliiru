@@ -30,15 +30,18 @@ export default function Home() {
           <div className="flex justify-center mb-6 px-4">
             <div className="relative inline-block max-w-full group">
               {/* Image */}
-              <div className="relative rounded-[1.5rem] overflow-hidden transition-transform duration-500 ease-out group-hover:scale-105 group-hover:rotate-1">
+              <div className="relative rounded-[1.5rem] overflow-hidden transition-transform duration-300 ease-out group-hover:scale-[1.02]">
                 <Image
                   src="/.github/DRCongo.png"
                   alt="DR Congo Flag"
                   width={400}
                   height={267}
-                  className="rounded-[1.5rem] object-cover relative z-10 w-full h-auto transition-transform duration-500 ease-out group-hover:scale-110"
+                  className="rounded-[1.5rem] object-cover relative z-10 w-full h-auto"
                   priority
                 />
+                {/* Inner glow effect using flag colors - Blue, Yellow, Red */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-yellow-400/8 to-red-500/10 rounded-[1.5rem] pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-400/8 via-yellow-300/6 to-red-400/8 rounded-[1.5rem] pointer-events-none"></div>
               </div>
             </div>
           </div>
