@@ -18,7 +18,17 @@ interface TwehePageProps {
 }
 
 export default function TwehePage({ jsonContent, mdxSource, slug, contentType }: TwehePageProps) {
-  const title = jsonContent?.title || mdxSource?.frontmatter?.title || slug.split('/').pop() || 'Twehe';
+  const getTitle = (): string => {
+    if (jsonContent && 'title' in jsonContent && typeof jsonContent.title === 'string') {
+      return jsonContent.title;
+    }
+    if (mdxSource?.frontmatter && typeof mdxSource.frontmatter === 'object' && 'title' in mdxSource.frontmatter) {
+      const frontmatterTitle = mdxSource.frontmatter.title;
+      if (typeof frontmatterTitle === 'string') return frontmatterTitle;
+    }
+    return slug.split('/').pop() || 'Twehe';
+  };
+  const title = getTitle();
   
   return (
     <>

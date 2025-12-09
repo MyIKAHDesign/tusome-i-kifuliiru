@@ -18,7 +18,17 @@ interface EngFrnSwaPageProps {
 }
 
 export default function EngFrnSwaPage({ jsonContent, mdxSource, slug, contentType }: EngFrnSwaPageProps) {
-  const title = jsonContent?.title || mdxSource?.frontmatter?.title || slug.split('/').pop() || 'ENG/SWA/FRN';
+  const getTitle = (): string => {
+    if (jsonContent && 'title' in jsonContent && typeof jsonContent.title === 'string') {
+      return jsonContent.title;
+    }
+    if (mdxSource?.frontmatter && typeof mdxSource.frontmatter === 'object' && 'title' in mdxSource.frontmatter) {
+      const frontmatterTitle = mdxSource.frontmatter.title;
+      if (typeof frontmatterTitle === 'string') return frontmatterTitle;
+    }
+    return slug.split('/').pop() || 'ENG/SWA/FRN';
+  };
+  const title = getTitle();
   
   return (
     <>

@@ -166,7 +166,7 @@ export function convertLessonMDXToJSON(mdxContent: string, slug: string): Lesson
         currentParagraph = [];
       }
       if (inList) {
-        blocks.push({ type: 'list', items: listItems });
+        blocks.push({ type: 'list', content: '', items: listItems });
         listItems = [];
         inList = false;
       }
@@ -177,7 +177,7 @@ export function convertLessonMDXToJSON(mdxContent: string, slug: string): Lesson
         currentParagraph = [];
       }
       if (inList) {
-        blocks.push({ type: 'list', items: listItems });
+        blocks.push({ type: 'list', content: '', items: listItems });
         listItems = [];
         inList = false;
       }
@@ -188,7 +188,7 @@ export function convertLessonMDXToJSON(mdxContent: string, slug: string): Lesson
         currentParagraph = [];
       }
       if (inList) {
-        blocks.push({ type: 'list', items: listItems });
+        blocks.push({ type: 'list', content: '', items: listItems });
         listItems = [];
         inList = false;
       }
@@ -201,13 +201,13 @@ export function convertLessonMDXToJSON(mdxContent: string, slug: string): Lesson
         currentParagraph = [];
       }
       if (inList) {
-        blocks.push({ type: 'list', items: listItems });
+        blocks.push({ type: 'list', content: '', items: listItems });
         listItems = [];
         inList = false;
       }
       const imgMatch = trimmed.match(/!\[([^\]]*)\]\(([^)]+)\)/);
       if (imgMatch) {
-        blocks.push({ type: 'image', src: imgMatch[2], alt: imgMatch[1] || '' });
+        blocks.push({ type: 'image', content: '', src: imgMatch[2], alt: imgMatch[1] || '' });
       }
     }
     // Lists
@@ -226,7 +226,7 @@ export function convertLessonMDXToJSON(mdxContent: string, slug: string): Lesson
         currentParagraph = [];
       }
       if (inList) {
-        blocks.push({ type: 'list', items: listItems });
+        blocks.push({ type: 'list', content: '', items: listItems });
         listItems = [];
         inList = false;
       }
@@ -242,13 +242,18 @@ export function convertLessonMDXToJSON(mdxContent: string, slug: string): Lesson
     blocks.push({ type: 'paragraph', content: currentParagraph.join(' ').trim() });
   }
   if (inList && listItems.length > 0) {
-    blocks.push({ type: 'list', items: listItems });
+    blocks.push({ type: 'list', content: '', items: listItems });
   }
   
   return {
     type: 'article',
     title,
-    blocks: blocks.filter(b => b.content || b.items?.length > 0),
+    blocks: blocks.filter(b => {
+      if (typeof b.content === 'string' && b.content.trim()) return true;
+      if (Array.isArray(b.content) && b.content.length > 0) return true;
+      if (b.items && b.items.length > 0) return true;
+      return false;
+    }),
   };
 }
 

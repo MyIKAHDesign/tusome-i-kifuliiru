@@ -18,7 +18,17 @@ interface BingiKuKifuliiruPageProps {
 }
 
 export default function BingiKuKifuliiruPage({ jsonContent, mdxSource, slug, contentType }: BingiKuKifuliiruPageProps) {
-  const title = jsonContent?.title || mdxSource?.frontmatter?.title || slug.split('/').pop() || 'Bingi ku Kifuliiru';
+  const getTitle = (): string => {
+    if (jsonContent && 'title' in jsonContent && typeof jsonContent.title === 'string') {
+      return jsonContent.title;
+    }
+    if (mdxSource?.frontmatter && typeof mdxSource.frontmatter === 'object' && 'title' in mdxSource.frontmatter) {
+      const frontmatterTitle = mdxSource.frontmatter.title;
+      if (typeof frontmatterTitle === 'string') return frontmatterTitle;
+    }
+    return slug.split('/').pop() || 'Bingi ku Kifuliiru';
+  };
+  const title = getTitle();
   
   return (
     <>
