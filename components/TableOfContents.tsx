@@ -63,35 +63,43 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
 
   return (
     <div className="hidden xl:block">
-      <div className="sticky top-24 w-56">
-        <nav className="border-l border-gray-200 dark:border-gray-800 pl-5">
+      <div className="sticky top-24 w-60">
+        <nav className="pl-6">
           <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">
             On this page
           </h3>
-          <ul className="space-y-1.5">
-            {headings.map((heading) => (
-              <li key={heading.id}>
-                <a
-                  href={`#${heading.id}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToHeading(heading.id);
-                  }}
-                  className={`
-                    block text-sm leading-relaxed transition-colors
-                    ${activeId === heading.id
-                      ? 'text-gray-900 dark:text-gray-100 font-medium'
-                      : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
-                    }
-                  `}
-                  style={{
-                    paddingLeft: `${(heading.level - 2) * 0.75}rem`,
-                  }}
-                >
-                  {heading.text}
-                </a>
-              </li>
-            ))}
+          <ul className="space-y-1">
+            {headings.map((heading) => {
+              const isActive = activeId === heading.id;
+              const indentLevel = heading.level - 2;
+              
+              return (
+                <li key={heading.id}>
+                  <a
+                    href={`#${heading.id}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToHeading(heading.id);
+                    }}
+                    className={`
+                      relative block text-sm py-1.5 transition-all duration-150
+                      ${isActive
+                        ? 'text-gray-900 dark:text-gray-100 font-medium'
+                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
+                      }
+                    `}
+                    style={{
+                      paddingLeft: indentLevel > 0 ? `${indentLevel * 1}rem` : '0',
+                    }}
+                  >
+                    {isActive && (
+                      <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-4 bg-gray-900 dark:bg-gray-100 rounded-full" />
+                    )}
+                    <span className={isActive ? 'relative' : ''}>{heading.text}</span>
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </div>
