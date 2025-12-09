@@ -28,25 +28,22 @@ export default function Home() {
           
           {/* Flag Image */}
           <div className="flex justify-center mb-6 px-4">
-            <div className="relative inline-block max-w-full group">
-              <div className="relative transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                {/* Image container */}
-                <div className="relative rounded-[1.5rem] overflow-visible" style={{ zIndex: 10 }}>
-                  {/* Glow effect around the flag only, 2cm from edges using flag colors - Blue, Yellow, Red */}
-                  <div className="absolute -inset-[0.5rem] bg-gradient-to-br from-blue-500/12 via-yellow-400/10 to-red-500/12 blur-2xl rounded-[1.5rem] dark:from-blue-500/10 dark:via-yellow-400/8 dark:to-red-500/10 pointer-events-none" style={{ zIndex: -1 }}></div>
-                  <div className="absolute -inset-[0.4rem] bg-gradient-to-tr from-blue-400/10 via-yellow-300/8 to-red-400/10 blur-xl rounded-[1.5rem] dark:from-blue-400/8 dark:via-yellow-300/6 dark:to-red-400/8 pointer-events-none" style={{ zIndex: -1 }}></div>
+            <div className="relative inline-block max-w-full">
+              <div className="relative">
+                {/* Image */}
+                <div className="relative rounded-[1.5rem] overflow-hidden">
+                  <Image
+                    src="/.github/DRCongo.png"
+                    alt="DR Congo Flag"
+                    width={400}
+                    height={267}
+                    className="rounded-[1.5rem] object-cover w-full h-auto"
+                    priority
+                  />
                   
-                  {/* Image */}
-                  <div className="relative rounded-[1.5rem] overflow-hidden">
-                    <Image
-                      src="/.github/DRCongo.png"
-                      alt="DR Congo Flag"
-                      width={400}
-                      height={267}
-                      className="rounded-[1.5rem] object-cover w-full h-auto"
-                      priority
-                    />
-                  </div>
+                  {/* Glow effect around the flag content only, using flag colors - Blue, Yellow, Red */}
+                  <div className="absolute inset-[2%] -inset-[0.5rem] bg-gradient-to-br from-blue-500/12 via-yellow-400/10 to-red-500/12 blur-2xl rounded-[1.2rem] dark:from-blue-500/10 dark:via-yellow-400/8 dark:to-red-500/10 pointer-events-none" style={{ zIndex: -1 }}></div>
+                  <div className="absolute inset-[2%] -inset-[0.4rem] bg-gradient-to-tr from-blue-400/10 via-yellow-300/8 to-red-400/10 blur-xl rounded-[1.2rem] dark:from-blue-400/8 dark:via-yellow-300/6 dark:to-red-400/8 pointer-events-none" style={{ zIndex: -1 }}></div>
                 </div>
               </div>
             </div>
