@@ -102,32 +102,57 @@ export default function ImwituPage({ jsonContent, mdxSource, slug, contentType }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const allSlugs = getAllContentSlugs();
-  const imwituSlugs = allSlugs.filter(slug => slug.startsWith('imwitu/') || slug === 'imwitu');
+  // Include both nested (imwitu/...) and root-level imwitu-related pages
+  const imwituRelatedSlugs = ['ibufuliiru', 'imigazi', 'inyiji', 'utwaya'];
+  const imwituSlugs = allSlugs.filter(slug => 
+    slug.startsWith('imwitu/') || 
+    slug === 'imwitu' ||
+    imwituRelatedSlugs.includes(slug)
+  );
   
   return {
-    paths: imwituSlugs.map((slug) => ({
-      params: { slug: slug === 'imwitu' ? [] : slug.replace('imwitu/', '').split('/') },
-    })),
+    paths: imwituSlugs.map((slug) => {
+      if (slug === 'imwitu') {
+        return { params: { slug: [] } };
+      }
+      if (slug.startsWith('imwitu/')) {
+        return { params: { slug: slug.replace('imwitu/', '').split('/') } };
+      }
+      // Root-level imwitu pages
+      return { params: { slug: [slug] } };
+    }),
     fallback: false,
   };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slugArray = params?.slug as string[] || [];
-  const slug = slugArray.length > 0 ? `imwitu/${slugArray.join('/')}` : 'imwitu';
+  const nestedSlug = slugArray.length > 0 ? `imwitu/${slugArray.join('/')}` : 'imwitu';
+  const rootSlug = slugArray.length > 0 ? slugArray.join('/') : 'imwitu';
   
-  const jsonContent = getContentData(slug);
+  // Try nested path first (imwitu/imigazi)
+  let jsonContent = getContentData(nestedSlug);
+  let mdxContent = getContentBySlug(nestedSlug);
+  
+  // If not found, try root-level slug (imigazi)
+  if (!jsonContent && !mdxContent) {
+    jsonContent = getContentData(rootSlug);
+    mdxContent = getContentBySlug(rootSlug);
+  }
+  
+  // Use the slug that worked (prefer nested for consistency)
+  const finalSlug = jsonContent || mdxContent ? nestedSlug : rootSlug;
+  
   if (jsonContent) {
     return {
       props: {
         jsonContent,
-        slug,
+        slug: finalSlug,
         contentType: 'json' as const,
       },
     };
   }
 
-  const mdxContent = getContentBySlug(slug);
   if (mdxContent) {
     const mdxSource = await serialize(mdxContent.content, {
       parseFrontmatter: true,
@@ -135,7 +160,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return {
       props: {
         mdxSource,
-        slug,
+        slug: finalSlug,
         contentType: 'mdx' as const,
       },
     };
@@ -143,7 +168,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: {
-      slug,
+      slug: finalSlug,
       contentType: 'json' as const,
     },
   };
