@@ -9,7 +9,7 @@ export interface ContentItem {
   content: string;
   data: {
     title?: string;
-    [key: string]: any;
+    [key: string]: unknown;
   };
 }
 
@@ -75,7 +75,7 @@ export function getContentBySlug(slug: string): ContentItem | null {
     return {
       slug,
       content,
-      data: data as any,
+      data: data,
     };
   } catch (error) {
     console.error(`Error loading content for slug: ${slug}`, error);

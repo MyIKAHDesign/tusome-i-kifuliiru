@@ -3,15 +3,16 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { getContentData } from '../../lib/json-content-loader';
 import { getContentBySlug } from '../../lib/content-loader';
 import ContentRenderer from '../../components/content/ContentRenderer';
-import { MDXRemote } from 'next-mdx-remote';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import { mdxComponents } from '../../mdx-components';
 import SEO from '../../components/SEO';
 import { getAllContentSlugs } from '../../lib/content-loader';
+import { ContentData } from '../../lib/content-schema';
 
 interface BingiKuKifuliiruPageProps {
-  jsonContent?: any;
-  mdxSource?: any;
+  jsonContent?: ContentData;
+  mdxSource?: MDXRemoteSerializeResult;
   slug: string;
   contentType: 'json' | 'mdx';
 }

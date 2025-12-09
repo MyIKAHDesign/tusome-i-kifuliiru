@@ -23,7 +23,7 @@ export default function ContentRenderer({ content }: ContentRendererProps) {
     default:
       return (
         <div className="p-8 text-center text-gray-500 dark:text-gray-400">
-          <p>Content type not supported: {(content as any).type}</p>
+          <p>Content type not supported: {content.type}</p>
         </div>
       );
   }

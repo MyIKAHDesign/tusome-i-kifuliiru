@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import Link from 'next/link';
-import { LessonContent } from '../../lib/content-schema';
+import { LessonContent, TextBlock } from '../../lib/content-schema';
 import Image from 'next/image';
 import { FileText, Quote } from 'lucide-react';
 import TableOfContents from '../TableOfContents';
@@ -61,7 +61,7 @@ const parseMarkdown = (text: string): React.ReactNode[] => {
     
     // Parse bold+italic: ***text*** or _**text**_
     const boldItalicRegex = /(\*\*\*|_\*\*)([^*_]+?)(\*\*\*|\*\*_)/g;
-    let match;
+    let match: RegExpExecArray | null;
     const boldItalicMatches: Array<{start: number, end: number, text: string}> = [];
     
     while ((match = boldItalicRegex.exec(segment)) !== null) {
@@ -79,7 +79,7 @@ const parseMarkdown = (text: string): React.ReactNode[] => {
     while ((match = boldRegex.exec(segment)) !== null) {
       // Check if this match is already covered by a bold+italic match
       const isCovered = boldItalicMatches.some(m => 
-        match.index >= m.start && match.index + match[0].length <= m.end
+        match!.index >= m.start && match!.index + match![0].length <= m.end
       );
       if (!isCovered) {
         boldMatches.push({
@@ -98,9 +98,9 @@ const parseMarkdown = (text: string): React.ReactNode[] => {
       const matchText = match[1] || match[2];
       // Check if this match is already covered by bold or bold+italic
       const isCovered = boldItalicMatches.some(m => 
-        match.index >= m.start && match.index + match[0].length <= m.end
+        match!.index >= m.start && match!.index + match![0].length <= m.end
       ) || boldMatches.some(m => 
-        match.index >= m.start && match.index + match[0].length <= m.end
+        match!.index >= m.start && match!.index + match![0].length <= m.end
       );
       if (!isCovered) {
         italicMatches.push({
@@ -229,8 +229,8 @@ export default function Lesson({ content }: LessonProps) {
   // Extract headings for TOC
   const headings = useMemo(() => {
     return content.blocks
-      .filter((block: any) => block.type === 'heading' && block.level && block.level >= 2 && block.level <= 4)
-      .map((block: any) => {
+      .filter((block: TextBlock) => block.type === 'heading' && block.level && block.level >= 2 && block.level <= 4)
+      .map((block: TextBlock) => {
         const text = typeof block.content === 'string' ? block.content : '';
         return {
           id: generateHeadingId(text),
@@ -240,7 +240,7 @@ export default function Lesson({ content }: LessonProps) {
       });
   }, [content.blocks]);
 
-  const renderBlock = (block: any, index: number) => {
+  const renderBlock = (block: TextBlock, index: number) => {
     switch (block.type) {
       case 'heading':
         const level = block.level || 2;

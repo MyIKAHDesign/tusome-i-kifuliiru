@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 function normalizeImageSrc(src: string | undefined): string {
   if (!src) return '/';
@@ -39,8 +40,19 @@ const generateHeadingId = (text: string): string => {
     .trim();
 };
 
+interface ImageProps extends React.ComponentPropsWithoutRef<'img'> {
+  src?: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+}
+
+interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
+  children?: React.ReactNode;
+}
+
 export const mdxComponents = {
-  img: (props: any) => {
+  img: (props: ImageProps) => {
     const normalizedSrc = normalizeImageSrc(props.src);
     
     if (normalizedSrc.startsWith('http://') || normalizedSrc.startsWith('https://')) {
@@ -65,22 +77,22 @@ export const mdxComponents = {
       />
     );
   },
-  h1: ({ children, ...props }: any) => {
+  h1: ({ children, ...props }: HeadingProps) => {
     const text = typeof children === 'string' ? children : React.Children.toArray(children).join('');
     const id = generateHeadingId(text);
     return <h1 id={id} className="scroll-mt-24" {...props}>{children}</h1>;
   },
-  h2: ({ children, ...props }: any) => {
+  h2: ({ children, ...props }: HeadingProps) => {
     const text = typeof children === 'string' ? children : React.Children.toArray(children).join('');
     const id = generateHeadingId(text);
     return <h2 id={id} className="scroll-mt-24" {...props}>{children}</h2>;
   },
-  h3: ({ children, ...props }: any) => {
+  h3: ({ children, ...props }: HeadingProps) => {
     const text = typeof children === 'string' ? children : React.Children.toArray(children).join('');
     const id = generateHeadingId(text);
     return <h3 id={id} className="scroll-mt-24" {...props}>{children}</h3>;
   },
-  h4: ({ children, ...props }: any) => {
+  h4: ({ children, ...props }: HeadingProps) => {
     const text = typeof children === 'string' ? children : React.Children.toArray(children).join('');
     const id = generateHeadingId(text);
     return <h4 id={id} className="scroll-mt-24" {...props}>{children}</h4>;

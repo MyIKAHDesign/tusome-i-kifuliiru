@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { GetStaticProps } from 'next';
 import { getContentData } from '../lib/json-content-loader';
 import { getContentBySlug } from '../lib/content-loader';
-import { MDXRemote } from 'next-mdx-remote';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import { mdxComponents } from '../mdx-components';
 import ContentRenderer from '../components/content/ContentRenderer';
 import PageNavigation from '../components/PageNavigation';
 import TableOfContents from '../components/TableOfContents';
-import { useEffect, useState } from 'react';
+import { ContentData, TextBlock, LessonContent } from '../lib/content-schema';
 
 interface NdondeeroTusomePageProps {
-  jsonContent?: any;
-  mdxSource?: any;
+  jsonContent?: ContentData;
+  mdxSource?: MDXRemoteSerializeResult;
   contentType: 'json' | 'mdx';
 }
 
@@ -35,15 +35,17 @@ export default function NdondeeroTusomePage({ jsonContent, mdxSource, contentTyp
         };
       });
       setHeadings(extractedHeadings);
-    } else if (contentType === 'json' && jsonContent) {
+    } else if (contentType === 'json' && jsonContent && (jsonContent.type === 'lesson' || jsonContent.type === 'article')) {
       // Extract headings from JSON content
+      const lessonContent = jsonContent as LessonContent;
       const extractedHeadings: Array<{ id: string; text: string; level: number }> = [];
-      jsonContent.data?.blocks?.forEach((block: any, index: number) => {
-        if (block.type === 'heading' && block.level >= 2 && block.level <= 4) {
-          const id = block.content?.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').trim() || `heading-${index}`;
+      lessonContent.blocks?.forEach((block: TextBlock, index: number) => {
+        if (block.type === 'heading' && block.level && block.level >= 2 && block.level <= 4) {
+          const content = typeof block.content === 'string' ? block.content : '';
+          const id = content.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').trim() || `heading-${index}`;
           extractedHeadings.push({
             id,
-            text: block.content || '',
+            text: content,
             level: block.level,
           });
         }
