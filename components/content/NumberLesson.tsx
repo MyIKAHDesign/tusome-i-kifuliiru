@@ -386,6 +386,13 @@ export default function NumberLesson({ content }: NumberLessonProps) {
           </button>
         </div>
       )}
+
+      {/* Table section - displayed after numbers */}
+      {content.table && (
+        <div className="mt-12">
+          {renderContentWithTables(content.table)}
+        </div>
+      )}
     </div>
   );
 }

@@ -26,6 +26,7 @@ export interface NumberLessonContent {
   description?: string;
   range: string;
   sections: NumberSection[];
+  table?: string; // Optional markdown table to display after numbers
 }
 
 export interface VocabularyEntry {
