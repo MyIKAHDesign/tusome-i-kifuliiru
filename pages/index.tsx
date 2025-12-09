@@ -30,16 +30,25 @@ export default function Home() {
             Tusome i Kifuliiru
           </h1>
           
-          {/* Flag Image */}
+          {/* Flag Image - Glowing Container */}
           <div className="flex justify-center mb-6">
-            <Image
-              src="/.github/DRCongo.png"
-              alt="DR Congo Flag"
-              width={400}
-              height={267}
-              className="rounded-lg shadow-lg"
-              priority
-            />
+            <div className="relative inline-block">
+              {/* Glow effect using flag colors - Blue, Yellow, Red */}
+              <div className="absolute -inset-4 bg-gradient-to-br from-blue-500 via-yellow-400 to-red-500 rounded-2xl blur-2xl opacity-60 dark:opacity-40 animate-pulse"></div>
+              <div className="absolute -inset-3 bg-gradient-to-tr from-blue-400 via-yellow-300 to-red-400 rounded-xl blur-xl opacity-50 dark:opacity-30"></div>
+              
+              {/* Image container */}
+              <div className="relative rounded-xl overflow-hidden">
+                <Image
+                  src="/.github/DRCongo.png"
+                  alt="DR Congo Flag"
+                  width={400}
+                  height={267}
+                  className="rounded-xl object-cover relative z-10"
+                  priority
+                />
+              </div>
+            </div>
           </div>
           
           {/* Gwajiika Content - Hero Text */}
