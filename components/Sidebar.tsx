@@ -81,26 +81,29 @@ export default function Sidebar({ meta }: SidebarProps) {
   };
 
   const getIcon = (key: string, level: number) => {
+    // Uniform icon size for all icons
+    const iconClass = "w-4 h-4 flex-shrink-0";
+    
     // Main level items get specific icons
     if (level === 0) {
       switch (key) {
         case 'index':
         case 'muyegerere':
-          return <Home className="w-4 h-4" />;
+          return <Home className={iconClass} />;
         case 'gwajiika':
-          return <Info className="w-4 h-4" />;
+          return <Info className={iconClass} />;
         case 'ndondeero_tusome':
-          return <BookOpen className="w-4 h-4" />;
+          return <BookOpen className={iconClass} />;
         case 'ukuharura':
-          return <Calculator className="w-4 h-4" />;
+          return <Calculator className={iconClass} />;
         case 'amagambo':
-          return <Sparkles className="w-4 h-4" />;
+          return <Sparkles className={iconClass} />;
         default:
-          return <FileText className="w-4 h-4" />;
+          return <FileText className={iconClass} />;
       }
     }
-    // Nested items (ukuharura sub-items) use FileText
-    return <FileText className="w-4 h-4" />;
+    // Nested items (ukuharura sub-items) use FileText with uniform size
+    return <FileText className={iconClass} />;
   };
 
   // Exclude header navigation items from sidebar
@@ -150,12 +153,13 @@ export default function Sidebar({ meta }: SidebarProps) {
       const isExpanded = expandedGroups.has(key);
       
       // Get appropriate icon for menu items
+      const iconClass = "w-4 h-4 flex-shrink-0";
       const menuIcon = (() => {
         switch (key) {
           case 'ukuharura':
-            return <Calculator className="w-4 h-4" />;
+            return <Calculator className={iconClass} />;
           default:
-            return <Folder className="w-4 h-4" />;
+            return <Folder className={iconClass} />;
         }
       })();
       
@@ -175,7 +179,7 @@ export default function Sidebar({ meta }: SidebarProps) {
               {menuIcon}
               <span>{displayTitle}</span>
             </div>
-            <ChevronRight className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
+            <ChevronRight className={`w-4 h-4 flex-shrink-0 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
           </button>
           {isExpanded && (
             <ul className="mt-1 ml-6 pl-4 border-l border-gray-200 dark:border-gray-800 space-y-1">
@@ -196,19 +200,20 @@ export default function Sidebar({ meta }: SidebarProps) {
     const isActive = currentPath === docHref || currentPath === `/docs/${fullPath}` || currentPath === `/docs/${key}`;
 
     // Get appropriate icon for page items
+    const iconClass = "w-4 h-4 flex-shrink-0";
     const pageIcon = (() => {
       switch (key) {
         case 'muyegerere':
         case 'index':
-          return <Home className="w-4 h-4" />;
+          return <Home className={iconClass} />;
         case 'gwajiika':
-          return <Info className="w-4 h-4" />;
+          return <Info className={iconClass} />;
         case 'ndondeero_tusome':
-          return <BookOpen className="w-4 h-4" />;
+          return <BookOpen className={iconClass} />;
         case 'amagambo':
-          return <Sparkles className="w-4 h-4" />;
+          return <Sparkles className={iconClass} />;
         default:
-          return <Book className="w-4 h-4" />;
+          return <Book className={iconClass} />;
       }
     })();
 
