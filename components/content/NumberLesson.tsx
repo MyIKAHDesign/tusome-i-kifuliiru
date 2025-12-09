@@ -165,6 +165,90 @@ const parseMarkdown = (text: string): React.ReactNode[] => {
   return parseSegment(text);
 };
 
+// Parse markdown table and return table structure
+const parseMarkdownTable = (text: string): { headers: string[], rows: string[][] } | null => {
+  const lines = text.trim().split('\n');
+  if (lines.length < 2) return null;
+  
+  // Check if it looks like a markdown table (starts with |)
+  const firstLine = lines[0].trim();
+  if (!firstLine.startsWith('|') || !firstLine.endsWith('|')) return null;
+  
+  // Check for separator line (contains ---)
+  const secondLine = lines[1].trim();
+  if (!secondLine.includes('---')) return null;
+  
+  // Parse headers
+  const headers = firstLine.split('|')
+    .map(cell => cell.trim())
+    .filter(cell => cell.length > 0);
+  
+  // Parse rows
+  const rows: string[][] = [];
+  for (let i = 2; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (!line.startsWith('|')) continue;
+    
+    const row = line.split('|')
+      .map(cell => cell.trim())
+      .filter(cell => cell.length > 0);
+    
+    if (row.length > 0) {
+      rows.push(row);
+    }
+  }
+  
+  if (headers.length === 0 || rows.length === 0) return null;
+  
+  return { headers, rows };
+};
+
+// Render content that may contain tables
+const renderContentWithTables = (text: string): React.ReactNode => {
+  // Try to parse as table first
+  const tableData = parseMarkdownTable(text);
+  if (tableData) {
+    return (
+      <div className="my-8 overflow-x-auto">
+        <table className="w-full border-collapse rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800">
+          <thead>
+            <tr>
+              {tableData.headers.map((header, i) => (
+                <th
+                  key={i}
+                  className="p-4 text-left bg-white dark:bg-gray-900 font-semibold text-gray-900 dark:text-gray-100 border-b border-gray-200 dark:border-gray-800"
+                >
+                  {parseMarkdown(header)}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.rows.map((row, rowIndex) => (
+              <tr
+                key={rowIndex}
+                className="hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
+              >
+                {row.map((cell, cellIndex) => (
+                  <td
+                    key={cellIndex}
+                    className="p-4 text-left border-b border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300"
+                  >
+                    {parseMarkdown(cell)}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+  
+  // Otherwise render as regular markdown
+  return <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{parseMarkdown(text)}</p>;
+};
+
 interface NumberLessonProps {
   content: NumberLessonContent;
 }
@@ -209,9 +293,9 @@ export default function NumberLesson({ content }: NumberLessonProps) {
           </div>
         </div>
         {content.description && (
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            {parseMarkdown(content.description)}
-          </p>
+          <div>
+            {renderContentWithTables(content.description)}
+          </div>
         )}
       </div>
 

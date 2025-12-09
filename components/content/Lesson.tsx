@@ -8,6 +8,44 @@ interface LessonProps {
   content: LessonContent;
 }
 
+// Parse markdown table and return table structure
+const parseMarkdownTable = (text: string): { headers: string[], rows: string[][] } | null => {
+  const lines = text.trim().split('\n');
+  if (lines.length < 2) return null;
+  
+  // Check if it looks like a markdown table (starts with |)
+  const firstLine = lines[0].trim();
+  if (!firstLine.startsWith('|') || !firstLine.endsWith('|')) return null;
+  
+  // Check for separator line (contains ---)
+  const secondLine = lines[1].trim();
+  if (!secondLine.includes('---')) return null;
+  
+  // Parse headers
+  const headers = firstLine.split('|')
+    .map(cell => cell.trim())
+    .filter(cell => cell.length > 0);
+  
+  // Parse rows
+  const rows: string[][] = [];
+  for (let i = 2; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (!line.startsWith('|')) continue;
+    
+    const row = line.split('|')
+      .map(cell => cell.trim())
+      .filter(cell => cell.length > 0);
+    
+    if (row.length > 0) {
+      rows.push(row);
+    }
+  }
+  
+  if (headers.length === 0 || rows.length === 0) return null;
+  
+  return { headers, rows };
+};
+
 // Parse markdown formatting (bold, italic, links) and convert to React elements
 const parseMarkdown = (text: string): React.ReactNode[] => {
   if (typeof text !== 'string') return [text];
@@ -199,12 +237,52 @@ export default function Lesson({ content }: LessonProps) {
         return <h2 {...headingProps} />;
 
       case 'paragraph':
+        // Check if content contains a markdown table
+        const content = block.content as string;
+        const tableData = parseMarkdownTable(content);
+        if (tableData) {
+          return (
+            <div key={index} className="my-8 overflow-x-auto">
+              <table className="w-full border-collapse rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800">
+                <thead>
+                  <tr>
+                    {tableData.headers.map((header, i) => (
+                      <th
+                        key={i}
+                        className="p-4 text-left bg-white dark:bg-gray-900 font-semibold text-gray-900 dark:text-gray-100 border-b border-gray-200 dark:border-gray-800"
+                      >
+                        {parseMarkdown(header)}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {tableData.rows.map((row, rowIndex) => (
+                    <tr
+                      key={rowIndex}
+                      className="hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
+                    >
+                      {row.map((cell, cellIndex) => (
+                        <td
+                          key={cellIndex}
+                          className="p-4 text-left border-b border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300"
+                        >
+                          {parseMarkdown(cell)}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
         return (
           <p
             key={index}
             className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6"
           >
-            {parseMarkdown(block.content as string)}
+            {parseMarkdown(content)}
           </p>
         );
 
@@ -241,6 +319,47 @@ export default function Lesson({ content }: LessonProps) {
               height={600}
               className="rounded-lg shadow-lg w-full h-auto"
             />
+          </div>
+        );
+
+      case 'table':
+        const headers = block.headers || [];
+        const rows = block.rows || [];
+        return (
+          <div key={index} className="my-8 overflow-x-auto">
+            <table className="w-full border-collapse rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800">
+              {headers.length > 0 && (
+                <thead>
+                  <tr>
+                    {headers.map((header, i) => (
+                      <th
+                        key={i}
+                        className="p-4 text-left bg-white dark:bg-gray-900 font-semibold text-gray-900 dark:text-gray-100 border-b border-gray-200 dark:border-gray-800"
+                      >
+                        {parseMarkdown(header)}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+              )}
+              <tbody>
+                {rows.map((row, rowIndex) => (
+                  <tr
+                    key={rowIndex}
+                    className="hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
+                  >
+                    {row.map((cell, cellIndex) => (
+                      <td
+                        key={cellIndex}
+                        className="p-4 text-left border-b border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300"
+                      >
+                        {parseMarkdown(cell)}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         );
 

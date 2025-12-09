@@ -46,12 +46,14 @@ export interface VocabularyContent {
 }
 
 export interface TextBlock {
-  type: 'heading' | 'paragraph' | 'list' | 'quote' | 'image';
+  type: 'heading' | 'paragraph' | 'list' | 'quote' | 'image' | 'table';
   content: string | string[];
   level?: number; // for headings
   items?: string[]; // for lists
   src?: string; // for images
   alt?: string; // for images
+  rows?: string[][]; // for tables: array of rows, each row is array of cells
+  headers?: string[]; // for tables: header row
 }
 
 export interface LessonContent {
