@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { getAllContentSlugs } from '../lib/content-loader';
@@ -285,7 +285,12 @@ const getPageTitle = (slug: string): string => {
 
 export default function PageNavigation({ currentSlug }: PageNavigationProps) {
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
   const navigationOrder = getNavigationOrder();
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   
   // Get current slug from router if not provided
   const routerSlug = router.asPath.split('?')[0].replace(/^\//, '').replace(/\/$/, '') || '';
@@ -298,6 +303,11 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
   
   const prevSlug = currentIndex > 0 ? navigationOrder[currentIndex - 1] : null;
   const nextSlug = currentIndex < navigationOrder.length - 1 ? navigationOrder[currentIndex + 1] : null;
+  
+  // Don't render until mounted to avoid hydration mismatch
+  if (!mounted) {
+    return null;
+  }
   
   const getHref = (slug: string): string => {
     if (slug === '') return '/';
