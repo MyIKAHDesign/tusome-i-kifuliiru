@@ -81,7 +81,39 @@
       },
       {
         "type": "paragraph",
-        "content": "A -> a = [a] B -> b = [bhe]. Ino herufi tumugisoma nga b igwatini ne' h. Kwo kudeta mu Kifuliiru tutamudeta b haliko bh. C -> c = [ch]. D -> d = [de] E -> e = [e] F -> f = [fe] G -> g = [ge] H -> h = [he] I -> i = [i] J -> j = [je] K -> k = [ke] L -> l = [le] M -> m = [me] N -> n = [ne] O -> o = [o] P -> p = [pe] R -> r = [re] S -> s = [se] T -> t = [te] U -> u = [u] V -> v = [ve] W -> w = [we] Y -> y = [ye] Z -> z = [ze]"
+        "content": "A -> a = [a]"
+      },
+      {
+        "type": "paragraph",
+        "content": "B -> b = [bhe]. Ino herufi tumugisoma nga b igwatini ne' h. Kwo kudeta mu Kifuliiru tutamudeta b haliko bh."
+      },
+      {
+        "type": "table",
+        "headers": ["Herufi mbamu", "Herufi niini", "Injira yo'kusoma"],
+        "rows": [
+          ["C", "c", "[ch]"],
+          ["D", "d", "[de]"],
+          ["E", "e", "[e]"],
+          ["F", "f", "[fe]"],
+          ["G", "g", "[ge]"],
+          ["H", "h", "[he]"],
+          ["I", "i", "[i]"],
+          ["J", "j", "[je]"],
+          ["K", "k", "[ke]"],
+          ["L", "l", "[le]"],
+          ["M", "m", "[me]"],
+          ["N", "n", "[ne]"],
+          ["O", "o", "[o]"],
+          ["P", "p", "[pe]"],
+          ["R", "r", "[re]"],
+          ["S", "s", "[se]"],
+          ["T", "t", "[te]"],
+          ["U", "u", "[u]"],
+          ["V", "v", "[ve]"],
+          ["W", "w", "[we]"],
+          ["Y", "y", "[ye]"],
+          ["Z", "z", "[ze]"]
+        ]
       }
     ]
   },
