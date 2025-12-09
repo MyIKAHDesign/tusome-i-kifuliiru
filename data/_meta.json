@@ -105,7 +105,42 @@
     }
   },
   "ndondeero_tusome": "Menya Bino",
-  "amagambo": "Tusome Amagambo",
+  "amagambo": {
+    "title": "Tusome Amagambo",
+    "type": "menu",
+    "items": {
+      "ndondeero-amagambo": {
+        "title": "Menya bino",
+        "type": "page",
+        "href": "/amagambo/ndondeero-amagambo"
+      },
+      "ulufwabe": {
+        "title": "Ulufwabe lwe'Kifuliiru",
+        "type": "page",
+        "href": "/amagambo/ulufwabe"
+      },
+      "herufi": {
+        "title": "Herufi ze'Kifuliiru",
+        "type": "page",
+        "href": "/amagambo/herufi"
+      },
+      "amagambo": {
+        "title": "Amagambo",
+        "type": "page",
+        "href": "/amagambo/amagambo"
+      },
+      "buniini-bwingi": {
+        "title": "Ubuniini no'bwingi",
+        "type": "page",
+        "href": "/amagambo/buniini-bwingi"
+      },
+      "abaana": {
+        "title": "Abaana",
+        "type": "page",
+        "href": "/amagambo/abaana"
+      }
+    }
+  },
   "kifuliiru": {
     "title": "Kifuliiru",
     "type": "page"
