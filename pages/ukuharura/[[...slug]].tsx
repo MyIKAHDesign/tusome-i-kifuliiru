@@ -8,10 +8,11 @@ import { mdxComponents } from '../../mdx-components';
 import ContentRenderer from '../../components/content/ContentRenderer';
 import PageNavigation from '../../components/PageNavigation';
 import TableOfContents from '../../components/TableOfContents';
+import { ContentData } from '../../lib/content-schema';
 
 interface UkuharuraPageProps {
   mdxSource?: MDXRemoteSerializeResult;
-  jsonContent?: any;
+  jsonContent?: ContentData;
   slug: string;
   contentType: 'mdx' | 'json';
 }

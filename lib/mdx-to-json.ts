@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { NumberLessonContent, ContentItem, ContentType, LessonContent } from './content-schema';
+import { NumberLessonContent, ContentItem, ContentType, LessonContent, NumberSection, NumberEntry, TextBlock } from './content-schema';
 
 /**
  * Converts a number lesson MDX file to JSON format
@@ -19,7 +19,7 @@ export function convertNumberLessonMDXToJSON(mdxContent: string, slug: string): 
   const description = descMatch?.[1]?.trim() || '';
   
   // Extract sections - look for ### headings
-  const sections: any[] = [];
+  const sections: NumberSection[] = [];
   
   // Split by ### headings
   const sectionParts = content.split(/^###\s+/gm).slice(1); // Skip first part (before first ###)
@@ -34,7 +34,7 @@ export function convertNumberLessonMDXToJSON(mdxContent: string, slug: string): 
     const sectionRange = sectionTitleMatch?.[2] || '';
     
     // Extract numbers from remaining lines
-    const numbers: any[] = [];
+    const numbers: NumberEntry[] = [];
     for (let i = 1; i < lines.length; i++) {
       const line = lines[i].trim();
       if (!line || line.startsWith('#')) break; // Stop at next heading or empty
@@ -69,7 +69,7 @@ export function convertNumberLessonMDXToJSON(mdxContent: string, slug: string): 
       const lines = mainSection.split('\n');
       const sectionTitle = lines[0]?.trim() || '';
       
-      const numbers: any[] = [];
+      const numbers: NumberEntry[] = [];
       for (let i = 1; i < lines.length; i++) {
         const line = lines[i].trim();
         if (!line || line.startsWith('#')) continue;
@@ -114,7 +114,7 @@ export function convertNumberLessonMDXToJSON(mdxContent: string, slug: string): 
           };
         }
         return null;
-      }).filter(Boolean) as any[];
+      }).filter((n): n is NumberEntry => n !== null);
       
       if (numbers.length > 0) {
         sections.push({
@@ -148,7 +148,7 @@ export function convertLessonMDXToJSON(mdxContent: string, slug: string): Lesson
   const titleMatch = content.match(/^#\s+(.+)$/m);
   const title = data.title || titleMatch?.[1]?.trim() || slug;
   
-  const blocks: any[] = [];
+  const blocks: TextBlock[] = [];
   const lines = content.split('\n');
   
   let currentParagraph: string[] = [];
@@ -264,7 +264,7 @@ export function migrateMDXToJSON(mdxPath: string, outputPath: string): boolean {
     const fullSlug = relativeDir === '.' || relativeDir === '' ? slug : `${relativeDir}/${slug}`;
     
     // Detect content type
-    let contentData: any = null;
+    let contentData: NumberLessonContent | LessonContent | null = null;
     let contentType: ContentType = 'article';
     
     // Check if it's a number lesson (ukuharura folder or number-related files)

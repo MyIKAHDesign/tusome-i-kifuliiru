@@ -7,6 +7,14 @@ interface SearchResult {
   path: string;
 }
 
+interface MetaItem {
+  title?: string;
+  type?: 'page' | 'menu' | 'link';
+  href?: string;
+  newWindow?: boolean;
+  items?: Record<string, MetaItem | string>;
+}
+
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -22,7 +30,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const pagesDir = path.join(process.cwd(), 'pages');
 
     // Simple search through _meta.json files
-    const searchInMeta = (dir: string, meta: any, basePath: string = '') => {
+    const searchInMeta = (dir: string, meta: Record<string, MetaItem | string>, basePath: string = '') => {
       for (const [key, value] of Object.entries(meta)) {
         if (typeof value === 'string') {
           if (value.toLowerCase().includes(query)) {
@@ -32,7 +40,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             });
           }
         } else if (value && typeof value === 'object') {
-          const item = value as any;
+          const item = value as MetaItem;
           const title = item.title || key;
           if (title.toLowerCase().includes(query)) {
             results.push({

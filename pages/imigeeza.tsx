@@ -2,14 +2,15 @@ import React from 'react';
 import { getContentData } from '../lib/json-content-loader';
 import { getContentBySlug } from '../lib/content-loader';
 import ContentRenderer from '../components/content/ContentRenderer';
-import { MDXRemote } from 'next-mdx-remote';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import { mdxComponents } from '../mdx-components';
 import SEO from '../components/SEO';
+import { ContentData } from '../lib/content-schema';
 
 interface ImigeezaPageProps {
-  jsonContent?: any;
-  mdxSource?: any;
+  jsonContent?: ContentData;
+  mdxSource?: MDXRemoteSerializeResult;
   contentType: 'json' | 'mdx';
 }
 

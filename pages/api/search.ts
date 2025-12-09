@@ -23,8 +23,16 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     // Header navigation items to exclude from sidebar search
     const headerNavItems = ['kifuliiru', 'imigani', 'imigeeza', 'imwitu', 'bingi-ku-kifuliiru', 'twehe', 'contact', 'eng-frn-swa'];
     
+    interface MetaItem {
+      title?: string;
+      type?: 'page' | 'menu' | 'link';
+      href?: string;
+      newWindow?: boolean;
+      items?: Record<string, MetaItem | string>;
+    }
+
     // Search through meta.json (sidebar content)
-    const searchInMeta = (metaObj: any, basePath: string = '', isHeaderNav: boolean = false) => {
+    const searchInMeta = (metaObj: Record<string, MetaItem | string>, basePath: string = '', isHeaderNav: boolean = false) => {
       for (const [key, value] of Object.entries(metaObj)) {
         // Skip header navigation items when searching sidebar
         if (headerNavItems.includes(key) && !isHeaderNav) {
@@ -40,7 +48,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             });
           }
         } else if (value && typeof value === 'object') {
-          const item = value as any;
+          const item = value as MetaItem;
           const title = item.title || key;
           if (title.toLowerCase().includes(query)) {
             // Handle different path types
