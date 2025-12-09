@@ -175,53 +175,49 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         <button
           onClick={() => setOpenDropdown(isOpen ? null : key)}
           className={`
-            flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all
+            flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all
             ${
               router.asPath.startsWith(`/${key}`)
                 ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
-                : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900'
+                : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900/50'
             }
           `}
         >
           {getIcon(key)}
           <span>{item.title}</span>
           <ChevronDown
-            className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+            className={`w-3.5 h-3.5 transition-transform ${isOpen ? 'rotate-180' : ''}`}
           />
         </button>
 
         {isOpen && (
           <>
-            {/* Indicator Arrow - More visible with larger size and shadow */}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[12px] border-r-[12px] border-b-[12px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-gray-600 z-[51] shadow-lg" />
-            <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[11px] border-r-[11px] border-b-[11px] border-l-transparent border-r-transparent border-b-white dark:border-b-gray-800 z-[52]" />
-            
             {/* Dropdown/Mega Menu */}
             <div className={`
-              absolute top-full mt-2 bg-white dark:bg-gray-950 rounded-xl shadow-lg border border-gray-200 dark:border-gray-800 z-50 animate-in fade-in slide-in-from-top-2 duration-200
+              absolute top-full mt-3 bg-white dark:bg-gray-950 rounded-lg shadow-xl border border-gray-200 dark:border-gray-800 z-50 animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden
               ${isMegaMenu 
-                ? 'w-[600px] p-6 left-1/2 -translate-x-1/2' 
-                : 'w-64 py-2 max-h-96 overflow-y-auto left-1/2 -translate-x-1/2'
+                ? 'w-[560px] left-1/2 -translate-x-1/2' 
+                : 'w-56 left-1/2 -translate-x-1/2'
               }
             `}>
             {isMegaMenu ? (
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 divide-x divide-gray-200 dark:divide-gray-800">
                 {/* Left Column */}
-                <div>
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2 text-center">
+                <div className="p-4">
+                  <h3 className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2">
                     Kifuliiru
                   </h3>
-                  <div className="space-y-1">
+                  <div className="space-y-0.5">
                     {left.map(([subKey, subItem]) => {
                       const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
                       let subHref: string;
                       if (typeof subItem === 'object' && subItem.href) {
                         subHref = subItem.href;
                       } else {
-                        // Top-level pages: kifuliiru, imigani, imigeeza
                         subHref = `/${subKey}`;
                       }
                       const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
+                      const isActive = router.asPath === subHref || router.asPath.startsWith(`${subHref}/`);
 
                       return (
                         <a
@@ -230,13 +226,12 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                           target={isExternal ? '_blank' : undefined}
                           rel={isExternal ? 'noopener noreferrer' : undefined}
                           onClick={(e) => {
-                            e.stopPropagation(); // Prevent click from bubbling to parent
+                            e.stopPropagation();
                             if (!isExternal) {
                               e.preventDefault();
-                              setOpenDropdown(null); // Close dropdown first
+                              setOpenDropdown(null);
                               router.push(subHref).catch(err => {
                                 console.error('Navigation error:', err);
-                                // Fallback to regular navigation if router.push fails
                                 window.location.href = subHref;
                               });
                             } else {
@@ -244,16 +239,16 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                             }
                           }}
                           className={`
-                            flex items-center justify-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-colors
+                            flex items-center gap-2 px-3 py-2 text-xs rounded-md transition-all
                             ${
-                              router.asPath === subHref || router.asPath.startsWith(`${subHref}/`)
+                              isActive
                                 ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
-                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
+                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900/50 hover:text-gray-900 dark:hover:text-gray-50'
                             }
                           `}
                         >
-                          <span>{subTitle}</span>
-                          {isExternal && <ExternalLink className="w-4 h-4 opacity-50" />}
+                          <span className="truncate">{subTitle}</span>
+                          {isExternal && <ExternalLink className="w-3 h-3 opacity-50 flex-shrink-0" />}
                         </a>
                       );
                     })}
@@ -261,21 +256,21 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                 </div>
 
                 {/* Right Column */}
-                <div>
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2 text-center">
+                <div className="p-4">
+                  <h3 className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2">
                     Bingi ku Kifuliiru
                   </h3>
-                  <div className="space-y-1">
+                  <div className="space-y-0.5">
                     {right.map(([subKey, subItem]) => {
                       const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
                       let subHref: string;
                       if (typeof subItem === 'object' && subItem.href) {
                         subHref = subItem.href;
                       } else {
-                        // Items from bingi-ku-kifuliiru menu - these use root-level routes
                         subHref = `/${subKey}`;
                       }
                       const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
+                      const isActive = router.asPath === subHref || router.asPath.startsWith(`${subHref}/`);
 
                       return (
                         <a
@@ -284,13 +279,12 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                           target={isExternal ? '_blank' : undefined}
                           rel={isExternal ? 'noopener noreferrer' : undefined}
                           onClick={(e) => {
-                            e.stopPropagation(); // Prevent click from bubbling to parent
+                            e.stopPropagation();
                             if (!isExternal) {
                               e.preventDefault();
-                              setOpenDropdown(null); // Close dropdown first
+                              setOpenDropdown(null);
                               router.push(subHref).catch(err => {
                                 console.error('Navigation error:', err);
-                                // Fallback to regular navigation if router.push fails
                                 window.location.href = subHref;
                               });
                             } else {
@@ -298,16 +292,16 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                             }
                           }}
                           className={`
-                            flex items-center justify-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-colors
+                            flex items-center gap-2 px-3 py-2 text-xs rounded-md transition-all
                             ${
-                              router.asPath === subHref || router.asPath.startsWith(`${subHref}/`)
+                              isActive
                                 ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
-                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
+                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900/50 hover:text-gray-900 dark:hover:text-gray-50'
                             }
                           `}
                         >
-                          <span>{subTitle}</span>
-                          {isExternal && <ExternalLink className="w-4 h-4 opacity-50" />}
+                          <span className="truncate">{subTitle}</span>
+                          {isExternal && <ExternalLink className="w-3 h-3 opacity-50 flex-shrink-0" />}
                         </a>
                       );
                     })}
@@ -315,23 +309,21 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                 </div>
               </div>
             ) : (
-              <div>
+              <div className="py-2">
                 {itemEntries.map(([subKey, subItem]) => {
                   const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
                   let subHref: string;
                   if (typeof subItem === 'object' && subItem.href) {
                     subHref = subItem.href;
                   } else {
-                    // Determine the correct path based on parent menu
                     if (key === 'eng-frn-swa') {
-                      // Language pages are in /eng-frn-swa/ route
                       subHref = `/eng-frn-swa/${subKey}`;
                     } else {
-                      // All other items use root-level routes
                       subHref = `/${subKey}`;
                     }
                   }
                   const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
+                  const isActive = router.asPath === subHref || router.asPath.startsWith(`${subHref}/`);
 
                   return (
                     <a
@@ -340,13 +332,12 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                       target={isExternal ? '_blank' : undefined}
                       rel={isExternal ? 'noopener noreferrer' : undefined}
                       onClick={(e) => {
-                        e.stopPropagation(); // Prevent click from bubbling to parent
+                        e.stopPropagation();
                         if (!isExternal) {
                           e.preventDefault();
-                          setOpenDropdown(null); // Close dropdown first
+                          setOpenDropdown(null);
                           router.push(subHref).catch(err => {
                             console.error('Navigation error:', err);
-                            // Fallback to regular navigation if router.push fails
                             window.location.href = subHref;
                           });
                         } else {
@@ -354,16 +345,16 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                         }
                       }}
                       className={`
-                        flex items-center justify-center gap-3 px-4 py-3 text-sm transition-colors
+                        flex items-center gap-2 px-4 py-2.5 text-xs rounded-md transition-all
                         ${
-                          router.asPath === subHref || router.asPath.startsWith(`${subHref}/`)
+                          isActive
                             ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
-                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
+                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900/50 hover:text-gray-900 dark:hover:text-gray-50'
                         }
                       `}
                     >
-                      <span>{subTitle}</span>
-                      {isExternal && <ExternalLink className="w-4 h-4 opacity-50" />}
+                      <span className="truncate">{subTitle}</span>
+                      {isExternal && <ExternalLink className="w-3 h-3 opacity-50 flex-shrink-0 ml-auto" />}
                     </a>
                   );
                 })}
