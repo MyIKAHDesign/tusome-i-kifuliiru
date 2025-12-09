@@ -3,8 +3,6 @@ import { BookOpen, Home, Search as SearchIcon, Menu, X } from 'lucide-react';
 import Search from './Search';
 import HeaderNavigation from './HeaderNavigation';
 import ThemeSwitch from './ThemeSwitch';
-import { useSidebar } from './SidebarContext';
-import SiteNavigation from './SiteNavigation';
 
 interface MetaItem {
   title?: string;
@@ -17,7 +15,6 @@ interface MetaItem {
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [navMeta, setNavMeta] = useState<Record<string, MetaItem | string>>({});
-  const { isOpen: isSiteNavOpen, setIsOpen: setSiteNavOpen } = useSidebar();
 
   useEffect(() => {
     const loadMeta = async () => {
@@ -38,18 +35,8 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-gray-50/95 dark:bg-gray-950/95 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Left Section: Hamburger Menu + Brand */}
+          {/* Left Section: Brand */}
           <div className="flex items-center gap-4">
-            {/* Site Navigation Toggle Button */}
-            <button
-              onClick={() => setSiteNavOpen(!isSiteNavOpen)}
-              className="p-2 rounded-lg hover:bg-white dark:hover:bg-gray-900 transition-colors"
-              aria-label="Toggle site navigation"
-            >
-              <Menu className={`w-5 h-5 transition-transform ${isSiteNavOpen ? '' : 'rotate-90'}`} />
-            </button>
-            
-            {/* Brand Section */}
             <a href="/" className="flex items-center gap-3 group">
               <div className="w-12 h-12 rounded-xl bg-primary-600 flex items-center justify-center transition-all duration-300">
                 <BookOpen className="w-6 h-6 text-white" />
@@ -101,7 +88,6 @@ export default function Header() {
           </div>
         )}
       </div>
-      <SiteNavigation />
     </header>
   );
 }

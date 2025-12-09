@@ -1,12 +1,13 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import SiteNavigationButton from './SiteNavigationButton';
+import SiteNavigation from './SiteNavigation';
+import { SidebarProvider } from './SidebarContext';
 
 interface LayoutProps {
   children: React.ReactNode;
 }
-
-import { SidebarProvider } from './SidebarContext';
 
 export default function Layout({ children }: LayoutProps) {
   return (
@@ -21,6 +22,9 @@ export default function Layout({ children }: LayoutProps) {
           </div>
         </main>
         <Footer />
+        {/* Global Site Navigation Button */}
+        <SiteNavigationButton />
+        <SiteNavigation />
       </div>
     </SidebarProvider>
   );

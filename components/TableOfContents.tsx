@@ -69,10 +69,10 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
 
   return (
     <>
-      {/* Floating Toggle Button */}
+      {/* Floating Toggle Button - Positioned above site nav button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed right-6 bottom-6 lg:right-8 lg:bottom-8 z-40 w-12 h-12 rounded-full bg-white dark:bg-gray-900 shadow-md border border-gray-200 dark:border-gray-800 flex items-center justify-center hover:shadow-lg transition-all duration-200 hover:scale-105 group"
+        className="fixed right-6 bottom-20 lg:right-8 lg:bottom-24 z-40 w-12 h-12 rounded-full bg-white dark:bg-gray-900 shadow-md border border-gray-200 dark:border-gray-800 flex items-center justify-center hover:shadow-lg transition-all duration-200 hover:scale-105 group"
         aria-label="Toggle table of contents"
       >
         {isOpen ? (

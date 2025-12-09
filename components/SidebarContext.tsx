@@ -8,7 +8,7 @@ interface SidebarContextType {
 const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
 
 export function SidebarProvider({ children }: { children: ReactNode }) {
-  const [isOpen, setIsOpen] = useState(true); // Default to open on desktop
+  const [isOpen, setIsOpen] = useState(false); // Default to closed
 
   return (
     <SidebarContext.Provider value={{ isOpen, setIsOpen }}>
