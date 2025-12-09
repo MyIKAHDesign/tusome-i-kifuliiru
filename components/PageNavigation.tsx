@@ -176,9 +176,8 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
   }
   
   return (
-    <>
-      {/* Floating Navigation Bar - Centered with both buttons */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 bg-white dark:bg-gray-950 backdrop-blur-lg border border-gray-200 dark:border-gray-800 rounded-full shadow-lg px-6 py-3 max-w-2xl mx-auto">
+    <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
+      <div className="flex items-center justify-between gap-6">
         {prevSlug ? (
           <a
             href={getHref(prevSlug)}
@@ -186,19 +185,17 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
               e.preventDefault();
               router.push(getHref(prevSlug));
             }}
-            className="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors group"
+            className="group flex items-center gap-3 px-5 py-3 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-all border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 flex-1 max-w-xs"
           >
-            <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-            <div className="flex flex-col">
-              <span className="text-xs text-gray-500 dark:text-gray-400">Previous</span>
-              <span className="max-w-[150px] truncate font-medium">{getPageTitle(prevSlug)}</span>
+            <ChevronLeft className="w-4 h-4 flex-shrink-0 group-hover:-translate-x-0.5 transition-transform text-gray-500 dark:text-gray-400" />
+            <div className="flex flex-col min-w-0">
+              <span className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Previous</span>
+              <span className="truncate font-medium text-base">{getPageTitle(prevSlug)}</span>
             </div>
           </a>
         ) : (
-          <div className="w-1" />
+          <div className="flex-1" />
         )}
-        
-        <div className="h-8 w-px bg-gray-200 dark:bg-gray-800" />
         
         {nextSlug && (
           <a
@@ -207,17 +204,17 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
               e.preventDefault();
               router.push(getHref(nextSlug));
             }}
-            className="flex items-center gap-3 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors group ml-auto"
+            className="group flex items-center gap-3 px-5 py-3 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-all border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 flex-1 max-w-xs ml-auto text-right"
           >
-            <div className="flex flex-col text-right">
-              <span className="text-xs text-gray-500 dark:text-gray-400">Next</span>
-              <span className="max-w-[150px] truncate font-medium">{getPageTitle(nextSlug)}</span>
+            <div className="flex flex-col min-w-0 flex-1 text-right">
+              <span className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Next</span>
+              <span className="truncate font-medium text-base">{getPageTitle(nextSlug)}</span>
             </div>
-            <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <ChevronRight className="w-4 h-4 flex-shrink-0 group-hover:translate-x-0.5 transition-transform text-gray-500 dark:text-gray-400" />
           </a>
         )}
       </div>
-    </>
+    </div>
   );
 }
 
