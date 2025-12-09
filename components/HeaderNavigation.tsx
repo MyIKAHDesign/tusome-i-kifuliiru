@@ -196,8 +196,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
             <div className={`
               absolute top-full mt-3 bg-white dark:bg-gray-950 rounded-lg shadow-xl border border-gray-200 dark:border-gray-800 z-50 animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden
               ${isMegaMenu 
-                ? 'w-[560px] left-1/2 -translate-x-1/2' 
-                : 'w-56 left-1/2 -translate-x-1/2'
+                ? 'w-[400px] left-1/2 -translate-x-1/2' 
+                : 'w-40 left-1/2 -translate-x-1/2'
               }
             `}>
             {isMegaMenu ? (
