@@ -86,7 +86,7 @@ export default function Sidebar({ meta }: SidebarProps) {
     };
 
     loadMeta();
-  }, [meta, router.asPath]);
+  }, [meta, pathname]);
 
   const toggleGroup = (key: string) => {
     setExpandedGroups(prev => {
@@ -141,7 +141,7 @@ export default function Sidebar({ meta }: SidebarProps) {
       // Build the path: if parentKey exists, it's nested like "ukuharura/abandu"
       const fullPath = parentKey ? `${parentKey}/${key}` : key;
       const docHref = key === 'index' ? '/' : `/${fullPath}`;
-      const currentPath = router.asPath.split('?')[0];
+      const currentPath = pathname || '/';
       const isActive = currentPath === docHref || currentPath === `/${key}`;
       
       // Reduce left margin for ukuharura items (level > 0)
@@ -184,7 +184,7 @@ export default function Sidebar({ meta }: SidebarProps) {
     const displayTitle = title || key;
 
     if (type === 'menu' && items) {
-      const currentPath = router.asPath.split('?')[0];
+      const currentPath = pathname || '/';
       const isMenuActive = currentPath.startsWith(`/${key}`);
       const isExpanded = expandedGroups.has(key);
       
@@ -232,7 +232,7 @@ export default function Sidebar({ meta }: SidebarProps) {
     // Build nested path if parentKey exists
     const fullPath = parentKey ? `${parentKey}/${linkHref}` : linkHref;
     const docHref = href ? href : `/${fullPath}`;
-    const currentPath = router.asPath.split('?')[0];
+    const currentPath = pathname || '/';
     const isActive = currentPath === docHref || currentPath === `/${fullPath}` || currentPath === `/${key}`;
 
     // Get appropriate icon for page items
