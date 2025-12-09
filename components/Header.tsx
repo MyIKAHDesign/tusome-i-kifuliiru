@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, Home, Search as SearchIcon, Menu, X } from 'lucide-react';
+import { BookOpen, Home, Search as SearchIcon, Menu, X, List } from 'lucide-react';
 import Search from './Search';
 import HeaderNavigation from './HeaderNavigation';
 import ThemeSwitch from './ThemeSwitch';
@@ -45,7 +45,7 @@ export default function Header() {
               className="p-2 rounded-lg hover:bg-white dark:hover:bg-gray-900 transition-colors"
               aria-label="Toggle site navigation"
             >
-              <Menu className={`w-5 h-5 transition-transform ${isSiteNavOpen ? '' : 'rotate-90'}`} />
+              <List className="w-5 h-5" />
             </button>
             
             {/* Brand Section */}
