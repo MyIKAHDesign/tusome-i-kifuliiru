@@ -58,7 +58,6 @@ const NotFound404 = () => {
           </Link>
         </div>
       </div>
-    </div>
   );
 };
 
