@@ -68,11 +68,11 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
   };
 
   return (
-    <div className="fixed right-6 bottom-6 lg:right-8 lg:bottom-8 z-40">
+    <>
       {/* Floating Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-12 h-12 rounded-full bg-white dark:bg-gray-900 shadow-md border border-gray-200 dark:border-gray-800 flex items-center justify-center hover:shadow-lg transition-all duration-200 hover:scale-105 group"
+        className="fixed right-6 bottom-6 lg:right-8 lg:bottom-8 z-40 w-12 h-12 rounded-full bg-white dark:bg-gray-900 shadow-md border border-gray-200 dark:border-gray-800 flex items-center justify-center hover:shadow-lg transition-all duration-200 hover:scale-105 group"
         aria-label="Toggle table of contents"
       >
         {isOpen ? (
@@ -82,25 +82,25 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
         )}
       </button>
 
-      {/* Floating TOC Panel */}
+      {/* Floating Popover Card */}
       {isOpen && (
         <>
-          {/* Overlay */}
+          {/* Backdrop Overlay */}
           <div
-            className="fixed inset-0 bg-black/20 backdrop-blur-sm -z-10"
+            className="fixed inset-0 z-30"
             onClick={() => setIsOpen(false)}
           />
 
-          {/* Floating Card */}
-          <div className="absolute bottom-16 right-0 w-72 max-w-[85vw] max-h-[60vh] bg-white dark:bg-gray-950 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col">
+          {/* Floating Card - Positioned above button */}
+          <div className="fixed right-6 bottom-20 lg:right-8 lg:bottom-24 z-40 w-72 max-w-[calc(100vw-3rem)] max-h-[60vh] bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col animate-in fade-in slide-in-from-bottom-2 duration-200">
             {/* Header */}
-            <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between flex-shrink-0">
+            <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between flex-shrink-0 bg-gray-50 dark:bg-gray-900/50">
               <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
                 On this page
               </h2>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+                className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                 aria-label="Close table of contents"
               >
                 <X className="w-4 h-4 text-gray-600 dark:text-gray-400" />
@@ -108,7 +108,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
             </div>
 
             {/* Scrollable Content */}
-            <nav className="overflow-y-auto flex-1 p-3">
+            <nav className="overflow-y-auto flex-1 p-3 min-h-0">
               <ul className="space-y-1">
                 {headings.map((heading) => {
                   const isActive = activeId === heading.id;
@@ -147,6 +147,6 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
           </div>
         </>
       )}
-    </div>
+    </>
   );
 }
