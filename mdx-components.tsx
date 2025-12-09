@@ -23,16 +23,20 @@ function normalizeImageSrc(src: string | undefined): string {
 }
 
 // Generate ID from heading text
-const generateHeadingId = (text: string): string => {
+const generateHeadingId = (text: string | React.ReactNode): string => {
+  let textStr: string;
   if (typeof text !== 'string') {
     // If text is React node, try to extract string
     if (React.isValidElement(text)) {
-      text = text.props?.children || '';
+      const props = text.props as { children?: React.ReactNode };
+      textStr = String(props?.children || '');
     } else {
-      text = String(text);
+      textStr = String(text);
     }
+  } else {
+    textStr = text;
   }
-  return text
+  return textStr
     .toLowerCase()
     .replace(/[^\w\s-]/g, '')
     .replace(/\s+/g, '-')
