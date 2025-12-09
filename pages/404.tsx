@@ -19,18 +19,18 @@ const NotFound404 = () => {
           </div>
 
           {/* Main Heading */}
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4 animate-fade-in">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4 animate-fade-in-delay-1">
             Ngisi biindu ushuba mulooza ndabyo twaloonga
           </h2>
 
           {/* Support Text */}
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto animate-fade-in">
+          <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto animate-fade-in-delay-2">
             Haliko bigaba bikahamikizibwa mu kindi kibaaja, looza kandi li
             uhinduule ku ndondeero
           </p>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 animate-fade-in">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 animate-fade-in-delay-3">
             <Link
               href="/"
               className="group flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg shadow-sm hover:shadow-md transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
@@ -51,46 +51,13 @@ const NotFound404 = () => {
           {/* Back Link */}
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors group animate-fade-in"
+            className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors group animate-fade-in-delay-4"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             <span>Galuka inyuma</span>
           </Link>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fade-in {
-          animation: fade-in 0.6s ease-out forwards;
-        }
-
-        .animate-fade-in:nth-child(1) {
-          animation-delay: 0.1s;
-        }
-
-        .animate-fade-in:nth-child(2) {
-          animation-delay: 0.2s;
-        }
-
-        .animate-fade-in:nth-child(3) {
-          animation-delay: 0.3s;
-        }
-
-        .animate-fade-in:nth-child(4) {
-          animation-delay: 0.4s;
-        }
-      `}</style>
     </div>
   );
 };

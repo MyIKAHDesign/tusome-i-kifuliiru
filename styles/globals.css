@@ -14,6 +14,42 @@
   .dark body {
     @apply bg-gray-950 text-gray-50;
   }
+
+  /* Fade-in animation for 404 page */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in-delay-1 {
+    animation: fade-in 0.6s ease-out forwards;
+    animation-delay: 0.1s;
+  }
+
+  .animate-fade-in-delay-2 {
+    animation: fade-in 0.6s ease-out forwards;
+    animation-delay: 0.2s;
+  }
+
+  .animate-fade-in-delay-3 {
+    animation: fade-in 0.6s ease-out forwards;
+    animation-delay: 0.3s;
+  }
+
+  .animate-fade-in-delay-4 {
+    animation: fade-in 0.6s ease-out forwards;
+    animation-delay: 0.4s;
+  }
 }
 
 @layer components {
