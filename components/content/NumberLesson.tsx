@@ -346,9 +346,9 @@ export default function NumberLesson({ content }: NumberLessonProps) {
             )}
           </div>
         </div>
-        {content.description && (
+        {content.description && content.sections.length === 0 && (
           <div>
-            {renderContentWithTables(content.description, content.sections.length > 0)}
+            {renderContentWithTables(content.description)}
           </div>
         )}
       </div>
