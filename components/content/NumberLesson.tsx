@@ -1,6 +1,169 @@
 import React, { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { NumberLessonContent } from '../../lib/content-schema';
 import { Calculator, Hash, Search as SearchIcon } from 'lucide-react';
+
+// Parse markdown formatting (bold, italic, links) and convert to React elements
+const parseMarkdown = (text: string): React.ReactNode[] => {
+  if (typeof text !== 'string') return [text];
+  
+  let key = 0;
+  
+  // Helper function to parse a text segment recursively
+  const parseSegment = (segment: string): React.ReactNode[] => {
+    const parts: React.ReactNode[] = [];
+    
+    // Parse bold+italic: ***text*** or _**text**_
+    const boldItalicRegex = /(\*\*\*|_\*\*)([^*_]+?)(\*\*\*|\*\*_)/g;
+    let match;
+    const boldItalicMatches: Array<{start: number, end: number, text: string}> = [];
+    
+    while ((match = boldItalicRegex.exec(segment)) !== null) {
+      boldItalicMatches.push({
+        start: match.index,
+        end: match.index + match[0].length,
+        text: match[2]
+      });
+    }
+    
+    // Parse bold: **text**
+    const boldRegex = /\*\*([^*]+?)\*\*/g;
+    const boldMatches: Array<{start: number, end: number, text: string}> = [];
+    
+    while ((match = boldRegex.exec(segment)) !== null) {
+      const isCovered = boldItalicMatches.some(m => 
+        match.index >= m.start && match.index + match[0].length <= m.end
+      );
+      if (!isCovered) {
+        boldMatches.push({
+          start: match.index,
+          end: match.index + match[0].length,
+          text: match[1]
+        });
+      }
+    }
+    
+    // Parse italic: *text* or _text_ (but not if part of bold)
+    // Use a simpler approach: match single * or _ that aren't part of ** or __
+    const italicRegex = /(?:^|[^*])\*([^*]+?)\*(?![*])|(?:^|[^_])_([^_]+?)_(?![_])/g;
+    const italicMatches: Array<{start: number, end: number, text: string}> = [];
+    
+    while ((match = italicRegex.exec(segment)) !== null) {
+      const matchText = match[1] || match[2];
+      const isCovered = boldItalicMatches.some(m => 
+        match.index >= m.start && match.index + match[0].length <= m.end
+      ) || boldMatches.some(m => 
+        match.index >= m.start && match.index + match[0].length <= m.end
+      );
+      if (!isCovered) {
+        italicMatches.push({
+          start: match.index,
+          end: match.index + match[0].length,
+          text: matchText
+        });
+      }
+    }
+    
+    // Parse links: [text](url)
+    const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+    const linkMatches: Array<{start: number, end: number, text: string, url: string}> = [];
+    
+    while ((match = linkRegex.exec(segment)) !== null) {
+      linkMatches.push({
+        start: match.index,
+        end: match.index + match[0].length,
+        text: match[1],
+        url: match[2]
+      });
+    }
+    
+    // Combine all matches and sort by position
+    const allMatches = [
+      ...boldItalicMatches.map(m => ({...m, type: 'boldItalic' as const})),
+      ...boldMatches.map(m => ({...m, type: 'bold' as const})),
+      ...italicMatches.map(m => ({...m, type: 'italic' as const})),
+      ...linkMatches.map(m => ({...m, type: 'link' as const}))
+    ].sort((a, b) => a.start - b.start);
+    
+    // Process matches in order
+    let currentIndex = 0;
+    for (const match of allMatches) {
+      if (match.start > currentIndex) {
+        const beforeText = segment.substring(currentIndex, match.start);
+        if (beforeText) parts.push(beforeText);
+      }
+      
+      if (match.type === 'boldItalic') {
+        parts.push(
+          <strong key={key++}>
+            <em>{parseSegment(match.text)}</em>
+          </strong>
+        );
+      } else if (match.type === 'bold') {
+        parts.push(
+          <strong key={key++}>{parseSegment(match.text)}</strong>
+        );
+      } else if (match.type === 'italic') {
+        parts.push(
+          <em key={key++}>{parseSegment(match.text)}</em>
+        );
+      } else if (match.type === 'link') {
+        const linkMatch = match as typeof match & {url: string};
+        let linkUrl = linkMatch.url;
+        const isExternal = 
+          linkUrl.startsWith('http://') || 
+          linkUrl.startsWith('https://') || 
+          linkUrl.startsWith('//') ||
+          (linkUrl.includes('.') && !linkUrl.startsWith('/') && !linkUrl.startsWith('./'));
+        
+        let normalizedUrl = linkUrl;
+        if (isExternal) {
+          if (!normalizedUrl.startsWith('http://') && !normalizedUrl.startsWith('https://') && !normalizedUrl.startsWith('//')) {
+            normalizedUrl = 'https://' + normalizedUrl;
+          }
+        } else {
+          if (!normalizedUrl.startsWith('/')) {
+            normalizedUrl = '/' + normalizedUrl;
+          }
+        }
+        
+        if (isExternal) {
+          parts.push(
+            <a
+              key={key++}
+              href={normalizedUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 dark:text-gray-300 font-medium no-underline transition-colors border-b border-gray-300 dark:border-gray-700 pb-0.5 hover:text-gray-900 dark:hover:text-gray-50 hover:border-gray-500 dark:hover:border-gray-500"
+            >
+              {parseSegment(linkMatch.text)}
+            </a>
+          );
+        } else {
+          parts.push(
+            <Link
+              key={key++}
+              href={normalizedUrl}
+              className="text-gray-700 dark:text-gray-300 font-medium no-underline transition-colors border-b border-gray-300 dark:border-gray-700 pb-0.5 hover:text-gray-900 dark:hover:text-gray-50 hover:border-gray-500 dark:hover:border-gray-500"
+            >
+              {parseSegment(linkMatch.text)}
+            </Link>
+          );
+        }
+      }
+      
+      currentIndex = match.end;
+    }
+    
+    if (currentIndex < segment.length) {
+      parts.push(segment.substring(currentIndex));
+    }
+    
+    return parts;
+  };
+  
+  return parseSegment(text);
+};
 
 interface NumberLessonProps {
   content: NumberLessonContent;
@@ -47,7 +210,7 @@ export default function NumberLesson({ content }: NumberLessonProps) {
         </div>
         {content.description && (
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-            {content.description}
+            {parseMarkdown(content.description)}
           </p>
         )}
       </div>
@@ -120,7 +283,7 @@ export default function NumberLesson({ content }: NumberLessonProps) {
                 </div>
                 {number.notes && (
                   <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 italic">
-                    {number.notes}
+                    {parseMarkdown(number.notes)}
                   </p>
                 )}
               </div>
