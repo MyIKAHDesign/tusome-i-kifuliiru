@@ -104,7 +104,11 @@
       }
     }
   },
-  "ndondeero_tusome": "Menya Bino",
+  "ndondeero_tusome": {
+    "title": "Menya Bino",
+    "type": "page",
+    "href": "/ndondeero_tusome"
+  },
   "amagambo": {
     "title": "Tusome Amagambo",
     "type": "menu",
@@ -205,6 +209,10 @@
       },
       "tuganule-i-kifuliiru": {
         "title": "Tuganuule i Kifuliiru",
+        "type": "page"
+      },
+      "ibiyandike-mu-kifuliiru": {
+        "title": "Ibiyandike mu Kifuliiru",
         "type": "page"
       }
     }
