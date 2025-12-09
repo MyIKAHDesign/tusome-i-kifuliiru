@@ -80,17 +80,11 @@
         "content": "Kuti tumusoma iherufi zo'lufwabe mu Kifuliiru?"
       },
       {
-        "type": "paragraph",
-        "content": "A -> a = [a]"
-      },
-      {
-        "type": "paragraph",
-        "content": "B -> b = [bhe]. Ino herufi tumugisoma nga b igwatini ne' h. Kwo kudeta mu Kifuliiru tutamudeta b haliko bh."
-      },
-      {
         "type": "table",
         "headers": ["Herufi mbamu", "Herufi niini", "Injira yo'kusoma"],
         "rows": [
+          ["A", "a", "[a]"],
+          ["B", "b", "[bhe]. Ino herufi tumugisoma nga b igwatini ne' h. Kwo kudeta mu Kifuliiru tutamudeta b haliko bh."],
           ["C", "c", "[ch]"],
           ["D", "d", "[de]"],
           ["E", "e", "[e]"],
