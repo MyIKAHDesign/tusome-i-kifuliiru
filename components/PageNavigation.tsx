@@ -168,7 +168,7 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
   const getHref = (slug: string): string => {
     if (slug === '') return '/';
     if (slug === 'gwajiika') return '/gwajiika';
-    return `/docs/${slug}`;
+    return `/${slug}`;
   };
   
   if (!prevSlug && !nextSlug) {

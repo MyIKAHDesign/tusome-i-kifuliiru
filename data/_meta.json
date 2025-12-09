@@ -70,11 +70,7 @@
       "bihumbi-magana-galimweenda": "Bihumbi magana galimweenda",
       "umulyoni": "Umulyoni",
       "umulyari": "Umulyari",
-      "umulyari-muguma": "Umulyari muguma",
-      "bihumbi-bingi": "Bihumbi bingi",
-      "abandu": "Abaandu",
-      "ibindu": "Ibindu",
-      "binamishwa": "Ibinamishwa"
+      "umulyari-muguma": "Umulyari muguma"
     }
   },
   "kuharura-ibiindu": {
@@ -84,32 +80,67 @@
       "harura": {
         "title": "Kuharura",
         "type": "page",
-        "href": "/docs/harura"
+                "href": "/harura"
       },
       "ibindu": {
         "title": "Ibindu",
         "type": "page",
-        "href": "/docs/ukuharura/ibindu"
+                "href": "/ukuharura/ibindu"
       },
       "abandu": {
         "title": "Abaandu",
         "type": "page",
-        "href": "/docs/ukuharura/abandu"
+                "href": "/ukuharura/abandu"
       },
       "binamishwa": {
         "title": "Ibinamishwa",
         "type": "page",
-        "href": "/docs/ukuharura/binamishwa"
+                "href": "/ukuharura/binamishwa"
       },
       "bihumbi-bingi": {
         "title": "Bihumbi bingi",
         "type": "page",
-        "href": "/docs/ukuharura/bihumbi-bingi"
+                "href": "/ukuharura/bihumbi-bingi"
       }
     }
   },
   "ndondeero_tusome": "Menya Bino",
-  "amagambo": "Tusome Amagambo",
+  "amagambo": {
+    "title": "Tusome Amagambo",
+    "type": "menu",
+    "items": {
+      "ndondeero-amagambo": {
+        "title": "Menya bino",
+        "type": "page",
+        "href": "/amagambo/ndondeero-amagambo"
+      },
+      "ulufwabe": {
+        "title": "Ulufwabe lwe'Kifuliiru",
+        "type": "page",
+        "href": "/amagambo/ulufwabe"
+      },
+      "herufi": {
+        "title": "Herufi ze'Kifuliiru",
+        "type": "page",
+        "href": "/amagambo/herufi"
+      },
+      "amagambo": {
+        "title": "Amagambo",
+        "type": "page",
+        "href": "/amagambo/amagambo"
+      },
+      "buniini-bwingi": {
+        "title": "Ubuniini no'bwingi",
+        "type": "page",
+        "href": "/amagambo/buniini-bwingi"
+      },
+      "abaana": {
+        "title": "Abaana",
+        "type": "page",
+        "href": "/amagambo/abaana"
+      }
+    }
+  },
   "kifuliiru": {
     "title": "Kifuliiru",
     "type": "page"

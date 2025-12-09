@@ -203,8 +203,36 @@ const parseMarkdownTable = (text: string): { headers: string[], rows: string[][]
   return { headers, rows };
 };
 
-// Render content that may contain tables
-const renderContentWithTables = (text: string): React.ReactNode => {
+// Parse number translation list (e.g., "17.980 = Bihumbi ikumi...")
+const parseNumberTranslationList = (text: string): Array<{ number: string; translation: string }> | null => {
+  const lines = text.trim().split('\n').map(line => line.trim()).filter(line => line.length > 0);
+  if (lines.length === 0) return null;
+  
+  // Check if it looks like number translations (contains "=" pattern)
+  const pattern = /^(\d+(?:\.\d+)?)\s*=\s*(.+)$/;
+  const translations: Array<{ number: string; translation: string }> = [];
+  
+  for (const line of lines) {
+    const match = line.match(pattern);
+    if (match) {
+      translations.push({
+        number: match[1],
+        translation: match[2].trim(),
+      });
+    } else {
+      // If we find a line that doesn't match, it's not a number translation list
+      if (translations.length > 0 && translations.length < lines.length * 0.8) {
+        return null; // Not enough matches to be a translation list
+      }
+    }
+  }
+  
+  return translations.length > 0 ? translations : null;
+};
+
+// Render content that may contain tables or number translation lists
+// skipNumberLists: if true, skip rendering number translation lists (to avoid duplicates with sections)
+const renderContentWithTables = (text: string, skipNumberLists: boolean = false): React.ReactNode => {
   // Try to parse as table first
   const tableData = parseMarkdownTable(text);
   if (tableData) {
@@ -243,6 +271,32 @@ const renderContentWithTables = (text: string): React.ReactNode => {
         </table>
       </div>
     );
+  }
+  
+  // Try to parse as number translation list (skip if sections exist to avoid duplicates)
+  if (!skipNumberLists) {
+    const translationList = parseNumberTranslationList(text);
+    if (translationList && translationList.length > 0) {
+      return (
+        <div className="my-8">
+          <div className="space-y-3">
+            {translationList.map((item, index) => (
+              <div
+                key={index}
+                className="flex items-baseline gap-4 py-2"
+              >
+                <span className="font-mono text-base font-semibold text-primary-600 dark:text-primary-400 min-w-[90px] flex-shrink-0">
+                  {item.number}
+                </span>
+                <span className="text-gray-700 dark:text-gray-300 flex-1 leading-relaxed">
+                  {parseMarkdown(item.translation)}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
   }
   
   // Otherwise render as regular markdown
@@ -292,40 +346,50 @@ export default function NumberLesson({ content }: NumberLessonProps) {
             )}
           </div>
         </div>
-        {content.description && (
+        {content.description && content.sections.length === 0 && (
           <div>
             {renderContentWithTables(content.description)}
           </div>
         )}
       </div>
 
-      {/* Search Bar */}
-      <div className="sticky top-20 z-40 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 pb-4 -mx-6 px-6">
-        <div className="flex items-center gap-3 px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 focus-within:border-primary-500 focus-within:ring-2 focus-within:ring-primary-500/20 transition-all">
-          <SearchIcon className="w-5 h-5 text-gray-400 flex-shrink-0" />
-          <input
-            type="text"
-            placeholder="Looza hano... (Search by number or Kifuliiru text)"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="flex-1 bg-transparent border-0 outline-0 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400"
-          />
+      {/* Search Bar - Only show if there are sections to search */}
+      {content.sections.length > 0 && (
+        <div className="sticky top-20 z-40 pb-6 -mx-6 px-6 mb-8">
+          <div className="max-w-2xl mx-auto">
+            <div className="relative flex items-center">
+              <div className="absolute left-4 pointer-events-none">
+                <SearchIcon className="w-5 h-5 text-gray-400 dark:text-gray-500" />
+              </div>
+              <input
+                type="text"
+                placeholder="Looza hano... (Search by number or Kifuliiru text)"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-12 pr-12 py-4 text-base bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-primary-500 dark:focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 dark:focus:ring-primary-500/20 transition-all shadow-sm hover:shadow-md"
+              />
+              {searchTerm && (
+                <button
+                  onClick={() => setSearchTerm('')}
+                  className="absolute right-4 p-1.5 rounded-lg text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                  aria-label="Clear search"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
+            </div>
+          </div>
           {searchTerm && (
-            <button
-              onClick={() => setSearchTerm('')}
-              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-              aria-label="Clear search"
-            >
-              ×
-            </button>
+            <div className="mt-3 text-center">
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                {filteredSections.reduce((total, section) => total + section.numbers.length, 0)} result{filteredSections.reduce((total, section) => total + section.numbers.length, 0) !== 1 ? 's' : ''} found
+              </p>
+            </div>
           )}
         </div>
-        {searchTerm && (
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-            {filteredSections.reduce((total, section) => total + section.numbers.length, 0)} result(s) found
-          </p>
-        )}
-      </div>
+      )}
 
       {/* Sections */}
       {filteredSections.length > 0 ? (
@@ -345,37 +409,39 @@ export default function NumberLesson({ content }: NumberLessonProps) {
             </div>
           )}
 
-          {/* Numbers Grid - Wider display with more cards per row for ukuharura pages */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {section.numbers.map((number, index) => (
-              <div
-                key={index}
-                className="group p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-md transition-all"
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-2xl font-bold text-primary-600 dark:text-primary-400">
+          {/* Numbers List - Two columns for better space utilization */}
+          <div className="my-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+              {section.numbers.map((number, index) => (
+                <div
+                  key={index}
+                  className="flex items-baseline gap-4 py-2"
+                >
+                  <span className="font-mono text-base font-semibold text-primary-600 dark:text-primary-400 min-w-[90px] flex-shrink-0">
                     {number.value.toLocaleString()}
                   </span>
-                  {number.pronunciation && (
-                    <span className="text-xs text-gray-500 dark:text-gray-400 italic">
-                      {number.pronunciation}
+                  <div className="flex-1">
+                    <span className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      {number.kifuliiru}
                     </span>
-                  )}
+                    {number.pronunciation && (
+                      <span className="text-sm text-gray-500 dark:text-gray-400 italic ml-2">
+                        ({number.pronunciation})
+                      </span>
+                    )}
+                    {number.notes && (
+                      <span className="text-sm text-gray-600 dark:text-gray-400 italic ml-2">
+                        — {parseMarkdown(number.notes)}
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <div className="text-lg font-medium text-gray-900 dark:text-gray-100">
-                  {number.kifuliiru}
-                </div>
-                {number.notes && (
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 italic">
-                    {parseMarkdown(number.notes)}
-                  </p>
-                )}
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       ))
-      ) : (
+      ) : content.sections.length > 0 && searchTerm ? (
         <div className="text-center py-12 text-gray-500 dark:text-gray-400">
           <p>No results found for "{searchTerm}"</p>
           <button
@@ -385,7 +451,7 @@ export default function NumberLesson({ content }: NumberLessonProps) {
             Clear search
           </button>
         </div>
-      )}
+      ) : null}
 
       {/* Table section - displayed after numbers */}
       {content.table && (
