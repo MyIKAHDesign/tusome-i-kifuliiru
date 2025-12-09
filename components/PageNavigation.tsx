@@ -312,7 +312,7 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
     <>
       {/* Previous Button - Left Side */}
       {prevSlug && (
-        <div className="fixed left-4 top-1/2 -translate-y-1/2 z-40">
+        <div className="fixed left-8 lg:left-[calc((100vw-1024px)/2-80px)] top-1/2 -translate-y-1/2 z-40">
           <a
             href={getHref(prevSlug)}
             onClick={(e) => {
@@ -334,7 +334,7 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
       
       {/* Next Button - Right Side */}
       {nextSlug && (
-        <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40">
+        <div className="fixed right-8 lg:right-[calc((100vw-1024px)/2-80px)] top-1/2 -translate-y-1/2 z-40">
           <a
             href={getHref(nextSlug)}
             onClick={(e) => {
