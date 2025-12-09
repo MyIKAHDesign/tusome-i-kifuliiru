@@ -251,49 +251,44 @@ export default function SiteNavigation() {
 
   return (
     <>
-      {/* Overlay */}
+      {/* Dialog Modal Overlay */}
       {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
-
-      {/* Site Navigation Panel */}
-      <aside
-        className={`
-          w-80 h-full bg-white dark:bg-gray-950
-          border-r border-gray-200 dark:border-gray-800
-          overflow-y-auto overflow-x-hidden
-          transition-transform duration-300 ease-in-out
-          ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-          fixed z-50 top-0 left-0
-        `}
-      >
-        <div className="sticky top-0 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 px-6 py-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Navigation
-          </h2>
-          <button
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setIsOpen(false)}
-            className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
-            aria-label="Close navigation"
-          >
-            <X className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-          </button>
+          />
+
+          {/* Dialog Card - Centered */}
+          <div className="relative w-full max-w-lg max-h-[80vh] bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-200">
+            {/* Header */}
+            <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between flex-shrink-0 bg-gray-50 dark:bg-gray-900/50">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                Site Navigation
+              </h2>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-label="Close navigation"
+              >
+                <X className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+              </button>
+            </div>
+
+            {/* Scrollable Content */}
+            <nav className="overflow-y-auto flex-1 p-6 min-h-0">
+              <ul className="space-y-1">
+                {Object.entries(sidebarMeta)
+                  .filter(([key]) => !isHeaderNavItem(key))
+                  .map(([key, item]) =>
+                    renderMenuItem(key, item)
+                  )}
+              </ul>
+            </nav>
+          </div>
         </div>
-        <div className="p-6">
-          <nav>
-            <ul className="space-y-1">
-              {Object.entries(sidebarMeta)
-                .filter(([key]) => !isHeaderNavItem(key))
-                .map(([key, item]) =>
-                  renderMenuItem(key, item)
-                )}
-            </ul>
-          </nav>
-        </div>
-      </aside>
+      )}
     </>
   );
 }
