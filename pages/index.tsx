@@ -35,23 +35,20 @@ export default function Home() {
             Discover and learn the Kifuliiru language. A comprehensive platform for learners, students, and teachers to explore this beautiful language spoken in the Eastern DRC.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center">
-            {/* Primary Button */}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <Link
               href="/docs"
-              className="group relative inline-flex items-center justify-center gap-2.5 px-6 py-3.5 min-w-[180px] bg-primary-600 hover:bg-primary-700 active:bg-primary-800 text-white font-medium text-sm tracking-wide rounded-lg shadow-sm hover:shadow-md active:shadow-sm transition-all duration-150 ease-out focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-950"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium text-sm rounded-md shadow-sm hover:shadow transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
             >
-              <span className="relative z-10">Start Learning</span>
-              <ArrowRight className="w-4 h-4 relative z-10 transition-transform duration-150 group-hover:translate-x-0.5 flex-shrink-0" />
+              Start Learning
+              <ArrowRight className="w-4 h-4" />
             </Link>
-            
-            {/* Secondary Button */}
             <Link
               href="/docs"
-              className="group relative inline-flex items-center justify-center gap-2.5 px-6 py-3.5 min-w-[180px] bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 font-medium text-sm tracking-wide rounded-lg shadow-sm hover:shadow-md active:shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 active:bg-gray-100 dark:active:bg-gray-600 transition-all duration-150 ease-out focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 dark:focus:ring-offset-gray-950"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-medium text-sm rounded-md border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-sm hover:shadow transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
             >
-              <Search className="w-4 h-4 text-gray-600 dark:text-gray-400 flex-shrink-0" />
-              <span className="relative z-10">Browse Documentation</span>
+              <Search className="w-4 h-4" />
+              Browse Documentation
             </Link>
           </div>
         </div>
