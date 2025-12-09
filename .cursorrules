@@ -1,0 +1,619 @@
+# Wempily Commit Message Specification
+
+This project uses Wempily for automatic task tracking from commits. The system is **fully automated** - you just write commit messages with Wemp tags (e.g., @wemp_start, @wemp_progress), and the system handles everything else.
+
+## 🎯 Core Concept: Features vs Tasks
+
+**Features** = High-level functionality (e.g., "Add 2FA to authentication", "User dashboard", "Payment integration")
+**Tasks** = Individual pieces of work that make up a feature. Tasks can be broken down into even more granular tasks.
+
+**Key Principle:** 
+- **One feature = Many tasks**
+- **Tasks can be divided into multiple sub-tasks**
+- Each task is tracked independently
+- Tasks are linked to features via `@wemp_feature`
+- Break down features into granular, trackable tasks
+- **The more granular, the better** - small, focused tasks are easier to track and complete
+
+**Example - Feature Breakdown:**
+- **Feature:** "Add 2FA to authentication"
+  - **Task 1:** "Create 2FA setup API endpoint"
+    - Can be further divided into: "Create API route", "Add secret generation", "Add QR code endpoint", "Add error handling"
+  - **Task 2:** "Add QR code generation component"
+    - Can be further divided into: "Install QR library", "Create QR component", "Add QR display UI", "Style QR component"
+  - **Task 3:** "Update login flow for 2FA verification"
+    - Can be further divided into: "Add 2FA code input field", "Update login API", "Add verification step", "Handle 2FA errors"
+  - **Task 4:** "Create 2FA settings UI"
+    - Can be further divided into: "Create settings page", "Add enable/disable toggle", "Add QR code display", "Add backup codes section"
+  - **Task 5:** "Add backup codes functionality"
+    - Can be further divided into: "Generate backup codes", "Hash and store codes", "Add backup code verification", "Display codes to user"
+
+**Rule:** Break down work into the smallest meaningful tasks. Each task should represent a single, completable piece of work.
+
+## 🤖 AI Agent Instructions
+
+**YOU (the AI Agent) must actively engage with users to make decisions:**
+
+1. **After implementing fixes/updates:** Always ask user if they're satisfied
+2. **When task status is unclear:** Ask user if work is complete
+3. **When multiple tasks match:** Ask user which one to update
+4. **When creating new features:** Confirm the feature name with user
+
+**User satisfaction = Task completion.** If user confirms satisfaction, mark task as done.
+
+## 🔔 Notifications
+
+**When tasks/features are created or closed, notifications are sent:**
+
+- **File:** `.wemp/notifications.json` - Stores all notifications
+- **Console:** Notifications also logged to console (visible in Cursor terminal)
+- **API:** `GET /api/notifications` - Fetch notifications programmatically
+
+**To view notifications in Cursor:**
+```bash
+# View recent notifications
+cat .wemp/notifications.json
+
+# Or run the script
+npx tsx scripts/check-notifications.ts
+```
+
+**Notification types:**
+- `task_created` - New task created
+- `task_updated` - Task status updated
+- `task_completed` - Task marked as done
+- `feature_created` - New feature created
+- `feature_updated` - Feature activity updated
+
+## ⚠️ CRITICAL: Always Query API First
+
+**Before writing any commit, you MUST query the Wempily API to find existing task/feature IDs:**
+
+```bash
+# Search for tasks
+GET /api/tasks/search?search=[task_title]
+GET /api/tasks/search?id=[task_id]
+
+# Search for features
+GET /api/features
+GET /api/features?search=[feature_name]
+```
+
+**Why?** Using existing IDs prevents duplicate tasks and ensures proper linking. If you can't find the ID, the system will create new tasks automatically.
+
+## 💾 Local Task Storage
+
+**Store generated short_ids locally for immediate reuse:**
+
+After generating a short_id and creating a commit, store it in `.wemp/current-tasks.json`:
+
+```json
+[
+  {
+    "short_id": "icon-header-001",
+    "title": "Add icon to header",
+    "status": "in-progress",
+    "created_at": "2025-01-20T10:00:00Z"
+  }
+]
+```
+
+**How to use:**
+1. **After creating task:** 
+   - Read `.wemp/current-tasks.json` (create if doesn't exist: `mkdir -p .wemp`)
+   - Add new task entry: `{ "short_id": "...", "title": "...", "status": "in-progress", "created_at": "ISO_DATE" }`
+   - Write back to file (JSON array format)
+   - **File can contain multiple active tasks** - each task is an array item
+
+2. **When user switches to different task:**
+   - Add the new task to the array (don't remove previous tasks)
+   - All tasks remain in file until completed
+   - Track which task is currently being worked on
+
+3. **Before completing task:** 
+   - Read `.wemp/current-tasks.json` to get short_id
+   - Find the specific task being completed
+   - Use it in `@wemp_end [short_id]`
+
+4. **After completing:** 
+   - Remove only that specific task from `.wemp/current-tasks.json`
+   - Other active tasks remain in file
+
+**File location:** `.wemp/current-tasks.json` (in project root, auto-created)
+
+**File operations:**
+- Read: `cat .wemp/current-tasks.json` or read file in code
+- Write: Update JSON array, write back to file
+- Create directory: `mkdir -p .wemp` if needed
+
+**Benefits:**
+- No need to query API every time
+- Immediate access to short_ids you generated
+- Track multiple active tasks
+- Persists across conversations
+- Faster than API queries
+
+## 🔍 Determining NEW vs UPDATE from Natural Language
+
+**In vibe coding, users use natural language. YOU must infer intent:**
+
+### Step 1: Query API First
+Always search for existing tasks/features related to the user's request.
+
+### Step 2: Break Down Features into Tasks
+
+**When user mentions a feature, break it into multiple tasks:**
+
+**Example: User says "Add 2FA to authentication"**
+```
+Feature: "Add 2FA to authentication"
+  ↓
+Break into tasks:
+  - Task 1: "Create 2FA setup API endpoint"
+  - Task 2: "Add QR code generation"
+  - Task 3: "Update login flow for 2FA"
+  - Task 4: "Create 2FA settings UI"
+  - Task 5: "Add backup codes functionality"
+  ↓
+Create each task separately with @wemp_start
+Link all tasks to feature with @wemp_feature
+```
+
+**Rule:** If user mentions a feature-level request, identify the individual tasks needed and create them separately.
+
+### Step 3: Analyze User Intent
+
+**IMPORTANT:** Both NEW and UPDATE work result in `in-progress` status. The difference is:
+- **NEW** = Task doesn't exist yet → Create it
+- **UPDATE** = Task already exists → Update it
+
+**NEW Work Indicators:**
+- "Create", "Add", "Implement", "Build", "Set up", "Install", "Help me create"
+- "New feature", "New functionality"
+- No existing task found in API
+- → Use: `@wemp_start [short_id] [title]` (creates new task with in-progress status)
+
+**UPDATE Work Indicators:**
+- "Fix", "Update", "Improve", "Refactor", "Modify", "Change", "Redesign"
+- "Continue", "Work on"
+- "Bug", "Issue", "Problem", "Not well designed"
+- Existing task found in API
+- → Use: `@wemp_progress [short_id]` (updates existing task to in-progress)
+
+**COMPLETE Work Indicators:**
+- "Complete", "Finish", "Done", "Finalize"
+- "Ready", "Deploy", "Release"
+- **User confirms satisfaction:** "Yes", "Good", "Looks good", "Perfect", "That works", "I'm satisfied"
+- All work finished
+- → Use: `@wemp_end [short_id]`
+
+## ⚠️ CRITICAL: Always Ask User for Decisions
+
+**YOU MUST ask users at these key moments:**
+
+1. **After implementing fixes/updates:**
+   - Ask: "Is this what you wanted? Are you satisfied with the changes?"
+   - If user says "Yes" or confirms → Use `@wemp_end` to complete task
+   - If user says "No" or wants changes → Continue with `@wemp_progress`
+
+2. **When task status is ambiguous:**
+   - Ask: "Is this work complete, or do you want to continue?"
+   - User response determines `@wemp_progress` vs `@wemp_end`
+
+3. **When multiple tasks match search:**
+   - Ask: "I found multiple tasks. Which one should I update? [list options]"
+   - User selects → Use that task's short_id
+
+4. **When creating new features:**
+   - Ask: "Should I create a new feature called '[name]' or link to existing?"
+   - Confirm feature name before creating
+   - **Break down the feature into individual tasks** - ask user if they want you to identify all tasks, or create them as you work
+
+### Step 3: Decision Flow
+
+**Example 1: Creating New Task (Single Task)**
+```
+User: "help me create a button CTA in the header"
+  ↓
+Query API: GET /api/tasks/search?search=button CTA header
+  ↓
+Result: NOT FOUND
+  ↓
+Decision: NEW task → @wemp_start cta-button-001 Create CTA button in header
+  ↓
+Store in .wemp/current-tasks.json:
+{
+  "short_id": "cta-button-001",
+  "title": "Create CTA button in header",
+  "status": "in-progress",
+  "created_at": "2025-01-20T10:00:00Z"
+}
+Status: in-progress (work is being done)
+```
+
+**Example 1b: Creating Feature with Multiple Tasks (Granular Breakdown)**
+```
+User: "Add 2FA to authentication"
+  ↓
+Query API: GET /api/features?search=2FA authentication
+  ↓
+Result: NOT FOUND (or found existing feature)
+  ↓
+Decision: Break into multiple granular tasks:
+  
+  High-level tasks can be further divided:
+  
+  "Create 2FA setup API endpoint" → Can become:
+    - Task 1a: "Create 2FA setup API route file"
+    - Task 1b: "Add TOTP secret generation logic"
+    - Task 1c: "Add QR code data URL generation"
+    - Task 1d: "Add API error handling"
+  
+  "Add QR code generation component" → Can become:
+    - Task 2a: "Install QR code library (qrcode)"
+    - Task 2b: "Create QR code React component"
+    - Task 2c: "Add QR code display in settings UI"
+    - Task 2d: "Style QR code component"
+  
+  "Update login flow for 2FA" → Can become:
+    - Task 3a: "Add 2FA code input field to login page"
+    - Task 3b: "Update login API to check 2FA status"
+    - Task 3c: "Add 2FA verification step in login flow"
+    - Task 3d: "Handle 2FA verification errors"
+  
+  "Create 2FA settings UI" → Can become:
+    - Task 4a: "Create 2FA settings section component"
+    - Task 4b: "Add enable/disable 2FA toggle"
+    - Task 4c: "Add QR code display during setup"
+    - Task 4d: "Add backup codes display section"
+  
+  "Add backup codes functionality" → Can become:
+    - Task 5a: "Generate backup codes algorithm"
+    - Task 5b: "Hash and store backup codes in database"
+    - Task 5c: "Add backup code verification in login"
+    - Task 5d: "Create backup codes download feature"
+  
+  ↓
+Create commit with all granular tasks:
+@wemp_start 2fa-api-route-001 Create 2FA setup API route file
+@wemp_start 2fa-secret-gen-001 Add TOTP secret generation logic
+@wemp_start 2fa-qr-data-001 Add QR code data URL generation
+@wemp_start 2fa-api-errors-001 Add API error handling
+@wemp_start 2fa-qr-lib-001 Install QR code library
+@wemp_start 2fa-qr-component-001 Create QR code React component
+@wemp_start 2fa-qr-display-001 Add QR code display in settings UI
+@wemp_start 2fa-qr-style-001 Style QR code component
+@wemp_start 2fa-login-input-001 Add 2FA code input field to login page
+@wemp_start 2fa-login-check-001 Update login API to check 2FA status
+@wemp_start 2fa-login-verify-001 Add 2FA verification step in login flow
+@wemp_start 2fa-login-errors-001 Handle 2FA verification errors
+@wemp_start 2fa-settings-section-001 Create 2FA settings section component
+@wemp_start 2fa-settings-toggle-001 Add enable/disable 2FA toggle
+@wemp_start 2fa-settings-qr-001 Add QR code display during setup
+@wemp_start 2fa-settings-backup-001 Add backup codes display section
+@wemp_start 2fa-backup-generate-001 Generate backup codes algorithm
+@wemp_start 2fa-backup-store-001 Hash and store backup codes in database
+@wemp_start 2fa-backup-verify-001 Add backup code verification in login
+@wemp_start 2fa-backup-download-001 Create backup codes download feature
+@wemp_feature 2fa-authentication Add 2FA to authentication
+  ↓
+All 20 tasks linked to feature "2FA authentication"
+Each task tracked independently
+Each task is small, focused, and completable
+```
+
+**Example 2: Updating Existing Component**
+```
+User: "the CTA button in the header is not well designed, redesign it"
+  ↓
+Query API: GET /api/tasks/search?search=CTA button header
+  ↓
+Result: FOUND → { short_id: "cta-button-001", ... }
+  ↓
+Decision: UPDATE existing → @wemp_progress cta-button-001
+Status: in-progress (work is being done)
+```
+
+**Key Point:** Both result in `in-progress` status. The difference is:
+- First request: Creates NEW task (didn't exist before)
+- Second request: Updates EXISTING task (already exists)
+
+**Example: User Jumps Between Tasks**
+```
+User: "help me create a button CTA in the header"
+  ↓
+AI: Creates task "cta-button-001", stores in .wemp/current-tasks.json
+  ↓
+User: "actually, let me work on the login page first"
+  ↓
+AI: Creates task "login-page-001", adds to .wemp/current-tasks.json
+  File now has: [cta-button-001, login-page-001] (both active)
+  ↓
+User: "the login page is done, looks good"
+  ↓
+AI: Uses @wemp_end login-page-001, removes only login-page-001 from file
+  File now has: [cta-button-001] (CTA task still active, can return to it)
+  ↓
+User: "now let's finish that CTA button"
+  ↓
+AI: Reads file, finds cta-button-001, continues work on it
+```
+
+**Example 3: Completing Work (User Satisfaction Check)**
+```
+User: "the CTA button in the header is not well designed, redesign it"
+  ↓
+AI: Read .wemp/current-tasks.json → Found "cta-button-001"
+  OR Query API → FOUND → { short_id: "cta-button-001", ... }
+  ↓
+AI: Uses @wemp_progress cta-button-001 (updates task)
+  ↓
+AI: Implements redesign
+  ↓
+AI: **ASKS USER:** "Is this design better? Are you satisfied with the changes?"
+  ↓
+User: "Yes, looks good!" or "Perfect!" or "That works"
+  ↓
+AI: Uses @wemp_end cta-button-001 (completes task)
+  ↓
+AI: Remove from .wemp/current-tasks.json (task is done)
+Status: done (task closed, but can be reopened in future if needed)
+```
+
+**If user is NOT satisfied:**
+```
+AI: **ASKS USER:** "Is this design better? Are you satisfied?"
+  ↓
+User: "No, make it bigger" or "Change the color"
+  ↓
+AI: Continues with @wemp_progress cta-button-001 (task stays in-progress)
+```
+
+**Example 4: Reopening Closed Task**
+```
+User: "Actually, I want to change the CTA button color"
+  ↓
+Query API: GET /api/tasks/search?search=CTA button
+  ↓
+Result: FOUND → { short_id: "cta-button-001", status: "done", ... }
+  ↓
+Decision: REOPEN → @wemp_progress cta-button-001 (updates from done to in-progress)
+Status: in-progress (task reopened for new work)
+```
+
+**Key Points:**
+- **After fixes/updates:** Always ask user if satisfied
+- **User satisfaction = Complete:** Use `@wemp_end` when user confirms
+- **Closed tasks can reopen:** If user wants changes later, use `@wemp_progress` to reopen
+- **New features after completion:** After closing, user can start new features with `@wemp_start`
+
+## Wemp Tags
+
+Add these tags at the end of commit messages:
+
+- `@wemp_plan [short_id] [task_title]` - Creates task with status `todo` (planning phase)
+- `@wemp_start [short_id] [task_title]` - Creates task with status `in-progress` (or updates existing to `in-progress`)
+- `@wemp_progress [task_id or short_id]` - Updates task to `in-progress` (or creates if not found)
+- `@wemp_end [task_id or short_id]` - Updates task to `done` (completes task, but can be reopened later)
+- `@wemp_feature [short_id] [feature_name]` - Links **all tasks in the commit** to feature and **updates feature activity status** (creates feature if needed)
+
+**Important:** `@wemp_feature` links ALL tasks in the commit to the feature. Use one `@wemp_feature` tag per commit, and it will link all `@wemp_start`/`@wemp_progress` tasks to that feature.
+
+## Format
+
+```
+[Type]: [Title]
+
+[Body description - this updates features/tasks automatically]
+
+@wemp_[tag] [short_id] [task_title]
+@wemp_feature [short_id] [name] (optional)
+```
+
+## Feature Status Updates
+
+When you use `@wemp_feature [short_id] [feature_name]`, the system automatically:
+
+1. **Finds or creates the feature** using the short_id or name
+2. **Updates feature activity timestamp** (tracks when work is being done on the feature)
+3. **Links ALL tasks in the commit** to the feature (one feature tag links all tasks)
+4. **Feature status is inferred from task statuses** - when tasks are in-progress, feature is active
+5. **Feature progress** is calculated from completed tasks vs total tasks
+
+**Note:** 
+- Feature description is NOT updated from commits - only activity status is tracked
+- One feature can have many tasks
+- Tasks are the primary unit of work tracking
+- Features provide organization and grouping
+
+## Short ID Generation (YOU Generate This)
+
+**YOU must generate short IDs from task titles** before writing commits. IDs should be meaningful and derived from the task content.
+
+**How to generate:**
+- Task title: "Add user authentication" → Short ID: `user-auth-001`
+- Task title: "Create login page" → Short ID: `login-page-001`
+- Task title: "Fix login bug" → Short ID: `login-bug-001` or `fix-login-001`
+
+**Rules for generating short IDs:**
+1. Remove common words: "add", "create", "fix", "implement", "update", etc.
+2. Extract 2-3 meaningful words from the title
+3. Convert to lowercase, use hyphens: `user-auth`, `login-page`
+4. Add `-001` for the first task, `-002` for the second, etc.
+5. Keep it short and readable (max 30 characters)
+
+**Format in commits:**
+- For NEW tasks: `@wemp_start [short_id] [task_title]`
+- For EXISTING tasks: `@wemp_progress [short_id]` (just the ID)
+
+**Multiple tasks per commit (Granular Feature breakdown):**
+When implementing a feature, break it down into the smallest meaningful tasks. Create multiple granular tasks in one commit:
+
+```
+feat: Add 2FA to authentication
+
+Implementing two-factor authentication with TOTP support.
+Breaking down into granular, trackable tasks.
+
+@wemp_start 2fa-api-route-001 Create 2FA setup API route file
+@wemp_start 2fa-secret-gen-001 Add TOTP secret generation logic
+@wemp_start 2fa-qr-data-001 Add QR code data URL generation
+@wemp_start 2fa-qr-lib-001 Install QR code library
+@wemp_start 2fa-qr-component-001 Create QR code React component
+@wemp_start 2fa-login-input-001 Add 2FA code input field to login page
+@wemp_start 2fa-login-verify-001 Add 2FA verification step in login flow
+@wemp_start 2fa-settings-section-001 Create 2FA settings section component
+@wemp_start 2fa-backup-generate-001 Generate backup codes algorithm
+@wemp_start 2fa-backup-store-001 Hash and store backup codes in database
+@wemp_feature 2fa-authentication Add 2FA to authentication
+```
+
+**Result:**
+- Creates 10+ separate, granular tasks, all linked to feature "2FA authentication"
+- Each task is small, focused, and completable
+- Each task can be worked on and completed independently
+- Feature tracks overall progress through its tasks
+- **Tasks can be further divided** if they're still too large
+
+## Examples
+
+**Planning a task:**
+```
+feat: Plan user authentication
+
+@wemp_plan user-auth-001 Add user authentication
+@wemp_feature user-auth User Authentication
+```
+→ Creates task with status `todo`, short ID `user-auth-001`
+
+**Starting work (in-progress):**
+```
+feat: Add user authentication
+
+@wemp_start user-auth-001 Add user authentication
+@wemp_feature user-auth User Authentication
+```
+→ Creates task with status `in-progress`, short ID `user-auth-001`
+
+**Continuing work (using the ID):**
+```
+fix: Fix login bug
+
+@wemp_progress user-auth-001
+```
+→ Updates task `user-auth-001` to `in-progress`
+
+**Completing task (after user satisfaction):**
+```
+feat: Complete auth
+
+User confirmed satisfaction with the implementation.
+
+@wemp_end user-auth-001
+```
+→ Updates task `user-auth-001` to `done` (can be reopened later if needed)
+
+**Updating feature status (activity tracking):**
+```
+feat: User authentication improvements
+
+Complete authentication system with OAuth support.
+
+@wemp_feature user-auth User Authentication
+```
+→ Finds/creates feature "user-auth", updates activity timestamp, links tasks to feature
+
+**Updating multiple features:**
+```
+feat: Auth and payment updates
+
+@wemp_feature user-auth User Authentication
+@wemp_feature payment Payment System
+```
+→ Updates activity status for both features (tracks that work is being done)
+
+## Default Behavior
+
+If no tags are used, the commit creates a task with status `in-progress` (work is being done). You should still generate a short ID for it.
+
+## Task Identification
+
+- **For NEW tasks:** Generate short ID from title and include in tag: `@wemp_start [short_id] [title]`
+- **For EXISTING tasks:** Use the short ID from API query or `.wemp/current-tasks.json`: `@wemp_progress [short_id]`
+- **ALWAYS query API first** to find existing task IDs before committing
+- **Store generated short_ids** in `.wemp/current-tasks.json` for immediate reuse
+- If task not found, generate new short ID based on title
+
+## Local Storage Workflow
+
+**Step 1: Before creating task**
+- Query API to check if task exists
+- If not found, generate short_id
+
+**Step 2: After creating task (in commit)**
+- Read `.wemp/current-tasks.json`
+- Add new task entry with short_id, title, status
+- Write back to file
+- **File can have multiple tasks** - each is an array item
+
+**Step 3: When user switches tasks (context switching)**
+- **Don't remove previous tasks** from file
+- Add new task to the array
+- All tasks remain active until completed
+- Track which task is currently being worked on
+
+**Step 4: When referencing task**
+- First check `.wemp/current-tasks.json` (faster)
+- If multiple tasks match, ask user which one they mean
+- If not found in file, query API
+- Use short_id from either source
+
+**Step 5: When completing task**
+- Use short_id from storage or API
+- Mark task as done with `@wemp_end [short_id]`
+- Remove only that specific task from `.wemp/current-tasks.json`
+- Other active tasks remain in file (user can return to them)
+
+## Natural Language Intent Detection
+
+**When user says something in natural language, follow this process:**
+
+1. **Extract keywords** from user request (e.g., "login", "authentication", "payment")
+2. **Query API** with those keywords
+3. **Check results:**
+   - **Task found?** → Use existing short_id with `@wemp_progress` or `@wemp_end`
+   - **Task not found?** → Generate new short_id with `@wemp_start`
+4. **Infer action from language:**
+   - "Add/Create" → `@wemp_start` (new)
+   - "Fix/Update/Continue" → `@wemp_progress` (existing)
+   - "Complete/Finish" → `@wemp_end` (complete)
+
+**Example workflow:**
+```
+User: "Fix the login bug"
+  ↓
+You: Query GET /api/tasks/search?search=login
+  ↓
+Result: { found: true, task: { short_id: "login-page-001", ... } }
+  ↓
+You: Use @wemp_progress login-page-001 (existing task, updating)
+```
+
+```
+User: "Add payment integration"
+  ↓
+You: Query GET /api/tasks/search?search=payment
+  ↓
+Result: { found: false }
+  ↓
+You: Use @wemp_start payment-integration-001 Add payment integration (new task)
+```
+
+## Feature Identification
+
+- **For NEW features:** Generate short ID from name and include in tag: `@wemp_feature [short_id] [name]`
+- **For EXISTING features:** Use the short ID from API query: `@wemp_feature [short_id]` (just the ID)
+- **ALWAYS query API first** (`GET /api/features`) to find existing feature IDs before committing
+- If feature not found, generate new short ID based on name
+- **Feature status updates are automatic** - activity timestamp is updated when tasks are worked on
+

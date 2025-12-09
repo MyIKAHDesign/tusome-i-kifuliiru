@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+  }
+
+  .dark body {
+    @apply bg-gray-950 text-gray-50;
+  }
+}
+
+@layer components {
+  /* MDX Content Styles */
+  .mdx-content h1 {
+    @apply text-4xl font-bold mt-8 mb-6 leading-tight tracking-tight;
+  }
+
+  .mdx-content h2 {
+    @apply text-3xl font-bold mt-10 mb-4 leading-tight tracking-tight pb-2 border-b border-gray-200 dark:border-gray-800;
+  }
+
+  .mdx-content h3 {
+    @apply text-2xl font-semibold mt-8 mb-4 leading-normal;
+  }
+
+  .mdx-content h4 {
+    @apply text-xl font-semibold mt-6 mb-3;
+  }
+
+  .mdx-content p {
+    @apply mb-6 leading-relaxed text-base;
+  }
+
+  .mdx-content ul,
+  .mdx-content ol {
+    @apply mb-6 pl-8;
+  }
+
+  .mdx-content li {
+    @apply mb-3 leading-relaxed;
+  }
+
+  .mdx-content li::marker {
+    @apply text-gray-500 dark:text-gray-400;
+  }
+
+  .mdx-content a {
+    @apply text-gray-700 dark:text-gray-300 font-medium no-underline transition-colors border-b border-gray-300 dark:border-gray-700 pb-0.5;
+  }
+
+  .mdx-content a:hover {
+    @apply text-gray-900 dark:text-gray-50 border-gray-500 dark:border-gray-500;
+  }
+
+  .mdx-content img {
+    @apply max-w-full h-auto rounded-lg my-8;
+  }
+
+  .mdx-content code {
+    @apply bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-1.5 py-0.5 rounded text-sm font-mono font-medium;
+  }
+
+  .mdx-content pre {
+    @apply bg-gray-900 dark:bg-gray-950 text-gray-100 p-6 rounded-lg overflow-x-auto my-8 border border-gray-800;
+  }
+
+  .mdx-content pre code {
+    @apply bg-transparent p-0 text-sm;
+  }
+
+  .mdx-content blockquote {
+    @apply border-l-4 border-gray-300 dark:border-gray-700 pl-6 my-8 italic text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-900 py-4 rounded;
+  }
+
+  .mdx-content hr {
+    @apply border-0 border-t border-gray-200 dark:border-gray-800 my-10;
+  }
+
+  .mdx-content table {
+    @apply w-full border-collapse my-8 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800;
+  }
+
+  .mdx-content th,
+  .mdx-content td {
+    @apply p-4 text-left border-b border-gray-200 dark:border-gray-800;
+  }
+
+  .mdx-content th {
+    @apply bg-white dark:bg-gray-900 font-semibold;
+  }
+
+  .mdx-content tr:hover {
+    @apply bg-gray-50 dark:bg-gray-900;
+  }
+}

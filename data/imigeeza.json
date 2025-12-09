@@ -1,0 +1,35 @@
+{
+  "id": "imigeeza",
+  "slug": "imigeeza",
+  "title": "Imigeeza ye' Kifuliiru",
+  "contentType": "article",
+  "data": {
+    "type": "article",
+    "title": "Imigeeza ye' Kifuliiru",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 1,
+        "content": "Imigeeza ye' Kifuliiru"
+      },
+      {
+        "type": "paragraph",
+        "content": "Imigeza bili biki?"
+      },
+      {
+        "type": "paragraph",
+        "content": "Menya bingi ku migeeza y'Abafuliiru mu Kifuliiru na ngisi kwo idesiri."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "content": "Loonga imigeeza ye'Kifuliiru na'Bafuliiru mu Kifuliiru"
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.605Z",
+    "updatedAt": "2025-12-08T22:02:08.605Z",
+    "tags": []
+  }
+}

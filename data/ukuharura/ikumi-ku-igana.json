@@ -1,0 +1,388 @@
+{
+  "id": "ukuharura/ikumi-ku-igana",
+  "slug": "ukuharura/ikumi-ku-igana",
+  "title": "Ikumi ku igana",
+  "contentType": "number-lesson",
+  "data": {
+    "type": "number-lesson",
+    "title": "Ikumi ku igana",
+    "description": "90 = Makumi galimweenda  \n91 = Makumi galimweenda na higuma  \n92 = Makumi galimweenda na bubiri  \n93 = Makumi galimweenda na bushatu  \n94 = Makumi galimweenda na buna  \n95 = Makumi galimweenda na butanu  \n96 = Makumi galimweenda na ndatu  \n97 = Makumi galimweenda na bulinda  \n98 = Makumi galimweenda na munaana  \n99 = Makumi galimweenda na mweenda",
+    "range": "10-100",
+    "sections": [
+      {
+        "title": "Numbers",
+        "range": "",
+        "numbers": [
+          {
+            "value": 10,
+            "kifuliiru": "Ikumi"
+          },
+          {
+            "value": 11,
+            "kifuliiru": "Ikumi na higuma"
+          },
+          {
+            "value": 12,
+            "kifuliiru": "Ikumi na bubiri"
+          },
+          {
+            "value": 13,
+            "kifuliiru": "Ikumi na bushatu"
+          },
+          {
+            "value": 14,
+            "kifuliiru": "Ikumi na buna"
+          },
+          {
+            "value": 15,
+            "kifuliiru": "Ikumi na butanu"
+          },
+          {
+            "value": 16,
+            "kifuliiru": "Ikumi na ndatu"
+          },
+          {
+            "value": 17,
+            "kifuliiru": "Ikumi na bulinda"
+          },
+          {
+            "value": 18,
+            "kifuliiru": "Ikumi na munaana"
+          },
+          {
+            "value": 19,
+            "kifuliiru": "Ikumi na mweenda"
+          },
+          {
+            "value": 20,
+            "kifuliiru": "Makumi gabiri"
+          },
+          {
+            "value": 21,
+            "kifuliiru": "Makumi gabiri na higuma"
+          },
+          {
+            "value": 22,
+            "kifuliiru": "Makumi gabiri na bubiri"
+          },
+          {
+            "value": 23,
+            "kifuliiru": "Makumi gabiri na busha"
+          },
+          {
+            "value": 24,
+            "kifuliiru": "Makumi gabiri na buna"
+          },
+          {
+            "value": 25,
+            "kifuliiru": "Makumi gabiri na butanu"
+          },
+          {
+            "value": 26,
+            "kifuliiru": "Makumi gabiri na ndatu"
+          },
+          {
+            "value": 27,
+            "kifuliiru": "Makumi gabiri na bulinda"
+          },
+          {
+            "value": 28,
+            "kifuliiru": "Makumi gabiri na munaana"
+          },
+          {
+            "value": 29,
+            "kifuliiru": "Makumi gabiri na mweenda"
+          },
+          {
+            "value": 30,
+            "kifuliiru": "Makumi gashatu"
+          },
+          {
+            "value": 31,
+            "kifuliiru": "Makumi gashatu na higuma"
+          },
+          {
+            "value": 32,
+            "kifuliiru": "Makumi gashatu na bubiri"
+          },
+          {
+            "value": 33,
+            "kifuliiru": "Makumi gashatu na bushatu"
+          },
+          {
+            "value": 34,
+            "kifuliiru": "Makumi gashatu na buna"
+          },
+          {
+            "value": 35,
+            "kifuliiru": "Makumi gashatu na butanu"
+          },
+          {
+            "value": 36,
+            "kifuliiru": "Makumi gashatu na ndatu"
+          },
+          {
+            "value": 37,
+            "kifuliiru": "Makumi gashatu na bulinda"
+          },
+          {
+            "value": 38,
+            "kifuliiru": "Makumi gashatu na munaana"
+          },
+          {
+            "value": 39,
+            "kifuliiru": "Makumi gashatu na mweenda"
+          },
+          {
+            "value": 40,
+            "kifuliiru": "Makumi gana"
+          },
+          {
+            "value": 41,
+            "kifuliiru": "Makumi gana na higuma"
+          },
+          {
+            "value": 42,
+            "kifuliiru": "Makumi gana na bubiri"
+          },
+          {
+            "value": 43,
+            "kifuliiru": "Makumi gana na bushatu"
+          },
+          {
+            "value": 44,
+            "kifuliiru": "Makumi gana na buna"
+          },
+          {
+            "value": 45,
+            "kifuliiru": "Makumi gana na butanu"
+          },
+          {
+            "value": 46,
+            "kifuliiru": "Makumi gana na ndatu"
+          },
+          {
+            "value": 47,
+            "kifuliiru": "Makumi gana na bulinda"
+          },
+          {
+            "value": 48,
+            "kifuliiru": "Makumi gana na munaana"
+          },
+          {
+            "value": 49,
+            "kifuliiru": "Makumi gana na mweenda"
+          },
+          {
+            "value": 50,
+            "kifuliiru": "Makumi gatanu"
+          },
+          {
+            "value": 51,
+            "kifuliiru": "Makumi gatanu na higuma"
+          },
+          {
+            "value": 52,
+            "kifuliiru": "Makumi gatanu na bubiri"
+          },
+          {
+            "value": 53,
+            "kifuliiru": "Makumi gatanu na bushatu"
+          },
+          {
+            "value": 54,
+            "kifuliiru": "Makumi gatanu na buna"
+          },
+          {
+            "value": 55,
+            "kifuliiru": "Makumi gatanu na butanu"
+          },
+          {
+            "value": 56,
+            "kifuliiru": "Makumi gatanu na ndatu"
+          },
+          {
+            "value": 57,
+            "kifuliiru": "Makumi gatanu na bulinda"
+          },
+          {
+            "value": 58,
+            "kifuliiru": "Makumi gatanu na munaana"
+          },
+          {
+            "value": 59,
+            "kifuliiru": "Makumi gatanu na mweenda"
+          },
+          {
+            "value": 60,
+            "kifuliiru": "Makumi galindatu"
+          },
+          {
+            "value": 61,
+            "kifuliiru": "Makumi galindatu na higuma"
+          },
+          {
+            "value": 62,
+            "kifuliiru": "Makumi galindatu na bubiri"
+          },
+          {
+            "value": 63,
+            "kifuliiru": "Makumi galindatu na bushatu"
+          },
+          {
+            "value": 64,
+            "kifuliiru": "Makumi galindatu na buna"
+          },
+          {
+            "value": 65,
+            "kifuliiru": "Makumi galindatu na butanu"
+          },
+          {
+            "value": 66,
+            "kifuliiru": "Makumi galindatu na ndatu"
+          },
+          {
+            "value": 67,
+            "kifuliiru": "Makumi galindatu na bulinda"
+          },
+          {
+            "value": 68,
+            "kifuliiru": "Makumi galindatu na munaana"
+          },
+          {
+            "value": 69,
+            "kifuliiru": "Makumi galindatu na mweenda"
+          },
+          {
+            "value": 70,
+            "kifuliiru": "Makumi galinda"
+          },
+          {
+            "value": 71,
+            "kifuliiru": "Makumi galinda na higuma"
+          },
+          {
+            "value": 72,
+            "kifuliiru": "Makumi galinda na bubiri"
+          },
+          {
+            "value": 73,
+            "kifuliiru": "Makumi galinda na bushatu"
+          },
+          {
+            "value": 74,
+            "kifuliiru": "Makumi galinda na buna"
+          },
+          {
+            "value": 75,
+            "kifuliiru": "Makumi galinda na butanu"
+          },
+          {
+            "value": 76,
+            "kifuliiru": "Makumi galinda na ndatu"
+          },
+          {
+            "value": 77,
+            "kifuliiru": "Makumi galinda na bulinda"
+          },
+          {
+            "value": 78,
+            "kifuliiru": "Makumi galinda na munaana"
+          },
+          {
+            "value": 79,
+            "kifuliiru": "Makumi galinda na mweenda"
+          },
+          {
+            "value": 80,
+            "kifuliiru": "Makumi galimunaana"
+          },
+          {
+            "value": 81,
+            "kifuliiru": "Makumi galimunaana na higuma"
+          },
+          {
+            "value": 82,
+            "kifuliiru": "Makumi galimunaana na bubiri"
+          },
+          {
+            "value": 83,
+            "kifuliiru": "Makumi galimunaana na bushatu"
+          },
+          {
+            "value": 84,
+            "kifuliiru": "Makumi galimunaana na buna"
+          },
+          {
+            "value": 85,
+            "kifuliiru": "Makumi galimunaana na butanu"
+          },
+          {
+            "value": 86,
+            "kifuliiru": "Makumi galimunaana na ndatu"
+          },
+          {
+            "value": 87,
+            "kifuliiru": "Makumi galimunaana na bulinda"
+          },
+          {
+            "value": 88,
+            "kifuliiru": "Makumi galimunaana na munaana"
+          },
+          {
+            "value": 89,
+            "kifuliiru": "Makumi galimunaana na mweenda"
+          },
+          {
+            "value": 90,
+            "kifuliiru": "Makumi galimweenda"
+          },
+          {
+            "value": 91,
+            "kifuliiru": "Makumi galimweenda na higuma"
+          },
+          {
+            "value": 92,
+            "kifuliiru": "Makumi galimweenda na bubiri"
+          },
+          {
+            "value": 93,
+            "kifuliiru": "Makumi galimweenda na bushatu"
+          },
+          {
+            "value": 94,
+            "kifuliiru": "Makumi galimweenda na buna"
+          },
+          {
+            "value": 95,
+            "kifuliiru": "Makumi galimweenda na butanu"
+          },
+          {
+            "value": 96,
+            "kifuliiru": "Makumi galimweenda na ndatu"
+          },
+          {
+            "value": 97,
+            "kifuliiru": "Makumi galimweenda na bulinda"
+          },
+          {
+            "value": 98,
+            "kifuliiru": "Makumi galimweenda na munaana"
+          },
+          {
+            "value": 99,
+            "kifuliiru": "Makumi galimweenda na mweenda"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.651Z",
+    "updatedAt": "2025-12-08T22:02:08.651Z",
+    "tags": [
+      "numbers",
+      "ukuharura"
+    ]
+  }
+}

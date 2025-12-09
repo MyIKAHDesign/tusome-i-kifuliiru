@@ -1,0 +1,73 @@
+{
+  "id": "ukuharura/ibindu",
+  "slug": "ukuharura/ibindu",
+  "title": "Ukuharura ibindu",
+  "contentType": "number-lesson",
+  "data": {
+    "type": "number-lesson",
+    "title": "Ukuharura ibindu",
+    "description": "",
+    "range": "",
+    "sections": [
+      {
+        "title": "Numbers",
+        "range": "",
+        "numbers": [
+          {
+            "value": 0,
+            "kifuliiru": "Ubusha kandi li namuteneka"
+          },
+          {
+            "value": 1,
+            "kifuliiru": "Higuma"
+          },
+          {
+            "value": 2,
+            "kifuliiru": "Bubiri"
+          },
+          {
+            "value": 3,
+            "kifuliiru": "Bushatu"
+          },
+          {
+            "value": 4,
+            "kifuliiru": "Buna"
+          },
+          {
+            "value": 5,
+            "kifuliiru": "Butanu"
+          },
+          {
+            "value": 6,
+            "kifuliiru": "Ndatu"
+          },
+          {
+            "value": 7,
+            "kifuliiru": "Buliinda"
+          },
+          {
+            "value": 8,
+            "kifuliiru": "Munaana"
+          },
+          {
+            "value": 9,
+            "kifuliiru": "Mweenda"
+          },
+          {
+            "value": 10,
+            "kifuliiru": "Ikumi."
+          }
+        ]
+      }
+    ],
+    "table": "| Umuharuro | umuharuro gwe'biindu mu magambo | Kwo tugayandika mu muharuro |\n| --------- | ------------------------------- | --------------------------- |\n| 1         | Mugazi muguma                   | 1 mugazi                    |\n| 2         | Migazi ibiri                    | 2 migazi                    |\n| 3         | Migazi ishatu                   | 3 migazi                    |\n| 4         | Migazi ina                      | 4 migazi                    |\n| 5         | Migazi itanu                    | 5 migazi                    |\n| 6         | Migazi ndatu                    | 6 migazi                    |\n| 7         | Migazi iriinda                  | 7 migazi                    |\n| 8         | Migazi munaana                  | 8 migazi                    |\n| 9         | Migazi mweenda                  | 9 migazi                    |\n| 10        | Migazi ikumi                    | 10 migazi                   |"
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.650Z",
+    "updatedAt": "2025-12-08T22:02:08.650Z",
+    "tags": [
+      "numbers",
+      "ukuharura"
+    ]
+  }
+}

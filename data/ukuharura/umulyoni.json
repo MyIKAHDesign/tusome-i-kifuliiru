@@ -1,0 +1,211 @@
+{
+  "id": "ukuharura/umulyoni",
+  "slug": "ukuharura/umulyoni",
+  "title": "Umulyoni",
+  "contentType": "number-lesson",
+  "data": {
+    "type": "number-lesson",
+    "title": "Umulyoni",
+    "range": "1.000.000",
+    "sections": [
+      {
+        "title": "Numbers",
+        "range": "",
+        "numbers": [
+          {
+            "value": 1,
+            "kifuliiru": "Umulyoni [Mulyoni muguma]"
+          },
+          {
+            "value": 2,
+            "kifuliiru": "Imilyoni ibiri"
+          },
+          {
+            "value": 3,
+            "kifuliiru": "Imilyoni ishatu"
+          },
+          {
+            "value": 4,
+            "kifuliiru": "Imilyoni ina"
+          },
+          {
+            "value": 5,
+            "kifuliiru": "Imilyoni itanu"
+          },
+          {
+            "value": 6,
+            "kifuliiru": "Imilyoni ndatu"
+          },
+          {
+            "value": 7,
+            "kifuliiru": "Imilyoni irinda"
+          },
+          {
+            "value": 8,
+            "kifuliiru": "Imilyoni munaana"
+          },
+          {
+            "value": 9,
+            "kifuliiru": "Imilyoni mweenda"
+          },
+          {
+            "value": 10,
+            "kifuliiru": "Imilyoni ikumi"
+          },
+          {
+            "value": 11,
+            "kifuliiru": "Imilyoni ikumi na muguma"
+          },
+          {
+            "value": 12,
+            "kifuliiru": "Imilyoni ikumi n'ibiri"
+          },
+          {
+            "value": 13,
+            "kifuliiru": "Imilyoni ikumi n'ishatu"
+          },
+          {
+            "value": 14,
+            "kifuliiru": "Imilyoni ikumi n'ina"
+          },
+          {
+            "value": 15,
+            "kifuliiru": "Imilyoni ikumi n'itanu"
+          },
+          {
+            "value": 16,
+            "kifuliiru": "Imilyoni ikumi na ndatu"
+          },
+          {
+            "value": 17,
+            "kifuliiru": "Imilyoni ikumi n'irinda"
+          },
+          {
+            "value": 18,
+            "kifuliiru": "Imilyoni ikumi na munaana"
+          },
+          {
+            "value": 19,
+            "kifuliiru": "Imilyoni ikumi na mweenda"
+          },
+          {
+            "value": 20,
+            "kifuliiru": "Imilyoni makumi gabiri"
+          },
+          {
+            "value": 21,
+            "kifuliiru": "Imilyoni makumi gabiri na muguma"
+          },
+          {
+            "value": 22,
+            "kifuliiru": "Imilyoni makumi gabiri n'ibiri"
+          },
+          {
+            "value": 23,
+            "kifuliiru": "Imilyoni makumi gabiri n'ishatu"
+          },
+          {
+            "value": 24,
+            "kifuliiru": "Imilyoni makumi gabiri n'ina"
+          },
+          {
+            "value": 25,
+            "kifuliiru": "Imilyoni makumi gabiri n'itanu"
+          },
+          {
+            "value": 26,
+            "kifuliiru": "Imilyoni makumi gabiri na ndatu"
+          },
+          {
+            "value": 27,
+            "kifuliiru": "Imilyoni makumi gabiri n'irinda"
+          },
+          {
+            "value": 28,
+            "kifuliiru": "Imilyoni makumi gabiri na munaana"
+          },
+          {
+            "value": 29,
+            "kifuliiru": "Imilyoni makumi gabiri na mweenda"
+          },
+          {
+            "value": 30,
+            "kifuliiru": "Imilyoni makumi gashatu"
+          },
+          {
+            "value": 40,
+            "kifuliiru": "Imilyoni makumi gana"
+          },
+          {
+            "value": 50,
+            "kifuliiru": "Imilyoni makumi gatanu"
+          },
+          {
+            "value": 60,
+            "kifuliiru": "Imilyoni makumi galindatu"
+          },
+          {
+            "value": 70,
+            "kifuliiru": "Imilyoni makumi galinda"
+          },
+          {
+            "value": 80,
+            "kifuliiru": "Imilyoni makumi galimunaana"
+          },
+          {
+            "value": 90,
+            "kifuliiru": "Imilyoni makumi galimweenda"
+          },
+          {
+            "value": 100,
+            "kifuliiru": "Milyoni igana"
+          },
+          {
+            "value": 200,
+            "kifuliiru": "Milyoni magana gabiri"
+          },
+          {
+            "value": 300,
+            "kifuliiru": "Milyoni magana gashatu"
+          },
+          {
+            "value": 400,
+            "kifuliiru": "Milyoni magana gana"
+          },
+          {
+            "value": 500,
+            "kifuliiru": "Milyoni magana gatanu"
+          },
+          {
+            "value": 600,
+            "kifuliiru": "Milyoni magana galindatu"
+          },
+          {
+            "value": 700,
+            "kifuliiru": "Milyoni magana galinda"
+          },
+          {
+            "value": 800,
+            "kifuliiru": "Milyoni magana galimunaana"
+          },
+          {
+            "value": 900,
+            "kifuliiru": "Milyoni magana galimweenda"
+          },
+          {
+            "value": 999.999,
+            "kifuliiru": "Milyoni magana galimweenda na makumi galimweenda na mweenda ne'bihumbi magana galimweenda na makumi galimweenda na mweenda na magana galimweenda na makumi galimweenda na mweenda."
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.655Z",
+    "updatedAt": "2025-12-08T22:02:08.655Z",
+    "tags": [
+      "numbers",
+      "ukuharura"
+    ]
+  }
+}

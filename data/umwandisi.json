@@ -1,0 +1,25 @@
+{
+  "id": "umwandisi",
+  "slug": "umwandisi",
+  "title": "umwandisi",
+  "contentType": "article",
+  "data": {
+    "type": "article",
+    "title": "umwandisi",
+    "blocks": [
+      {
+        "type": "paragraph",
+        "content": "#Umwandisi wa guno mukolwa"
+      },
+      {
+        "type": "paragraph",
+        "content": "Ku nino kinyerere guno mukolwa guyimangirwi na mwenewitu wa wa [Ayivugwe Kabemba Mukome](https://ayivugwekabemba.me)."
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.655Z",
+    "updatedAt": "2025-12-08T22:02:08.655Z",
+    "tags": []
+  }
+}

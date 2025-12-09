@@ -1,0 +1,34 @@
+{
+  "id": "tukole",
+  "slug": "tukole",
+  "title": "Tukole",
+  "contentType": "article",
+  "data": {
+    "type": "article",
+    "title": "Tukole",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 1,
+        "content": "Tukole"
+      },
+      {
+        "type": "paragraph",
+        "content": "Muuyegerere tukolanwe, tuzamuule indeto yitu Kifuliiru."
+      },
+      {
+        "type": "paragraph",
+        "content": "Tukole is a Kifuliiru word that means let's work. This is an invitation to whoever wants to help this project."
+      },
+      {
+        "type": "paragraph",
+        "content": "Mugweeti ibiindu muloziizi ukubuuza kandi li muloziizi ukutabaala? [Tuyandikire hano](https://ibufuliiru.editorx.io/ibufuliiru/tuyandikire)."
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.607Z",
+    "updatedAt": "2025-12-08T22:02:08.607Z",
+    "tags": []
+  }
+}

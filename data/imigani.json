@@ -1,0 +1,27 @@
+{
+  "id": "imigani",
+  "slug": "imigani",
+  "title": "Imigani ye' Kifuliiru",
+  "contentType": "article",
+  "data": {
+    "type": "article",
+    "title": "Imigani ye' Kifuliiru",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 1,
+        "content": "Imigani ye' Kifuliiru"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "content": "Loonga imigani ye'Kifuliiru na'Bafuliiru mu Kifuliiru"
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.605Z",
+    "updatedAt": "2025-12-08T22:02:08.605Z",
+    "tags": []
+  }
+}

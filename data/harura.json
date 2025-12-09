@@ -1,0 +1,145 @@
+{
+  "id": "harura",
+  "slug": "harura",
+  "title": "Ukuharura ibiindu",
+  "contentType": "article",
+  "data": {
+    "type": "article",
+    "title": "Ukuharura ibiindu",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 1,
+        "content": "Ukuharura ibiindu"
+      },
+      {
+        "type": "paragraph",
+        "content": "Kera twabona ukuharura ngana, kushagira ku [busha](./zero-ku-ikumi) kuhisa ku [mulyari](./umulyari). Twamukolesagya bino kera twasoma higulu tulolage nga tugaharura ibindu, kuti tugabiyandika."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "content": "Byo kera twaloonga"
+      },
+      {
+        "type": "paragraph",
+        "content": "Mu mikolwa mingi kera twakola hano yo kuyandika ukuharura mu Kifuliiru, tutagweti tugaleeta ibindu bihyahya haliko tugweti tugayandika nga ngisi kwo Abafuliiru bamuharura. Ikindu tugwetu tugakola bweneene kuliragi kuyandika yibyo ngisi byo'Mufuliiru ayiji anamukoleesa."
+      },
+      {
+        "type": "paragraph",
+        "content": "Tukasalira bweneene ukudeta kwo tumenye ngisi kwo Umufuliiru amuharura twanayijigwana kwo ku kyanya tumuharura ukushagira ku busha kandi li ku higuma ukuhisa kw'ikumi ho hakayu."
+      },
+      {
+        "type": "paragraph",
+        "content": "Haliri ibindu bingi tugabona hano haliko muleke tutebabwira kwo tukahikiira ku bino:"
+      },
+      {
+        "type": "paragraph",
+        "content": "Ukuharura ngana, Umufuliiru amuharura kwokuno:"
+      },
+      {
+        "type": "paragraph",
+        "content": "0 = Ubusha kandi li namuteneka 1 = Higuma 2 = Bubiri 3 = Bushatu 4 = Buna 5 = Butanu 6 = Ndatu 7 = Buliinda 8 = Munaana 9 = Mweenda 10 = Ikumi."
+      },
+      {
+        "type": "paragraph",
+        "content": "Kukyanyaga tugaharura ibiindu tunagirage kuti? Ukushagira ku busha ukuhisa kw'ikumi, yo ndondeezo ya byooshi."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "content": "Kuharura ibiindu mu Kifuliiru"
+      },
+      {
+        "type": "paragraph",
+        "content": "Ku balya abakomiri izindi ndeto nge' Kingereza ne' Kifaransa, mu yizo ndeto ukuharura umutondera no'muharuro uanbikage kwohe igambo kandi li ikindu. Haliko mu Kifuliiru umutondera n'igambo uanbikage kwohe umuharuro. Kwookuno:"
+      },
+      {
+        "type": "paragraph",
+        "content": "Umulya muguma = Umulya 1. Twangayandika: 1 umulya Tunasome: Umulya muguma."
+      },
+      {
+        "type": "paragraph",
+        "content": "Ikiindu tuloziizi ukuyerekana hano, kuliri kudeta kwo ukuharura ibiindu mu Kifuliiru kushagira ku busha kandi li bweneene bweneene ku higuma ukuhisa kw'ikumi, bihuniri ukuyitoonda lwooshi lwooshi higulu ngisi kwo igambo limuhinduka, kwo na ngisi kwo tumudeta umuharuro kumuhinduka. Twamubonaga bingi hano."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "content": "Tuharure imilya"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "content": "Tuharure ibigundu"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "content": "Tuharure inyiji"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "content": "Tuharure ibijaangala"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "content": "Tuharure amafuno"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "content": "Tuharure utwaaya"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "content": "Tuharure imigazi"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "content": "Tuharure inyiiji"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "content": "Tuharure ibibaaja"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "content": "Tuharure imiimbati"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "content": "Tuharure imigazi"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "content": "Tuharure utubaanda"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "content": "Biki kera twabona hano?"
+      },
+      {
+        "type": "paragraph",
+        "content": "Mu Kifuliiru ukuharura ukutakiri kuharura ngana, tumukoleesa ukuharura ngana tunayongerage kwohe igaambo. Lino gaambo twayabira kwo liliri ziina lyooshi twangakoleesa, lyangaba ziina lyo'muundu, lye'kiindu,..."
+      },
+      {
+        "type": "paragraph",
+        "content": "Ibiindu kera twabona kuliri kudeta kwo umuharuro gumuhinduka ukushagirana na ngisi gaambo ugweeti ugagaaja kandi li kuharura."
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.603Z",
+    "updatedAt": "2025-12-08T22:02:08.603Z",
+    "tags": []
+  }
+}

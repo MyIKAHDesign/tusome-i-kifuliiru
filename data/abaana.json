@@ -1,0 +1,35 @@
+{
+  "id": "abaana",
+  "slug": "abaana",
+  "title": "Menya gano maziina ku baandu na ku binamishwa",
+  "contentType": "article",
+  "data": {
+    "type": "article",
+    "title": "Menya gano maziina ku baandu na ku binamishwa",
+    "blocks": [
+      {
+        "type": "heading",
+        "level": 1,
+        "content": "Menya gano maziina ku baandu na ku binamishwa"
+      },
+      {
+        "type": "paragraph",
+        "content": "Umufuliiru agweeti ngisi kwo amudeta umwaana wo'muundu na ngisi kwo aliri mudeta ikyaana kye'kinamishwa."
+      },
+      {
+        "type": "paragraph",
+        "content": "Kiri na hano mw'itwe ly'amagaambo mugabona kwo kera twahushanisa gano magambo: Ku muundu tumudeta _Umwaana_ mu buniini na mu bwiingi tunadete _Abaana_. Ku binamishwa Umufuliiru amudeta _Ikyaana_ ku buniini na mu bwiingi, Umufuliiru amudeta _Ibyaana_. Tuloongage mu bwiingi ukushagirana na ngisi muundu kandi li ikinamishwa."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "content": "Loonga amagaambo hano"
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.601Z",
+    "updatedAt": "2025-12-08T22:02:08.602Z",
+    "tags": []
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "muyegerere": {
+    "title": "Muyegerere",
+    "type": "page",
+    "href": "/",
+    "newWindow": false
+  },
+  "ukuharura": {
+    "title": "Ukuharura",
+    "type": "menu",
+    "items": {
+      "ndondeero": "Ndondero",
+      "zero-ku-ikumi": "Ubusha kuhisa ku ikumi",
+      "ikumi-ku-igana": "Ikumi ukuhisa ku igana",
+      "igana-ku-kihumbi": "Igana kuhisa ku kihumbi",
+      "igana": "Igana",
+      "magana-gabiri": "Magana gabiri",
+      "magana-gashatu": "Magana gashatu",
+      "magana-gana": "Magana gana",
+      "magana-gatanu": "Magana gatanu",
+      "magana-galindatu": "Magana galidatu",
+      "magana-galinda": "Magana galiinda",
+      "magana-galimunaana": "Magana galimunaana",
+      "magana-galimweenda": "Magana galimweenda",
+      "kihumbi-no-kuzamuuka": "Ikihumbi no kuzamuuka",
+      "kihumbi": "Kihumbi",
+      "bihumbi-bibiri": "Bihumbi bibiri",
+      "bihumbi-bishatu": "Bihumbi bishatu",
+      "bihumbi-bina": "Bihumbi bina",
+      "bihumbi-bitanu": "Bihumbi bitanu",
+      "bihumbi-ndatu": "Bihumbi ndatu",
+      "bihumbi-birinda": "Bihumbi birinda",
+      "bihumbi-munaana": "Bihumbi munaana",
+      "bihumbi-mweenda": "Bihumbi mweenda",
+      "bihumbi-ikumi": "Bihumbi ikumi",
+      "bihumbi-ikumi-na-kiguma": "Bihumbi ikumi na kiguma",
+      "bihumbi-ikumi-na-bibiri": "Bihumbi ikumi na bibiri",
+      "bihumbi-ikumi-na-bishatu": "Bihumbi ikumi na bishatu",
+      "bihumbi-ikumi-na-bina": "Bihumbi ikumi na bina",
+      "bihumbi-ikumi-na-bitanu": "Bihumbi ikumi na bitanu",
+      "bihumbi-ikumi-na-ndatu": "Bihumbi ikumi na ndatu",
+      "bihumbi-ikumi-na-biriinda": "Bihumbi ikumi na biriinda",
+      "bihumbi-ikumi-na-munaana": "Bihumbi ikumi na munaana",
+      "bihumbi-ikumi-na-mweenda": "Bihumbi ikumi na mweenda",
+      "bihumbi-makumi-gabiri": "Bihumbi makumi gabiri",
+      "bihumbi-makumi-gabiri-na-kiguma": "Bihumbi makumi gabiri na kiguma",
+      "bihumbi-makumi-gabiri-na-bibiri": "Bihumbi makumi gabiri na bibiri",
+      "bihumbi-makumi-gabiri-na-bishatu": "Bihumbi makumi gabiri na bishatu",
+      "bihumbi-makumi-gabiri-na-bina": "Bihumbi makumi gabiri na bina",
+      "bihumbi-makumi-gabiri-na-bitanu": "Bihumbi makumi gabiri na bitanu",
+      "bihumbi-makumi-gabiri-na-ndatu": "Bihumbi makumi gabiri na ndatu",
+      "bihumbi-makumi-gabiri-na-birinda": "Bihumbi makumi gabiri na biriinda",
+      "bihumbi-makumi-gabiri-na-munaana": "Bihumbi makumi gabiri na munaana",
+      "bihumbi-makumi-gabiri-na-mweenda": "Bihumbi makumi gabiri na mweenda",
+      "bihumbi-makumi-gashatu": "Bihumbi makumi gashatu",
+      "bihumbi-makumi-gana": "Bihumbi makumi gana",
+      "bihumbi-makumi-gatanu": "Bihumbi makumi gatanu",
+      "bihumbi-makumi-galindatu": "Bihumbi makumi galindatu",
+      "bihumbi-makumi-galiinda": "Bihumbi makumi galiinda",
+      "bihumbi-makumi-galimunaana": "Bihumbi makumi galimunaana",
+      "bihumbi-makumi-galimweenda": "Bihumbi makumi galimweenda",
+      "bihumbi-igana": "Bihumbi igana",
+      "bihumbi-magana-gabiri": "Bihumbi magana gabiri",
+      "bihumbi-magana-gashatu": "Bihumbi magana gashatu",
+      "bihumbi-magana-gana": "Bihumbi magana gana",
+      "bihumbi-magana-gatanu": "Bihumbi magana gatanu",
+      "bihumbi-magana-galindatu": "Bihumbi magana galindatu",
+      "bihumbi-magana-galiinda": "Bihumbi magana galiinda",
+      "bihumbi-magana-galimunaana": "Bihumbi magana galimunaana",
+      "bihumbi-magana-galimweenda": "Bihumbi magana galimweenda",
+      "umulyoni": "Umulyoni",
+      "umulyari": "Umulyari",
+      "umulyari-muguma": "Umulyari muguma",
+      "bihumbi-bingi": "Bihumbi bingi",
+      "abandu": "Abaandu",
+      "ibindu": "Ibindu",
+      "binamishwa": "Ibinamishwa"
+    }
+  },
+  "kuharura-ibiindu": {
+    "title": "Kuharura Ibiindu",
+    "type": "menu",
+    "items": {
+      "harura": {
+        "title": "Kuharura",
+        "type": "page",
+        "href": "/docs/harura"
+      },
+      "ibindu": {
+        "title": "Ibindu",
+        "type": "page",
+        "href": "/docs/ukuharura/ibindu"
+      },
+      "abandu": {
+        "title": "Abaandu",
+        "type": "page",
+        "href": "/docs/ukuharura/abandu"
+      },
+      "binamishwa": {
+        "title": "Ibinamishwa",
+        "type": "page",
+        "href": "/docs/ukuharura/binamishwa"
+      },
+      "bihumbi-bingi": {
+        "title": "Bihumbi bingi",
+        "type": "page",
+        "href": "/docs/ukuharura/bihumbi-bingi"
+      }
+    }
+  },
+  "ndondeero_tusome": "Menya Bino",
+  "amagambo": "Tusome Amagambo",
+  "kifuliiru": {
+    "title": "Kifuliiru",
+    "type": "page"
+  },
+  "imigani": {
+    "title": "Imigani",
+    "type": "page"
+  },
+  "imigeeza": {
+    "title": "Imigeeza",
+    "type": "page"
+  },
+  "imwitu": {
+    "title": "Imwitu",
+    "type": "menu",
+    "items": {
+      "ibufuliiru": {
+        "title": "Ibufuliiru",
+        "type": "page"
+      },
+      "imigazi": {
+        "title": "Imigazi",
+        "type": "page"
+      },
+      "inyiji": {
+        "title": "Inyiji",
+        "type": "page"
+      },
+      "utwaya": {
+        "title": "Utwaya",
+        "type": "page"
+      }
+    }
+  },
+  "bingi-ku-kifuliiru": {
+    "title": "Bingi ku Kifuliiru",
+    "type": "menu",
+    "items": {
+      "amagambo": {
+        "title": "Amagambo ge'Kifuliiru",
+        "type": "page"
+      },
+      "bitaabo-bya-bafuliiru": {
+        "title": "Ibitaabo bya'Bafuliiru",
+        "type": "page"
+      },
+      "imikolwa": {
+        "title": "Imikolwa",
+        "type": "page"
+      },
+      "invumo": {
+        "title": "Ukufuma mu Kifuliiru",
+        "type": "page"
+      },
+      "ibinamishwa-mu-kifuliiru": {
+        "title": "Ibinamishwa mu Kifuliiru",
+        "type": "page"
+      },
+      "ibufuliiru.com": {
+        "title": "Ibufuliiru.com",
+        "type": "page"
+      },
+      "tuganule-i-kifuliiru": {
+        "title": "Tuganuule i Kifuliiru",
+        "type": "page"
+      }
+    }
+  },
+  "twehe": {
+    "title": "Twehe",
+    "type": "menu",
+    "items": {
+      "twehe": {
+        "title": "Guno mukolwa",
+        "type": "page"
+      },
+
+      "umwandisi": {
+        "title": "Umwandisi",
+        "type": "page"
+      }
+    }
+  },
+  "contact": {
+    "title": "Tuyandikire ↗",
+    "type": "page",
+    "href": "https://ibufuliiru.editorx.io/ibufuliiru/tuyandikire",
+    "newWindow": true
+  },
+
+  "eng-frn-swa": {
+    "title": "ENG/SWA/FRN",
+    "type": "menu",
+    "items": {
+      "kiswahili": {
+        "title": "Kiswahili",
+        "type": "page"
+      },
+
+      "english": {
+        "title": "English",
+        "type": "page"
+      },
+      "francais": {
+        "title": "Français",
+        "type": "page"
+      },
+      "tukole": {
+        "title": "Tukole",
+        "type": "page"
+      }
+    }
+  }
+}

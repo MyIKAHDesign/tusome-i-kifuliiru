@@ -1,0 +1,323 @@
+{
+  "id": "ukuharura/umulyari",
+  "slug": "ukuharura/umulyari",
+  "title": "Umulyari",
+  "contentType": "number-lesson",
+  "data": {
+    "type": "number-lesson",
+    "title": "Umulyari",
+    "range": "1.000.000.000",
+    "sections": [
+      {
+        "title": "Numbers",
+        "range": "",
+        "numbers": [
+          {
+            "value": 1,
+            "kifuliiru": "Umulyari [Mulyari muguma]"
+          },
+          {
+            "value": 2,
+            "kifuliiru": "Imilyari ibiri"
+          },
+          {
+            "value": 3,
+            "kifuliiru": "Imilyari ishatu"
+          },
+          {
+            "value": 4,
+            "kifuliiru": "Imilyari ina"
+          },
+          {
+            "value": 5,
+            "kifuliiru": "Imilyari itanu"
+          },
+          {
+            "value": 6,
+            "kifuliiru": "Imilyari ndatu"
+          },
+          {
+            "value": 7,
+            "kifuliiru": "Imilyari irinda"
+          },
+          {
+            "value": 8,
+            "kifuliiru": "Imilyari munaana"
+          },
+          {
+            "value": 9,
+            "kifuliiru": "Imilyari mweenda"
+          },
+          {
+            "value": 10,
+            "kifuliiru": "Imilyari ikumi"
+          },
+          {
+            "value": 11,
+            "kifuliiru": "Imilyari ikumi na muguma"
+          },
+          {
+            "value": 12,
+            "kifuliiru": "Imilyari ikumi n'ibiri"
+          },
+          {
+            "value": 13,
+            "kifuliiru": "Imilyari ikumi n'ishatu"
+          },
+          {
+            "value": 14,
+            "kifuliiru": "Imilyari ikumi n'ina"
+          },
+          {
+            "value": 15,
+            "kifuliiru": "Imilyari ikumi n'itanu"
+          },
+          {
+            "value": 16,
+            "kifuliiru": "Imilyari ikumi na ndatu"
+          },
+          {
+            "value": 17,
+            "kifuliiru": "Imilyari ikumi n'irinda"
+          },
+          {
+            "value": 18,
+            "kifuliiru": "Imilyari ikumi na munaana"
+          },
+          {
+            "value": 19,
+            "kifuliiru": "Imilyari ikumi na mweenda"
+          },
+          {
+            "value": 20,
+            "kifuliiru": "Imilyari makumi gabiri"
+          },
+          {
+            "value": 21,
+            "kifuliiru": "Imilyari makumi gabiri na muguma"
+          },
+          {
+            "value": 22,
+            "kifuliiru": "Imilyari makumi gabiri n'ibiri"
+          },
+          {
+            "value": 23,
+            "kifuliiru": "Imilyari makumi gabiri n'ishatu"
+          },
+          {
+            "value": 24,
+            "kifuliiru": "Imilyari makumi gabiri n'ina"
+          },
+          {
+            "value": 25,
+            "kifuliiru": "Imilyari makumi gabiri n'itanu"
+          },
+          {
+            "value": 26,
+            "kifuliiru": "Imilyari makumi gabiri na ndatu"
+          },
+          {
+            "value": 27,
+            "kifuliiru": "Imilyari makumi gabiri n'irinda"
+          },
+          {
+            "value": 28,
+            "kifuliiru": "Imilyari makumi gabiri na munaana"
+          },
+          {
+            "value": 29,
+            "kifuliiru": "Imilyari makumi gabiri na mweenda"
+          },
+          {
+            "value": 30,
+            "kifuliiru": "Imilyari makumi gashatu"
+          },
+          {
+            "value": 40,
+            "kifuliiru": "Imilyari makumi gana"
+          },
+          {
+            "value": 50,
+            "kifuliiru": "Imilyari makumi gatanu"
+          },
+          {
+            "value": 60,
+            "kifuliiru": "Imilyari makumi galindatu"
+          },
+          {
+            "value": 70,
+            "kifuliiru": "Imilyari makumi galinda"
+          },
+          {
+            "value": 80,
+            "kifuliiru": "Imilyari makumi galimunaana"
+          },
+          {
+            "value": 90,
+            "kifuliiru": "Imilyari makumi galimweenda"
+          },
+          {
+            "value": 100,
+            "kifuliiru": "Imilyari igana"
+          },
+          {
+            "value": 200,
+            "kifuliiru": "Imilyari magana gabiri"
+          },
+          {
+            "value": 300,
+            "kifuliiru": "Imilyari magana gashatu"
+          },
+          {
+            "value": 400,
+            "kifuliiru": "Imilyari magana gana"
+          },
+          {
+            "value": 500,
+            "kifuliiru": "Imilyari magana gatanu"
+          },
+          {
+            "value": 600,
+            "kifuliiru": "Imilyari magana galindatu"
+          },
+          {
+            "value": 700,
+            "kifuliiru": "Imilyari magana galinda"
+          },
+          {
+            "value": 800,
+            "kifuliiru": "Imilyari magana galimunaana"
+          },
+          {
+            "value": 900,
+            "kifuliiru": "Imilyari magana galimweenda"
+          },
+          {
+            "value": 999.999,
+            "kifuliiru": "Milyari magana galimweenda na makumi galimweenda na mweenda ne'milyoni magana galimweenda na makumi galimweenda na mweenda ne'bihumbi magana galimweenda na makumi galimweenda na mweenda na magana galimweenda na makumi galimweenda na mweenda."
+          },
+          {
+            "value": 1,
+            "kifuliiru": "Imilyari kihumbi"
+          },
+          {
+            "value": 2,
+            "kifuliiru": "Imilyari bihumbi bibiri"
+          },
+          {
+            "value": 3,
+            "kifuliiru": "Imilyari bihumbi bishatu"
+          },
+          {
+            "value": 4,
+            "kifuliiru": "Imilyari bihumbi bina"
+          },
+          {
+            "value": 5,
+            "kifuliiru": "Imilyari bihumbi bitanu"
+          },
+          {
+            "value": 6,
+            "kifuliiru": "Imilyari bihumbi ndatu"
+          },
+          {
+            "value": 7,
+            "kifuliiru": "Imilyari bihumbi birinda"
+          },
+          {
+            "value": 8,
+            "kifuliiru": "Imilyari bihumbi munaana"
+          },
+          {
+            "value": 9,
+            "kifuliiru": "Imilyari bihumbi mweenda"
+          },
+          {
+            "value": 10,
+            "kifuliiru": "Imilyari bihumbi ikumi"
+          },
+          {
+            "value": 20,
+            "kifuliiru": "Imilyari bihumbi makumi gabiri"
+          },
+          {
+            "value": 30,
+            "kifuliiru": "Imilyari bihumbi makumi gashatu"
+          },
+          {
+            "value": 40,
+            "kifuliiru": "Imilyari bihumbi makumi gana"
+          },
+          {
+            "value": 50,
+            "kifuliiru": "Imilyari bihumbi makumi gatanu"
+          },
+          {
+            "value": 60,
+            "kifuliiru": "Imilyari bihumbi makumi galindatu"
+          },
+          {
+            "value": 70,
+            "kifuliiru": "Imilyari bihumbi makumi galinda"
+          },
+          {
+            "value": 80,
+            "kifuliiru": "Imilyari bihumbi makumi galimunaana"
+          },
+          {
+            "value": 90,
+            "kifuliiru": "Imilyari bihumbi makumi gamweenda"
+          },
+          {
+            "value": 100,
+            "kifuliiru": "Imilyari bihumbi igana"
+          },
+          {
+            "value": 200,
+            "kifuliiru": "Imilyari bihumbi magana gabiri"
+          },
+          {
+            "value": 300,
+            "kifuliiru": "Imilyari bihumbi magana gashatu"
+          },
+          {
+            "value": 400,
+            "kifuliiru": "Imilyari bihumbi magana gana"
+          },
+          {
+            "value": 500,
+            "kifuliiru": "Imilyari bihumbi magana gatanu"
+          },
+          {
+            "value": 600,
+            "kifuliiru": "Imilyari bihumbi magana galindatu"
+          },
+          {
+            "value": 700,
+            "kifuliiru": "Imilyari bihumbi magana galiinda"
+          },
+          {
+            "value": 800,
+            "kifuliiru": "Imilyari bihumbi magana galimuunana"
+          },
+          {
+            "value": 900,
+            "kifuliiru": "Imilyari bihumbi magana galimweenda"
+          },
+          {
+            "value": 1,
+            "kifuliiru": "Imilyari mulyoni"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.654Z",
+    "updatedAt": "2025-12-08T22:02:08.654Z",
+    "tags": [
+      "numbers",
+      "ukuharura"
+    ]
+  }
+}

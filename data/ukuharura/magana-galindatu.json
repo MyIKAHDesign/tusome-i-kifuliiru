@@ -1,0 +1,427 @@
+{
+  "id": "ukuharura/magana-galindatu",
+  "slug": "ukuharura/magana-galindatu",
+  "title": "Magana galindatu",
+  "contentType": "number-lesson",
+  "data": {
+    "type": "number-lesson",
+    "title": "Magana galindatu",
+    "range": "",
+    "sections": [
+      {
+        "title": "Numbers",
+        "range": "",
+        "numbers": [
+          {
+            "value": 600,
+            "kifuliiru": "Magana galindatu"
+          },
+          {
+            "value": 601,
+            "kifuliiru": "Magana galindatu na higuma"
+          },
+          {
+            "value": 602,
+            "kifuliiru": "Magana galindatu na na bubiri"
+          },
+          {
+            "value": 603,
+            "kifuliiru": "Magana galindatu na bushatu"
+          },
+          {
+            "value": 604,
+            "kifuliiru": "Magana galindatu na buna"
+          },
+          {
+            "value": 605,
+            "kifuliiru": "Magana galindatu na butanu"
+          },
+          {
+            "value": 606,
+            "kifuliiru": "Magana galindatu na ndaatu"
+          },
+          {
+            "value": 607,
+            "kifuliiru": "Magana galindatu na bulinda"
+          },
+          {
+            "value": 608,
+            "kifuliiru": "Magana galindatu na munaana"
+          },
+          {
+            "value": 609,
+            "kifuliiru": "Magana galindatu na mweenda"
+          },
+          {
+            "value": 610,
+            "kifuliiru": "Magana galindatu n'ikumi"
+          },
+          {
+            "value": 611,
+            "kifuliiru": "Magana galindatu n'ikumi na higuma"
+          },
+          {
+            "value": 612,
+            "kifuliiru": "Magana galindatu n'ikumi na bubiri"
+          },
+          {
+            "value": 613,
+            "kifuliiru": "Magana galindatu n'ikumi na bushatu"
+          },
+          {
+            "value": 614,
+            "kifuliiru": "Magana galindatu n'ikumi na buna"
+          },
+          {
+            "value": 615,
+            "kifuliiru": "Magana galindatu n'ikumi na butanu"
+          },
+          {
+            "value": 616,
+            "kifuliiru": "Magana galindatu n'ikumi na ndaatu"
+          },
+          {
+            "value": 617,
+            "kifuliiru": "Magana galindatu n'ikumi na bulinda"
+          },
+          {
+            "value": 618,
+            "kifuliiru": "Magana galindatu n'ikumi na munaana"
+          },
+          {
+            "value": 619,
+            "kifuliiru": "Magana galindatu n'ikumi na mweenda"
+          },
+          {
+            "value": 620,
+            "kifuliiru": "Magana galindatu na makumi gabiri"
+          },
+          {
+            "value": 621,
+            "kifuliiru": "Magana galindatu na makumi gabiri na higuma"
+          },
+          {
+            "value": 622,
+            "kifuliiru": "Magana galindatu na makumi gabiri na bubiri"
+          },
+          {
+            "value": 623,
+            "kifuliiru": "Magana galindatu na makumi gabiri na bushatu"
+          },
+          {
+            "value": 624,
+            "kifuliiru": "Magana galindatu na makumi gabiri na buna"
+          },
+          {
+            "value": 625,
+            "kifuliiru": "Magana galindatu na makumi gabiri na butanu"
+          },
+          {
+            "value": 626,
+            "kifuliiru": "Magana galindatu na makumi gabiri na ndaatu"
+          },
+          {
+            "value": 627,
+            "kifuliiru": "Magana galindatu na makumi gabiri na bulinda"
+          },
+          {
+            "value": 628,
+            "kifuliiru": "Magana galindatu na makumi gabiri na munaana"
+          },
+          {
+            "value": 629,
+            "kifuliiru": "Magana galindatu na makumi gabiri na mweenda"
+          },
+          {
+            "value": 630,
+            "kifuliiru": "Magana galindatu na makumi gashatu"
+          },
+          {
+            "value": 631,
+            "kifuliiru": "Magana galindatu na makumi gashatu na higuma"
+          },
+          {
+            "value": 632,
+            "kifuliiru": "Magana galindatu na makumi gashatu na bubiri"
+          },
+          {
+            "value": 633,
+            "kifuliiru": "Magana galindatu na makumi gashatu na bushatu"
+          },
+          {
+            "value": 634,
+            "kifuliiru": "Magana galindatu na makumi gashatu na buna"
+          },
+          {
+            "value": 635,
+            "kifuliiru": "Magana galindatu na makumi gashatu na butanu"
+          },
+          {
+            "value": 636,
+            "kifuliiru": "Magana galindatu na makumi gashatu na ndaatu"
+          },
+          {
+            "value": 637,
+            "kifuliiru": "Magana galindatu na makumi gashatu na bulinda"
+          },
+          {
+            "value": 638,
+            "kifuliiru": "Magana galindatu na makumi gashatu na munaana"
+          },
+          {
+            "value": 639,
+            "kifuliiru": "Magana galindatu na makumi gashatu na mweenda"
+          },
+          {
+            "value": 640,
+            "kifuliiru": "Magana galindatu na makumi gana"
+          },
+          {
+            "value": 641,
+            "kifuliiru": "Magana galindatu na makumi gana na higuma"
+          },
+          {
+            "value": 642,
+            "kifuliiru": "Magana galindatu na makumi gana na bubiri"
+          },
+          {
+            "value": 643,
+            "kifuliiru": "Magana galindatu na makumi gana na bushatu"
+          },
+          {
+            "value": 644,
+            "kifuliiru": "Magana galindatu na makumi gana na buna"
+          },
+          {
+            "value": 645,
+            "kifuliiru": "Magana galindatu na makumi gana na butanu"
+          },
+          {
+            "value": 646,
+            "kifuliiru": "Magana galindatu na makumi gana na ndaatu"
+          },
+          {
+            "value": 647,
+            "kifuliiru": "Magana galindatu na makumi gana na bulinda"
+          },
+          {
+            "value": 648,
+            "kifuliiru": "Magana galindatu na makumi gana na munaana"
+          },
+          {
+            "value": 649,
+            "kifuliiru": "Magana galindatu na makumi gana na mweenda"
+          },
+          {
+            "value": 650,
+            "kifuliiru": "Magana galindatu na makumi gatanu"
+          },
+          {
+            "value": 651,
+            "kifuliiru": "Magana galindatu na makumi gatanu na higuma"
+          },
+          {
+            "value": 652,
+            "kifuliiru": "Magana galindatu na makumi gatanu na bubiri"
+          },
+          {
+            "value": 653,
+            "kifuliiru": "Magana galindatu na makumi gatanu na bushatu"
+          },
+          {
+            "value": 654,
+            "kifuliiru": "Magana galindatu na makumi gatanu na buna"
+          },
+          {
+            "value": 655,
+            "kifuliiru": "Magana galindatu na makumi gatanu na butanu"
+          },
+          {
+            "value": 656,
+            "kifuliiru": "Magana galindatu na makumi gatanu na ndaatu"
+          },
+          {
+            "value": 657,
+            "kifuliiru": "Magana galindatu na makumi gatanu na bulinda"
+          },
+          {
+            "value": 658,
+            "kifuliiru": "Magana galindatu na makumi gatanu na munaana"
+          },
+          {
+            "value": 659,
+            "kifuliiru": "Magana galindatu na makumi gatanu na mweenda"
+          },
+          {
+            "value": 660,
+            "kifuliiru": "Magana galindatu na makumi galindatu"
+          },
+          {
+            "value": 661,
+            "kifuliiru": "Magana galindatu na makumi galindatu na higuma"
+          },
+          {
+            "value": 662,
+            "kifuliiru": "Magana galindatu na makumi galindatu na bubiri"
+          },
+          {
+            "value": 663,
+            "kifuliiru": "Magana galindatu na makumi galindatu na bushatu"
+          },
+          {
+            "value": 664,
+            "kifuliiru": "Magana galindatu na makumi galindatu na buna"
+          },
+          {
+            "value": 665,
+            "kifuliiru": "Magana galindatu na makumi galindatu na butanu"
+          },
+          {
+            "value": 666,
+            "kifuliiru": "Magana galindatu na makumi galindatu na ndaatu"
+          },
+          {
+            "value": 667,
+            "kifuliiru": "Magana galindatu na makumi galindatu na bulinda"
+          },
+          {
+            "value": 668,
+            "kifuliiru": "Magana galindatu na makumi galindatu na munaana"
+          },
+          {
+            "value": 669,
+            "kifuliiru": "Magana galindatu na makumi galindatu na mweenda"
+          },
+          {
+            "value": 670,
+            "kifuliiru": "Magana galindatu na makumi galinda"
+          },
+          {
+            "value": 671,
+            "kifuliiru": "Magana galindatu na makumi galinda na higuma"
+          },
+          {
+            "value": 672,
+            "kifuliiru": "Magana galindatu na makumi galinda na bubiri"
+          },
+          {
+            "value": 673,
+            "kifuliiru": "Magana galindatu na makumi galinda na bushatu"
+          },
+          {
+            "value": 674,
+            "kifuliiru": "Magana galindatu na makumi galinda na buna"
+          },
+          {
+            "value": 675,
+            "kifuliiru": "Magana galindatu na makumi galinda na butanu"
+          },
+          {
+            "value": 676,
+            "kifuliiru": "Magana galindatu na makumi galinda na ndaatu"
+          },
+          {
+            "value": 677,
+            "kifuliiru": "Magana galindatu na makumi galinda na bulinda"
+          },
+          {
+            "value": 678,
+            "kifuliiru": "Magana galindatu na makumi galinda na munaana"
+          },
+          {
+            "value": 679,
+            "kifuliiru": "Magana galindatu na makumi galinda na mweenda"
+          },
+          {
+            "value": 680,
+            "kifuliiru": "Magana galindatu na makumi galimunaana"
+          },
+          {
+            "value": 681,
+            "kifuliiru": "Magana galindatu na makumi galimunaana na higuma"
+          },
+          {
+            "value": 682,
+            "kifuliiru": "Magana galindatu na makumi galimunaana na bubiri"
+          },
+          {
+            "value": 683,
+            "kifuliiru": "Magana galindatu na makumi galimunaana na bushatu"
+          },
+          {
+            "value": 684,
+            "kifuliiru": "Magana galindatu na makumi galimunaana na buna"
+          },
+          {
+            "value": 685,
+            "kifuliiru": "Magana galindatu na makumi galimunaana na butanu"
+          },
+          {
+            "value": 686,
+            "kifuliiru": "Magana galindatu na makumi galimunaana na ndaatu"
+          },
+          {
+            "value": 687,
+            "kifuliiru": "Magana galindatu na makumi galimunaana na bulinda"
+          },
+          {
+            "value": 688,
+            "kifuliiru": "Magana galindatu na makumi galimunaana na munaana"
+          },
+          {
+            "value": 689,
+            "kifuliiru": "Magana galindatu na makumi galimunaana na mweenda"
+          },
+          {
+            "value": 690,
+            "kifuliiru": "Magana galindatu na makumi galimweenda"
+          },
+          {
+            "value": 691,
+            "kifuliiru": "Magana galindatu na makumi galimweenda na higuma"
+          },
+          {
+            "value": 692,
+            "kifuliiru": "Magana galindatu na makumi galimweenda na bubiri"
+          },
+          {
+            "value": 693,
+            "kifuliiru": "Magana galindatu na makumi galimweenda na bushatu"
+          },
+          {
+            "value": 694,
+            "kifuliiru": "Magana galindatu na makumi galimweenda na buna"
+          },
+          {
+            "value": 695,
+            "kifuliiru": "Magana galindatu na makumi galimweenda na butanu"
+          },
+          {
+            "value": 696,
+            "kifuliiru": "Magana galindatu na makumi galimweenda na ndaatu"
+          },
+          {
+            "value": 697,
+            "kifuliiru": "Magana galindatu na makumi galimweenda na bulinda"
+          },
+          {
+            "value": 698,
+            "kifuliiru": "Magana galindatu na makumi galimweenda na munaana"
+          },
+          {
+            "value": 699,
+            "kifuliiru": "Magana galindatu na makumi galimweenda na mweenda"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "createdAt": "2025-12-08T22:02:08.653Z",
+    "updatedAt": "2025-12-08T22:02:08.653Z",
+    "tags": [
+      "numbers",
+      "ukuharura"
+    ]
+  }
+}
