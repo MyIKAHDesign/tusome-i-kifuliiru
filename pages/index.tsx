@@ -30,21 +30,21 @@ export default function Home() {
           <div className="flex justify-center mb-6 px-4">
             <div className="relative inline-block max-w-full group">
               <div className="relative transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                {/* Glow effect behind the image using flag colors - Blue, Yellow, Red */}
-                <div className="absolute -inset-4 bg-gradient-to-br from-blue-500/20 via-yellow-400/15 to-red-500/20 blur-2xl rounded-full dark:from-blue-500/15 dark:via-yellow-400/10 dark:to-red-500/15"></div>
-                <div className="absolute -inset-3 bg-gradient-to-tr from-blue-400/15 via-yellow-300/10 to-red-400/15 blur-xl rounded-full dark:from-blue-400/10 dark:via-yellow-300/8 dark:to-red-400/10"></div>
-                
                 {/* Image */}
-                <div className="relative z-10" style={{ clipPath: 'polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)' }}>
+                <div className="relative z-10 rounded-[1.5rem] overflow-hidden">
                   <Image
                     src="/.github/DRCongo.png"
                     alt="DR Congo Flag"
                     width={400}
                     height={267}
-                    className="object-cover w-full h-auto"
+                    className="rounded-[1.5rem] object-cover w-full h-auto"
                     priority
                   />
                 </div>
+                
+                {/* Glow effect centered around the image using flag colors - Blue, Yellow, Red */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-br from-blue-500/20 via-yellow-400/15 to-red-500/20 blur-2xl rounded-full dark:from-blue-500/15 dark:via-yellow-400/10 dark:to-red-500/15 -z-10"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-tr from-blue-400/15 via-yellow-300/10 to-red-400/15 blur-xl rounded-full dark:from-blue-400/10 dark:via-yellow-300/8 dark:to-red-400/10 -z-10"></div>
               </div>
             </div>
           </div>
