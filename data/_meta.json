@@ -85,6 +85,26 @@
         "title": "Kuharura",
         "type": "page",
         "href": "/docs/harura"
+      },
+      "ibindu": {
+        "title": "Ibindu",
+        "type": "page",
+        "href": "/docs/ukuharura/ibindu"
+      },
+      "abandu": {
+        "title": "Abaandu",
+        "type": "page",
+        "href": "/docs/ukuharura/abandu"
+      },
+      "binamishwa": {
+        "title": "Ibinamishwa",
+        "type": "page",
+        "href": "/docs/ukuharura/binamishwa"
+      },
+      "bihumbi-bingi": {
+        "title": "Bihumbi bingi",
+        "type": "page",
+        "href": "/docs/ukuharura/bihumbi-bingi"
       }
     }
   },
