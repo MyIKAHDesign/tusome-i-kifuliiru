@@ -272,8 +272,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                       if (typeof subItem === 'object' && subItem.href) {
                         subHref = subItem.href;
                       } else {
-                        // Items from bingi-ku-kifuliiru menu - these are in /docs/ route
-                        subHref = `/docs/${subKey}`;
+                        // Items from bingi-ku-kifuliiru menu - these use root-level routes
+                        subHref = `/${subKey}`;
                       }
                       const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
 
@@ -323,16 +323,11 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                     subHref = subItem.href;
                   } else {
                     // Determine the correct path based on parent menu
-                    if (key === 'imwitu') {
-                      // Imwitu items are in /docs/ route
-                      subHref = `/docs/${subKey}`;
-                    } else if (key === 'twehe') {
-                      // Twehe items are in /docs/ route
-                      subHref = `/docs/${subKey}`;
-                    } else if (key === 'eng-frn-swa') {
+                    if (key === 'eng-frn-swa') {
                       // Language pages are in /eng-frn-swa/ route
                       subHref = `/eng-frn-swa/${subKey}`;
                     } else {
+                      // All other items use root-level routes
                       subHref = `/${subKey}`;
                     }
                   }

@@ -36,7 +36,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             const path = basePath ? `${basePath}/${key}` : (key === 'index' ? '' : key);
             results.push({
               title: value,
-              path: `/docs/${path}`,
+              path: `/${path}`,
             });
           }
         } else if (value && typeof value === 'object') {
@@ -48,9 +48,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
             if (item.href) {
               path = item.href;
             } else if (basePath) {
-              path = `/docs/${basePath}/${key}`;
+              path = `/${basePath}/${key}`;
             } else {
-              path = key === 'index' ? '/docs' : `/docs/${key}`;
+              path = key === 'index' ? '/' : `/${key}`;
             }
             
             // Don't add if already exists
@@ -91,7 +91,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         
         // Search in title or content
         if (titleLower.includes(query) || contentLower.includes(query)) {
-          const path = `/docs/${slug}`;
+          const path = `/${slug}`;
           if (!results.find(r => r.path === path)) {
             results.push({
               title,

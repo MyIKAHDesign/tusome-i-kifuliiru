@@ -58,14 +58,14 @@ export default function Sidebar({ meta }: SidebarProps) {
                 if (typeof subItem === 'string') {
                   // For string items, check if path matches exactly
                   const fullPath = `${key}/${subKey}`;
-                  return currentPath === `/docs/${fullPath}` || currentPath === `/docs/${subKey}`;
+                  return currentPath === `/${fullPath}` || currentPath === `/${subKey}`;
                 } else if (subItem.href) {
                   // For items with href, check the href exactly (don't use startsWith to avoid false matches)
                   return currentPath === subItem.href;
                 } else {
                   // Fallback: check standard paths exactly
                   const fullPath = `${key}/${subKey}`;
-                  return currentPath === `/docs/${fullPath}` || currentPath === `/docs/${subKey}`;
+                  return currentPath === `/${fullPath}` || currentPath === `/${subKey}`;
                 }
               });
             }
@@ -138,9 +138,9 @@ export default function Sidebar({ meta }: SidebarProps) {
     if (typeof item === 'string') {
       // Build the path: if parentKey exists, it's nested like "ukuharura/abandu"
       const fullPath = parentKey ? `${parentKey}/${key}` : key;
-      const docHref = key === 'index' ? '/docs' : `/docs/${fullPath}`;
+      const docHref = key === 'index' ? '/' : `/${fullPath}`;
       const currentPath = router.asPath.split('?')[0];
-      const isActive = currentPath === docHref || currentPath === `/docs/${key}`;
+      const isActive = currentPath === docHref || currentPath === `/${key}`;
       
       // Reduce left margin for ukuharura items (level > 0)
       const isUkuharuraItem = parentKey === 'ukuharura' || level > 0;
@@ -183,7 +183,7 @@ export default function Sidebar({ meta }: SidebarProps) {
 
     if (type === 'menu' && items) {
       const currentPath = router.asPath.split('?')[0];
-      const isMenuActive = currentPath.startsWith(`/docs/${key}`);
+      const isMenuActive = currentPath.startsWith(`/${key}`);
       const isExpanded = expandedGroups.has(key);
       
       // Get appropriate icon for menu items
@@ -229,9 +229,9 @@ export default function Sidebar({ meta }: SidebarProps) {
     const linkHref = href || (key === 'index' ? '' : key);
     // Build nested path if parentKey exists
     const fullPath = parentKey ? `${parentKey}/${linkHref}` : linkHref;
-    const docHref = href ? href : `/docs/${fullPath}`;
+    const docHref = href ? href : `/${fullPath}`;
     const currentPath = router.asPath.split('?')[0];
-    const isActive = currentPath === docHref || currentPath === `/docs/${fullPath}` || currentPath === `/docs/${key}`;
+    const isActive = currentPath === docHref || currentPath === `/${fullPath}` || currentPath === `/${key}`;
 
     // Get appropriate icon for page items
     const iconClass = "w-4 h-4 flex-shrink-0";

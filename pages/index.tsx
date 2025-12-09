@@ -64,7 +64,7 @@ export default function Home() {
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">Hayi tugasomera?</h2>
             
             <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-              Ukudeta kwo utole ngisi byo ugasoma, lenga yaho higulu mu menu, utole i menu Tusome kandi li ulenge uhume hano tugakutwala ku <Link href="/docs/ndondeero_tusome" className="text-primary-600 dark:text-primary-400 hover:underline font-medium">Ndondeero yo'kusoma</Link>.
+              Ukudeta kwo utole ngisi byo ugasoma, lenga yaho higulu mu menu, utole i menu Tusome kandi li ulenge uhume hano tugakutwala ku <Link href="/ndondeero_tusome" className="text-primary-600 dark:text-primary-400 hover:underline font-medium">Ndondeero yo'kusoma</Link>.
             </p>
             
             <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-10">
