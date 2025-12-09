@@ -283,7 +283,7 @@ const renderContentWithTables = (text: string): React.ReactNode => {
               key={index}
               className="flex items-baseline gap-4 py-2"
             >
-              <span className="font-mono text-base font-semibold text-gray-900 dark:text-gray-100 min-w-[90px] flex-shrink-0">
+              <span className="font-mono text-base font-semibold text-primary-600 dark:text-primary-400 min-w-[90px] flex-shrink-0">
                 {item.number}
               </span>
               <span className="text-gray-700 dark:text-gray-300 flex-1 leading-relaxed">
