@@ -85,12 +85,19 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const allSlugs = [...new Set([...jsonSlugs, ...mdxSlugs])];
   
   // Filter out routes that are handled by other page files
+  // Important: exclude empty string and 'index' to avoid conflict with pages/index.tsx
   const excludedRoutes = ['', 'index', 'gwajiika', 'kifuliiru', 'imigani', 'imigeeza'];
-  const filteredSlugs = allSlugs.filter(slug => !excludedRoutes.includes(slug));
+  const filteredSlugs = allSlugs.filter(slug => {
+    // Exclude empty, index, and other specific routes
+    if (excludedRoutes.includes(slug)) return false;
+    // Exclude if slug is empty after filtering
+    if (!slug || slug.trim() === '') return false;
+    return true;
+  });
   
   return {
     paths: filteredSlugs.map((slug) => ({
-      params: { slug: slug === '' ? [] : slug.split('/') },
+      params: { slug: slug.split('/') },
     })),
     fallback: false,
   };
@@ -98,7 +105,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slugArray = params?.slug as string[] || [];
-  const slug = slugArray.join('/') || 'index';
+  // If slug is empty, this shouldn't happen due to getStaticPaths filtering, but handle it
+  if (slugArray.length === 0) {
+    return { notFound: true };
+  }
+  const slug = slugArray.join('/');
   
   // Try JSON first (new format - prioritized)
   const jsonContent = getContentData(slug);
