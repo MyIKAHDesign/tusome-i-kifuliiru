@@ -6,7 +6,7 @@
     "newWindow": false
   },
   "ukuharura": {
-    "title": "Kuharura Ibiindu",
+    "title": "Ukuharura",
     "type": "menu",
     "items": {
       "ndondeero": "Ndondero",
@@ -77,10 +77,16 @@
       "binamishwa": "Ibinamishwa"
     }
   },
-  "harura": {
-    "title": "Kuharura",
-    "type": "page",
-    "href": "/docs/harura"
+  "kuharura-ibiindu": {
+    "title": "Kuharura Ibiindu",
+    "type": "menu",
+    "items": {
+      "harura": {
+        "title": "Kuharura",
+        "type": "page",
+        "href": "/docs/harura"
+      }
+    }
   },
   "ndondeero_tusome": "Menya Bino",
   "amagambo": "Tusome Amagambo",
