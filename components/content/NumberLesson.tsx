@@ -300,30 +300,38 @@ export default function NumberLesson({ content }: NumberLessonProps) {
       </div>
 
       {/* Search Bar */}
-      <div className="sticky top-20 z-40 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 pb-4 -mx-6 px-6">
-        <div className="flex items-center gap-3 px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 focus-within:border-primary-500 focus-within:ring-2 focus-within:ring-primary-500/20 transition-all">
-          <SearchIcon className="w-5 h-5 text-gray-400 flex-shrink-0" />
-          <input
-            type="text"
-            placeholder="Looza hano... (Search by number or Kifuliiru text)"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="flex-1 bg-transparent border-0 outline-0 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400"
-          />
-          {searchTerm && (
-            <button
-              onClick={() => setSearchTerm('')}
-              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-              aria-label="Clear search"
-            >
-              ×
-            </button>
-          )}
+      <div className="sticky top-20 z-40 pb-6 -mx-6 px-6 mb-8">
+        <div className="max-w-2xl mx-auto">
+          <div className="relative flex items-center">
+            <div className="absolute left-4 pointer-events-none">
+              <SearchIcon className="w-5 h-5 text-gray-400 dark:text-gray-500" />
+            </div>
+            <input
+              type="text"
+              placeholder="Looza hano... (Search by number or Kifuliiru text)"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-12 pr-12 py-4 text-base bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-primary-500 dark:focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 dark:focus:ring-primary-500/20 transition-all shadow-sm hover:shadow-md"
+            />
+            {searchTerm && (
+              <button
+                onClick={() => setSearchTerm('')}
+                className="absolute right-4 p-1.5 rounded-lg text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                aria-label="Clear search"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
+          </div>
         </div>
         {searchTerm && (
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-            {filteredSections.reduce((total, section) => total + section.numbers.length, 0)} result(s) found
-          </p>
+          <div className="mt-3 text-center">
+            <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+              {filteredSections.reduce((total, section) => total + section.numbers.length, 0)} result{filteredSections.reduce((total, section) => total + section.numbers.length, 0) !== 1 ? 's' : ''} found
+            </p>
+          </div>
         )}
       </div>
 
