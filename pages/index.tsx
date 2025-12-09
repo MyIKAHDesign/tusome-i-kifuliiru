@@ -28,10 +28,14 @@ export default function Home() {
           
           {/* Flag Image */}
           <div className="flex justify-center mb-6 px-4">
-            <div className="relative inline-block max-w-full group">
+            <div className="relative inline-block max-w-full group overflow-visible">
               <div className="relative transition-transform duration-300 ease-out group-hover:scale-[1.02]">
+                {/* Glow effect always visible, centered around the image using flag colors - Blue, Yellow, Red */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-gradient-to-br from-blue-500/25 via-yellow-400/20 to-red-500/25 blur-2xl rounded-full dark:from-blue-500/20 dark:via-yellow-400/15 dark:to-red-500/20 pointer-events-none" style={{ zIndex: 0 }}></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115%] h-[115%] bg-gradient-to-tr from-blue-400/20 via-yellow-300/15 to-red-400/20 blur-xl rounded-full dark:from-blue-400/15 dark:via-yellow-300/12 dark:to-red-400/15 pointer-events-none" style={{ zIndex: 0 }}></div>
+                
                 {/* Image */}
-                <div className="relative z-10 rounded-[1.5rem] overflow-hidden">
+                <div className="relative rounded-[1.5rem] overflow-hidden" style={{ zIndex: 10 }}>
                   <Image
                     src="/.github/DRCongo.png"
                     alt="DR Congo Flag"
@@ -41,10 +45,6 @@ export default function Home() {
                     priority
                   />
                 </div>
-                
-                {/* Glow effect centered around the image using flag colors - Blue, Yellow, Red */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-br from-blue-500/20 via-yellow-400/15 to-red-500/20 blur-2xl rounded-full dark:from-blue-500/15 dark:via-yellow-400/10 dark:to-red-500/15 -z-10"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-tr from-blue-400/15 via-yellow-300/10 to-red-400/15 blur-xl rounded-full dark:from-blue-400/10 dark:via-yellow-300/8 dark:to-red-400/10 -z-10"></div>
               </div>
             </div>
           </div>
