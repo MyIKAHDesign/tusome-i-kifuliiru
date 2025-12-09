@@ -36,7 +36,7 @@ export default function TwehePage({ jsonContent, mdxSource, slug, contentType }:
         title={`${title} - Twehe`}
         description={`Learn about ${title}`}
       />
-      <div className="max-w-[1400px] mx-auto w-full">
+      <div className="w-full">
         {contentType === 'json' && jsonContent ? (
           <ContentRenderer content={jsonContent} />
         ) : mdxSource ? (

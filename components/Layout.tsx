@@ -23,10 +23,10 @@ function LayoutContent({ children }: LayoutContentProps) {
             marginLeft: isOpen ? `${sidebarWidth}px` : '0',
           }}
         >
-          <div className="w-full px-6 py-12">
-            <article className="mdx-content">
+          <div className="w-full px-4 sm:px-6 lg:px-8 py-12">
+            <div className="max-w-3xl mx-auto">
               {children}
-            </article>
+            </div>
           </div>
         </main>
       </div>

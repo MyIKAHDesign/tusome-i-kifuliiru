@@ -21,7 +21,7 @@ export default function KifuliiruPage({ jsonContent, mdxSource, contentType }: K
         title="Kifuliiru - Tusome i Kifuliiru"
         description="Learn about the Kifuliiru language"
       />
-      <div className="max-w-[1400px] mx-auto w-full">
+      <div className="w-full">
         {contentType === 'json' && jsonContent ? (
           <ContentRenderer content={jsonContent} />
         ) : mdxSource ? (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
@@ -7,7 +7,6 @@ import { getContentData } from '../../lib/json-content-loader';
 import { mdxComponents } from '../../mdx-components';
 import ContentRenderer from '../../components/content/ContentRenderer';
 import PageNavigation from '../../components/PageNavigation';
-import TableOfContents from '../../components/TableOfContents';
 import { ContentData } from '../../lib/content-schema';
 
 interface AmagamboPageProps {
@@ -17,57 +16,36 @@ interface AmagamboPageProps {
   contentType: 'mdx' | 'json';
 }
 
-// Component for MDX pages with TOC
-function MDXPage({ mdxSource, slug, maxWidthClass }: { mdxSource: MDXRemoteSerializeResult; slug: string; maxWidthClass: string }) {
-  const [headings, setHeadings] = useState<Array<{ id: string; text: string; level: number }>>([]);
-
-  useEffect(() => {
-    // Extract headings from MDX content after render
-    const headingElements = document.querySelectorAll('.mdx-content h2, .mdx-content h3, .mdx-content h4');
-    const extractedHeadings = Array.from(headingElements).map((el) => {
-      const id = el.id || el.textContent?.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').trim() || '';
-      if (!el.id && id) {
-        el.id = id;
-      }
-      return {
-        id: el.id,
-        text: el.textContent || '',
-        level: parseInt(el.tagName.charAt(1)) || 2,
-      };
-    });
-    setHeadings(extractedHeadings);
-  }, [mdxSource]);
-
+// Component for MDX pages
+function MDXPage({ mdxSource, slug }: { mdxSource: MDXRemoteSerializeResult; slug: string }) {
   return (
-    <div className={`${maxWidthClass} mx-auto w-full`}>
-      <div className="flex gap-8">
-        <article className={`mdx-content flex-1 min-w-0`}>
-          <MDXRemote {...mdxSource} components={mdxComponents} />
-          <PageNavigation currentSlug={slug} />
-        </article>
-        <TableOfContents headings={headings} />
+    <div className="w-full">
+      <article className="mdx-content">
+        <MDXRemote {...mdxSource} components={mdxComponents} />
+      </article>
+      <div className="mt-12">
+        <PageNavigation currentSlug={slug} />
       </div>
     </div>
   );
 }
 
 export default function AmagamboPage({ mdxSource, jsonContent, contentType, slug }: AmagamboPageProps) {
-  // Use wider display for all pages
-  const maxWidthClass = 'max-w-[1400px]';
-  
   // If JSON content, use the new component system
   if (contentType === 'json' && jsonContent) {
     return (
-      <div className={maxWidthClass + ' mx-auto w-full'}>
+      <div className="w-full">
         <ContentRenderer content={jsonContent} />
-        <PageNavigation currentSlug={slug} />
+        <div className="mt-12">
+          <PageNavigation currentSlug={slug} />
+        </div>
       </div>
     );
   }
 
   // Otherwise, fall back to MDX
   if (mdxSource) {
-    return <MDXPage mdxSource={mdxSource} slug={slug} maxWidthClass={maxWidthClass} />;
+    return <MDXPage mdxSource={mdxSource} slug={slug} />;
   }
 
   return (

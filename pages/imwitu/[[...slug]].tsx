@@ -36,7 +36,7 @@ export default function ImwituPage({ jsonContent, mdxSource, slug, contentType }
         title={`${title} - Imwitu`}
         description={`Learn about ${title} in Kifuliiru`}
       />
-      <div className="max-w-[1400px] mx-auto w-full">
+      <div className="w-full">
         {contentType === 'json' && jsonContent ? (
           <ContentRenderer content={jsonContent} />
         ) : mdxSource ? (

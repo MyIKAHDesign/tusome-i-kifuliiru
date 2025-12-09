@@ -193,19 +193,17 @@ export default function Vocabulary({ content }: VocabularyProps) {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="border-b border-gray-200 dark:border-gray-700 pb-6">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center">
-            <BookOpen className="w-6 h-6 text-primary-600 dark:text-primary-400" />
+      <div className="border-b border-gray-200 dark:border-gray-700 pb-8 mb-10">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0">
+            <BookOpen className="w-5 h-5 text-primary-600 dark:text-primary-400" />
           </div>
-          <div>
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
-              {content.title}
-            </h1>
-          </div>
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
+            {content.title}
+          </h1>
         </div>
         {content.description && (
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
             {parseMarkdown(content.description)}
           </p>
         )}

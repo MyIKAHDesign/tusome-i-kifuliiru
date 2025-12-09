@@ -36,7 +36,7 @@ export default function BingiKuKifuliiruPage({ jsonContent, mdxSource, slug, con
         title={`${title} - Bingi ku Kifuliiru`}
         description={`Learn about ${title} in Kifuliiru`}
       />
-      <div className="max-w-[1400px] mx-auto w-full">
+      <div className="w-full">
         {contentType === 'json' && jsonContent ? (
           <ContentRenderer content={jsonContent} />
         ) : mdxSource ? (

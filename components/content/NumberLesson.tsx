@@ -330,24 +330,24 @@ export default function NumberLesson({ content }: NumberLessonProps) {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="border-b border-gray-200 dark:border-gray-700 pb-6">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center">
-            <Calculator className="w-6 h-6 text-primary-600 dark:text-primary-400" />
+      <div className="border-b border-gray-200 dark:border-gray-700 pb-8 mb-10">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0">
+            <Calculator className="w-5 h-5 text-primary-600 dark:text-primary-400" />
           </div>
           <div>
             <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
               {content.title}
             </h1>
             {content.range && (
-              <p className="text-lg text-gray-600 dark:text-gray-400 mt-1">
+              <p className="text-lg text-gray-600 dark:text-gray-400 mt-2">
                 {content.range}
               </p>
             )}
           </div>
         </div>
         {content.description && content.sections.length === 0 && (
-          <div>
+          <div className="mt-4">
             {renderContentWithTables(content.description)}
           </div>
         )}
