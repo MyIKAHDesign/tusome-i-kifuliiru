@@ -26,21 +26,21 @@ export default function Home() {
             <span>Tusome i Kifuliiru</span>
           </div>
           
-          {/* Flag Image - Organic Shape */}
+          {/* Flag Image - Glowing Container */}
           <div className="flex justify-center mb-6 px-4">
             <div className="relative inline-block max-w-full">
-              {/* Subtle glow effect using flag colors - Blue, Yellow, Red */}
-              <div className="absolute -inset-6 bg-gradient-to-br from-blue-500/20 via-yellow-400/15 to-red-500/20 blur-2xl dark:from-blue-500/15 dark:via-yellow-400/10 dark:to-red-500/15" style={{ clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)' }}></div>
-              <div className="absolute -inset-4 bg-gradient-to-tr from-blue-400/15 via-yellow-300/10 to-red-400/15 blur-xl dark:from-blue-400/10 dark:via-yellow-300/8 dark:to-red-400/10" style={{ clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)' }}></div>
+              {/* Subtle glow effect using flag colors - Blue, Yellow, Red with organic blob shape */}
+              <div className="absolute -inset-6 bg-gradient-to-br from-blue-500/20 via-yellow-400/15 to-red-500/20 blur-2xl dark:from-blue-500/15 dark:via-yellow-400/10 dark:to-red-500/15" style={{ clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)', borderRadius: '50%' }}></div>
+              <div className="absolute -inset-4 bg-gradient-to-tr from-blue-400/15 via-yellow-300/10 to-red-400/15 blur-xl dark:from-blue-400/10 dark:via-yellow-300/8 dark:to-red-400/10" style={{ clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)', borderRadius: '50%' }}></div>
               
-              {/* Image with organic octagon shape */}
-              <div className="relative overflow-hidden" style={{ clipPath: 'polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)' }}>
+              {/* Image - keeping rectangular shape */}
+              <div className="relative rounded-[1.5rem] overflow-hidden">
                 <Image
                   src="/.github/DRCongo.png"
                   alt="DR Congo Flag"
                   width={400}
                   height={267}
-                  className="object-cover relative z-10 w-full h-auto"
+                  className="rounded-[1.5rem] object-cover relative z-10 w-full h-auto"
                   priority
                 />
               </div>
