@@ -92,7 +92,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
           />
 
           {/* Dialog Card - Positioned on the right */}
-          <div className="absolute right-4 top-20 bottom-4 w-full max-w-sm bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col animate-in fade-in slide-in-from-right-2 duration-200">
+          <div className={`absolute right-4 top-20 bottom-4 w-80 max-w-[calc(100vw-2rem)] bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden flex flex-col transition-transform duration-200 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
             {/* Header */}
             <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between flex-shrink-0 bg-gray-50 dark:bg-gray-900/50">
               <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100">
