@@ -357,7 +357,7 @@ export default function NumberLesson({ content }: NumberLessonProps) {
 
       {/* Search Bar - Only show if there are sections to search */}
       {content.sections.length > 0 && (
-        <div className="sticky top-20 z-40 pb-6 -mx-6 px-6 mb-8">
+        <div className="sticky top-24 z-40 pb-6 -mx-6 px-6 mb-8 pt-4 bg-white dark:bg-gray-950">
           <div className="max-w-2xl mx-auto">
             <div className="relative flex items-center">
               <div className="absolute left-4 pointer-events-none">
