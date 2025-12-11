@@ -225,9 +225,7 @@ export default function Vocabulary({ content }: VocabularyProps) {
             </h1>
           </div>
           {/* Search Column - rendered by Search component when scrolled down */}
-          {isScrolled && (
-            <div className="flex-shrink-0 transition-all duration-300 ease-in-out" ref={headerIconRef} />
-          )}
+          <div className={`flex-shrink-0 transition-all duration-300 ease-in-out ${isScrolled ? '' : 'hidden'}`} ref={headerIconRef} />
         </div>
         {content.description && (
           <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
@@ -246,6 +244,8 @@ export default function Vocabulary({ content }: VocabularyProps) {
             onSearch={(query) => setSearchTerm(query)}
             showResults={false}
             className="w-full"
+            iconPosition="header"
+            headerIconSlot={headerIconRef}
           />
         </div>
         {categories.length > 0 && (

@@ -373,8 +373,8 @@ export default function NumberLesson({ content }: NumberLessonProps) {
             </div>
           </div>
           {/* Search Column - rendered by Search component when scrolled down */}
-          {content.sections.length > 0 && isScrolled && (
-            <div className="flex-shrink-0 transition-all duration-300 ease-in-out" ref={headerIconRef} />
+          {content.sections.length > 0 && (
+            <div className={`flex-shrink-0 transition-all duration-300 ease-in-out ${isScrolled ? '' : 'hidden'}`} ref={headerIconRef} />
           )}
         </div>
         {content.description && content.sections.length === 0 && (
@@ -393,6 +393,8 @@ export default function NumberLesson({ content }: NumberLessonProps) {
             value={searchTerm}
             onSearch={handleSearch}
             showResults={false}
+            iconPosition="header"
+            headerIconSlot={headerIconRef}
           />
           {searchTerm && (
             <div className="text-center mb-4">

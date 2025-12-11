@@ -351,9 +351,7 @@ export default function TusomePage() {
             </div>
           </div>
           {/* Search Column - rendered by Search component when scrolled down */}
-          {isScrolled && (
-            <div className="flex-shrink-0 transition-all duration-300 ease-in-out" ref={headerIconRef} />
-          )}
+          <div className={`flex-shrink-0 transition-all duration-300 ease-in-out ${isScrolled ? '' : 'hidden'}`} ref={headerIconRef} />
         </div>
       </div>
 
