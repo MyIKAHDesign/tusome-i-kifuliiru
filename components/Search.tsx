@@ -35,6 +35,7 @@ export default function Search({
   showResults = true,
   searchEndpoint = '/api/search',
   iconPosition = 'fixed',
+  headerIconSlot,
 }: SearchProps) {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
