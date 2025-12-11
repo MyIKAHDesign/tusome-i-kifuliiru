@@ -9,36 +9,71 @@ interface SearchResult {
   path: string;
 }
 
-export default function Search() {
+interface SearchProps {
+  variant?: 'modal' | 'inline' | 'sticky';
+  placeholder?: string;
+  value?: string;
+  onSearch?: (query: string) => void;
+  onResultsChange?: (results: SearchResult[]) => void;
+  localResults?: SearchResult[];
+  className?: string;
+  showResults?: boolean;
+  searchEndpoint?: string;
+}
+
+export default function Search({
+  variant = 'modal',
+  placeholder = 'Looza hano...',
+  value,
+  onSearch,
+  onResultsChange,
+  localResults,
+  className = '',
+  showResults = true,
+  searchEndpoint = '/api/search',
+}: SearchProps) {
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [query, setQuery] = useState('');
+  const [internalQuery, setInternalQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const router = useRouter();
+  
+  // Use controlled value if provided, otherwise use internal state
+  const query = value !== undefined ? value : internalQuery;
+  
+  const handleQueryChange = (newQuery: string) => {
+    if (value === undefined) {
+      // Uncontrolled - update internal state
+      setInternalQuery(newQuery);
+    }
+    // Always call onSearch callback
+    if (onSearch) {
+      onSearch(newQuery);
+    }
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
         setIsModalOpen(false);
-        setQuery('');
+        handleQueryChange('');
         setResults([]);
       }
     };
 
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
+      if (event.key === 'Escape' && variant === 'modal') {
         setIsModalOpen(false);
-        setQuery('');
+        handleQueryChange('');
         setResults([]);
       }
     };
 
-    if (isModalOpen) {
+    if (isModalOpen && variant === 'modal') {
       document.addEventListener('mousedown', handleClickOutside);
       document.addEventListener('keydown', handleEscape);
-      // Focus input when modal opens
       setTimeout(() => {
         inputRef.current?.focus();
       }, 100);
@@ -47,26 +82,52 @@ export default function Search() {
         document.removeEventListener('keydown', handleEscape);
       };
     }
-  }, [isModalOpen]);
+  }, [isModalOpen, variant]);
+
+  useEffect(() => {
+    if (localResults) {
+      setResults(localResults);
+      if (onResultsChange) {
+        onResultsChange(localResults);
+      }
+    }
+  }, [localResults, onResultsChange]);
 
   const handleSearch = async (searchQuery: string) => {
-    setQuery(searchQuery);
+    handleQueryChange(searchQuery);
+    
+    // Call custom search handler if provided
+    if (onSearch) {
+      return;
+    }
+
+    // Default API search
     if (searchQuery.length < 2) {
       setResults([]);
+      if (onResultsChange) {
+        onResultsChange([]);
+      }
       return;
     }
 
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/search?q=' + encodeURIComponent(searchQuery));
+      const response = await fetch(`${searchEndpoint}?q=` + encodeURIComponent(searchQuery));
       if (response.ok) {
         const data = await response.json();
-        setResults(data.results || []);
+        const searchResults = data.results || [];
+        setResults(searchResults);
+        if (onResultsChange) {
+          onResultsChange(searchResults);
+        }
       }
     } catch (error) {
       console.error('Search error:', error);
       setResults([]);
+      if (onResultsChange) {
+        onResultsChange([]);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -74,99 +135,197 @@ export default function Search() {
 
   const handleResultClick = (path: string) => {
     router.push(path);
-    setIsModalOpen(false);
-    setQuery('');
+    if (variant === 'modal') {
+      setIsModalOpen(false);
+    }
+    handleQueryChange('');
     setResults([]);
+    if (onResultsChange) {
+      onResultsChange([]);
+    }
   };
 
-  return (
-    <>
-      {/* Search Icon Button */}
-      <button
-        onClick={() => setIsModalOpen(true)}
-        className="p-2 rounded-lg hover:bg-white dark:hover:bg-gray-900 transition-colors"
-        aria-label="Search"
-        title="Search"
-      >
-        <SearchIcon className="w-5 h-5 text-gray-700 dark:text-gray-300" />
-      </button>
+  const handleClear = () => {
+    handleQueryChange('');
+    setResults([]);
+    if (onResultsChange) {
+      onResultsChange([]);
+    }
+  };
 
-      {/* Search Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-[60] flex items-start justify-center pt-24 px-4 pb-8">
-          {/* Backdrop */}
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
-          
-          {/* Modal Content */}
-          <div
-            ref={modalRef}
-            className="relative w-full max-w-2xl bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 animate-in fade-in slide-in-from-top-4 duration-200"
-          >
-            {/* Search Input */}
-            <div className="flex items-center gap-3 px-4 py-4 border-b border-gray-200 dark:border-gray-800">
-        <SearchIcon className="w-5 h-5 text-gray-400 flex-shrink-0" />
+  // Modal variant - Button that opens modal
+  if (variant === 'modal') {
+    return (
+      <>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="p-2 rounded-lg hover:bg-white dark:hover:bg-gray-900 transition-colors"
+          aria-label="Search"
+          title="Search"
+        >
+          <SearchIcon className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+        </button>
+
+        {isModalOpen && (
+          <div className="fixed inset-0 z-[60] flex items-start justify-center pt-24 px-4 pb-8">
+            <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
+            
+            <div
+              ref={modalRef}
+              className="relative w-full max-w-2xl bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 animate-in fade-in slide-in-from-top-4 duration-200"
+            >
+              <div className="flex items-center gap-3 px-4 py-4 border-b border-gray-200 dark:border-gray-800">
+                <SearchIcon className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                <input
+                  ref={inputRef}
+                  type="text"
+                  placeholder={placeholder}
+                  value={query}
+                  onChange={(e) => {
+                    const newValue = e.target.value;
+                    if (value === undefined) {
+                      setInternalQuery(newValue);
+                    }
+                    handleSearch(newValue);
+                  }}
+                  className="flex-1 bg-transparent border-0 outline-0 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400"
+                />
+                {isLoading && (
+                  <Loader2 className="w-4 h-4 text-gray-600 dark:text-gray-400 animate-spin flex-shrink-0" />
+                )}
+                <button
+                  onClick={() => {
+                    setIsModalOpen(false);
+                    handleQueryChange('');
+                    setResults([]);
+                  }}
+                  className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+                  aria-label="Close search"
+                >
+                  <X className="w-5 h-5 text-gray-400" />
+                </button>
+              </div>
+
+              {showResults && (
+                <>
+                  {query.length >= 2 && (
+                    <div className="max-h-96 overflow-y-auto">
+                      {isLoading ? (
+                        <div className="p-6 text-center text-sm text-gray-500 dark:text-gray-400 flex items-center justify-center gap-2">
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Tugweeti tugalooza...</span>
+                        </div>
+                      ) : results.length > 0 ? (
+                        <div className="py-2">
+                          {results.map((result, index) => (
+                            <button
+                              key={index}
+                              onClick={() => handleResultClick(result.path)}
+                              className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors border-b border-gray-100 dark:border-gray-800 last:border-0 text-left"
+                            >
+                              <FileText className="w-4 h-4 flex-shrink-0 text-gray-400" />
+                              <span>{result.title}</span>
+                            </button>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="p-6 text-center text-sm text-gray-500 dark:text-gray-400">
+                          Ndabyo twaloonga
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {query.length < 2 && (
+                    <div className="p-6 text-center text-sm text-gray-500 dark:text-gray-400">
+                      Tandika kwandika kugalooza...
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          </div>
+        )}
+      </>
+    );
+  }
+
+  // Inline variant - Always visible search bar
+  if (variant === 'inline') {
+    return (
+      <div className={`relative ${className}`}>
+        <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
         <input
           ref={inputRef}
           type="text"
-          placeholder="Looza hano..."
+          placeholder={placeholder}
           value={query}
-          onChange={(e) => handleSearch(e.target.value)}
-          className="flex-1 bg-transparent border-0 outline-0 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400"
+          onChange={(e) => {
+            const newValue = e.target.value;
+            if (value === undefined) {
+              setInternalQuery(newValue);
+            }
+            handleSearch(newValue);
+          }}
+          className="w-full pl-12 pr-12 py-3 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-gray-100 placeholder-gray-400"
         />
         {isLoading && (
-                <Loader2 className="w-4 h-4 text-gray-600 dark:text-gray-400 animate-spin flex-shrink-0" />
+          <div className="absolute right-4 top-1/2 -translate-y-1/2">
+            <Loader2 className="w-5 h-5 text-gray-400 animate-spin" />
+          </div>
         )}
-              <button
-                onClick={() => {
-                  setIsModalOpen(false);
-                  setQuery('');
-                  setResults([]);
-                }}
-                className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
-                aria-label="Close search"
-              >
-                <X className="w-5 h-5 text-gray-400" />
-              </button>
+        {query && !isLoading && (
+          <button
+            onClick={handleClear}
+            className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+            aria-label="Clear search"
+          >
+            <X className="w-4 h-4 text-gray-400" />
+          </button>
+        )}
       </div>
+    );
+  }
 
-            {/* Search Results */}
-            {query.length >= 2 && (
-              <div className="max-h-96 overflow-y-auto">
-          {isLoading ? (
-            <div className="p-6 text-center text-sm text-gray-500 dark:text-gray-400 flex items-center justify-center gap-2">
-              <Loader2 className="w-4 h-4 animate-spin" />
-              <span>Tugweeti tugalooza...</span>
+  // Sticky variant - Sticky search bar with enhanced styling
+  if (variant === 'sticky') {
+    return (
+      <div className={`sticky top-24 z-40 pb-6 -mx-6 px-6 mb-8 pt-4 bg-white dark:bg-gray-950 ${className}`}>
+        <div className="max-w-2xl mx-auto">
+          <div className="relative flex items-center">
+            <div className="absolute left-4 pointer-events-none">
+              <SearchIcon className="w-5 h-5 text-gray-400 dark:text-gray-500" />
             </div>
-          ) : results.length > 0 ? (
-            <div className="py-2">
-              {results.map((result, index) => (
-                      <button
-                  key={index}
-                        onClick={() => handleResultClick(result.path)}
-                        className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors border-b border-gray-100 dark:border-gray-800 last:border-0 text-left"
-                >
-                  <FileText className="w-4 h-4 flex-shrink-0 text-gray-400" />
-                  <span>{result.title}</span>
-                      </button>
-              ))}
-            </div>
-          ) : (
-            <div className="p-6 text-center text-sm text-gray-500 dark:text-gray-400">
-              Ndabyo twaloonga
-            </div>
-          )}
-        </div>
-      )}
-
-            {/* Empty State */}
-            {query.length < 2 && (
-              <div className="p-6 text-center text-sm text-gray-500 dark:text-gray-400">
-                Tandika kwandika kugalooza...
-              </div>
+            <input
+              ref={inputRef}
+              type="text"
+              placeholder={placeholder}
+              value={query}
+              onChange={(e) => {
+                const newValue = e.target.value;
+                if (value === undefined) {
+                  setInternalQuery(newValue);
+                }
+                handleSearch(newValue);
+              }}
+              className="w-full pl-12 pr-12 py-4 text-base bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-primary-500 dark:focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 dark:focus:ring-primary-500/20 transition-all shadow-sm hover:shadow-md"
+            />
+            {query && (
+              <button
+                onClick={handleClear}
+                className="absolute right-4 p-1.5 rounded-lg text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                aria-label="Clear search"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             )}
           </div>
-    </div>
-      )}
-    </>
-  );
+        </div>
+      </div>
+    );
+  }
+
+  return null;
 }

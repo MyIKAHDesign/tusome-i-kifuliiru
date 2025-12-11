@@ -4,15 +4,14 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { 
   BookOpen, 
-  Search as SearchIcon, 
   FileText, 
   Calculator,
   Sparkles,
   ChevronRight,
-  Loader2,
   Home,
   Folder
 } from 'lucide-react';
+import Search from '../../components/Search';
 
 interface MetaItem {
   title?: string;
@@ -37,7 +36,6 @@ export default function TusomePage() {
   const [learningItems, setLearningItems] = useState<LearningItem[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<LearningItem[]>([]);
-  const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
     const loadMeta = async () => {
@@ -56,18 +54,15 @@ export default function TusomePage() {
     loadMeta();
   }, []);
 
-  useEffect(() => {
-    if (searchQuery.length < 2) {
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    if (query.length < 2) {
       setSearchResults([]);
-      setIsSearching(false);
       return;
     }
-
-    setIsSearching(true);
-    const results = searchLearningItems(learningItems, searchQuery.toLowerCase());
+    const results = searchLearningItems(learningItems, query.toLowerCase());
     setSearchResults(results);
-    setIsSearching(false);
-  }, [searchQuery, learningItems]);
+  };
 
   const isHeaderNavItem = (key: string): boolean => {
     return ['kifuliiru', 'imigani', 'imigeeza', 'imwitu', 'bingi-ku-kifuliiru', 'twehe', 'contact', 'eng-frn-swa'].includes(key);
@@ -337,21 +332,12 @@ export default function TusomePage() {
         </div>
 
         {/* Search Bar */}
-        <div className="relative">
-          <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Looza hano..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-gray-100 placeholder-gray-400"
-          />
-          {isSearching && (
-            <div className="absolute right-4 top-1/2 -translate-y-1/2">
-              <Loader2 className="w-5 h-5 text-gray-400 animate-spin" />
-            </div>
-          )}
-        </div>
+        <Search
+          variant="inline"
+          placeholder="Looza hano..."
+          onSearch={handleSearch}
+          showResults={false}
+        />
       </div>
 
       {/* Content Grid */}

@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { VocabularyContent } from '../../lib/content-schema';
-import { BookOpen, Search, Globe } from 'lucide-react';
+import { BookOpen, Globe } from 'lucide-react';
+import Search from '../Search';
 
 // Parse markdown formatting (bold, italic, links) and convert to React elements
 const parseMarkdown = (text: string): React.ReactNode[] => {
@@ -213,14 +214,14 @@ export default function Vocabulary({ content }: VocabularyProps) {
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-4">
-        <div className="flex-1 relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-          <input
-            type="text"
+        <div className="flex-1">
+          <Search
+            variant="inline"
             placeholder="Looza amagambo..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            onSearch={(query) => setSearchTerm(query)}
+            showResults={false}
+            className="w-full"
           />
         </div>
         {categories.length > 0 && (
