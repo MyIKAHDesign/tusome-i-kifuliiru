@@ -21,7 +21,7 @@ interface SearchProps {
   showResults?: boolean;
   searchEndpoint?: string;
   iconPosition?: 'fixed' | 'header';
-  headerIconSlot?: React.RefObject<HTMLDivElement>;
+  headerIconSlot?: React.RefObject<HTMLDivElement | null>;
   compact?: boolean;
 }
 
