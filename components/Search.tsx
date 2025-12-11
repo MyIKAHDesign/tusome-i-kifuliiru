@@ -290,8 +290,8 @@ export default function Search({
   // Sticky variant - Sticky search bar with enhanced styling
   if (variant === 'sticky') {
     return (
-      <div className={`sticky top-24 z-40 pb-6 -mx-6 px-6 mb-8 pt-4 bg-white dark:bg-gray-950 ${className}`}>
-        <div className="max-w-2xl mx-auto">
+      <div className={`sticky top-24 z-40 pb-6 mb-8 pt-4 bg-white dark:bg-gray-950 ${className}`}>
+        <div className="w-full">
           <div className="relative flex items-center">
             <div className="absolute left-4 pointer-events-none">
               <SearchIcon className="w-5 h-5 text-gray-400 dark:text-gray-500" />
