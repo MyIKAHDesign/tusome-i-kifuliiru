@@ -83,7 +83,7 @@ export default function TusomePage() {
   };
 
   const isHeaderNavItem = (key: string): boolean => {
-    return ['kifuliiru', 'imigani', 'imigeeza', 'imwitu', 'bingi-ku-kifuliiru', 'twehe', 'contact', 'eng-frn-swa'].includes(key);
+    return ['kifuliiru', 'imigani', 'imigeeza', 'imwitu', 'bingi-ku-kifuliiru', 'twehe', 'contact', 'eng-frn-swa', 'muyegerere'].includes(key);
   };
 
   const getIcon = (key: string) => {
