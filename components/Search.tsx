@@ -390,36 +390,38 @@ export default function Search({
         <HeaderSearchBar />
         <div className={`relative ${className}`}>
           {/* Search bar - hidden when scrolled down with smooth transition */}
-          <div className={`relative transition-all duration-300 ease-in-out ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden transform -translate-y-2 scale-95' : 'opacity-100 transform translate-y-0 scale-100'}`}>
-            <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <input
-              ref={inputRef}
-              type="text"
-              placeholder={placeholder}
-              value={query}
-              onChange={(e) => {
-                const newValue = e.target.value;
-                if (value === undefined) {
-                  setInternalQuery(newValue);
-                }
-                handleSearch(newValue);
-              }}
-              className="w-full pl-12 pr-12 py-4 text-base bg-white dark:bg-white/10 dark:backdrop-blur-md border border-gray-200 dark:border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/50 dark:focus:ring-primary-400/50 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-400"
-            />
-            {isLoading && (
-              <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                <Loader2 className="w-5 h-5 text-gray-400 animate-spin" />
-              </div>
-            )}
-            {query && !isLoading && (
-              <button
-                onClick={handleClear}
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 dark:backdrop-blur-sm transition-colors"
-                aria-label="Clear search"
-              >
-                <X className="w-4 h-4 text-gray-400" />
-              </button>
-            )}
+          <div className={`relative transition-all duration-300 ease-in-out overflow-hidden rounded-2xl ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden transform -translate-y-2 scale-95' : 'opacity-100 transform translate-y-0 scale-100'}`}>
+            <div className="relative bg-white dark:bg-slate-800/95 dark:backdrop-blur-md border border-gray-200 dark:border-white/20 rounded-2xl shadow-lg dark:shadow-2xl">
+              <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-400 z-10" />
+              <input
+                ref={inputRef}
+                type="text"
+                placeholder={placeholder}
+                value={query}
+                onChange={(e) => {
+                  const newValue = e.target.value;
+                  if (value === undefined) {
+                    setInternalQuery(newValue);
+                  }
+                  handleSearch(newValue);
+                }}
+                className="w-full pl-12 pr-12 py-4 text-base bg-transparent border-0 outline-0 focus:ring-2 focus:ring-primary-500/50 dark:focus:ring-primary-400/50 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-400 rounded-2xl"
+              />
+              {isLoading && (
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 z-10">
+                  <Loader2 className="w-5 h-5 text-gray-400 dark:text-gray-400 animate-spin" />
+                </div>
+              )}
+              {query && !isLoading && (
+                <button
+                  onClick={handleClear}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 dark:backdrop-blur-sm transition-colors z-10"
+                  aria-label="Clear search"
+                >
+                  <X className="w-4 h-4 text-gray-400 dark:text-gray-400" />
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </>
@@ -433,39 +435,39 @@ export default function Search({
         <HeaderSearchBar />
         <div className={`relative ${className}`}>
           {/* Search bar - hidden when scrolled down with smooth transition */}
-          <div className={`sticky top-24 z-40 mb-8 bg-white dark:bg-white/10 dark:backdrop-blur-md transition-all duration-300 ease-in-out ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden transform -translate-y-2 scale-95' : 'opacity-100 transform translate-y-0 scale-100'}`}>
-          <div className="w-full">
-            <div className="relative flex items-center">
-              <div className="absolute left-4 pointer-events-none">
-                <SearchIcon className="w-5 h-5 text-gray-400 dark:text-gray-500" />
+          <div className={`sticky top-24 z-40 mb-8 transition-all duration-300 ease-in-out overflow-hidden rounded-2xl ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden transform -translate-y-2 scale-95' : 'opacity-100 transform translate-y-0 scale-100'}`}>
+            <div className="relative bg-white dark:bg-slate-800/95 dark:backdrop-blur-md border-2 border-gray-200 dark:border-white/20 rounded-2xl shadow-lg dark:shadow-2xl">
+              <div className="relative flex items-center">
+                <div className="absolute left-4 pointer-events-none z-10">
+                  <SearchIcon className="w-5 h-5 text-gray-400 dark:text-gray-400" />
+                </div>
+                <input
+                  ref={inputRef}
+                  type="text"
+                  placeholder={placeholder}
+                  value={query}
+                  onChange={(e) => {
+                    const newValue = e.target.value;
+                    if (value === undefined) {
+                      setInternalQuery(newValue);
+                    }
+                    handleSearch(newValue);
+                  }}
+                  className="w-full pl-12 pr-12 py-4 text-base bg-transparent border-0 outline-0 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500/50 dark:focus:ring-primary-400/50 rounded-2xl transition-all"
+                />
+                {query && (
+                  <button
+                    onClick={handleClear}
+                    className="absolute right-4 p-1.5 rounded-lg text-gray-400 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 transition-all z-10"
+                    aria-label="Clear search"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                )}
               </div>
-              <input
-                ref={inputRef}
-                type="text"
-                placeholder={placeholder}
-                value={query}
-                onChange={(e) => {
-                  const newValue = e.target.value;
-                  if (value === undefined) {
-                    setInternalQuery(newValue);
-                  }
-                  handleSearch(newValue);
-                }}
-                className="w-full pl-12 pr-12 py-4 text-base bg-white dark:bg-white/10 dark:backdrop-blur-md border-2 border-gray-200 dark:border-white/20 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-400 focus:outline-none focus:border-primary-500 dark:focus:border-primary-400 focus:ring-4 focus:ring-primary-500/10 dark:focus:ring-primary-400/20 transition-all shadow-sm hover:shadow-md"
-              />
-              {query && (
-                <button
-                  onClick={handleClear}
-                  className="absolute right-4 p-1.5 rounded-lg text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
-                  aria-label="Clear search"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              )}
             </div>
-          </div>
           </div>
         </div>
       </>
