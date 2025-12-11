@@ -33,6 +33,7 @@ interface LearningItem {
 
 export default function TusomePage() {
   const router = useRouter();
+  const headerIconRef = React.useRef<HTMLDivElement>(null);
   const [meta, setMeta] = useState<Record<string, MetaItem | string>>({});
   const [learningItems, setLearningItems] = useState<LearningItem[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -332,17 +333,8 @@ export default function TusomePage() {
               </p>
             </div>
           </div>
-          {/* Search icon button in header - rendered by Search component when scrolled up */}
-          <div className="flex-shrink-0">
-            <Search
-              variant="inline"
-              placeholder="Looza hano..."
-              onSearch={handleSearch}
-              showResults={false}
-              iconPosition="header"
-              className="hidden"
-            />
-          </div>
+          {/* Search icon button slot - rendered by Search component when scrolled up */}
+          <div className="flex-shrink-0" ref={headerIconRef} />
         </div>
       </div>
 
@@ -354,6 +346,7 @@ export default function TusomePage() {
           onSearch={handleSearch}
           showResults={false}
           iconPosition="header"
+          headerIconSlot={headerIconRef}
         />
       </div>
 

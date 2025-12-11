@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import { Search as SearchIcon, FileText, Loader2, X } from 'lucide-react';
 
@@ -20,6 +21,7 @@ interface SearchProps {
   showResults?: boolean;
   searchEndpoint?: string;
   iconPosition?: 'fixed' | 'header';
+  headerIconSlot?: React.RefObject<HTMLDivElement>;
 }
 
 export default function Search({
@@ -295,15 +297,14 @@ export default function Search({
     );
   }
 
-  // Floating search overlay component
+  // Floating search overlay component - positioned above content, not full screen
   const FloatingSearchOverlay = () => (
     <>
       {isFloatingOpen && (
-        <div className="fixed inset-0 z-[60] flex items-start justify-end pt-24 pr-4 pb-8 pointer-events-none">
-          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm pointer-events-auto" onClick={() => setIsFloatingOpen(false)} />
+        <div className="absolute top-full left-0 right-0 z-[60] mt-4">
           <div
             ref={floatingRef}
-            className="relative w-full max-w-md bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 animate-in fade-in slide-in-from-top-4 duration-200 pointer-events-auto"
+            className="relative w-full bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 animate-in fade-in slide-in-from-top-4 duration-200"
           >
             <div className="flex items-center gap-3 px-4 py-4 border-b border-gray-200 dark:border-gray-800">
               <SearchIcon className="w-5 h-5 text-gray-400 flex-shrink-0" />
@@ -365,38 +366,31 @@ export default function Search({
     </>
   );
 
-  // Icon button component
-  const SearchIconButton = () => (
-    <button
-      onClick={() => setIsFloatingOpen(true)}
-      className={`p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ${iconPosition === 'header' ? '' : 'fixed top-24 right-4 z-50 bg-primary-600 hover:bg-primary-700 text-white shadow-lg hover:scale-110'}`}
-      aria-label="Open search"
-      title="Search"
-    >
-      <SearchIcon className={`w-5 h-5 ${iconPosition === 'header' ? 'text-gray-700 dark:text-gray-300' : ''}`} />
-    </button>
-  );
+  // Render icon button in header slot if provided
+  // Icon button for header - rendered via portal when scrolled up
+  const HeaderIconButton = () => {
+    if (!isScrolledUp || iconPosition !== 'header' || !headerIconSlot?.current) {
+      return null;
+    }
+    return createPortal(
+      <button
+        onClick={() => setIsFloatingOpen(true)}
+        className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        aria-label="Open search"
+        title="Search"
+      >
+        <SearchIcon className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+      </button>,
+      headerIconSlot.current
+    );
+  };
 
   // Inline variant - Always visible search bar with scroll-based icon
   if (variant === 'inline') {
-    // If hidden class and header position, only render icon button
-    if (className.includes('hidden') && iconPosition === 'header') {
-      return (
-        <>
-          {isScrolledUp && <SearchIconButton />}
-          <FloatingSearchOverlay />
-        </>
-      );
-    }
-    
     return (
-      <>
-        {/* Icon button when scrolled up - render inline if header position */}
-        {isScrolledUp && iconPosition === 'header' && <SearchIconButton />}
-        {isScrolledUp && iconPosition !== 'header' && <SearchIconButton />}
-        
+      <div className={`relative ${className}`}>
         {/* Search bar - hidden when scrolled up */}
-        <div className={`relative ${className} ${isScrolledUp ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
+        <div className={`relative ${isScrolledUp ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
           <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
           <input
             ref={inputRef}
@@ -426,33 +420,23 @@ export default function Search({
               <X className="w-4 h-4 text-gray-400" />
             </button>
           )}
+          </div>
+          
+          {/* Floating search overlay - appears above content when icon clicked */}
+          <FloatingSearchOverlay />
         </div>
-        
-        <FloatingSearchOverlay />
       </>
     );
   }
 
   // Sticky variant - Sticky search bar with enhanced styling and scroll-based icon
   if (variant === 'sticky') {
-    // If hidden class and header position, only render icon button
-    if (className.includes('hidden') && iconPosition === 'header') {
-      return (
-        <>
-          {isScrolledUp && <SearchIconButton />}
-          <FloatingSearchOverlay />
-        </>
-      );
-    }
-    
     return (
       <>
-        {/* Icon button when scrolled up */}
-        {isScrolledUp && iconPosition === 'header' && <SearchIconButton />}
-        {isScrolledUp && iconPosition !== 'header' && <SearchIconButton />}
-        
-        {/* Search bar - hidden when scrolled up */}
-        <div className={`sticky top-24 z-40 mb-8 bg-white dark:bg-gray-950 ${className} ${isScrolledUp ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
+        <HeaderIconButton />
+        <div className={`relative ${className}`}>
+          {/* Search bar - hidden when scrolled up */}
+          <div className={`sticky top-24 z-40 mb-8 bg-white dark:bg-gray-950 ${isScrolledUp ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
           <div className="w-full">
             <div className="relative flex items-center">
               <div className="absolute left-4 pointer-events-none">
@@ -485,9 +469,11 @@ export default function Search({
               )}
             </div>
           </div>
+          </div>
+          
+          {/* Floating search overlay - appears above content when icon clicked */}
+          <FloatingSearchOverlay />
         </div>
-        
-        <FloatingSearchOverlay />
       </>
     );
   }

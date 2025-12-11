@@ -173,6 +173,7 @@ interface VocabularyProps {
 }
 
 export default function Vocabulary({ content }: VocabularyProps) {
+  const headerIconRef = React.useRef<HTMLDivElement>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
@@ -206,18 +207,8 @@ export default function Vocabulary({ content }: VocabularyProps) {
               {content.title}
             </h1>
           </div>
-          {/* Search icon button in header - rendered by Search component when scrolled up */}
-          <div className="flex-shrink-0">
-            <Search
-              variant="inline"
-              placeholder="Looza amagambo..."
-              value={searchTerm}
-              onSearch={(query) => setSearchTerm(query)}
-              showResults={false}
-              iconPosition="header"
-              className="hidden"
-            />
-          </div>
+          {/* Search icon button slot - rendered by Search component when scrolled up */}
+          <div className="flex-shrink-0" ref={headerIconRef} />
         </div>
         {content.description && (
           <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-4">

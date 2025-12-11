@@ -311,6 +311,7 @@ interface NumberLessonProps {
 }
 
 export default function NumberLesson({ content }: NumberLessonProps) {
+  const headerIconRef = React.useRef<HTMLDivElement>(null);
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = (query: string) => {
@@ -354,19 +355,9 @@ export default function NumberLesson({ content }: NumberLessonProps) {
               )}
             </div>
           </div>
-          {/* Search icon button in header - rendered by Search component when scrolled up */}
+          {/* Search icon button slot - rendered by Search component when scrolled up */}
           {content.sections.length > 0 && (
-            <div className="flex-shrink-0">
-              <Search
-                variant="sticky"
-                placeholder="Looza hano... (Search by number or Kifuliiru text)"
-                value={searchTerm}
-                onSearch={handleSearch}
-                showResults={false}
-                iconPosition="header"
-                className="hidden"
-              />
-            </div>
+            <div className="flex-shrink-0" ref={headerIconRef} />
           )}
         </div>
         {content.description && content.sections.length === 0 && (
