@@ -372,6 +372,111 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
     );
   };
 
+  // Language selector for eng-frn-swa
+  const getLanguageFlag = (langKey: string): string => {
+    switch (langKey) {
+      case 'kiswahili':
+        return '🇹🇿';
+      case 'english':
+        return '🇬🇧';
+      case 'francais':
+        return '🇫🇷';
+      case 'tukole':
+        return '🌍'; // Default icon for Tukole
+      default:
+        return '🌐';
+    }
+  };
+
+  const getCurrentLanguage = (): string => {
+    if (!pathname?.startsWith('/eng-frn-swa/')) {
+      return 'english'; // Default
+    }
+    const pathParts = pathname.split('/');
+    const langKey = pathParts[2]; // eng-frn-swa/[lang]
+    return langKey || 'english';
+  };
+
+  const renderLanguageSelector = (key: string, item: NavItem) => {
+    if (!item.items) return null;
+
+    const currentLang = getCurrentLanguage();
+    const currentFlag = getLanguageFlag(currentLang);
+    const isOpen = openDropdown === key;
+    const itemEntries = Object.entries(item.items);
+
+    return (
+      <div
+        key={key}
+        className="relative"
+        ref={(el) => {
+          dropdownRefs.current[key] = el;
+        }}
+      >
+        <button
+          onClick={() => setOpenDropdown(isOpen ? null : key)}
+          className={`
+            flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all
+            ${
+              pathname?.startsWith(`/${key}`)
+                ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
+                : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900/50'
+            }
+          `}
+        >
+          <span className="text-lg">{currentFlag}</span>
+          <ChevronDown
+            className={`w-3.5 h-3.5 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          />
+        </button>
+
+        {isOpen && (
+          <>
+            {/* Indicator Arrow */}
+            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[8px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-gray-600 z-[51]" />
+            <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-b-[7px] border-l-transparent border-r-transparent border-b-white dark:border-b-gray-950 z-[52]" />
+            
+            {/* Language Dropdown */}
+            <div className="absolute top-full mt-2 bg-white dark:bg-gray-950 rounded-lg shadow-xl border border-gray-200 dark:border-gray-800 z-50 animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden w-40 left-1/2 -translate-x-1/2">
+              <div className="py-2">
+                {itemEntries.map(([subKey, subItem]) => {
+                  const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
+                  const subHref = `/eng-frn-swa/${subKey}`;
+                  const isActive = pathname === subHref || pathname?.startsWith(`${subHref}/`);
+                  const flag = getLanguageFlag(subKey);
+
+                  return (
+                    <a
+                      key={subKey}
+                      href={subHref}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        setOpenDropdown(null);
+                        router.push(subHref);
+                      }}
+                      className={`
+                        flex items-center gap-3 px-4 py-2.5 text-xs rounded-md transition-all
+                        ${
+                          isActive
+                            ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
+                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900/50 hover:text-gray-900 dark:hover:text-gray-50'
+                        }
+                      `}
+                    >
+                      <span className="text-base">{flag}</span>
+                      <span className="truncate">{subTitle}</span>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    );
+  };
+
   const renderNavItem = (key: string, item: NavItem | string) => {
     if (typeof item === 'string') {
       const href = `/${key}`;
@@ -398,6 +503,11 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
           <span>{item}</span>
         </a>
       );
+    }
+
+    // Special handling for language selector
+    if (key === 'eng-frn-swa' && item.type === 'menu' && item.items) {
+      return renderLanguageSelector(key, item);
     }
 
     if (item.type === 'menu' && item.items) {
