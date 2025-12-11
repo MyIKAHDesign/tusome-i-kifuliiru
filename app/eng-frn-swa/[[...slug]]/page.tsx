@@ -66,14 +66,21 @@ async function getPageData(slugArray: string[]) {
   }
 
   return {
-    slug,
-    contentType: 'json' as const,
+    notFound: true,
   };
 }
 
 export default async function EngFrnSwaPage({ params }: PageProps) {
   const slugArray = params.slug || [];
   const pageData = await getPageData(slugArray);
+  
+  if ('notFound' in pageData) {
+    return (
+      <div className="text-center py-12 text-gray-500 dark:text-gray-400">
+        <p>Content not found</p>
+      </div>
+    );
+  }
   
   const getTitle = (): string => {
     if ('jsonContent' in pageData && pageData.jsonContent && 'title' in pageData.jsonContent && typeof pageData.jsonContent.title === 'string') {

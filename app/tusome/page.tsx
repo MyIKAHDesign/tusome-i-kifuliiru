@@ -116,7 +116,17 @@ export default function TusomePage() {
           const children: LearningItem[] = [];
           Object.entries(subItems).forEach(([subKey, subItem]) => {
             if (typeof subItem === 'string') {
-              const subHref = `/${key}/${subKey}`;
+              // For ukuharura, amagambo, etc. - use the key structure
+              let subHref: string;
+              if (key === 'ukuharura') {
+                subHref = `/ukuharura/${subKey}`;
+              } else if (key === 'amagambo') {
+                subHref = `/amagambo/${subKey}`;
+              } else if (key === 'eng-frn-swa') {
+                subHref = `/eng-frn-swa/${subKey}`;
+              } else {
+                subHref = `/${key}/${subKey}`;
+              }
               children.push({
                 key: `${key}-${subKey}`,
                 title: subItem,
@@ -125,18 +135,39 @@ export default function TusomePage() {
               });
             } else {
               const subTitle = subItem.title || subKey;
-              const subHref = subItem.href || `/${key}/${subKey}`;
+              // Use explicit href if provided, otherwise construct based on key
+              let subHref: string;
+              if (subItem.href) {
+                subHref = subItem.href;
+              } else if (key === 'ukuharura') {
+                subHref = `/ukuharura/${subKey}`;
+              } else if (key === 'amagambo') {
+                subHref = `/amagambo/${subKey}`;
+              } else if (key === 'eng-frn-swa') {
+                subHref = `/eng-frn-swa/${subKey}`;
+              } else {
+                subHref = `/${key}/${subKey}`;
+              }
               children.push({
                 key: `${key}-${subKey}`,
                 title: subTitle,
                 href: subHref,
                 type: subItem.type || 'page',
-                items: subItem.items ? Object.entries(subItem.items).map(([nestedKey, nestedItem]) => ({
-                  key: `${key}-${subKey}-${nestedKey}`,
-                  title: typeof nestedItem === 'string' ? nestedItem : (nestedItem.title || nestedKey),
-                  href: typeof nestedItem === 'object' && nestedItem.href ? nestedItem.href : `/${key}/${subKey}/${nestedKey}`,
-                  type: typeof nestedItem === 'object' && nestedItem.type ? nestedItem.type : 'page',
-                })) : undefined,
+                items: subItem.items ? Object.entries(subItem.items).map(([nestedKey, nestedItem]) => {
+                  const nestedTitle = typeof nestedItem === 'string' ? nestedItem : (nestedItem.title || nestedKey);
+                  let nestedHref: string;
+                  if (typeof nestedItem === 'object' && nestedItem.href) {
+                    nestedHref = nestedItem.href;
+                  } else {
+                    nestedHref = `/${key}/${subKey}/${nestedKey}`;
+                  }
+                  return {
+                    key: `${key}-${subKey}-${nestedKey}`,
+                    title: nestedTitle,
+                    href: nestedHref,
+                    type: typeof nestedItem === 'object' && nestedItem.type ? nestedItem.type : 'page',
+                  };
+                }) : undefined,
               });
             }
           });
