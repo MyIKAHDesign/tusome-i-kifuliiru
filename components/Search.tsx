@@ -1,5 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useRouter } from 'next/router';
+'use client';
+
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
+import { createPortal } from 'react-dom';
+import { useRouter } from 'next/navigation';
 import { Search as SearchIcon, FileText, Loader2, X } from 'lucide-react';
 
 interface SearchResult {
@@ -7,36 +10,126 @@ interface SearchResult {
   path: string;
 }
 
-export default function Search() {
+interface SearchProps {
+  variant?: 'modal' | 'inline' | 'sticky';
+  placeholder?: string;
+  value?: string;
+  onSearch?: (query: string) => void;
+  onResultsChange?: (results: SearchResult[]) => void;
+  localResults?: SearchResult[];
+  className?: string;
+  showResults?: boolean;
+  searchEndpoint?: string;
+  iconPosition?: 'fixed' | 'header';
+  headerIconSlot?: React.RefObject<HTMLDivElement>;
+  compact?: boolean;
+}
+
+export default function Search({
+  variant = 'modal',
+  placeholder = 'Looza hano...',
+  value,
+  onSearch,
+  onResultsChange,
+  localResults,
+  className = '',
+  showResults = true,
+  searchEndpoint = '/api/search',
+  iconPosition = 'fixed',
+  headerIconSlot,
+  compact = false,
+}: SearchProps) {
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [query, setQuery] = useState('');
+  const [internalQuery, setInternalQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isScrolledDown, setIsScrolledDown] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMiniatureMode, setIsMiniatureMode] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const router = useRouter();
+  
+  // Use controlled value if provided, otherwise use internal state
+  const query = value !== undefined ? value : internalQuery;
+  
+  // Scroll detection for inline and sticky variants with hysteresis
+  // This prevents flickering when content filtering changes page height
+  useEffect(() => {
+    if (variant !== 'inline' && variant !== 'sticky') return;
+    
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          
+          // Hysteresis: Show miniature at 100px, but only hide when scroll < 50px
+          // This prevents flickering when content filtering reduces page height
+          if (isMiniatureMode) {
+            // Once in miniature mode, only exit when scrolled back to very top
+            if (currentScrollY < 50) {
+              setIsMiniatureMode(false);
+              setIsScrolledDown(false);
+            } else {
+              // Stay in miniature mode even if content height changes
+              setIsScrolledDown(true);
+            }
+          } else {
+            // Enter miniature mode when scrolled past threshold
+            if (currentScrollY > 100) {
+              setIsMiniatureMode(true);
+              setIsScrolledDown(true);
+            }
+          }
+          
+          setLastScrollY(currentScrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    // Initial check
+    handleScroll();
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [variant, isMiniatureMode]);
+  
+  const handleQueryChange = (newQuery: string) => {
+    if (value === undefined) {
+      // Uncontrolled - update internal state
+      setInternalQuery(newQuery);
+    }
+    // Always call onSearch callback
+    if (onSearch) {
+      onSearch(newQuery);
+    }
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
         setIsModalOpen(false);
-        setQuery('');
+        handleQueryChange('');
         setResults([]);
       }
     };
 
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        setIsModalOpen(false);
-        setQuery('');
-        setResults([]);
+        if (variant === 'modal' && isModalOpen) {
+          setIsModalOpen(false);
+          handleQueryChange('');
+          setResults([]);
+        }
       }
     };
 
-    if (isModalOpen) {
+    if (isModalOpen && variant === 'modal') {
       document.addEventListener('mousedown', handleClickOutside);
       document.addEventListener('keydown', handleEscape);
-      // Focus input when modal opens
       setTimeout(() => {
         inputRef.current?.focus();
       }, 100);
@@ -45,26 +138,52 @@ export default function Search() {
         document.removeEventListener('keydown', handleEscape);
       };
     }
-  }, [isModalOpen]);
+  }, [isModalOpen, variant]);
+
+  useEffect(() => {
+    if (localResults) {
+      setResults(localResults);
+      if (onResultsChange) {
+        onResultsChange(localResults);
+      }
+    }
+  }, [localResults, onResultsChange]);
 
   const handleSearch = async (searchQuery: string) => {
-    setQuery(searchQuery);
+    handleQueryChange(searchQuery);
+    
+    // Call custom search handler if provided
+    if (onSearch) {
+      return;
+    }
+
+    // Default API search
     if (searchQuery.length < 2) {
       setResults([]);
+      if (onResultsChange) {
+        onResultsChange([]);
+      }
       return;
     }
 
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/search?q=' + encodeURIComponent(searchQuery));
+      const response = await fetch(`${searchEndpoint}?q=` + encodeURIComponent(searchQuery));
       if (response.ok) {
         const data = await response.json();
-        setResults(data.results || []);
+        const searchResults = data.results || [];
+        setResults(searchResults);
+        if (onResultsChange) {
+          onResultsChange(searchResults);
+        }
       }
     } catch (error) {
       console.error('Search error:', error);
       setResults([]);
+      if (onResultsChange) {
+        onResultsChange([]);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -72,99 +191,286 @@ export default function Search() {
 
   const handleResultClick = (path: string) => {
     router.push(path);
-    setIsModalOpen(false);
-    setQuery('');
+    if (variant === 'modal') {
+      setIsModalOpen(false);
+    }
+    handleQueryChange('');
     setResults([]);
+    if (onResultsChange) {
+      onResultsChange([]);
+    }
   };
 
-  return (
-    <>
-      {/* Search Icon Button */}
-      <button
-        onClick={() => setIsModalOpen(true)}
-        className="p-2 rounded-lg hover:bg-white dark:hover:bg-gray-900 transition-colors"
-        aria-label="Search"
-        title="Search"
-      >
-        <SearchIcon className="w-5 h-5 text-gray-700 dark:text-gray-300" />
-      </button>
+  const handleClear = () => {
+    handleQueryChange('');
+    setResults([]);
+    if (onResultsChange) {
+      onResultsChange([]);
+    }
+  };
 
-      {/* Search Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4">
-          {/* Backdrop */}
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
-          
-          {/* Modal Content */}
-          <div
-            ref={modalRef}
-            className="relative w-full max-w-2xl bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 animate-in fade-in slide-in-from-top-4 duration-200"
-          >
-            {/* Search Input */}
-            <div className="flex items-center gap-3 px-4 py-4 border-b border-gray-200 dark:border-gray-800">
-        <SearchIcon className="w-5 h-5 text-gray-400 flex-shrink-0" />
+  // Modal variant - Button that opens modal
+  if (variant === 'modal') {
+    return (
+      <>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="p-2 rounded-lg hover:bg-white dark:hover:bg-gray-900 transition-colors"
+          aria-label="Search"
+          title="Search"
+        >
+          <SearchIcon className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+        </button>
+
+        {isModalOpen && (
+          <div className="fixed inset-0 z-[60] flex items-start justify-center pt-24 px-4 pb-8">
+            <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
+            
+            <div
+              ref={modalRef}
+              className="relative w-full max-w-2xl bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 animate-in fade-in slide-in-from-top-4 duration-200"
+            >
+              <div className="flex items-center gap-3 px-4 py-4 border-b border-gray-200 dark:border-gray-800">
+                <SearchIcon className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                <input
+                  ref={inputRef}
+                  type="text"
+                  placeholder={placeholder}
+                  value={query}
+                  onChange={(e) => {
+                    const newValue = e.target.value;
+                    if (value === undefined) {
+                      setInternalQuery(newValue);
+                    }
+                    handleSearch(newValue);
+                  }}
+                  className="flex-1 bg-transparent border-0 outline-0 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400"
+                />
+                {isLoading && (
+                  <Loader2 className="w-4 h-4 text-gray-600 dark:text-gray-400 animate-spin flex-shrink-0" />
+                )}
+                <button
+                  onClick={() => {
+                    setIsModalOpen(false);
+                    handleQueryChange('');
+                    setResults([]);
+                  }}
+                  className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+                  aria-label="Close search"
+                >
+                  <X className="w-5 h-5 text-gray-400" />
+                </button>
+              </div>
+
+              {showResults && (
+                <>
+                  {query.length >= 2 && (
+                    <div className="max-h-96 overflow-y-auto">
+                      {isLoading ? (
+                        <div className="p-6 text-center text-sm text-gray-500 dark:text-gray-400 flex items-center justify-center gap-2">
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Tugweeti tugalooza...</span>
+                        </div>
+                      ) : results.length > 0 ? (
+                        <div className="py-2">
+                          {results.map((result, index) => (
+                            <button
+                              key={index}
+                              onClick={() => handleResultClick(result.path)}
+                              className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors border-b border-gray-100 dark:border-gray-800 last:border-0 text-left"
+                            >
+                              <FileText className="w-4 h-4 flex-shrink-0 text-gray-400" />
+                              <span>{result.title}</span>
+                            </button>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="p-6 text-center text-sm text-gray-500 dark:text-gray-400">
+                          Ndabyo twaloonga
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {query.length < 2 && (
+                    <div className="p-6 text-center text-sm text-gray-500 dark:text-gray-400">
+                      Tandika kwandika kugalooza...
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          </div>
+        )}
+      </>
+    );
+  }
+
+  // Handle input change with focus preservation
+  const handleHeaderInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    // Preserve focus by checking if input is focused before state update
+    const wasFocused = document.activeElement === inputRef.current;
+    
+    // Update state immediately for smooth typing
+    handleQueryChange(newValue);
+    // If no custom onSearch handler, perform default API search
+    if (!onSearch) {
+      handleSearch(newValue);
+    }
+    
+    // Restore focus if it was focused before
+    if (wasFocused && inputRef.current) {
+      // Use requestAnimationFrame to ensure focus happens after React's render cycle
+      requestAnimationFrame(() => {
+        inputRef.current?.focus();
+      });
+    }
+  }, [handleQueryChange, onSearch, handleSearch]);
+
+  // Memoize the portal content to prevent recreation on every render
+  // Only recreate when visibility or essential props change, not on every query update
+  const headerSearchContent = useMemo(() => {
+    if (!headerIconSlot?.current) {
+      return null;
+    }
+    
+    const shouldShow = isScrolledDown && iconPosition === 'header';
+    
+    return (
+      <div 
+        className={`relative w-full min-w-[200px] max-w-md transition-all duration-300 ease-in-out ${
+          shouldShow 
+            ? 'opacity-100 translate-x-0' 
+            : 'opacity-0 translate-x-2 pointer-events-none'
+        }`}
+      >
+        <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 dark:text-gray-500 pointer-events-none z-10 transition-opacity duration-300" />
         <input
+          key="header-search-input-stable"
           ref={inputRef}
           type="text"
-          placeholder="Looza hano..."
+          placeholder={placeholder}
           value={query}
-          onChange={(e) => handleSearch(e.target.value)}
-          className="flex-1 bg-transparent border-0 outline-0 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400"
+          onChange={handleHeaderInputChange}
+          className="w-full pl-10 pr-8 py-2 text-sm bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200/80 dark:border-gray-700/80 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-400 dark:focus:border-primary-600 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-all duration-200 shadow-sm hover:shadow-md"
         />
         {isLoading && (
-                <Loader2 className="w-4 h-4 text-gray-600 dark:text-gray-400 animate-spin flex-shrink-0" />
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none z-10 transition-opacity duration-300">
+            <Loader2 className="w-4 h-4 text-gray-400 animate-spin" />
+          </div>
         )}
-              <button
-                onClick={() => {
-                  setIsModalOpen(false);
-                  setQuery('');
-                  setResults([]);
-                }}
-                className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
-                aria-label="Close search"
-              >
-                <X className="w-5 h-5 text-gray-400" />
-              </button>
+        {query && !isLoading && (
+          <button
+            onClick={handleClear}
+            className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 rounded hover:bg-gray-100 dark:hover:bg-gray-900 transition-all duration-200 z-10"
+            aria-label="Clear search"
+            type="button"
+          >
+            <X className="w-3 h-3 text-gray-400" />
+          </button>
+        )}
       </div>
+    );
+  }, [isScrolledDown, iconPosition, headerIconSlot, placeholder, handleHeaderInputChange, handleClear, query, isLoading]);
 
-            {/* Search Results */}
-            {query.length >= 2 && (
-              <div className="max-h-96 overflow-y-auto">
-          {isLoading ? (
-            <div className="p-6 text-center text-sm text-gray-500 dark:text-gray-400 flex items-center justify-center gap-2">
-              <Loader2 className="w-4 h-4 animate-spin" />
-              <span>Tugweeti tugalooza...</span>
-            </div>
-          ) : results.length > 0 ? (
-            <div className="py-2">
-              {results.map((result, index) => (
-                      <button
-                  key={index}
-                        onClick={() => handleResultClick(result.path)}
-                        className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors border-b border-gray-100 dark:border-gray-800 last:border-0 text-left"
-                >
-                  <FileText className="w-4 h-4 flex-shrink-0 text-gray-400" />
-                  <span>{result.title}</span>
-                      </button>
-              ))}
-            </div>
-          ) : (
-            <div className="p-6 text-center text-sm text-gray-500 dark:text-gray-400">
-              Ndabyo twaloonga
-            </div>
-          )}
-        </div>
-      )}
+  // Compact search bar for header - rendered via portal when scrolled down
+  const HeaderSearchBar = () => {
+    if (!headerIconSlot?.current || !headerSearchContent) {
+      return null;
+    }
+    
+    return createPortal(headerSearchContent, headerIconSlot.current);
+  };
 
-            {/* Empty State */}
-            {query.length < 2 && (
-              <div className="p-6 text-center text-sm text-gray-500 dark:text-gray-400">
-                Tandika kwandika kugalooza...
+  // Inline variant - Always visible search bar, moves to header when scrolled
+  if (variant === 'inline') {
+    return (
+      <>
+        <HeaderSearchBar />
+        <div className={`relative ${className}`}>
+          {/* Search bar - hidden when scrolled down with smooth transition */}
+          <div className={`relative transition-all duration-300 ease-in-out ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden transform -translate-y-2 scale-95' : 'opacity-100 transform translate-y-0 scale-100'}`}>
+            <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              ref={inputRef}
+              type="text"
+              placeholder={placeholder}
+              value={query}
+              onChange={(e) => {
+                const newValue = e.target.value;
+                if (value === undefined) {
+                  setInternalQuery(newValue);
+                }
+                handleSearch(newValue);
+              }}
+              className="w-full pl-12 pr-12 py-4 text-base bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-gray-100 placeholder-gray-400"
+            />
+            {isLoading && (
+              <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                <Loader2 className="w-5 h-5 text-gray-400 animate-spin" />
               </div>
             )}
+            {query && !isLoading && (
+              <button
+                onClick={handleClear}
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+                aria-label="Clear search"
+              >
+                <X className="w-4 h-4 text-gray-400" />
+              </button>
+            )}
           </div>
-    </div>
-      )}
-    </>
-  );
+        </div>
+      </>
+    );
+  }
+
+  // Sticky variant - Sticky search bar, moves to header when scrolled
+  if (variant === 'sticky') {
+    return (
+      <>
+        <HeaderSearchBar />
+        <div className={`relative ${className}`}>
+          {/* Search bar - hidden when scrolled down with smooth transition */}
+          <div className={`sticky top-24 z-40 mb-8 bg-white dark:bg-gray-950 transition-all duration-300 ease-in-out ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden transform -translate-y-2 scale-95' : 'opacity-100 transform translate-y-0 scale-100'}`}>
+          <div className="w-full">
+            <div className="relative flex items-center">
+              <div className="absolute left-4 pointer-events-none">
+                <SearchIcon className="w-5 h-5 text-gray-400 dark:text-gray-500" />
+              </div>
+              <input
+                ref={inputRef}
+                type="text"
+                placeholder={placeholder}
+                value={query}
+                onChange={(e) => {
+                  const newValue = e.target.value;
+                  if (value === undefined) {
+                    setInternalQuery(newValue);
+                  }
+                  handleSearch(newValue);
+                }}
+                className="w-full pl-12 pr-12 py-4 text-base bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-primary-500 dark:focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 dark:focus:ring-primary-500/20 transition-all shadow-sm hover:shadow-md"
+              />
+              {query && (
+                <button
+                  onClick={handleClear}
+                  className="absolute right-4 p-1.5 rounded-lg text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                  aria-label="Clear search"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
+            </div>
+          </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  return null;
 }

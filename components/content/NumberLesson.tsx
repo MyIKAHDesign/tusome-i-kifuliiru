@@ -1,7 +1,10 @@
-import React, { useState, useMemo } from 'react';
+'use client';
+
+import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { NumberLessonContent } from '../../lib/content-schema';
-import { Calculator, Hash, Search as SearchIcon } from 'lucide-react';
+import { Calculator, Hash } from 'lucide-react';
+import Search from '../Search';
 
 // Parse markdown formatting (bold, italic, links) and convert to React elements
 const parseMarkdown = (text: string): React.ReactNode[] => {
@@ -308,7 +311,28 @@ interface NumberLessonProps {
 }
 
 export default function NumberLesson({ content }: NumberLessonProps) {
+  const headerIconRef = React.useRef<HTMLDivElement>(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 100);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleSearch = (query: string) => {
+    setSearchTerm(query);
+  };
 
   // Filter numbers based on search term
   const filteredSections = useMemo(() => {
@@ -329,25 +353,36 @@ export default function NumberLesson({ content }: NumberLessonProps) {
 
   return (
     <div className="space-y-8">
-      {/* Header */}
-      <div className="border-b border-gray-200 dark:border-gray-700 pb-6">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center">
-            <Calculator className="w-6 h-6 text-primary-600 dark:text-primary-400" />
+      {/* Header - Sticky when scrolled */}
+      <div className={`transition-all duration-300 ease-in-out ${
+        isScrolled 
+          ? 'sticky top-20 z-40 bg-gradient-to-r from-white via-white to-gray-50/50 dark:from-gray-950 dark:via-gray-950 dark:to-gray-900/50 backdrop-blur-md py-3 -mx-6 px-6 mb-4 rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-800/50' 
+          : 'pb-8 mb-10 border-b border-gray-200 dark:border-gray-700'
+      }`}>
+        <div className={`flex items-center gap-4 transition-all duration-300 ease-in-out ${isScrolled ? 'mb-0' : 'mb-4'}`}>
+          {/* Title Column */}
+          <div className="flex items-center gap-4 flex-1 min-w-0">
+            <div className={`rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0 transition-all duration-300 ease-in-out ${isScrolled ? 'w-8 h-8' : 'w-10 h-10'}`}>
+              <Calculator className={`text-primary-600 dark:text-primary-400 transition-all duration-300 ease-in-out ${isScrolled ? 'w-4 h-4' : 'w-5 h-5'}`} />
+            </div>
+            <div className="transition-all duration-300 ease-in-out min-w-0">
+              <h1 className={`font-bold text-gray-900 dark:text-gray-100 transition-all duration-300 ease-in-out truncate ${isScrolled ? 'text-2xl' : 'text-4xl'}`}>
+                {content.title}
+              </h1>
+              {content.range && (
+                <p className={`text-lg text-gray-600 dark:text-gray-400 mt-2 transition-all duration-300 ease-in-out overflow-hidden ${isScrolled ? 'max-h-0 opacity-0 mt-0' : 'max-h-8 opacity-100'}`}>
+                  {content.range}
+                </p>
+              )}
+            </div>
           </div>
-          <div>
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
-              {content.title}
-            </h1>
-            {content.range && (
-              <p className="text-lg text-gray-600 dark:text-gray-400 mt-1">
-                {content.range}
-              </p>
-            )}
-          </div>
+          {/* Search Column - rendered by Search component when scrolled down */}
+          {content.sections.length > 0 && (
+            <div className={`flex-shrink-0 transition-all duration-300 ease-in-out ${isScrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} ref={headerIconRef} />
+          )}
         </div>
         {content.description && content.sections.length === 0 && (
-          <div>
+          <div className="mt-4">
             {renderContentWithTables(content.description)}
           </div>
         )}
@@ -355,40 +390,24 @@ export default function NumberLesson({ content }: NumberLessonProps) {
 
       {/* Search Bar - Only show if there are sections to search */}
       {content.sections.length > 0 && (
-        <div className="sticky top-20 z-40 pb-6 -mx-6 px-6 mb-8">
-          <div className="max-w-2xl mx-auto">
-            <div className="relative flex items-center">
-              <div className="absolute left-4 pointer-events-none">
-                <SearchIcon className="w-5 h-5 text-gray-400 dark:text-gray-500" />
-              </div>
-              <input
-                type="text"
-                placeholder="Looza hano... (Search by number or Kifuliiru text)"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-12 py-4 text-base bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-primary-500 dark:focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 dark:focus:ring-primary-500/20 transition-all shadow-sm hover:shadow-md"
-              />
-              {searchTerm && (
-                <button
-                  onClick={() => setSearchTerm('')}
-                  className="absolute right-4 p-1.5 rounded-lg text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
-                  aria-label="Clear search"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              )}
-            </div>
-          </div>
+        <>
+          <Search
+            variant="sticky"
+            placeholder="Looza hano... (Search by number or Kifuliiru text)"
+            value={searchTerm}
+            onSearch={handleSearch}
+            showResults={false}
+            iconPosition="header"
+            headerIconSlot={headerIconRef}
+          />
           {searchTerm && (
-            <div className="mt-3 text-center">
+            <div className="text-center mb-4">
               <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
                 {filteredSections.reduce((total, section) => total + section.numbers.length, 0)} result{filteredSections.reduce((total, section) => total + section.numbers.length, 0) !== 1 ? 's' : ''} found
               </p>
             </div>
           )}
-        </div>
+        </>
       )}
 
       {/* Sections */}

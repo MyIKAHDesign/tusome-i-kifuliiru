@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState, useRef, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { usePathname, useRouter } from 'next/navigation';
 import { ChevronDown, ExternalLink, Home, BookOpen, Info, Languages } from 'lucide-react';
 
 interface NavItem {
@@ -16,6 +18,7 @@ interface HeaderNavigationProps {
 
 export default function HeaderNavigation({ items }: HeaderNavigationProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
@@ -92,6 +95,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
     
     return {
       home: { title: 'Home', type: 'page' as const, href: '/' },
+      tusome: { title: 'Tusome', type: 'page' as const, href: '/tusome' },
       kifuliiru: {
         title: 'Kifuliiru',
         type: 'menu' as const,
@@ -108,7 +112,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         items: tweheItems,
       },
       'eng-frn-swa': items['eng-frn-swa'] || {
-        title: 'ENG/SWA/FRN',
+        title: '🇬🇧 🇹🇿 🇫🇷',
         type: 'menu' as const,
         items: {},
       },
@@ -121,6 +125,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
     switch (key) {
       case 'home':
         return <Home className="w-4 h-4" />;
+      case 'tusome':
+        return <BookOpen className="w-4 h-4" />;
       case 'kifuliiru':
         return <BookOpen className="w-4 h-4" />;
       case 'imwitu':
@@ -128,7 +134,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
       case 'twehe':
         return <Info className="w-4 h-4" />;
       case 'eng-frn-swa':
-        return <Languages className="w-4 h-4" />;
+        return null; // Using flags instead of icon
       default:
         return null;
     }
@@ -175,53 +181,53 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         <button
           onClick={() => setOpenDropdown(isOpen ? null : key)}
           className={`
-            flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all
+            flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all
             ${
-              router.asPath.startsWith(`/${key}`)
+              pathname?.startsWith(`/${key}`)
                 ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
-                : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900'
+                : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900/50'
             }
           `}
         >
           {getIcon(key)}
           <span>{item.title}</span>
           <ChevronDown
-            className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+            className={`w-3.5 h-3.5 transition-transform ${isOpen ? 'rotate-180' : ''}`}
           />
         </button>
 
         {isOpen && (
           <>
-            {/* Indicator Arrow - More visible with larger size and shadow */}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[12px] border-r-[12px] border-b-[12px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-gray-600 z-[51] shadow-lg" />
-            <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[11px] border-r-[11px] border-b-[11px] border-l-transparent border-r-transparent border-b-white dark:border-b-gray-800 z-[52]" />
+            {/* Indicator Arrow */}
+            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[8px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-gray-600 z-[51]" />
+            <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-b-[7px] border-l-transparent border-r-transparent border-b-white dark:border-b-gray-950 z-[52]" />
             
             {/* Dropdown/Mega Menu */}
             <div className={`
-              absolute top-full mt-2 bg-white dark:bg-gray-950 rounded-xl shadow-lg border border-gray-200 dark:border-gray-800 z-50 animate-in fade-in slide-in-from-top-2 duration-200
+              absolute top-full mt-2 bg-white dark:bg-gray-950 rounded-lg shadow-xl border border-gray-200 dark:border-gray-800 z-50 animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden
               ${isMegaMenu 
-                ? 'w-[600px] p-6 left-1/2 -translate-x-1/2' 
-                : 'w-64 py-2 max-h-96 overflow-y-auto left-1/2 -translate-x-1/2'
+                ? 'w-[400px] left-1/2 -translate-x-1/2' 
+                : 'w-40 left-1/2 -translate-x-1/2'
               }
             `}>
             {isMegaMenu ? (
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 divide-x divide-gray-200 dark:divide-gray-800">
                 {/* Left Column */}
-                <div>
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2 text-center">
+                <div className="p-4">
+                  <h3 className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2 border-b border-gray-200 dark:border-gray-800 pb-2">
                     Kifuliiru
                   </h3>
-                  <div className="space-y-1">
+                  <div className="space-y-0.5">
                     {left.map(([subKey, subItem]) => {
                       const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
                       let subHref: string;
                       if (typeof subItem === 'object' && subItem.href) {
                         subHref = subItem.href;
                       } else {
-                        // Top-level pages: kifuliiru, imigani, imigeeza
                         subHref = `/${subKey}`;
                       }
                       const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
+                      const isActive = pathname === subHref || pathname?.startsWith(`${subHref}/`);
 
                       return (
                         <a
@@ -230,30 +236,26 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                           target={isExternal ? '_blank' : undefined}
                           rel={isExternal ? 'noopener noreferrer' : undefined}
                           onClick={(e) => {
-                            e.stopPropagation(); // Prevent click from bubbling to parent
+                            e.stopPropagation();
                             if (!isExternal) {
                               e.preventDefault();
-                              setOpenDropdown(null); // Close dropdown first
-                              router.push(subHref).catch(err => {
-                                console.error('Navigation error:', err);
-                                // Fallback to regular navigation if router.push fails
-                                window.location.href = subHref;
-                              });
+                              setOpenDropdown(null);
+                              router.push(subHref);
                             } else {
                               setOpenDropdown(null);
                             }
                           }}
                           className={`
-                            flex items-center justify-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-colors
+                            flex items-center gap-2 px-3 py-2 text-xs rounded-md transition-all
                             ${
-                              router.asPath === subHref || router.asPath.startsWith(`${subHref}/`)
+                              isActive
                                 ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
-                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
+                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900/50 hover:text-gray-900 dark:hover:text-gray-50'
                             }
                           `}
                         >
-                          <span>{subTitle}</span>
-                          {isExternal && <ExternalLink className="w-4 h-4 opacity-50" />}
+                          <span className="truncate">{subTitle}</span>
+                          {isExternal && <ExternalLink className="w-3 h-3 opacity-50 flex-shrink-0" />}
                         </a>
                       );
                     })}
@@ -261,21 +263,21 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                 </div>
 
                 {/* Right Column */}
-                <div>
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2 text-center">
+                <div className="p-4">
+                  <h3 className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2 border-b border-gray-200 dark:border-gray-800 pb-2">
                     Bingi ku Kifuliiru
                   </h3>
-                  <div className="space-y-1">
+                  <div className="space-y-0.5">
                     {right.map(([subKey, subItem]) => {
                       const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
                       let subHref: string;
                       if (typeof subItem === 'object' && subItem.href) {
                         subHref = subItem.href;
                       } else {
-                        // Items from bingi-ku-kifuliiru menu - these use root-level routes
                         subHref = `/${subKey}`;
                       }
                       const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
+                      const isActive = pathname === subHref || pathname?.startsWith(`${subHref}/`);
 
                       return (
                         <a
@@ -284,30 +286,26 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                           target={isExternal ? '_blank' : undefined}
                           rel={isExternal ? 'noopener noreferrer' : undefined}
                           onClick={(e) => {
-                            e.stopPropagation(); // Prevent click from bubbling to parent
+                            e.stopPropagation();
                             if (!isExternal) {
                               e.preventDefault();
-                              setOpenDropdown(null); // Close dropdown first
-                              router.push(subHref).catch(err => {
-                                console.error('Navigation error:', err);
-                                // Fallback to regular navigation if router.push fails
-                                window.location.href = subHref;
-                              });
+                              setOpenDropdown(null);
+                              router.push(subHref);
                             } else {
                               setOpenDropdown(null);
                             }
                           }}
                           className={`
-                            flex items-center justify-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-colors
+                            flex items-center gap-2 px-3 py-2 text-xs rounded-md transition-all
                             ${
-                              router.asPath === subHref || router.asPath.startsWith(`${subHref}/`)
+                              isActive
                                 ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
-                                : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
+                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900/50 hover:text-gray-900 dark:hover:text-gray-50'
                             }
                           `}
                         >
-                          <span>{subTitle}</span>
-                          {isExternal && <ExternalLink className="w-4 h-4 opacity-50" />}
+                          <span className="truncate">{subTitle}</span>
+                          {isExternal && <ExternalLink className="w-3 h-3 opacity-50 flex-shrink-0" />}
                         </a>
                       );
                     })}
@@ -315,23 +313,25 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                 </div>
               </div>
             ) : (
-              <div>
+              <div className="py-2">
                 {itemEntries.map(([subKey, subItem]) => {
                   const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
                   let subHref: string;
                   if (typeof subItem === 'object' && subItem.href) {
                     subHref = subItem.href;
                   } else {
-                    // Determine the correct path based on parent menu
                     if (key === 'eng-frn-swa') {
-                      // Language pages are in /eng-frn-swa/ route
                       subHref = `/eng-frn-swa/${subKey}`;
+                    } else if (key === 'imwitu') {
+                      subHref = `/imwitu/${subKey}`;
+                    } else if (key === 'twehe') {
+                      subHref = `/twehe/${subKey}`;
                     } else {
-                      // All other items use root-level routes
                       subHref = `/${subKey}`;
                     }
                   }
                   const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
+                  const isActive = pathname === subHref || pathname?.startsWith(`${subHref}/`);
 
                   return (
                     <a
@@ -340,30 +340,26 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                       target={isExternal ? '_blank' : undefined}
                       rel={isExternal ? 'noopener noreferrer' : undefined}
                       onClick={(e) => {
-                        e.stopPropagation(); // Prevent click from bubbling to parent
+                        e.stopPropagation();
                         if (!isExternal) {
                           e.preventDefault();
-                          setOpenDropdown(null); // Close dropdown first
-                          router.push(subHref).catch(err => {
-                            console.error('Navigation error:', err);
-                            // Fallback to regular navigation if router.push fails
-                            window.location.href = subHref;
-                          });
+                          setOpenDropdown(null);
+                          router.push(subHref);
                         } else {
                           setOpenDropdown(null);
                         }
                       }}
                       className={`
-                        flex items-center justify-center gap-3 px-4 py-3 text-sm transition-colors
+                        flex items-center gap-2 px-4 py-2.5 text-xs rounded-md transition-all
                         ${
-                          router.asPath === subHref || router.asPath.startsWith(`${subHref}/`)
+                          isActive
                             ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
-                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900'
+                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900/50 hover:text-gray-900 dark:hover:text-gray-50'
                         }
                       `}
                     >
-                      <span>{subTitle}</span>
-                      {isExternal && <ExternalLink className="w-4 h-4 opacity-50" />}
+                      <span className="truncate">{subTitle}</span>
+                      {isExternal && <ExternalLink className="w-3 h-3 opacity-50 flex-shrink-0 ml-auto" />}
                     </a>
                   );
                 })}
@@ -376,10 +372,115 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
     );
   };
 
+  // Language selector for eng-frn-swa
+  const getLanguageFlag = (langKey: string): string => {
+    switch (langKey) {
+      case 'kiswahili':
+        return '🇹🇿';
+      case 'english':
+        return '🇬🇧';
+      case 'francais':
+        return '🇫🇷';
+      case 'tukole':
+        return '🌍'; // Default icon for Tukole
+      default:
+        return '🌐';
+    }
+  };
+
+  const getCurrentLanguage = (): string => {
+    if (!pathname?.startsWith('/eng-frn-swa/')) {
+      return 'english'; // Default
+    }
+    const pathParts = pathname.split('/');
+    const langKey = pathParts[2]; // eng-frn-swa/[lang]
+    return langKey || 'english';
+  };
+
+  const renderLanguageSelector = (key: string, item: NavItem) => {
+    if (!item.items) return null;
+
+    const currentLang = getCurrentLanguage();
+    const currentFlag = getLanguageFlag(currentLang);
+    const isOpen = openDropdown === key;
+    const itemEntries = Object.entries(item.items);
+
+    return (
+      <div
+        key={key}
+        className="relative"
+        ref={(el) => {
+          dropdownRefs.current[key] = el;
+        }}
+      >
+        <button
+          onClick={() => setOpenDropdown(isOpen ? null : key)}
+          className={`
+            flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all
+            ${
+              pathname?.startsWith(`/${key}`)
+                ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
+                : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900/50'
+            }
+          `}
+        >
+          <span className="text-lg">{currentFlag}</span>
+          <ChevronDown
+            className={`w-3.5 h-3.5 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          />
+        </button>
+
+        {isOpen && (
+          <>
+            {/* Indicator Arrow */}
+            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[8px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-gray-600 z-[51]" />
+            <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-b-[7px] border-l-transparent border-r-transparent border-b-white dark:border-b-gray-950 z-[52]" />
+            
+            {/* Language Dropdown */}
+            <div className="absolute top-full mt-2 bg-white dark:bg-gray-950 rounded-lg shadow-xl border border-gray-200 dark:border-gray-800 z-50 animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden w-40 left-1/2 -translate-x-1/2">
+              <div className="py-2">
+                {itemEntries.map(([subKey, subItem]) => {
+                  const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
+                  const subHref = `/eng-frn-swa/${subKey}`;
+                  const isActive = pathname === subHref || pathname?.startsWith(`${subHref}/`);
+                  const flag = getLanguageFlag(subKey);
+
+                  return (
+                    <a
+                      key={subKey}
+                      href={subHref}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        setOpenDropdown(null);
+                        router.push(subHref);
+                      }}
+                      className={`
+                        flex items-center gap-3 px-4 py-2.5 text-xs rounded-md transition-all
+                        ${
+                          isActive
+                            ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
+                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900/50 hover:text-gray-900 dark:hover:text-gray-50'
+                        }
+                      `}
+                    >
+                      <span className="text-base">{flag}</span>
+                      <span className="truncate">{subTitle}</span>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    );
+  };
+
   const renderNavItem = (key: string, item: NavItem | string) => {
     if (typeof item === 'string') {
       const href = `/${key}`;
-      const isActive = router.asPath === href || router.asPath.startsWith(`/${key}/`);
+      const isActive = pathname === href || pathname?.startsWith(`/${key}/`);
       
       return (
         <a
@@ -404,12 +505,17 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
       );
     }
 
+    // Special handling for language selector
+    if (key === 'eng-frn-swa' && item.type === 'menu' && item.items) {
+      return renderLanguageSelector(key, item);
+    }
+
     if (item.type === 'menu' && item.items) {
       return renderDropdown(key, item);
     }
 
     const href = item.href || `/${key}`;
-    const isActive = router.asPath === href || router.asPath.startsWith(`/${key}/`);
+    const isActive = pathname === href || pathname?.startsWith(`/${key}/`);
     const isExternal = item.newWindow || href.startsWith('http');
 
     return (

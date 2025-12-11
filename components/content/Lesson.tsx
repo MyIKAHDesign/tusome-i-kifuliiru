@@ -1,9 +1,8 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { LessonContent, TextBlock } from '../../lib/content-schema';
 import Image from 'next/image';
 import { FileText, Quote } from 'lucide-react';
-import TableOfContents from '../TableOfContents';
 
 interface LessonProps {
   content: LessonContent;
@@ -226,19 +225,6 @@ const generateHeadingId = (text: string): string => {
 };
 
 export default function Lesson({ content }: LessonProps) {
-  // Extract headings for TOC
-  const headings = useMemo(() => {
-    return content.blocks
-      .filter((block: TextBlock) => block.type === 'heading' && block.level && block.level >= 2 && block.level <= 4)
-      .map((block: TextBlock) => {
-        const text = typeof block.content === 'string' ? block.content : '';
-        return {
-          id: generateHeadingId(text),
-          text,
-          level: block.level || 2,
-        };
-      });
-  }, [content.blocks]);
 
   const renderBlock = (block: TextBlock, index: number) => {
     switch (block.type) {
@@ -246,23 +232,23 @@ export default function Lesson({ content }: LessonProps) {
         const level = block.level || 2;
         const headingText = typeof block.content === 'string' ? block.content : '';
         const headingId = generateHeadingId(headingText);
-        const headingProps = {
+        const { key, ...headingProps } = {
           key: index,
           id: headingId,
-          className: `font-bold text-gray-900 dark:text-gray-100 mb-4 mt-8 scroll-mt-24 ${
+          className: `font-bold text-gray-900 dark:text-gray-100 mb-6 mt-12 scroll-mt-24 ${
             level === 1 ? 'text-4xl' :
-            level === 2 ? 'text-3xl border-b border-gray-200 dark:border-gray-700 pb-2' :
-            level === 3 ? 'text-2xl' :
-            'text-xl'
+            level === 2 ? 'text-3xl border-b border-gray-200 dark:border-gray-700 pb-3' :
+            level === 3 ? 'text-2xl mt-10' :
+            'text-xl mt-8'
           }`,
           children: block.content,
         };
         
-        if (level === 1) return <h1 {...headingProps} />;
-        if (level === 2) return <h2 {...headingProps} />;
-        if (level === 3) return <h3 {...headingProps} />;
-        if (level === 4) return <h4 {...headingProps} />;
-        return <h2 {...headingProps} />;
+        if (level === 1) return <h1 key={key} {...headingProps} />;
+        if (level === 2) return <h2 key={key} {...headingProps} />;
+        if (level === 3) return <h3 key={key} {...headingProps} />;
+        if (level === 4) return <h4 key={key} {...headingProps} />;
+        return <h2 key={key} {...headingProps} />;
 
       case 'paragraph':
         // Check if content contains a markdown table
@@ -308,7 +294,7 @@ export default function Lesson({ content }: LessonProps) {
         return (
           <p
             key={index}
-            className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6"
+            className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6"
           >
             {parseMarkdown(content)}
           </p>
@@ -318,7 +304,7 @@ export default function Lesson({ content }: LessonProps) {
         return (
           <ul
             key={index}
-            className="list-disc list-inside space-y-2 mb-6 text-gray-700 dark:text-gray-300"
+            className="list-disc list-inside space-y-3 mb-6 text-lg text-gray-700 dark:text-gray-300 pl-4"
           >
             {block.items?.map((item: string, i: number) => (
               <li key={i} className="leading-relaxed">{parseMarkdown(item)}</li>
@@ -330,7 +316,7 @@ export default function Lesson({ content }: LessonProps) {
         return (
           <blockquote
             key={index}
-            className="border-l-4 border-gray-300 dark:border-gray-700 pl-6 py-4 my-6 bg-white dark:bg-gray-900 rounded-r-lg italic text-gray-700 dark:text-gray-300"
+            className="border-l-4 border-gray-300 dark:border-gray-700 pl-6 py-5 my-8 bg-gray-50 dark:bg-gray-900/50 rounded-r-lg italic text-lg text-gray-700 dark:text-gray-300"
           >
             <Quote className="w-5 h-5 text-gray-400 dark:text-gray-500 mb-2" />
             {parseMarkdown(block.content as string)}
@@ -397,34 +383,34 @@ export default function Lesson({ content }: LessonProps) {
   };
 
   return (
-    <div className="flex gap-8">
-      {/* Main Content */}
-      <div className="flex-1 space-y-6 min-w-0">
-        {/* Header */}
-        <div className="border-b border-gray-200 dark:border-gray-700 pb-6">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center">
-              <FileText className="w-6 h-6 text-primary-600 dark:text-primary-400" />
-            </div>
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
-              {content.title}
-            </h1>
+    <div className="w-full">
+      {/* Header */}
+      <div className="border-b border-gray-200 dark:border-gray-700 pb-8 mb-10">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0">
+            <FileText className="w-5 h-5 text-primary-600 dark:text-primary-400" />
           </div>
-          {content.description && (
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              {content.description}
-            </p>
-          )}
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
+            {content.title}
+          </h1>
         </div>
-
-        {/* Content Blocks */}
-        <div className="prose prose-lg dark:prose-invert max-w-none">
-          {content.blocks.map((block, index) => renderBlock(block, index))}
-        </div>
+        {content.description && (
+          <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
+            {content.description}
+          </p>
+        )}
       </div>
 
-      {/* Table of Contents */}
-      <TableOfContents headings={headings} />
+      {/* Content Blocks */}
+      {content.blocks && content.blocks.length > 0 ? (
+        <div className="space-y-8">
+          {content.blocks.map((block, index) => renderBlock(block, index))}
+        </div>
+      ) : (
+        <div className="text-center py-12 text-gray-500 dark:text-gray-400">
+          <p>Content is being prepared...</p>
+        </div>
+      )}
     </div>
   );
 }

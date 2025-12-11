@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import { 
   Home, 
   Book, 
@@ -32,7 +34,7 @@ interface SidebarProps {
 const defaultMeta: Record<string, MetaItem | string> = {};
 
 export default function Sidebar({ meta }: SidebarProps) {
-  const router = useRouter();
+  const pathname = usePathname();
   const { isOpen, setIsOpen } = useSidebar();
   const [sidebarMeta, setSidebarMeta] = React.useState<Record<string, MetaItem | string>>(defaultMeta);
   const [expandedGroups, setExpandedGroups] = React.useState<Set<string>>(new Set());
@@ -44,7 +46,7 @@ export default function Sidebar({ meta }: SidebarProps) {
         if (response.ok) {
           const parsed = await response.json();
           setSidebarMeta(parsed);
-          const currentPath = router.asPath.split('?')[0];
+          const currentPath = pathname || '/';
           const groups = Object.keys(parsed).filter(key => {
             const item = parsed[key];
             return typeof item === 'object' && item.type === 'menu' && item.items;
@@ -84,7 +86,7 @@ export default function Sidebar({ meta }: SidebarProps) {
     };
 
     loadMeta();
-  }, [meta, router.asPath]);
+  }, [meta, pathname]);
 
   const toggleGroup = (key: string) => {
     setExpandedGroups(prev => {
@@ -139,7 +141,7 @@ export default function Sidebar({ meta }: SidebarProps) {
       // Build the path: if parentKey exists, it's nested like "ukuharura/abandu"
       const fullPath = parentKey ? `${parentKey}/${key}` : key;
       const docHref = key === 'index' ? '/' : `/${fullPath}`;
-      const currentPath = router.asPath.split('?')[0];
+      const currentPath = pathname || '/';
       const isActive = currentPath === docHref || currentPath === `/${key}`;
       
       // Reduce left margin for ukuharura items (level > 0)
@@ -182,7 +184,7 @@ export default function Sidebar({ meta }: SidebarProps) {
     const displayTitle = title || key;
 
     if (type === 'menu' && items) {
-      const currentPath = router.asPath.split('?')[0];
+      const currentPath = pathname || '/';
       const isMenuActive = currentPath.startsWith(`/${key}`);
       const isExpanded = expandedGroups.has(key);
       
@@ -230,7 +232,7 @@ export default function Sidebar({ meta }: SidebarProps) {
     // Build nested path if parentKey exists
     const fullPath = parentKey ? `${parentKey}/${linkHref}` : linkHref;
     const docHref = href ? href : `/${fullPath}`;
-    const currentPath = router.asPath.split('?')[0];
+    const currentPath = pathname || '/';
     const isActive = currentPath === docHref || currentPath === `/${fullPath}` || currentPath === `/${key}`;
 
     // Get appropriate icon for page items
