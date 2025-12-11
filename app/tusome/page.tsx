@@ -300,7 +300,7 @@ export default function TusomePage() {
           {/* Section Header */}
           <div className="flex items-center gap-2 mb-3">
             <div className="p-1.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400">
-              {item.icon && React.isValidElement(item.icon) ? React.cloneElement(item.icon as React.ReactElement, { className: 'w-4 h-4' }) : item.icon}
+              {item.icon && React.isValidElement(item.icon) ? React.cloneElement(item.icon as React.ReactElement<any>, { className: 'w-4 h-4' }) : item.icon}
             </div>
             <div>
               <h2 className="text-lg font-bold text-gray-900 dark:text-gray-50">
@@ -337,7 +337,7 @@ export default function TusomePage() {
         <div className="flex items-start gap-2.5 mb-2">
           <div className="p-1.5 rounded-md bg-gray-100 dark:bg-white/10 dark:backdrop-blur-sm group-hover:bg-primary-100 dark:group-hover:bg-primary-500/20 transition-colors flex-shrink-0 mt-0.5">
             {item.icon && React.isValidElement(item.icon) 
-              ? React.cloneElement(item.icon as React.ReactElement, { className: 'w-4 h-4 text-gray-600 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400' }) 
+              ? React.cloneElement(item.icon as React.ReactElement<any>, { className: 'w-4 h-4 text-gray-600 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400' }) 
               : <FileText className="w-4 h-4 text-gray-600 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400" />}
           </div>
           <h3 className="font-medium text-sm text-gray-900 dark:text-gray-50 line-clamp-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors flex-1">
