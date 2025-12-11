@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import ContentRenderer from './content/ContentRenderer';
 import TableOfContents from './TableOfContents';
+import CategoryNavigation from './CategoryNavigation';
 import { ContentData, TextBlock, LessonContent } from '../lib/content-schema';
 import { mdxComponents } from '../mdx-components';
 
@@ -73,6 +74,9 @@ export default function PageContent({ jsonContent, mdxSource, contentType }: Pag
             <p>Content not found</p>
           </div>
         )}
+        
+        {/* Category Navigation - Next/Previous buttons */}
+        <CategoryNavigation />
       </div>
       
       {/* Page TOC - Sticky on the right for desktop */}
