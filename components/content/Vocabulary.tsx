@@ -177,21 +177,46 @@ export default function Vocabulary({ content }: VocabularyProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMiniatureMode, setIsMiniatureMode] = useState(false);
 
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setIsScrolled(window.scrollY > 100);
+          const currentScrollY = window.scrollY;
+          
+          // Hysteresis: Two clear states - miniature or not
+          // Enter miniature at 100px, exit at < 50px to prevent loops
+          if (isMiniatureMode) {
+            // In miniature mode - only exit when scrolled back to top
+            if (currentScrollY < 50) {
+              setIsMiniatureMode(false);
+              setIsScrolled(false);
+            } else {
+              setIsScrolled(true);
+            }
+          } else {
+            // Not in miniature mode - enter when scrolled past threshold
+            if (currentScrollY > 100) {
+              setIsMiniatureMode(true);
+              setIsScrolled(true);
+            } else {
+              setIsScrolled(false);
+            }
+          }
+          
           ticking = false;
         });
         ticking = true;
       }
     };
+    
+    // Initial check
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMiniatureMode]);
 
   const categories = Array.from(
     new Set(content.words.map(w => w.category).filter(Boolean))
@@ -215,7 +240,7 @@ export default function Vocabulary({ content }: VocabularyProps) {
       {/* Header - Sticky when scrolled */}
       <div className={`transition-all duration-300 ease-in-out overflow-hidden ${
         isScrolled 
-          ? 'sticky top-20 z-40 bg-gradient-to-r from-white via-white to-gray-50/50 dark:from-white/10 dark:via-white/10 dark:to-white/5 dark:backdrop-blur-xl py-3 -mx-6 px-6 mb-4 rounded-2xl shadow-lg border border-gray-200/50 dark:border-white/20' 
+          ? 'sticky top-20 z-40 bg-gradient-to-r from-white via-white to-gray-50/50 dark:from-slate-800/95 dark:via-slate-800/95 dark:to-slate-800/95 dark:backdrop-blur-xl py-3 -mx-6 px-6 mb-4 rounded-3xl shadow-2xl border border-gray-200/50 dark:border-white/20' 
           : 'pb-8 mb-10 border-b border-gray-200 dark:border-white/10'
       }`}>
         <div className={`flex items-center gap-4 transition-all duration-300 ease-in-out ${isScrolled ? 'mb-0' : 'mb-4'}`}>
