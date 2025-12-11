@@ -1,5 +1,5 @@
 import React from 'react';
-import { getContentData } from '../../../lib/json-content-loader';
+import { getContentData, getAllContentSlugs as getAllJsonContentSlugs } from '../../../lib/json-content-loader';
 import { getContentBySlug, getAllContentSlugs } from '../../../lib/content-loader';
 import { serialize } from 'next-mdx-remote/serialize';
 import PageContent from '../../../components/PageContent';
@@ -12,7 +12,11 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  const allSlugs = getAllContentSlugs();
+  // Get slugs from both JSON and MDX content loaders
+  const jsonSlugs = getAllJsonContentSlugs();
+  const mdxSlugs = getAllContentSlugs();
+  const allSlugs = [...new Set([...jsonSlugs, ...mdxSlugs])];
+  
   const engFrnSwaSlugs = allSlugs.filter(slug => 
     slug.startsWith('eng-frn-swa/') || 
     slug === 'eng-frn-swa' ||
@@ -39,11 +43,13 @@ async function getPageData(slugArray: string[]) {
   if (slugArray.length === 0) {
     slug = 'eng-frn-swa';
   } else if (['kiswahili', 'english', 'francais', 'tukole'].includes(slugArray[0])) {
+    // For language pages, use the language name directly as slug
     slug = slugArray[0];
   } else {
     slug = `eng-frn-swa/${slugArray.join('/')}`;
   }
   
+  // Try JSON content first
   const jsonContent = getContentData(slug);
   if (jsonContent) {
     return {
@@ -53,6 +59,7 @@ async function getPageData(slugArray: string[]) {
     };
   }
 
+  // Try MDX content
   const mdxContent = getContentBySlug(slug);
   if (mdxContent) {
     const mdxSource = await serialize(mdxContent.content, {
@@ -65,6 +72,7 @@ async function getPageData(slugArray: string[]) {
     };
   }
 
+  // If neither found, return not found
   return {
     notFound: true,
   };

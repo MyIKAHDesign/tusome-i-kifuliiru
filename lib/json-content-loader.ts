@@ -58,11 +58,19 @@ export function getContentBySlug(slug: string): ContentItem | null {
 }
 
 export function getContentData(slug: string): ContentData | null {
-  const content = getContentBySlug(slug);
-  if (!content) {
+  try {
+    const content = getContentBySlug(slug);
+    if (!content) {
+      return null;
+    }
+    // ContentItem has a 'data' property that contains the ContentData
+    if (content.data) {
+      return content.data;
+    }
+    return null;
+  } catch (error) {
+    console.error(`Error getting content data for slug: ${slug}`, error);
     return null;
   }
-  // ContentItem has a 'data' property that contains the ContentData
-  return content.data || null;
 }
 
