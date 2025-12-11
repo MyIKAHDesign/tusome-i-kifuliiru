@@ -274,7 +274,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                       if (typeof subItem === 'object' && subItem.href) {
                         subHref = subItem.href;
                       } else {
-                        subHref = `/${subKey}`;
+                        // Items in right column are from "bingi-ku-kifuliiru" menu
+                        subHref = `/bingi-ku-kifuliiru/${subKey}`;
                       }
                       const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
                       const isActive = pathname === subHref || pathname?.startsWith(`${subHref}/`);
@@ -326,6 +327,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                       subHref = `/imwitu/${subKey}`;
                     } else if (key === 'twehe') {
                       subHref = `/twehe/${subKey}`;
+                    } else if (key === 'bingi-ku-kifuliiru') {
+                      subHref = `/bingi-ku-kifuliiru/${subKey}`;
                     } else {
                       subHref = `/${subKey}`;
                     }
