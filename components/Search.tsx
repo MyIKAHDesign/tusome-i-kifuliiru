@@ -345,7 +345,7 @@ export default function Search({
             : 'opacity-0 translate-x-2 pointer-events-none'
         }`}
       >
-        <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none z-10 transition-opacity duration-300" />
+        <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 dark:text-gray-500 pointer-events-none z-10 transition-opacity duration-300" />
         <input
           key="header-search-input-stable"
           ref={inputRef}
@@ -353,7 +353,7 @@ export default function Search({
           placeholder={placeholder}
           value={query}
           onChange={handleHeaderInputChange}
-          className="w-full pl-10 pr-8 py-2 text-sm bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-gray-100 placeholder-gray-400 transition-all duration-200"
+          className="w-full pl-10 pr-8 py-2 text-sm bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200/80 dark:border-gray-700/80 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-400 dark:focus:border-primary-600 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-all duration-200 shadow-sm hover:shadow-md"
         />
         {isLoading && (
           <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none z-10 transition-opacity duration-300">
