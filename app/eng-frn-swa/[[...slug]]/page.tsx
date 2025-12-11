@@ -6,9 +6,9 @@ import PageContent from '../../../components/PageContent';
 import SEO from '../../../components/SEO';
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug?: string[];
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -17,16 +17,21 @@ export async function generateStaticParams() {
   const mdxSlugs = getAllContentSlugs();
   const allSlugs = [...new Set([...jsonSlugs, ...mdxSlugs])];
   
+  // Always include language pages explicitly
+  const languagePages = [
+    { slug: [] }, // eng-frn-swa root
+    { slug: ['kiswahili'] },
+    { slug: ['english'] },
+    { slug: ['francais'] },
+    { slug: ['tukole'] },
+  ];
+  
   const engFrnSwaSlugs = allSlugs.filter(slug => 
     slug.startsWith('eng-frn-swa/') || 
-    slug === 'eng-frn-swa' ||
-    slug === 'kiswahili' ||
-    slug === 'english' ||
-    slug === 'francais' ||
-    slug === 'tukole'
+    slug === 'eng-frn-swa'
   );
   
-  return engFrnSwaSlugs.map((slug) => {
+  const otherPages = engFrnSwaSlugs.map((slug) => {
     if (slug === 'eng-frn-swa') {
       return { slug: [] };
     }
@@ -35,6 +40,16 @@ export async function generateStaticParams() {
     }
     return { slug: [slug] };
   });
+  
+  // Combine language pages with other pages, avoiding duplicates
+  const allPages = [...languagePages];
+  otherPages.forEach(page => {
+    if (!allPages.some(p => JSON.stringify(p.slug) === JSON.stringify(page.slug))) {
+      allPages.push(page);
+    }
+  });
+  
+  return allPages;
 }
 
 async function getPageData(slugArray: string[]) {
@@ -79,7 +94,8 @@ async function getPageData(slugArray: string[]) {
 }
 
 export default async function EngFrnSwaPage({ params }: PageProps) {
-  const slugArray = params.slug || [];
+  const resolvedParams = await params;
+  const slugArray = resolvedParams.slug || [];
   const pageData = await getPageData(slugArray);
   
   if ('notFound' in pageData) {
