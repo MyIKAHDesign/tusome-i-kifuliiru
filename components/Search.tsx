@@ -56,11 +56,18 @@ export default function Search({
   useEffect(() => {
     if (variant !== 'inline' && variant !== 'sticky') return;
     
+    let ticking = false;
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      // Hide search bar when scrolled down past 100px
-      setIsScrolledDown(currentScrollY > 100);
-      setLastScrollY(currentScrollY);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          // Hide search bar when scrolled down past 100px
+          setIsScrolledDown(currentScrollY > 100);
+          setLastScrollY(currentScrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     
     // Initial check
@@ -375,11 +382,11 @@ export default function Search({
     return createPortal(
       <button
         onClick={() => setIsFloatingOpen(true)}
-        className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 hover:scale-110 active:scale-95"
         aria-label="Open search"
         title="Search"
       >
-        <SearchIcon className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+        <SearchIcon className="w-5 h-5 text-gray-700 dark:text-gray-300 transition-all duration-200" />
       </button>,
       headerIconSlot.current
     );
@@ -392,7 +399,7 @@ export default function Search({
         <HeaderIconButton />
         <div className={`relative ${className}`}>
           {/* Search bar - hidden when scrolled down */}
-          <div className={`relative ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
+          <div className={`relative transition-all duration-300 ease-in-out ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden transform -translate-y-2' : 'opacity-100 transform translate-y-0'}`}>
             <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               ref={inputRef}
@@ -438,7 +445,7 @@ export default function Search({
         <HeaderIconButton />
         <div className={`relative ${className}`}>
           {/* Search bar - hidden when scrolled down */}
-          <div className={`sticky top-24 z-40 mb-8 bg-white dark:bg-gray-950 ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
+          <div className={`sticky top-24 z-40 mb-8 bg-white dark:bg-gray-950 transition-all duration-300 ease-in-out ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden transform -translate-y-2' : 'opacity-100 transform translate-y-0'}`}>
           <div className="w-full">
             <div className="relative flex items-center">
               <div className="absolute left-4 pointer-events-none">

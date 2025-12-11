@@ -41,8 +41,15 @@ export default function TusomePage() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 100);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -327,25 +334,23 @@ export default function TusomePage() {
   return (
     <div className="max-w-7xl mx-auto">
       {/* Header - Sticky when scrolled */}
-      <div className={`mb-8 transition-all duration-300 ${isScrolled ? 'sticky top-20 z-40 bg-white dark:bg-gray-950 py-4 -mx-4 px-4 mb-4 border-b border-gray-200 dark:border-gray-800' : ''}`}>
-        <div className={`flex items-center justify-between gap-3 transition-all duration-300 ${isScrolled ? 'mb-0' : 'mb-4'}`}>
+      <div className={`mb-8 transition-all duration-300 ease-in-out ${isScrolled ? 'sticky top-20 z-40 bg-white/95 dark:bg-gray-950/95 backdrop-blur-sm py-3 -mx-4 px-4 mb-4 border-b border-gray-200 dark:border-gray-800 shadow-sm' : ''}`}>
+        <div className={`flex items-center justify-between gap-3 transition-all duration-300 ease-in-out ${isScrolled ? 'mb-0' : 'mb-4'}`}>
           <div className="flex items-center gap-3">
-            <div className={`rounded-xl bg-primary-600 flex items-center justify-center transition-all duration-300 ${isScrolled ? 'w-8 h-8' : 'w-12 h-12'}`}>
-              <BookOpen className={`text-white transition-all duration-300 ${isScrolled ? 'w-4 h-4' : 'w-6 h-6'}`} />
+            <div className={`rounded-xl bg-primary-600 flex items-center justify-center transition-all duration-300 ease-in-out ${isScrolled ? 'w-8 h-8' : 'w-12 h-12'}`}>
+              <BookOpen className={`text-white transition-all duration-300 ease-in-out ${isScrolled ? 'w-4 h-4' : 'w-6 h-6'}`} />
             </div>
-            <div>
-              <h1 className={`font-bold text-gray-900 dark:text-gray-50 transition-all duration-300 ${isScrolled ? 'text-xl' : 'text-3xl'}`}>
+            <div className="transition-all duration-300 ease-in-out">
+              <h1 className={`font-bold text-gray-900 dark:text-gray-50 transition-all duration-300 ease-in-out ${isScrolled ? 'text-xl' : 'text-3xl'}`}>
                 Tusome
               </h1>
-              {!isScrolled && (
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                  Bona ibintu byose byo kwiga
-                </p>
-              )}
+              <p className={`text-sm text-gray-600 dark:text-gray-400 mt-1 transition-all duration-300 ease-in-out overflow-hidden ${isScrolled ? 'max-h-0 opacity-0 mt-0' : 'max-h-6 opacity-100'}`}>
+                Bona ibintu byose byo kwiga
+              </p>
             </div>
           </div>
           {/* Search icon button slot - rendered by Search component when scrolled down */}
-          <div className="flex-shrink-0" ref={headerIconRef} />
+          <div className="flex-shrink-0 transition-all duration-300 ease-in-out" ref={headerIconRef} />
         </div>
       </div>
 
