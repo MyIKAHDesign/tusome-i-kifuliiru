@@ -5,9 +5,9 @@ import { serialize } from 'next-mdx-remote/serialize';
 import PageContent from '../../../components/PageContent';
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug?: string[];
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -73,7 +73,8 @@ async function getPageData(slugArray: string[]) {
 }
 
 export default async function AmagamboPage({ params }: PageProps) {
-  const slugArray = params.slug || [];
+  const resolvedParams = await params;
+  const slugArray = resolvedParams.slug || [];
   const pageData = await getPageData(slugArray);
   
   if ('notFound' in pageData) {

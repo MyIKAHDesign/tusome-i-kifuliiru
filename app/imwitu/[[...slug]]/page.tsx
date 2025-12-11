@@ -7,9 +7,9 @@ import PageContent from '../../../components/PageContent';
 import SEO from '../../../components/SEO';
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug?: string[];
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -74,7 +74,8 @@ async function getPageData(slugArray: string[]) {
 }
 
 export default async function ImwituPage({ params }: PageProps) {
-  const slugArray = params.slug || [];
+  const resolvedParams = await params;
+  const slugArray = resolvedParams.slug || [];
   const pageData = await getPageData(slugArray);
   
   const getTitle = (): string => {
