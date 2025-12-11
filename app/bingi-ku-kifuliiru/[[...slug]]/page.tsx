@@ -1,5 +1,5 @@
 import React from 'react';
-import { getContentData } from '../../../lib/json-content-loader';
+import { getContentData, getAllContentSlugs as getAllJsonContentSlugs } from '../../../lib/json-content-loader';
 import { getContentBySlug, getAllContentSlugs } from '../../../lib/content-loader';
 import { serialize } from 'next-mdx-remote/serialize';
 import PageContent from '../../../components/PageContent';
@@ -12,7 +12,11 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  const allSlugs = getAllContentSlugs();
+  // Get slugs from both JSON and MDX content loaders
+  const jsonSlugs = getAllJsonContentSlugs();
+  const mdxSlugs = getAllContentSlugs();
+  const allSlugs = [...new Set([...jsonSlugs, ...mdxSlugs])];
+  
   const bingiSlugs = allSlugs.filter(slug => 
     slug.startsWith('bingi-ku-kifuliiru/') || 
     slug === 'bingi-ku-kifuliiru' ||
@@ -22,8 +26,11 @@ export async function generateStaticParams() {
     slug === 'invumo' ||
     slug === 'ibinamishwa-mu-kifuliiru' ||
     slug === 'ibufuliiru.com' ||
+    slug === 'ibufuliiru' ||
     slug === 'tuganule_i_kifuliiru' ||
-    slug === 'ibiyandike_mu_kifuliiru'
+    slug === 'tuganule-i-kifuliiru' ||
+    slug === 'ibiyandike_mu_kifuliiru' ||
+    slug === 'ibiyandike-mu-kifuliiru'
   );
   
   return bingiSlugs.map((slug) => {
