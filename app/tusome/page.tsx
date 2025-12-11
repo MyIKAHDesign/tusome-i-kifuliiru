@@ -306,11 +306,11 @@ export default function TusomePage() {
           e.preventDefault();
           router.push(item.href);
         }}
-        className="group relative bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg p-3 hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-md transition-all duration-200 flex flex-col"
+        className="group relative bg-white dark:bg-white/10 dark:backdrop-blur-md border border-gray-200 dark:border-white/20 rounded-lg p-3 hover:border-primary-300 dark:hover:border-primary-400/50 hover:shadow-md transition-all duration-200 flex flex-col"
       >
         {/* Icon and Title Row */}
         <div className="flex items-start gap-2.5 mb-2">
-          <div className="p-1.5 rounded-md bg-gray-100 dark:bg-gray-900 group-hover:bg-primary-100 dark:group-hover:bg-primary-900/30 transition-colors flex-shrink-0 mt-0.5">
+          <div className="p-1.5 rounded-md bg-gray-100 dark:bg-white/10 dark:backdrop-blur-sm group-hover:bg-primary-100 dark:group-hover:bg-primary-500/20 transition-colors flex-shrink-0 mt-0.5">
             {item.icon && React.isValidElement(item.icon) 
               ? React.cloneElement(item.icon as React.ReactElement, { className: 'w-4 h-4 text-gray-600 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400' }) 
               : <FileText className="w-4 h-4 text-gray-600 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400" />}
@@ -338,7 +338,7 @@ export default function TusomePage() {
       {/* Header - Sticky when scrolled */}
       <div className={`mb-8 transition-all duration-300 ease-in-out ${
         isScrolled 
-          ? 'sticky top-20 z-40 bg-gradient-to-r from-white via-white to-gray-50/50 dark:from-gray-950 dark:via-gray-950 dark:to-gray-900/50 backdrop-blur-md py-3 -mx-4 px-4 mb-4 rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-800/50' 
+          ? 'sticky top-20 z-40 bg-gradient-to-r from-white via-white to-gray-50/50 dark:from-white/10 dark:via-white/10 dark:to-white/5 dark:backdrop-blur-xl py-3 -mx-4 px-4 mb-4 rounded-2xl shadow-lg border border-gray-200/50 dark:border-white/20' 
           : 'py-0'
       }`}>
         <div className={`flex items-center gap-4 transition-all duration-300 ease-in-out ${isScrolled ? 'mb-0' : 'mb-4'}`}>

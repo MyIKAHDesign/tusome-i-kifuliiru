@@ -228,9 +228,9 @@ export default function Search({
             
             <div
               ref={modalRef}
-              className="relative w-full max-w-2xl bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 animate-in fade-in slide-in-from-top-4 duration-200"
+              className="relative w-full max-w-2xl bg-white dark:bg-white/10 dark:backdrop-blur-xl rounded-xl shadow-2xl border border-gray-200 dark:border-white/20 animate-in fade-in slide-in-from-top-4 duration-200"
             >
-              <div className="flex items-center gap-3 px-4 py-4 border-b border-gray-200 dark:border-gray-800">
+              <div className="flex items-center gap-3 px-4 py-4 border-b border-gray-200 dark:border-white/10">
                 <SearchIcon className="w-5 h-5 text-gray-400 flex-shrink-0" />
                 <input
                   ref={inputRef}
@@ -255,7 +255,7 @@ export default function Search({
                     handleQueryChange('');
                     setResults([]);
                   }}
-                  className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+                  className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 dark:backdrop-blur-sm transition-colors"
                   aria-label="Close search"
                 >
                   <X className="w-5 h-5 text-gray-400" />
@@ -277,7 +277,7 @@ export default function Search({
                             <button
                               key={index}
                               onClick={() => handleResultClick(result.path)}
-                              className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors border-b border-gray-100 dark:border-gray-800 last:border-0 text-left"
+                              className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors border-b border-gray-100 dark:border-white/10 last:border-0 text-left"
                             >
                               <FileText className="w-4 h-4 flex-shrink-0 text-gray-400" />
                               <span>{result.title}</span>
@@ -353,7 +353,7 @@ export default function Search({
           placeholder={placeholder}
           value={query}
           onChange={handleHeaderInputChange}
-          className="w-full pl-10 pr-8 py-2 text-sm bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200/80 dark:border-gray-700/80 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-400 dark:focus:border-primary-600 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-all duration-200 shadow-sm hover:shadow-md"
+          className="w-full pl-10 pr-8 py-2 text-sm bg-white/90 dark:bg-white/10 dark:backdrop-blur-md border border-gray-200/80 dark:border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-400 dark:focus:border-primary-400 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-400 transition-all duration-200 shadow-sm hover:shadow-md"
         />
         {isLoading && (
           <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none z-10 transition-opacity duration-300">
@@ -363,7 +363,7 @@ export default function Search({
         {query && !isLoading && (
           <button
             onClick={handleClear}
-            className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 rounded hover:bg-gray-100 dark:hover:bg-gray-900 transition-all duration-200 z-10"
+            className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 rounded hover:bg-gray-100 dark:hover:bg-white/10 dark:backdrop-blur-sm transition-all duration-200 z-10"
             aria-label="Clear search"
             type="button"
           >
@@ -404,7 +404,7 @@ export default function Search({
                 }
                 handleSearch(newValue);
               }}
-              className="w-full pl-12 pr-12 py-4 text-base bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-gray-100 placeholder-gray-400"
+              className="w-full pl-12 pr-12 py-4 text-base bg-white dark:bg-white/10 dark:backdrop-blur-md border border-gray-200 dark:border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/50 dark:focus:ring-primary-400/50 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-400"
             />
             {isLoading && (
               <div className="absolute right-4 top-1/2 -translate-y-1/2">
@@ -414,7 +414,7 @@ export default function Search({
             {query && !isLoading && (
               <button
                 onClick={handleClear}
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 dark:backdrop-blur-sm transition-colors"
                 aria-label="Clear search"
               >
                 <X className="w-4 h-4 text-gray-400" />
@@ -433,7 +433,7 @@ export default function Search({
         <HeaderSearchBar />
         <div className={`relative ${className}`}>
           {/* Search bar - hidden when scrolled down with smooth transition */}
-          <div className={`sticky top-24 z-40 mb-8 bg-white dark:bg-gray-950 transition-all duration-300 ease-in-out ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden transform -translate-y-2 scale-95' : 'opacity-100 transform translate-y-0 scale-100'}`}>
+          <div className={`sticky top-24 z-40 mb-8 bg-white dark:bg-white/10 dark:backdrop-blur-md transition-all duration-300 ease-in-out ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden transform -translate-y-2 scale-95' : 'opacity-100 transform translate-y-0 scale-100'}`}>
           <div className="w-full">
             <div className="relative flex items-center">
               <div className="absolute left-4 pointer-events-none">
@@ -451,7 +451,7 @@ export default function Search({
                   }
                   handleSearch(newValue);
                 }}
-                className="w-full pl-12 pr-12 py-4 text-base bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-primary-500 dark:focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 dark:focus:ring-primary-500/20 transition-all shadow-sm hover:shadow-md"
+                className="w-full pl-12 pr-12 py-4 text-base bg-white dark:bg-white/10 dark:backdrop-blur-md border-2 border-gray-200 dark:border-white/20 rounded-xl text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-400 focus:outline-none focus:border-primary-500 dark:focus:border-primary-400 focus:ring-4 focus:ring-primary-500/10 dark:focus:ring-primary-400/20 transition-all shadow-sm hover:shadow-md"
               />
               {query && (
                 <button

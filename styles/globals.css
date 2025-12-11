@@ -12,7 +12,8 @@
   }
 
   .dark body {
-    @apply bg-gray-950 text-gray-50;
+    @apply bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-gray-50;
+    background-attachment: fixed;
   }
 
   /* Fade-in animation for 404 page */
@@ -100,11 +101,11 @@
   }
 
   .mdx-content code {
-    @apply bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-1.5 py-0.5 rounded text-sm font-mono font-medium;
+    @apply bg-gray-200 dark:bg-white/10 dark:backdrop-blur-sm text-gray-800 dark:text-gray-200 px-1.5 py-0.5 rounded text-sm font-mono font-medium border dark:border-white/10;
   }
 
   .mdx-content pre {
-    @apply bg-gray-900 dark:bg-gray-950 text-gray-100 p-6 rounded-lg overflow-x-auto my-8 border border-gray-800;
+    @apply bg-gray-900 dark:bg-white/5 dark:backdrop-blur-md text-gray-100 p-6 rounded-lg overflow-x-auto my-8 border dark:border-white/10;
   }
 
   .mdx-content pre code {
@@ -112,7 +113,7 @@
   }
 
   .mdx-content blockquote {
-    @apply border-l-4 border-gray-300 dark:border-gray-700 pl-6 my-8 italic text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-900 py-4 rounded;
+    @apply border-l-4 border-gray-300 dark:border-white/20 pl-6 my-8 italic text-gray-600 dark:text-gray-300 bg-white dark:bg-white/5 dark:backdrop-blur-sm py-4 rounded;
   }
 
   .mdx-content hr {
@@ -129,10 +130,10 @@
   }
 
   .mdx-content th {
-    @apply bg-white dark:bg-gray-900 font-semibold;
+    @apply bg-white dark:bg-white/10 dark:backdrop-blur-sm font-semibold;
   }
 
   .mdx-content tr:hover {
-    @apply bg-gray-50 dark:bg-gray-900;
+    @apply bg-gray-50 dark:bg-white/5;
   }
 }

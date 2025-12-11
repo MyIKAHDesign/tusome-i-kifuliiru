@@ -184,8 +184,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
             flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all
             ${
               pathname?.startsWith(`/${key}`)
-                ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
-                : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900/50'
+                ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-white/10 dark:backdrop-blur-sm'
+                : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-white/5'
             }
           `}
         >
@@ -419,8 +419,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
             flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all
             ${
               pathname?.startsWith(`/${key}`)
-                ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
-                : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900/50'
+                ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-white/10 dark:backdrop-blur-sm'
+                : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-white/5'
             }
           `}
         >
