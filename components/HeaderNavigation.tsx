@@ -199,12 +199,12 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         {isOpen && (
           <>
             {/* Indicator Arrow */}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[8px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-white/20 z-[51]" />
-            <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-b-[7px] border-l-transparent border-r-transparent border-b-white dark:border-b-white/10 dark:backdrop-blur-xl z-[52]" />
+            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[8px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-slate-700 z-[100]" />
+            <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-b-[7px] border-l-transparent border-r-transparent border-b-white dark:border-b-slate-800 z-[101]" />
             
             {/* Dropdown/Mega Menu */}
             <div className={`
-              absolute top-full mt-2 bg-white dark:bg-white/10 dark:backdrop-blur-xl rounded-lg shadow-xl border border-gray-200 dark:border-white/20 z-50 animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden
+              absolute top-full mt-2 bg-white dark:bg-slate-800 dark:backdrop-blur-xl rounded-lg shadow-2xl border border-gray-200 dark:border-white/20 z-[100] animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden
               ${isMegaMenu 
                 ? 'w-[400px] left-1/2 -translate-x-1/2' 
                 : 'w-40 left-1/2 -translate-x-1/2'
@@ -433,11 +433,11 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         {isOpen && (
           <>
             {/* Indicator Arrow */}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[8px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-white/20 z-[51]" />
-            <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-b-[7px] border-l-transparent border-r-transparent border-b-white dark:border-b-white/10 dark:backdrop-blur-xl z-[52]" />
+            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[8px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-slate-700 z-[100]" />
+            <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-b-[7px] border-l-transparent border-r-transparent border-b-white dark:border-b-slate-800 z-[101]" />
             
             {/* Language Dropdown */}
-            <div className="absolute top-full mt-2 bg-white dark:bg-white/10 dark:backdrop-blur-xl rounded-lg shadow-xl border border-gray-200 dark:border-white/20 z-50 animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden w-40 left-1/2 -translate-x-1/2">
+            <div className="absolute top-full mt-2 bg-white dark:bg-slate-800/95 dark:backdrop-blur-xl rounded-lg shadow-2xl border border-gray-200 dark:border-white/20 z-[100] animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden w-40 left-1/2 -translate-x-1/2">
               <div className="py-2">
                 {itemEntries.map(([subKey, subItem]) => {
                   const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
