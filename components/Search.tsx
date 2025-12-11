@@ -267,7 +267,7 @@ export default function Search({
             }
             handleSearch(newValue);
           }}
-          className="w-full pl-12 pr-12 py-3 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-gray-100 placeholder-gray-400"
+          className="w-full pl-12 pr-12 py-4 text-base bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-gray-100 placeholder-gray-400"
         />
         {isLoading && (
           <div className="absolute right-4 top-1/2 -translate-y-1/2">
@@ -290,7 +290,7 @@ export default function Search({
   // Sticky variant - Sticky search bar with enhanced styling
   if (variant === 'sticky') {
     return (
-      <div className={`sticky top-24 z-40 pb-6 mb-8 pt-4 bg-white dark:bg-gray-950 ${className}`}>
+      <div className={`sticky top-24 z-40 mb-8 bg-white dark:bg-gray-950 ${className}`}>
         <div className="w-full">
           <div className="relative flex items-center">
             <div className="absolute left-4 pointer-events-none">
