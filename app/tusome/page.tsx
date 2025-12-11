@@ -38,6 +38,15 @@ export default function TusomePage() {
   const [learningItems, setLearningItems] = useState<LearningItem[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<LearningItem[]>([]);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const loadMeta = async () => {
@@ -317,23 +326,25 @@ export default function TusomePage() {
 
   return (
     <div className="max-w-7xl mx-auto">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between gap-3 mb-4">
+      {/* Header - Sticky when scrolled */}
+      <div className={`mb-8 transition-all duration-300 ${isScrolled ? 'sticky top-20 z-40 bg-white dark:bg-gray-950 py-4 -mx-4 px-4 mb-4 border-b border-gray-200 dark:border-gray-800' : ''}`}>
+        <div className={`flex items-center justify-between gap-3 transition-all duration-300 ${isScrolled ? 'mb-0' : 'mb-4'}`}>
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-primary-600 flex items-center justify-center">
-              <BookOpen className="w-6 h-6 text-white" />
+            <div className={`rounded-xl bg-primary-600 flex items-center justify-center transition-all duration-300 ${isScrolled ? 'w-8 h-8' : 'w-12 h-12'}`}>
+              <BookOpen className={`text-white transition-all duration-300 ${isScrolled ? 'w-4 h-4' : 'w-6 h-6'}`} />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-50">
+              <h1 className={`font-bold text-gray-900 dark:text-gray-50 transition-all duration-300 ${isScrolled ? 'text-xl' : 'text-3xl'}`}>
                 Tusome
               </h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                Bona ibintu byose byo kwiga
-              </p>
+              {!isScrolled && (
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  Bona ibintu byose byo kwiga
+                </p>
+              )}
             </div>
           </div>
-          {/* Search icon button slot - rendered by Search component when scrolled up */}
+          {/* Search icon button slot - rendered by Search component when scrolled down */}
           <div className="flex-shrink-0" ref={headerIconRef} />
         </div>
       </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { VocabularyContent } from '../../lib/content-schema';
 import { BookOpen, Globe } from 'lucide-react';
@@ -176,6 +176,15 @@ export default function Vocabulary({ content }: VocabularyProps) {
   const headerIconRef = React.useRef<HTMLDivElement>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const categories = Array.from(
     new Set(content.words.map(w => w.category).filter(Boolean))
@@ -196,18 +205,18 @@ export default function Vocabulary({ content }: VocabularyProps) {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="border-b border-gray-200 dark:border-gray-700 pb-8 mb-10">
-        <div className="flex items-center justify-between gap-4 mb-4">
+      {/* Header - Sticky when scrolled */}
+      <div className={`border-b border-gray-200 dark:border-gray-700 transition-all duration-300 ${isScrolled ? 'sticky top-20 z-40 bg-white dark:bg-gray-950 py-4 -mx-6 px-6 mb-4' : 'pb-8 mb-10'}`}>
+        <div className={`flex items-center justify-between gap-4 transition-all duration-300 ${isScrolled ? 'mb-0' : 'mb-4'}`}>
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0">
-              <BookOpen className="w-5 h-5 text-primary-600 dark:text-primary-400" />
+            <div className={`rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0 transition-all duration-300 ${isScrolled ? 'w-8 h-8' : 'w-10 h-10'}`}>
+              <BookOpen className={`text-primary-600 dark:text-primary-400 transition-all duration-300 ${isScrolled ? 'w-4 h-4' : 'w-5 h-5'}`} />
             </div>
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
+            <h1 className={`font-bold text-gray-900 dark:text-gray-100 transition-all duration-300 ${isScrolled ? 'text-2xl' : 'text-4xl'}`}>
               {content.title}
             </h1>
           </div>
-          {/* Search icon button slot - rendered by Search component when scrolled up */}
+          {/* Search icon button slot - rendered by Search component when scrolled down */}
           <div className="flex-shrink-0" ref={headerIconRef} />
         </div>
         {content.description && (
