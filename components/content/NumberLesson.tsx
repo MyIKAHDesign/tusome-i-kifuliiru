@@ -354,7 +354,7 @@ export default function NumberLesson({ content }: NumberLessonProps) {
   return (
     <div className="space-y-8">
       {/* Header - Sticky when scrolled */}
-      <div className={`transition-all duration-300 ease-in-out ${
+      <div className={`transition-all duration-300 ease-in-out overflow-hidden ${
         isScrolled 
           ? 'sticky top-20 z-40 bg-gradient-to-r from-white via-white to-gray-50/50 dark:from-white/10 dark:via-white/10 dark:to-white/5 dark:backdrop-blur-xl py-3 -mx-6 px-6 mb-4 rounded-2xl shadow-lg border border-gray-200/50 dark:border-white/20' 
           : 'pb-8 mb-10 border-b border-gray-200 dark:border-white/10'

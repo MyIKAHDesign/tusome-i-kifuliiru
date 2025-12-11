@@ -336,7 +336,7 @@ export default function TusomePage() {
   return (
     <div className="max-w-7xl mx-auto">
       {/* Header - Sticky when scrolled */}
-      <div className={`mb-8 transition-all duration-300 ease-in-out ${
+      <div className={`mb-8 transition-all duration-300 ease-in-out overflow-hidden ${
         isScrolled 
           ? 'sticky top-20 z-40 bg-gradient-to-r from-white via-white to-gray-50/50 dark:from-white/10 dark:via-white/10 dark:to-white/5 dark:backdrop-blur-xl py-3 -mx-4 px-4 mb-4 rounded-2xl shadow-lg border border-gray-200/50 dark:border-white/20' 
           : 'py-0'
