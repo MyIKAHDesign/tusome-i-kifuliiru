@@ -9,7 +9,8 @@ import {
   Sparkles,
   ChevronRight,
   Home,
-  Folder
+  Folder,
+  Loader2
 } from 'lucide-react';
 import Search from '../../components/Search';
 
@@ -330,8 +331,10 @@ export default function TusomePage() {
             </p>
           </div>
         </div>
+      </div>
 
-        {/* Search Bar */}
+      {/* Search Bar - Matches content grid width */}
+      <div className="mb-8">
         <Search
           variant="inline"
           placeholder="Looza hano..."
