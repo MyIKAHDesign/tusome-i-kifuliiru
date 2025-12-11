@@ -43,7 +43,7 @@ export default function Search({
   const [internalQuery, setInternalQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isScrolledUp, setIsScrolledUp] = useState(false);
+  const [isScrolledDown, setIsScrolledDown] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const modalRef = useRef<HTMLDivElement>(null);
   const floatingRef = useRef<HTMLDivElement>(null);
@@ -58,9 +58,8 @@ export default function Search({
     
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      // Show icon when scrolled up (scrolling upward) or near top (within 100px)
-      const scrollingUp = currentScrollY < lastScrollY;
-      setIsScrolledUp(currentScrollY < 100 || scrollingUp);
+      // Hide search bar when scrolled down past 100px
+      setIsScrolledDown(currentScrollY > 100);
       setLastScrollY(currentScrollY);
     };
     
@@ -69,7 +68,7 @@ export default function Search({
     
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [variant, lastScrollY]);
+  }, [variant]);
   
   const handleQueryChange = (newQuery: string) => {
     if (value === undefined) {
@@ -368,9 +367,9 @@ export default function Search({
   );
 
   // Render icon button in header slot if provided
-  // Icon button for header - rendered via portal when scrolled up
+  // Icon button for header - rendered via portal when scrolled down
   const HeaderIconButton = () => {
-    if (!isScrolledUp || iconPosition !== 'header' || !headerIconSlot?.current) {
+    if (!isScrolledDown || iconPosition !== 'header' || !headerIconSlot?.current) {
       return null;
     }
     return createPortal(
@@ -392,8 +391,8 @@ export default function Search({
       <>
         <HeaderIconButton />
         <div className={`relative ${className}`}>
-          {/* Search bar - hidden when scrolled up */}
-          <div className={`relative ${isScrolledUp ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
+          {/* Search bar - hidden when scrolled down */}
+          <div className={`relative ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
             <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               ref={inputRef}
@@ -438,8 +437,8 @@ export default function Search({
       <>
         <HeaderIconButton />
         <div className={`relative ${className}`}>
-          {/* Search bar - hidden when scrolled up */}
-          <div className={`sticky top-24 z-40 mb-8 bg-white dark:bg-gray-950 ${isScrolledUp ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
+          {/* Search bar - hidden when scrolled down */}
+          <div className={`sticky top-24 z-40 mb-8 bg-white dark:bg-gray-950 ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
           <div className="w-full">
             <div className="relative flex items-center">
               <div className="absolute left-4 pointer-events-none">
