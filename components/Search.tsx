@@ -388,38 +388,40 @@ export default function Search({
   // Inline variant - Always visible search bar with scroll-based icon
   if (variant === 'inline') {
     return (
-      <div className={`relative ${className}`}>
-        {/* Search bar - hidden when scrolled up */}
-        <div className={`relative ${isScrolledUp ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
-          <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder={placeholder}
-            value={query}
-            onChange={(e) => {
-              const newValue = e.target.value;
-              if (value === undefined) {
-                setInternalQuery(newValue);
-              }
-              handleSearch(newValue);
-            }}
-            className="w-full pl-12 pr-12 py-4 text-base bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-gray-100 placeholder-gray-400"
-          />
-          {isLoading && (
-            <div className="absolute right-4 top-1/2 -translate-y-1/2">
-              <Loader2 className="w-5 h-5 text-gray-400 animate-spin" />
-            </div>
-          )}
-          {query && !isLoading && (
-            <button
-              onClick={handleClear}
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
-              aria-label="Clear search"
-            >
-              <X className="w-4 h-4 text-gray-400" />
-            </button>
-          )}
+      <>
+        <HeaderIconButton />
+        <div className={`relative ${className}`}>
+          {/* Search bar - hidden when scrolled up */}
+          <div className={`relative ${isScrolledUp ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
+            <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              ref={inputRef}
+              type="text"
+              placeholder={placeholder}
+              value={query}
+              onChange={(e) => {
+                const newValue = e.target.value;
+                if (value === undefined) {
+                  setInternalQuery(newValue);
+                }
+                handleSearch(newValue);
+              }}
+              className="w-full pl-12 pr-12 py-4 text-base bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-gray-100 placeholder-gray-400"
+            />
+            {isLoading && (
+              <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                <Loader2 className="w-5 h-5 text-gray-400 animate-spin" />
+              </div>
+            )}
+            {query && !isLoading && (
+              <button
+                onClick={handleClear}
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+                aria-label="Clear search"
+              >
+                <X className="w-4 h-4 text-gray-400" />
+              </button>
+            )}
           </div>
           
           {/* Floating search overlay - appears above content when icon clicked */}
