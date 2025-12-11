@@ -95,6 +95,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
     
     return {
       home: { title: 'Home', type: 'page' as const, href: '/' },
+      tusome: { title: 'Tusome', type: 'page' as const, href: '/tusome' },
       kifuliiru: {
         title: 'Kifuliiru',
         type: 'menu' as const,
@@ -124,6 +125,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
     switch (key) {
       case 'home':
         return <Home className="w-4 h-4" />;
+      case 'tusome':
+        return <BookOpen className="w-4 h-4" />;
       case 'kifuliiru':
         return <BookOpen className="w-4 h-4" />;
       case 'imwitu':
