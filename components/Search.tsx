@@ -292,8 +292,8 @@ export default function Search({
       return null;
     }
     return createPortal(
-      <div className="relative w-full max-w-xs">
-        <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+      <div className="relative w-full min-w-[200px] max-w-md">
+        <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none z-10" />
         <input
           ref={inputRef}
           type="text"
@@ -301,23 +301,30 @@ export default function Search({
           value={query}
           onChange={(e) => {
             const newValue = e.target.value;
-            if (value === undefined) {
-              setInternalQuery(newValue);
+            // Update state immediately for smooth typing
+            handleQueryChange(newValue);
+            // If no custom onSearch handler, perform default API search
+            if (!onSearch) {
+              handleSearch(newValue);
             }
-            handleSearch(newValue);
           }}
-          className="w-full pl-10 pr-8 py-2 text-sm bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-gray-100 placeholder-gray-400"
+          onFocus={(e) => {
+            // Ensure smooth focus
+            e.target.select();
+          }}
+          className="w-full pl-10 pr-8 py-2 text-sm bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-gray-100 placeholder-gray-400 transition-all"
         />
         {isLoading && (
-          <div className="absolute right-3 top-1/2 -translate-y-1/2">
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none z-10">
             <Loader2 className="w-4 h-4 text-gray-400 animate-spin" />
           </div>
         )}
         {query && !isLoading && (
           <button
             onClick={handleClear}
-            className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 rounded hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+            className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 rounded hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors z-10"
             aria-label="Clear search"
+            type="button"
           >
             <X className="w-3 h-3 text-gray-400" />
           </button>
