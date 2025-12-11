@@ -336,7 +336,7 @@ export default function TusomePage() {
       {/* Header - Sticky when scrolled */}
       <div className={`mb-8 transition-all duration-300 ease-in-out ${
         isScrolled 
-          ? 'sticky top-24 z-40 bg-gradient-to-r from-white via-white to-gray-50/50 dark:from-gray-950 dark:via-gray-950 dark:to-gray-900/50 backdrop-blur-md py-3 -mx-4 px-4 mb-4 rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-800/50 mt-4' 
+          ? 'sticky top-20 z-40 bg-gradient-to-r from-white via-white to-gray-50/50 dark:from-gray-950 dark:via-gray-950 dark:to-gray-900/50 backdrop-blur-md py-3 -mx-4 px-4 mb-4 rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-800/50' 
           : 'py-0'
       }`}>
         <div className={`flex items-center gap-4 transition-all duration-300 ease-in-out ${isScrolled ? 'mb-0' : 'mb-4'}`}>
