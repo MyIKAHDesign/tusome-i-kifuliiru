@@ -328,17 +328,16 @@ export default function Search({
     }
   }, [handleQueryChange, onSearch, handleSearch]);
 
-  // Compact search bar for header - rendered via portal when scrolled down
-  const HeaderSearchBar = () => {
+  // Memoize the portal content to prevent recreation on every render
+  // Only recreate when visibility or essential props change, not on every query update
+  const headerSearchContent = useMemo(() => {
     if (!headerIconSlot?.current) {
       return null;
     }
     
-    // Smooth transition: fade in/out and slide in/out
-    // The transition is handled by the parent header component, so we just need to show/hide smoothly
     const shouldShow = isScrolledDown && iconPosition === 'header';
     
-    return createPortal(
+    return (
       <div 
         className={`relative w-full min-w-[200px] max-w-md transition-all duration-300 ease-in-out ${
           shouldShow 
@@ -348,6 +347,7 @@ export default function Search({
       >
         <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none z-10 transition-opacity duration-300" />
         <input
+          key="header-search-input-stable"
           ref={inputRef}
           type="text"
           placeholder={placeholder}
@@ -370,9 +370,17 @@ export default function Search({
             <X className="w-3 h-3 text-gray-400" />
           </button>
         )}
-      </div>,
-      headerIconSlot.current
+      </div>
     );
+  }, [isScrolledDown, iconPosition, headerIconSlot, placeholder, handleHeaderInputChange, handleClear, query, isLoading]);
+
+  // Compact search bar for header - rendered via portal when scrolled down
+  const HeaderSearchBar = () => {
+    if (!headerIconSlot?.current || !headerSearchContent) {
+      return null;
+    }
+    
+    return createPortal(headerSearchContent, headerIconSlot.current);
   };
 
   // Inline variant - Always visible search bar, moves to header when scrolled
