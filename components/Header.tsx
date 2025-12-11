@@ -34,7 +34,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-gray-50/95 dark:bg-gray-950/95 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800">
+    <header className="sticky top-0 z-50 bg-gray-50/95 dark:bg-white/5 dark:backdrop-blur-xl border-b border-gray-200 dark:border-white/10 shadow-sm dark:shadow-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Left Section: Brand */}
@@ -79,7 +79,7 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 dark:backdrop-blur-sm transition-colors"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
@@ -93,10 +93,10 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-gray-200 dark:border-gray-800">
+          <div className="lg:hidden py-4 border-t border-gray-200 dark:border-white/10">
             <div className="flex flex-col gap-4">
               <HeaderNavigation items={navMeta} />
-              <div className="h-px bg-gray-200 dark:bg-gray-800" />
+              <div className="h-px bg-gray-200 dark:bg-white/10" />
               {/* Contact Us Button - Mobile */}
               <a
                 href="https://ibufuliiru.editorx.io/ibufuliiru/tuyandikire"

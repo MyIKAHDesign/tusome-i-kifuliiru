@@ -201,7 +201,7 @@ export default function CategoryNavigation({ currentPath }: CategoryNavigationPr
   }
 
   return (
-    <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+    <div className="mt-12 pt-8 border-t border-gray-200 dark:border-white/10">
       <div className="flex items-center justify-between gap-4">
         {/* Previous Button */}
         {prevPage ? (
@@ -211,9 +211,9 @@ export default function CategoryNavigation({ currentPath }: CategoryNavigationPr
               e.preventDefault();
               router.push(prevPage.href);
             }}
-            className="group flex items-center gap-3 px-6 py-4 rounded-xl bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-lg transition-all flex-1 max-w-[48%]"
+            className="group flex items-center gap-3 px-6 py-4 rounded-xl bg-white dark:bg-white/10 dark:backdrop-blur-md border border-gray-200 dark:border-white/20 hover:border-primary-300 dark:hover:border-primary-400/50 hover:shadow-lg transition-all flex-1 max-w-[48%]"
           >
-            <div className="p-2 rounded-lg bg-gray-100 dark:bg-gray-900 group-hover:bg-primary-100 dark:group-hover:bg-primary-900/30 transition-colors">
+            <div className="p-2 rounded-lg bg-gray-100 dark:bg-white/10 dark:backdrop-blur-sm group-hover:bg-primary-100 dark:group-hover:bg-primary-500/20 transition-colors">
               <ChevronLeft className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors" />
             </div>
             <div className="flex flex-col min-w-0 flex-1">
@@ -231,7 +231,7 @@ export default function CategoryNavigation({ currentPath }: CategoryNavigationPr
 
         {/* Category Title (centered) */}
         {categoryTitle && (
-          <div className="px-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800">
+          <div className="px-4 py-2 rounded-lg bg-gray-50 dark:bg-white/10 dark:backdrop-blur-sm border border-gray-200 dark:border-white/20">
             <span className="text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wide">
               {categoryTitle}
             </span>
@@ -246,7 +246,7 @@ export default function CategoryNavigation({ currentPath }: CategoryNavigationPr
               e.preventDefault();
               router.push(nextPage.href);
             }}
-            className="group flex items-center gap-3 px-6 py-4 rounded-xl bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-lg transition-all flex-1 max-w-[48%] text-right"
+            className="group flex items-center gap-3 px-6 py-4 rounded-xl bg-white dark:bg-white/10 dark:backdrop-blur-md border border-gray-200 dark:border-white/20 hover:border-primary-300 dark:hover:border-primary-400/50 hover:shadow-lg transition-all flex-1 max-w-[48%] text-right"
           >
             <div className="flex flex-col min-w-0 flex-1 items-end">
               <span className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">
@@ -256,7 +256,7 @@ export default function CategoryNavigation({ currentPath }: CategoryNavigationPr
                 {nextPage.title}
               </span>
             </div>
-            <div className="p-2 rounded-lg bg-gray-100 dark:bg-gray-900 group-hover:bg-primary-100 dark:group-hover:bg-primary-900/30 transition-colors">
+            <div className="p-2 rounded-lg bg-gray-100 dark:bg-white/10 dark:backdrop-blur-sm group-hover:bg-primary-100 dark:group-hover:bg-primary-500/20 transition-colors">
               <ChevronRight className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors" />
             </div>
           </a>

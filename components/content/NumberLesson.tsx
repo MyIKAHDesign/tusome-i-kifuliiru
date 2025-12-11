@@ -137,7 +137,7 @@ const parseMarkdown = (text: string): React.ReactNode[] => {
               href={normalizedUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-700 dark:text-gray-300 font-medium no-underline transition-colors border-b border-gray-300 dark:border-gray-700 pb-0.5 hover:text-gray-900 dark:hover:text-gray-50 hover:border-gray-500 dark:hover:border-gray-500"
+              className="text-gray-700 dark:text-gray-300 font-medium no-underline transition-colors border-b border-gray-300 dark:border-white/20 pb-0.5 hover:text-gray-900 dark:hover:text-gray-50 hover:border-gray-500 dark:hover:border-white/40"
             >
               {parseSegment(linkMatch.text)}
             </a>
@@ -147,7 +147,7 @@ const parseMarkdown = (text: string): React.ReactNode[] => {
             <Link
               key={key++}
               href={normalizedUrl}
-              className="text-gray-700 dark:text-gray-300 font-medium no-underline transition-colors border-b border-gray-300 dark:border-gray-700 pb-0.5 hover:text-gray-900 dark:hover:text-gray-50 hover:border-gray-500 dark:hover:border-gray-500"
+              className="text-gray-700 dark:text-gray-300 font-medium no-underline transition-colors border-b border-gray-300 dark:border-white/20 pb-0.5 hover:text-gray-900 dark:hover:text-gray-50 hover:border-gray-500 dark:hover:border-white/40"
             >
               {parseSegment(linkMatch.text)}
             </Link>
@@ -241,13 +241,13 @@ const renderContentWithTables = (text: string, skipNumberLists: boolean = false)
   if (tableData) {
     return (
       <div className="my-8 overflow-x-auto">
-        <table className="w-full border-collapse rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800">
+        <table className="w-full border-collapse rounded-lg overflow-hidden border border-gray-200 dark:border-white/20">
           <thead>
             <tr>
               {tableData.headers.map((header, i) => (
                 <th
                   key={i}
-                  className="p-4 text-left bg-white dark:bg-gray-900 font-semibold text-gray-900 dark:text-gray-100 border-b border-gray-200 dark:border-gray-800"
+                  className="p-4 text-left bg-white dark:bg-white/10 dark:backdrop-blur-sm font-semibold text-gray-900 dark:text-gray-100 border-b border-gray-200 dark:border-white/10"
                 >
                   {parseMarkdown(header)}
                 </th>
@@ -258,12 +258,12 @@ const renderContentWithTables = (text: string, skipNumberLists: boolean = false)
             {tableData.rows.map((row, rowIndex) => (
               <tr
                 key={rowIndex}
-                className="hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
+                className="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
               >
                 {row.map((cell, cellIndex) => (
                   <td
                     key={cellIndex}
-                    className="p-4 text-left border-b border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300"
+                    className="p-4 text-left border-b border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300"
                   >
                     {parseMarkdown(cell)}
                   </td>
@@ -314,21 +314,46 @@ export default function NumberLesson({ content }: NumberLessonProps) {
   const headerIconRef = React.useRef<HTMLDivElement>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMiniatureMode, setIsMiniatureMode] = useState(false);
 
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setIsScrolled(window.scrollY > 100);
+          const currentScrollY = window.scrollY;
+          
+          // Hysteresis: Two clear states - miniature or not
+          // Enter miniature at 100px, exit at < 50px to prevent loops
+          if (isMiniatureMode) {
+            // In miniature mode - only exit when scrolled back to top
+            if (currentScrollY < 50) {
+              setIsMiniatureMode(false);
+              setIsScrolled(false);
+            } else {
+              setIsScrolled(true);
+            }
+          } else {
+            // Not in miniature mode - enter when scrolled past threshold
+            if (currentScrollY > 100) {
+              setIsMiniatureMode(true);
+              setIsScrolled(true);
+            } else {
+              setIsScrolled(false);
+            }
+          }
+          
           ticking = false;
         });
         ticking = true;
       }
     };
+    
+    // Initial check
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMiniatureMode]);
 
   const handleSearch = (query: string) => {
     setSearchTerm(query);
@@ -354,10 +379,10 @@ export default function NumberLesson({ content }: NumberLessonProps) {
   return (
     <div className="space-y-8">
       {/* Header - Sticky when scrolled */}
-      <div className={`transition-all duration-300 ease-in-out ${
+      <div className={`transition-all duration-300 ease-in-out overflow-hidden ${
         isScrolled 
-          ? 'sticky top-20 z-40 bg-gradient-to-r from-white via-white to-gray-50/50 dark:from-gray-950 dark:via-gray-950 dark:to-gray-900/50 backdrop-blur-md py-3 -mx-6 px-6 mb-4 rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-800/50' 
-          : 'pb-8 mb-10 border-b border-gray-200 dark:border-gray-700'
+          ? 'sticky top-20 z-40 bg-gradient-to-r from-white via-white to-gray-50/50 dark:from-slate-800/95 dark:via-slate-800/95 dark:to-slate-800/95 dark:backdrop-blur-xl py-3 -mx-6 px-6 mb-4 rounded-3xl shadow-2xl border border-gray-200/50 dark:border-white/20' 
+          : 'pb-8 mb-10 border-b border-gray-200 dark:border-white/10'
       }`}>
         <div className={`flex items-center gap-4 transition-all duration-300 ease-in-out ${isScrolled ? 'mb-0' : 'mb-4'}`}>
           {/* Title Column */}

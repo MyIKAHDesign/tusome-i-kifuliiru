@@ -182,7 +182,7 @@ const parseMarkdown = (text: string): React.ReactNode[] => {
               href={normalizedUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-700 dark:text-gray-300 font-medium no-underline transition-colors border-b border-gray-300 dark:border-gray-700 pb-0.5 hover:text-gray-900 dark:hover:text-gray-50 hover:border-gray-500 dark:hover:border-gray-500"
+              className="text-gray-700 dark:text-gray-300 font-medium no-underline transition-colors border-b border-gray-300 dark:border-white/20 pb-0.5 hover:text-gray-900 dark:hover:text-gray-50 hover:border-gray-500 dark:hover:border-white/40"
             >
               {parseSegment(linkMatch.text)}
             </a>
@@ -192,7 +192,7 @@ const parseMarkdown = (text: string): React.ReactNode[] => {
             <Link
               key={key++}
               href={normalizedUrl}
-              className="text-gray-700 dark:text-gray-300 font-medium no-underline transition-colors border-b border-gray-300 dark:border-gray-700 pb-0.5 hover:text-gray-900 dark:hover:text-gray-50 hover:border-gray-500 dark:hover:border-gray-500"
+              className="text-gray-700 dark:text-gray-300 font-medium no-underline transition-colors border-b border-gray-300 dark:border-white/20 pb-0.5 hover:text-gray-900 dark:hover:text-gray-50 hover:border-gray-500 dark:hover:border-white/40"
             >
               {parseSegment(linkMatch.text)}
             </Link>
@@ -237,7 +237,7 @@ export default function Lesson({ content }: LessonProps) {
           id: headingId,
           className: `font-bold text-gray-900 dark:text-gray-100 mb-6 mt-12 scroll-mt-24 ${
             level === 1 ? 'text-4xl' :
-            level === 2 ? 'text-3xl border-b border-gray-200 dark:border-gray-700 pb-3' :
+            level === 2 ? 'text-3xl border-b border-gray-200 dark:border-white/10 pb-3' :
             level === 3 ? 'text-2xl mt-10' :
             'text-xl mt-8'
           }`,
@@ -257,13 +257,13 @@ export default function Lesson({ content }: LessonProps) {
         if (tableData) {
           return (
             <div key={index} className="my-8 overflow-x-auto">
-              <table className="w-full border-collapse rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800">
+              <table className="w-full border-collapse rounded-lg overflow-hidden border border-gray-200 dark:border-white/20">
                 <thead>
                   <tr>
                     {tableData.headers.map((header, i) => (
                       <th
                         key={i}
-                        className="p-4 text-left bg-white dark:bg-gray-900 font-semibold text-gray-900 dark:text-gray-100 border-b border-gray-200 dark:border-gray-800"
+                        className="p-4 text-left bg-white dark:bg-white/10 dark:backdrop-blur-sm font-semibold text-gray-900 dark:text-gray-100 border-b border-gray-200 dark:border-white/10"
                       >
                         {parseMarkdown(header)}
                       </th>
@@ -274,12 +274,12 @@ export default function Lesson({ content }: LessonProps) {
                   {tableData.rows.map((row, rowIndex) => (
                     <tr
                       key={rowIndex}
-                      className="hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
+                      className="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
                     >
                       {row.map((cell, cellIndex) => (
                         <td
                           key={cellIndex}
-                          className="p-4 text-left border-b border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300"
+                          className="p-4 text-left border-b border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300"
                         >
                           {parseMarkdown(cell)}
                         </td>
@@ -316,7 +316,7 @@ export default function Lesson({ content }: LessonProps) {
         return (
           <blockquote
             key={index}
-            className="border-l-4 border-gray-300 dark:border-gray-700 pl-6 py-5 my-8 bg-gray-50 dark:bg-gray-900/50 rounded-r-lg italic text-lg text-gray-700 dark:text-gray-300"
+            className="border-l-4 border-gray-300 dark:border-white/20 pl-6 py-5 my-8 bg-gray-50 dark:bg-white/5 dark:backdrop-blur-sm rounded-r-lg italic text-lg text-gray-700 dark:text-gray-300"
           >
             <Quote className="w-5 h-5 text-gray-400 dark:text-gray-500 mb-2" />
             {parseMarkdown(block.content as string)}
@@ -341,14 +341,14 @@ export default function Lesson({ content }: LessonProps) {
         const rows = block.rows || [];
         return (
           <div key={index} className="my-8 overflow-x-auto">
-            <table className="w-full border-collapse rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800">
+            <table className="w-full border-collapse rounded-lg overflow-hidden border border-gray-200 dark:border-white/20">
               {headers.length > 0 && (
                 <thead>
                   <tr>
                     {headers.map((header, i) => (
                       <th
                         key={i}
-                        className="p-4 text-left bg-white dark:bg-gray-900 font-semibold text-gray-900 dark:text-gray-100 border-b border-gray-200 dark:border-gray-800"
+                        className="p-4 text-left bg-white dark:bg-white/10 dark:backdrop-blur-sm font-semibold text-gray-900 dark:text-gray-100 border-b border-gray-200 dark:border-white/10"
                       >
                         {parseMarkdown(header)}
                       </th>
@@ -360,12 +360,12 @@ export default function Lesson({ content }: LessonProps) {
                 {rows.map((row, rowIndex) => (
                   <tr
                     key={rowIndex}
-                    className="hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
+                    className="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
                   >
                     {row.map((cell, cellIndex) => (
                       <td
                         key={cellIndex}
-                        className="p-4 text-left border-b border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300"
+                        className="p-4 text-left border-b border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300"
                       >
                         {parseMarkdown(cell)}
                       </td>
@@ -385,7 +385,7 @@ export default function Lesson({ content }: LessonProps) {
   return (
     <div className="w-full">
       {/* Header */}
-      <div className="border-b border-gray-200 dark:border-gray-700 pb-8 mb-10">
+      <div className="border-b border-gray-200 dark:border-white/10 pb-8 mb-10">
         <div className="flex items-center gap-4 mb-4">
           <div className="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0">
             <FileText className="w-5 h-5 text-primary-600 dark:text-primary-400" />

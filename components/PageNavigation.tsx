@@ -332,7 +332,7 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
               e.preventDefault();
               router.push(getHref(prevSlug));
             }}
-            className="group flex items-center gap-2 px-4 py-3 text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 rounded-lg bg-white dark:bg-gray-900 shadow-lg border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-all hover:shadow-xl backdrop-blur-sm"
+            className="group flex items-center gap-2 px-4 py-3 text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 rounded-lg bg-white dark:bg-white/10 dark:backdrop-blur-xl shadow-lg border border-gray-200 dark:border-white/20 hover:border-gray-300 dark:hover:border-white/30 transition-all hover:shadow-xl"
             title={getPageTitle(prevSlug)}
           >
             <ChevronLeft className="w-4 h-4 flex-shrink-0 group-hover:-translate-x-0.5 transition-transform text-gray-500 dark:text-gray-400" />
@@ -353,7 +353,7 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
               e.preventDefault();
               router.push(getHref(nextSlug));
             }}
-            className="group flex items-center gap-2 px-4 py-3 text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 rounded-lg bg-white dark:bg-gray-900 shadow-lg border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-all hover:shadow-xl backdrop-blur-sm"
+            className="group flex items-center gap-2 px-4 py-3 text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 rounded-lg bg-white dark:bg-white/10 dark:backdrop-blur-xl shadow-lg border border-gray-200 dark:border-white/20 hover:border-gray-300 dark:hover:border-white/30 transition-all hover:shadow-xl"
             title={getPageTitle(nextSlug)}
           >
             <div className="flex flex-col min-w-0 text-right">

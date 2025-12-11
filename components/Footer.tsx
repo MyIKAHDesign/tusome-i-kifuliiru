@@ -3,7 +3,7 @@ import ThemeSwitch from './ThemeSwitch';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 mt-auto">
+    <footer className="border-t border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 dark:backdrop-blur-xl mt-auto">
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-600 dark:text-gray-400">
           <div className="flex items-center gap-2">

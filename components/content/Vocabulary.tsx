@@ -137,7 +137,7 @@ const parseMarkdown = (text: string): React.ReactNode[] => {
               href={normalizedUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-700 dark:text-gray-300 font-medium no-underline transition-colors border-b border-gray-300 dark:border-gray-700 pb-0.5 hover:text-gray-900 dark:hover:text-gray-50 hover:border-gray-500 dark:hover:border-gray-500"
+              className="text-gray-700 dark:text-gray-300 font-medium no-underline transition-colors border-b border-gray-300 dark:border-white/20 pb-0.5 hover:text-gray-900 dark:hover:text-gray-50 hover:border-gray-500 dark:hover:border-white/40"
             >
               {parseSegment(linkMatch.text)}
             </a>
@@ -147,7 +147,7 @@ const parseMarkdown = (text: string): React.ReactNode[] => {
             <Link
               key={key++}
               href={normalizedUrl}
-              className="text-gray-700 dark:text-gray-300 font-medium no-underline transition-colors border-b border-gray-300 dark:border-gray-700 pb-0.5 hover:text-gray-900 dark:hover:text-gray-50 hover:border-gray-500 dark:hover:border-gray-500"
+              className="text-gray-700 dark:text-gray-300 font-medium no-underline transition-colors border-b border-gray-300 dark:border-white/20 pb-0.5 hover:text-gray-900 dark:hover:text-gray-50 hover:border-gray-500 dark:hover:border-white/40"
             >
               {parseSegment(linkMatch.text)}
             </Link>
@@ -177,21 +177,46 @@ export default function Vocabulary({ content }: VocabularyProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMiniatureMode, setIsMiniatureMode] = useState(false);
 
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setIsScrolled(window.scrollY > 100);
+          const currentScrollY = window.scrollY;
+          
+          // Hysteresis: Two clear states - miniature or not
+          // Enter miniature at 100px, exit at < 50px to prevent loops
+          if (isMiniatureMode) {
+            // In miniature mode - only exit when scrolled back to top
+            if (currentScrollY < 50) {
+              setIsMiniatureMode(false);
+              setIsScrolled(false);
+            } else {
+              setIsScrolled(true);
+            }
+          } else {
+            // Not in miniature mode - enter when scrolled past threshold
+            if (currentScrollY > 100) {
+              setIsMiniatureMode(true);
+              setIsScrolled(true);
+            } else {
+              setIsScrolled(false);
+            }
+          }
+          
           ticking = false;
         });
         ticking = true;
       }
     };
+    
+    // Initial check
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMiniatureMode]);
 
   const categories = Array.from(
     new Set(content.words.map(w => w.category).filter(Boolean))
@@ -213,10 +238,10 @@ export default function Vocabulary({ content }: VocabularyProps) {
   return (
     <div className="space-y-6">
       {/* Header - Sticky when scrolled */}
-      <div className={`transition-all duration-300 ease-in-out ${
+      <div className={`transition-all duration-300 ease-in-out overflow-hidden ${
         isScrolled 
-          ? 'sticky top-20 z-40 bg-gradient-to-r from-white via-white to-gray-50/50 dark:from-gray-950 dark:via-gray-950 dark:to-gray-900/50 backdrop-blur-md py-3 -mx-6 px-6 mb-4 rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-800/50' 
-          : 'pb-8 mb-10 border-b border-gray-200 dark:border-gray-700'
+          ? 'sticky top-20 z-40 bg-gradient-to-r from-white via-white to-gray-50/50 dark:from-slate-800/95 dark:via-slate-800/95 dark:to-slate-800/95 dark:backdrop-blur-xl py-3 -mx-6 px-6 mb-4 rounded-3xl shadow-2xl border border-gray-200/50 dark:border-white/20' 
+          : 'pb-8 mb-10 border-b border-gray-200 dark:border-white/10'
       }`}>
         <div className={`flex items-center gap-4 transition-all duration-300 ease-in-out ${isScrolled ? 'mb-0' : 'mb-4'}`}>
           {/* Title Column */}
@@ -256,7 +281,7 @@ export default function Vocabulary({ content }: VocabularyProps) {
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-500"
+            className="px-4 py-2 border border-gray-300 dark:border-white/20 rounded-lg bg-white dark:bg-white/10 dark:backdrop-blur-md text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-500/50 dark:focus:ring-primary-400/50 shadow-sm dark:shadow-white/5 transition-all"
           >
             <option value="all">All Categories</option>
             {categories.map(cat => (
@@ -271,7 +296,7 @@ export default function Vocabulary({ content }: VocabularyProps) {
         {filteredWords.map((word, index) => (
           <div
             key={index}
-            className="group p-5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-lg transition-all"
+            className="group p-5 rounded-lg border border-gray-200 dark:border-white/20 bg-white dark:bg-white/10 dark:backdrop-blur-md hover:border-primary-300 dark:hover:border-primary-400/50 hover:shadow-lg transition-all"
           >
             <div className="flex items-start justify-between mb-3">
               <h3 className="text-xl font-bold text-primary-600 dark:text-primary-400">
@@ -315,7 +340,7 @@ export default function Vocabulary({ content }: VocabularyProps) {
                 </p>
               )}
               {word.example && (
-                <p className="text-sm text-gray-600 dark:text-gray-400 italic mt-2 border-l-2 border-gray-300 dark:border-gray-700 pl-3">
+                <p className="text-sm text-gray-600 dark:text-gray-400 italic mt-2 border-l-2 border-gray-300 dark:border-white/20 pl-3">
                   "{parseMarkdown(word.example)}"
                 </p>
               )}

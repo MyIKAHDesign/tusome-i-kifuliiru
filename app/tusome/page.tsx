@@ -39,21 +39,46 @@ export default function TusomePage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<LearningItem[]>([]);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMiniatureMode, setIsMiniatureMode] = useState(false);
 
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setIsScrolled(window.scrollY > 100);
+          const currentScrollY = window.scrollY;
+          
+          // Hysteresis: Two clear states - miniature or not
+          // Enter miniature at 100px, exit at < 50px to prevent loops
+          if (isMiniatureMode) {
+            // In miniature mode - only exit when scrolled back to top
+            if (currentScrollY < 50) {
+              setIsMiniatureMode(false);
+              setIsScrolled(false);
+            } else {
+              setIsScrolled(true);
+            }
+          } else {
+            // Not in miniature mode - enter when scrolled past threshold
+            if (currentScrollY > 100) {
+              setIsMiniatureMode(true);
+              setIsScrolled(true);
+            } else {
+              setIsScrolled(false);
+            }
+          }
+          
           ticking = false;
         });
         ticking = true;
       }
     };
+    
+    // Initial check
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMiniatureMode]);
 
   useEffect(() => {
     const loadMeta = async () => {
@@ -83,7 +108,7 @@ export default function TusomePage() {
   };
 
   const isHeaderNavItem = (key: string): boolean => {
-    return ['kifuliiru', 'imigani', 'imigeeza', 'imwitu', 'bingi-ku-kifuliiru', 'twehe', 'contact', 'eng-frn-swa'].includes(key);
+    return ['kifuliiru', 'imigani', 'imigeeza', 'imwitu', 'bingi-ku-kifuliiru', 'twehe', 'contact', 'eng-frn-swa', 'muyegerere'].includes(key);
   };
 
   const getIcon = (key: string) => {
@@ -271,17 +296,17 @@ export default function TusomePage() {
     if (isMenu) {
       // Menu items as section headers with their children as cards
       return (
-        <div key={item.key} className="col-span-full mb-6">
+        <div key={item.key} className="col-span-full mb-4">
           {/* Section Header */}
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400">
-              {item.icon}
+          <div className="flex items-center gap-2 mb-3">
+            <div className="p-1.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400">
+              {item.icon && React.isValidElement(item.icon) ? React.cloneElement(item.icon as React.ReactElement, { className: 'w-4 h-4' }) : item.icon}
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-gray-50">
+              <h2 className="text-lg font-bold text-gray-900 dark:text-gray-50">
                 {item.title}
               </h2>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-xs text-gray-500 dark:text-gray-400">
                 {itemCount} {itemCount === 1 ? 'ikintu' : 'ibintu'}
               </p>
             </div>
@@ -289,7 +314,7 @@ export default function TusomePage() {
           
           {/* Children Cards Grid */}
           {item.items && item.items.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
               {item.items.map(child => renderCard(child))}
             </div>
           )}
@@ -297,7 +322,7 @@ export default function TusomePage() {
       );
     }
 
-    // Regular page card
+    // Regular page card - concise version
     return (
       <a
         key={item.key}
@@ -306,22 +331,24 @@ export default function TusomePage() {
           e.preventDefault();
           router.push(item.href);
         }}
-        className="group relative bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl p-5 hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-lg transition-all duration-200 flex flex-col"
+        className="group relative bg-white dark:bg-white/10 dark:backdrop-blur-md border border-gray-200 dark:border-white/20 rounded-lg p-3 hover:border-primary-300 dark:hover:border-primary-400/50 hover:shadow-md transition-all duration-200 flex flex-col"
       >
-        {/* Icon */}
-        <div className="mb-3 p-2.5 rounded-lg bg-gray-100 dark:bg-gray-900 group-hover:bg-primary-100 dark:group-hover:bg-primary-900/30 transition-colors w-fit">
-          {item.icon || <FileText className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400" />}
+        {/* Icon and Title Row */}
+        <div className="flex items-start gap-2.5 mb-2">
+          <div className="p-1.5 rounded-md bg-gray-100 dark:bg-white/10 dark:backdrop-blur-sm group-hover:bg-primary-100 dark:group-hover:bg-primary-500/20 transition-colors flex-shrink-0 mt-0.5">
+            {item.icon && React.isValidElement(item.icon) 
+              ? React.cloneElement(item.icon as React.ReactElement, { className: 'w-4 h-4 text-gray-600 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400' }) 
+              : <FileText className="w-4 h-4 text-gray-600 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400" />}
+          </div>
+          <h3 className="font-medium text-sm text-gray-900 dark:text-gray-50 line-clamp-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors flex-1">
+            {item.title}
+          </h3>
         </div>
         
-        {/* Title */}
-        <h3 className="font-semibold text-gray-900 dark:text-gray-50 mb-1 line-clamp-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
-          {item.title}
-        </h3>
-        
-        {/* Hover indicator */}
-        <div className="mt-auto pt-3 flex items-center text-sm text-gray-500 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+        {/* Hover indicator - compact */}
+        <div className="mt-auto pt-2 flex items-center text-xs text-gray-500 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
           <span>Bona</span>
-          <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+          <ChevronRight className="w-3 h-3 ml-1 group-hover:translate-x-0.5 transition-transform" />
         </div>
       </a>
     );
@@ -334,9 +361,9 @@ export default function TusomePage() {
   return (
     <div className="max-w-7xl mx-auto">
       {/* Header - Sticky when scrolled */}
-      <div className={`mb-8 transition-all duration-300 ease-in-out ${
+      <div className={`mb-8 transition-all duration-300 ease-in-out overflow-hidden ${
         isScrolled 
-          ? 'sticky top-20 z-40 bg-gradient-to-r from-white via-white to-gray-50/50 dark:from-gray-950 dark:via-gray-950 dark:to-gray-900/50 backdrop-blur-md py-3 -mx-4 px-4 mb-4 rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-800/50' 
+          ? 'sticky top-20 z-40 bg-gradient-to-r from-white via-white to-gray-50/50 dark:from-slate-800/95 dark:via-slate-800/95 dark:to-slate-800/95 dark:backdrop-blur-xl py-3 -mx-4 px-4 mb-4 rounded-3xl shadow-2xl border border-gray-200/50 dark:border-white/20' 
           : 'py-0'
       }`}>
         <div className={`flex items-center gap-4 transition-all duration-300 ease-in-out ${isScrolled ? 'mb-0' : 'mb-4'}`}>
@@ -373,7 +400,7 @@ export default function TusomePage() {
 
       {/* Content Grid */}
       {displayItems.length > 0 ? (
-        <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ${searchQuery.length >= 2 ? '' : 'auto-rows-max'}`}>
+        <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 ${searchQuery.length >= 2 ? '' : 'auto-rows-max'}`}>
           {displayItems.map(item => renderCard(item))}
         </div>
       ) : searchQuery.length >= 2 ? (
