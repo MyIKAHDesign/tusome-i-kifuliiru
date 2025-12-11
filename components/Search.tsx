@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import { Search as SearchIcon, FileText, Loader2, X } from 'lucide-react';
@@ -306,6 +306,28 @@ export default function Search({
     );
   }
 
+  // Handle input change with focus preservation
+  const handleHeaderInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    // Preserve focus by checking if input is focused before state update
+    const wasFocused = document.activeElement === inputRef.current;
+    
+    // Update state immediately for smooth typing
+    handleQueryChange(newValue);
+    // If no custom onSearch handler, perform default API search
+    if (!onSearch) {
+      handleSearch(newValue);
+    }
+    
+    // Restore focus if it was focused before
+    if (wasFocused && inputRef.current) {
+      // Use requestAnimationFrame to ensure focus happens after React's render cycle
+      requestAnimationFrame(() => {
+        inputRef.current?.focus();
+      });
+    }
+  }, [handleQueryChange, onSearch, handleSearch]);
+
   // Compact search bar for header - rendered via portal when scrolled down
   const HeaderSearchBar = () => {
     if (!headerIconSlot?.current) {
@@ -330,15 +352,7 @@ export default function Search({
           type="text"
           placeholder={placeholder}
           value={query}
-          onChange={(e) => {
-            const newValue = e.target.value;
-            // Update state immediately for smooth typing
-            handleQueryChange(newValue);
-            // If no custom onSearch handler, perform default API search
-            if (!onSearch) {
-              handleSearch(newValue);
-            }
-          }}
+          onChange={handleHeaderInputChange}
           className="w-full pl-10 pr-8 py-2 text-sm bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-gray-100 placeholder-gray-400 transition-all duration-200"
         />
         {isLoading && (
