@@ -112,7 +112,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         items: tweheItems,
       },
       'eng-frn-swa': items['eng-frn-swa'] || {
-        title: 'ENG/SWA/FRN',
+        title: '🇬🇧 🇹🇿 🇫🇷',
         type: 'menu' as const,
         items: {},
       },
@@ -134,7 +134,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
       case 'twehe':
         return <Info className="w-4 h-4" />;
       case 'eng-frn-swa':
-        return <Languages className="w-4 h-4" />;
+        return null; // Using flags instead of icon
       default:
         return null;
     }

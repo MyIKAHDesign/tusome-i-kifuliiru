@@ -38,7 +38,6 @@ export default function TusomePage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<LearningItem[]>([]);
   const [isSearching, setIsSearching] = useState(false);
-  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const loadMeta = async () => {
@@ -49,8 +48,6 @@ export default function TusomePage() {
           setMeta(parsed);
           const items = buildLearningItems(parsed);
           setLearningItems(items);
-          // Auto-expand all groups by default
-          setExpandedGroups(new Set(items.map(item => item.key)));
         }
       } catch (error) {
         console.error('Error loading meta:', error);
@@ -173,7 +170,8 @@ export default function TusomePage() {
     const searchInItem = (item: LearningItem) => {
       const titleMatch = item.title.toLowerCase().includes(query);
       
-      if (titleMatch && item.type === 'page') {
+      // Include both pages and menus in search results
+      if (titleMatch) {
         results.push(item);
       }
 
@@ -186,52 +184,76 @@ export default function TusomePage() {
     return results;
   };
 
-  const toggleGroup = (key: string) => {
-    setExpandedGroups(prev => {
-      const next = new Set(prev);
-      if (next.has(key)) {
-        next.delete(key);
+  // Flatten items for grid display - extract all pages from menus
+  const flattenItems = (items: LearningItem[]): LearningItem[] => {
+    const flattened: LearningItem[] = [];
+    
+    items.forEach(item => {
+      if (item.type === 'menu' && item.items && item.items.length > 0) {
+        // Add menu item itself as a card
+        flattened.push(item);
+        // Add all children
+        flattened.push(...flattenItems(item.items));
       } else {
-        next.add(key);
+        flattened.push(item);
       }
-      return next;
     });
+    
+    return flattened;
   };
 
-  const renderLearningItem = (item: LearningItem, level: number = 0) => {
-    const isExpanded = expandedGroups.has(item.key);
-    const hasChildren = item.items && item.items.length > 0;
+  const getAllPages = (items: LearningItem[]): LearningItem[] => {
+    const pages: LearningItem[] = [];
+    
+    const extractPages = (itemList: LearningItem[]) => {
+      itemList.forEach(item => {
+        if (item.type === 'page') {
+          pages.push(item);
+        }
+        if (item.items) {
+          extractPages(item.items);
+        }
+      });
+    };
+    
+    extractPages(items);
+    return pages;
+  };
 
-    if (item.type === 'menu' && hasChildren) {
+  const renderCard = (item: LearningItem) => {
+    const isMenu = item.type === 'menu' && item.items && item.items.length > 0;
+    const itemCount = item.items?.length || 0;
+
+    if (isMenu) {
+      // Menu items as section headers with their children as cards
       return (
-        <div key={item.key} className="mb-2">
-          <button
-            onClick={() => toggleGroup(item.key)}
-            className={`
-              w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg transition-all
-              hover:bg-gray-100 dark:hover:bg-gray-900
-              ${level === 0 ? 'bg-gray-50 dark:bg-gray-900/50' : ''}
-            `}
-          >
-            <div className="flex items-center gap-3">
+        <div key={item.key} className="col-span-full mb-6">
+          {/* Section Header */}
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2 rounded-lg bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400">
               {item.icon}
-              <span className={`font-medium text-gray-900 dark:text-gray-100 ${level === 0 ? 'text-base' : 'text-sm'}`}>
-                {item.title}
-              </span>
             </div>
-            <ChevronRight 
-              className={`w-4 h-4 text-gray-400 transition-transform ${isExpanded ? 'rotate-90' : ''}`} 
-            />
-          </button>
-          {isExpanded && (
-            <div className={`mt-2 ${level === 0 ? 'ml-0' : 'ml-4'} border-l-2 border-gray-200 dark:border-gray-800 pl-4`}>
-              {item.items?.map(child => renderLearningItem(child, level + 1))}
+            <div>
+              <h2 className="text-xl font-bold text-gray-900 dark:text-gray-50">
+                {item.title}
+              </h2>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                {itemCount} {itemCount === 1 ? 'ikintu' : 'ibintu'}
+              </p>
+            </div>
+          </div>
+          
+          {/* Children Cards Grid */}
+          {item.items && item.items.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {item.items.map(child => renderCard(child))}
             </div>
           )}
         </div>
       );
     }
 
+    // Regular page card
     return (
       <a
         key={item.key}
@@ -240,24 +262,33 @@ export default function TusomePage() {
           e.preventDefault();
           router.push(item.href);
         }}
-        className={`
-          flex items-center gap-3 px-4 py-3 rounded-lg transition-all
-          hover:bg-gray-100 dark:hover:bg-gray-900
-          ${level === 0 ? 'bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800' : ''}
-        `}
+        className="group relative bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl p-5 hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-lg transition-all duration-200 flex flex-col"
       >
-        {item.icon || <FileText className="w-4 h-4 text-gray-400" />}
-        <span className={`text-gray-700 dark:text-gray-300 ${level === 0 ? 'font-medium' : ''}`}>
+        {/* Icon */}
+        <div className="mb-3 p-2.5 rounded-lg bg-gray-100 dark:bg-gray-900 group-hover:bg-primary-100 dark:group-hover:bg-primary-900/30 transition-colors w-fit">
+          {item.icon || <FileText className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400" />}
+        </div>
+        
+        {/* Title */}
+        <h3 className="font-semibold text-gray-900 dark:text-gray-50 mb-1 line-clamp-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
           {item.title}
-        </span>
+        </h3>
+        
+        {/* Hover indicator */}
+        <div className="mt-auto pt-3 flex items-center text-sm text-gray-500 dark:text-gray-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+          <span>Bona</span>
+          <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+        </div>
       </a>
     );
   };
 
-  const displayItems = searchQuery.length >= 2 ? searchResults : learningItems;
+  const displayItems = searchQuery.length >= 2 
+    ? getAllPages(searchResults) 
+    : learningItems;
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-7xl mx-auto">
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-4">
@@ -292,22 +323,23 @@ export default function TusomePage() {
         </div>
       </div>
 
-      {/* Content List */}
-      <div className="space-y-3">
-        {displayItems.length > 0 ? (
-          displayItems.map(item => renderLearningItem(item))
-        ) : searchQuery.length >= 2 ? (
-          <div className="text-center py-12 text-gray-500 dark:text-gray-400">
-            <FileText className="w-12 h-12 mx-auto mb-4 opacity-50" />
-            <p>Ndabyo twaloonga</p>
-          </div>
-        ) : (
-          <div className="text-center py-12 text-gray-500 dark:text-gray-400">
-            <Loader2 className="w-12 h-12 mx-auto mb-4 animate-spin opacity-50" />
-            <p>Tugweeti tugalooza...</p>
-          </div>
-        )}
-      </div>
+      {/* Content Grid */}
+      {displayItems.length > 0 ? (
+        <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ${searchQuery.length >= 2 ? '' : 'auto-rows-max'}`}>
+          {displayItems.map(item => renderCard(item))}
+        </div>
+      ) : searchQuery.length >= 2 ? (
+        <div className="text-center py-16 text-gray-500 dark:text-gray-400">
+          <FileText className="w-16 h-16 mx-auto mb-4 opacity-50" />
+          <p className="text-lg">Ndabyo twaloonga</p>
+          <p className="text-sm mt-2">Gerageza kwandika ikindi</p>
+        </div>
+      ) : (
+        <div className="text-center py-16 text-gray-500 dark:text-gray-400">
+          <Loader2 className="w-16 h-16 mx-auto mb-4 animate-spin opacity-50" />
+          <p className="text-lg">Tugweeti tugalooza...</p>
+        </div>
+      )}
     </div>
   );
 }
