@@ -22,6 +22,7 @@ interface SearchProps {
   searchEndpoint?: string;
   iconPosition?: 'fixed' | 'header';
   headerIconSlot?: React.RefObject<HTMLDivElement>;
+  compact?: boolean;
 }
 
 export default function Search({
@@ -34,8 +35,10 @@ export default function Search({
   className = '',
   showResults = true,
   searchEndpoint = '/api/search',
+  = '/api/search',
   iconPosition = 'fixed',
   headerIconSlot,
+  compact = false,
 }: SearchProps) {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -373,30 +376,52 @@ export default function Search({
     </>
   );
 
-  // Render icon button in header slot if provided
-  // Icon button for header - rendered via portal when scrolled down
-  const HeaderIconButton = () => {
+  // Compact search bar for header - rendered via portal when scrolled down
+  const HeaderSearchBar = () => {
     if (!isScrolledDown || iconPosition !== 'header' || !headerIconSlot?.current) {
       return null;
     }
     return createPortal(
-      <button
-        onClick={() => setIsFloatingOpen(true)}
-        className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 hover:scale-110 active:scale-95"
-        aria-label="Open search"
-        title="Search"
-      >
-        <SearchIcon className="w-5 h-5 text-gray-700 dark:text-gray-300 transition-all duration-200" />
-      </button>,
+      <div className="relative w-full max-w-xs">
+        <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder={placeholder}
+          value={query}
+          onChange={(e) => {
+            const newValue = e.target.value;
+            if (value === undefined) {
+              setInternalQuery(newValue);
+            }
+            handleSearch(newValue);
+          }}
+          className="w-full pl-10 pr-8 py-2 text-sm bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-gray-100 placeholder-gray-400"
+        />
+        {isLoading && (
+          <div className="absolute right-3 top-1/2 -translate-y-1/2">
+            <Loader2 className="w-4 h-4 text-gray-400 animate-spin" />
+          </div>
+        )}
+        {query && !isLoading && (
+          <button
+            onClick={handleClear}
+            className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 rounded hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
+            aria-label="Clear search"
+          >
+            <X className="w-3 h-3 text-gray-400" />
+          </button>
+        )}
+      </div>,
       headerIconSlot.current
     );
   };
 
-  // Inline variant - Always visible search bar with scroll-based icon
+  // Inline variant - Always visible search bar, moves to header when scrolled
   if (variant === 'inline') {
     return (
       <>
-        <HeaderIconButton />
+        <HeaderSearchBar />
         <div className={`relative ${className}`}>
           {/* Search bar - hidden when scrolled down */}
           <div className={`relative transition-all duration-300 ease-in-out ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden transform -translate-y-2' : 'opacity-100 transform translate-y-0'}`}>
@@ -438,11 +463,11 @@ export default function Search({
     );
   }
 
-  // Sticky variant - Sticky search bar with enhanced styling and scroll-based icon
+  // Sticky variant - Sticky search bar, moves to header when scrolled
   if (variant === 'sticky') {
     return (
       <>
-        <HeaderIconButton />
+        <HeaderSearchBar />
         <div className={`relative ${className}`}>
           {/* Search bar - hidden when scrolled down */}
           <div className={`sticky top-24 z-40 mb-8 bg-white dark:bg-gray-950 transition-all duration-300 ease-in-out ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden transform -translate-y-2' : 'opacity-100 transform translate-y-0'}`}>
