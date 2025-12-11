@@ -376,8 +376,6 @@ export default function NumberLesson({ content }: NumberLessonProps) {
             <div className="flex-shrink-0 transition-all duration-300 ease-in-out" ref={headerIconRef} />
           )}
         </div>
-      </div>
-      </div>
         {content.description && content.sections.length === 0 && (
           <div className="mt-4">
             {renderContentWithTables(content.description)}
