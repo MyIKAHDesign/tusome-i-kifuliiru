@@ -96,7 +96,7 @@ export default function Header() {
           <div className="lg:hidden py-4 border-t border-gray-200 dark:border-white/10">
             <div className="flex flex-col gap-4">
               <HeaderNavigation items={navMeta} />
-              <div className="h-px bg-gray-200 dark:bg-gray-800" />
+              <div className="h-px bg-gray-200 dark:bg-white/10" />
               {/* Contact Us Button - Mobile */}
               <a
                 href="https://ibufuliiru.editorx.io/ibufuliiru/tuyandikire"

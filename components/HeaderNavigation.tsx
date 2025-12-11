@@ -199,22 +199,22 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         {isOpen && (
           <>
             {/* Indicator Arrow */}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[8px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-gray-600 z-[51]" />
-            <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-b-[7px] border-l-transparent border-r-transparent border-b-white dark:border-b-gray-950 z-[52]" />
+            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[8px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-white/20 z-[51]" />
+            <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-b-[7px] border-l-transparent border-r-transparent border-b-white dark:border-b-white/10 dark:backdrop-blur-xl z-[52]" />
             
             {/* Dropdown/Mega Menu */}
             <div className={`
-              absolute top-full mt-2 bg-white dark:bg-gray-950 rounded-lg shadow-xl border border-gray-200 dark:border-gray-800 z-50 animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden
+              absolute top-full mt-2 bg-white dark:bg-white/10 dark:backdrop-blur-xl rounded-lg shadow-xl border border-gray-200 dark:border-white/20 z-50 animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden
               ${isMegaMenu 
                 ? 'w-[400px] left-1/2 -translate-x-1/2' 
                 : 'w-40 left-1/2 -translate-x-1/2'
               }
             `}>
             {isMegaMenu ? (
-              <div className="grid grid-cols-2 divide-x divide-gray-200 dark:divide-gray-800">
+              <div className="grid grid-cols-2 divide-x divide-gray-200 dark:divide-white/10">
                 {/* Left Column */}
                 <div className="p-4">
-                  <h3 className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2 border-b border-gray-200 dark:border-gray-800 pb-2">
+                  <h3 className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2 border-b border-gray-200 dark:border-white/10 pb-2">
                     Kifuliiru
                   </h3>
                   <div className="space-y-0.5">
@@ -249,8 +249,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                             flex items-center gap-2 px-3 py-2 text-xs rounded-md transition-all
                             ${
                               isActive
-                                ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
-                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900/50 hover:text-gray-900 dark:hover:text-gray-50'
+                                ? 'bg-gray-100 dark:bg-white/10 dark:backdrop-blur-sm text-gray-900 dark:text-gray-50 font-medium'
+                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-gray-50'
                             }
                           `}
                         >
@@ -264,7 +264,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
 
                 {/* Right Column */}
                 <div className="p-4">
-                  <h3 className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2 border-b border-gray-200 dark:border-gray-800 pb-2">
+                  <h3 className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2 border-b border-gray-200 dark:border-white/10 pb-2">
                     Bingi ku Kifuliiru
                   </h3>
                   <div className="space-y-0.5">
@@ -299,8 +299,8 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                             flex items-center gap-2 px-3 py-2 text-xs rounded-md transition-all
                             ${
                               isActive
-                                ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
-                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900/50 hover:text-gray-900 dark:hover:text-gray-50'
+                                ? 'bg-gray-100 dark:bg-white/10 dark:backdrop-blur-sm text-gray-900 dark:text-gray-50 font-medium'
+                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-gray-50'
                             }
                           `}
                         >
@@ -433,11 +433,11 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         {isOpen && (
           <>
             {/* Indicator Arrow */}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[8px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-gray-600 z-[51]" />
-            <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-b-[7px] border-l-transparent border-r-transparent border-b-white dark:border-b-gray-950 z-[52]" />
+            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[8px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-white/20 z-[51]" />
+            <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-b-[7px] border-l-transparent border-r-transparent border-b-white dark:border-b-white/10 dark:backdrop-blur-xl z-[52]" />
             
             {/* Language Dropdown */}
-            <div className="absolute top-full mt-2 bg-white dark:bg-gray-950 rounded-lg shadow-xl border border-gray-200 dark:border-gray-800 z-50 animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden w-40 left-1/2 -translate-x-1/2">
+            <div className="absolute top-full mt-2 bg-white dark:bg-white/10 dark:backdrop-blur-xl rounded-lg shadow-xl border border-gray-200 dark:border-white/20 z-50 animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden w-40 left-1/2 -translate-x-1/2">
               <div className="py-2">
                 {itemEntries.map(([subKey, subItem]) => {
                   const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;

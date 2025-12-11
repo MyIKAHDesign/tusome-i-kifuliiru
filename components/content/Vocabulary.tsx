@@ -256,7 +256,7 @@ export default function Vocabulary({ content }: VocabularyProps) {
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-4 py-2 border border-gray-300 dark:border-white/20 rounded-lg bg-white dark:bg-white/10 dark:backdrop-blur-md text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-500/50 dark:focus:ring-primary-400/50"
+            className="px-4 py-2 border border-gray-300 dark:border-white/20 rounded-lg bg-white dark:bg-white/10 dark:backdrop-blur-md text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary-500/50 dark:focus:ring-primary-400/50 shadow-sm dark:shadow-white/5 transition-all"
           >
             <option value="all">All Categories</option>
             {categories.map(cat => (
