@@ -318,17 +318,30 @@ export default function TusomePage() {
     <div className="max-w-7xl mx-auto">
       {/* Header */}
       <div className="mb-8">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 rounded-xl bg-primary-600 flex items-center justify-center">
-            <BookOpen className="w-6 h-6 text-white" />
+        <div className="flex items-center justify-between gap-3 mb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-xl bg-primary-600 flex items-center justify-center">
+              <BookOpen className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-50">
+                Tusome
+              </h1>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                Bona ibintu byose byo kwiga
+              </p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-50">
-              Tusome
-            </h1>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-              Bona ibintu byose byo kwiga
-            </p>
+          {/* Search icon button in header - rendered by Search component when scrolled up */}
+          <div className="flex-shrink-0">
+            <Search
+              variant="inline"
+              placeholder="Looza hano..."
+              onSearch={handleSearch}
+              showResults={false}
+              iconPosition="header"
+              className="hidden"
+            />
           </div>
         </div>
       </div>
@@ -340,6 +353,7 @@ export default function TusomePage() {
           placeholder="Looza hano..."
           onSearch={handleSearch}
           showResults={false}
+          iconPosition="header"
         />
       </div>
 

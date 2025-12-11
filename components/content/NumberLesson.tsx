@@ -338,20 +338,36 @@ export default function NumberLesson({ content }: NumberLessonProps) {
     <div className="space-y-8">
       {/* Header */}
       <div className="border-b border-gray-200 dark:border-gray-700 pb-8 mb-10">
-        <div className="flex items-center gap-4 mb-4">
-          <div className="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0">
-            <Calculator className="w-5 h-5 text-primary-600 dark:text-primary-400" />
+        <div className="flex items-center justify-between gap-4 mb-4">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0">
+              <Calculator className="w-5 h-5 text-primary-600 dark:text-primary-400" />
+            </div>
+            <div>
+              <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
+                {content.title}
+              </h1>
+              {content.range && (
+                <p className="text-lg text-gray-600 dark:text-gray-400 mt-2">
+                  {content.range}
+                </p>
+              )}
+            </div>
           </div>
-          <div>
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
-              {content.title}
-            </h1>
-            {content.range && (
-              <p className="text-lg text-gray-600 dark:text-gray-400 mt-2">
-                {content.range}
-              </p>
-            )}
-          </div>
+          {/* Search icon button in header - rendered by Search component when scrolled up */}
+          {content.sections.length > 0 && (
+            <div className="flex-shrink-0">
+              <Search
+                variant="sticky"
+                placeholder="Looza hano... (Search by number or Kifuliiru text)"
+                value={searchTerm}
+                onSearch={handleSearch}
+                showResults={false}
+                iconPosition="header"
+                className="hidden"
+              />
+            </div>
+          )}
         </div>
         {content.description && content.sections.length === 0 && (
           <div className="mt-4">

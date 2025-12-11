@@ -19,6 +19,7 @@ interface SearchProps {
   className?: string;
   showResults?: boolean;
   searchEndpoint?: string;
+  iconPosition?: 'fixed' | 'header';
 }
 
 export default function Search({
@@ -31,6 +32,7 @@ export default function Search({
   className = '',
   showResults = true,
   searchEndpoint = '/api/search',
+  iconPosition = 'fixed',
 }: SearchProps) {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -363,21 +365,35 @@ export default function Search({
     </>
   );
 
+  // Icon button component
+  const SearchIconButton = () => (
+    <button
+      onClick={() => setIsFloatingOpen(true)}
+      className={`p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ${iconPosition === 'header' ? '' : 'fixed top-24 right-4 z-50 bg-primary-600 hover:bg-primary-700 text-white shadow-lg hover:scale-110'}`}
+      aria-label="Open search"
+      title="Search"
+    >
+      <SearchIcon className={`w-5 h-5 ${iconPosition === 'header' ? 'text-gray-700 dark:text-gray-300' : ''}`} />
+    </button>
+  );
+
   // Inline variant - Always visible search bar with scroll-based icon
   if (variant === 'inline') {
+    // If hidden class and header position, only render icon button
+    if (className.includes('hidden') && iconPosition === 'header') {
+      return (
+        <>
+          {isScrolledUp && <SearchIconButton />}
+          <FloatingSearchOverlay />
+        </>
+      );
+    }
+    
     return (
       <>
-        {/* Floating icon button when scrolled up */}
-        {isScrolledUp && (
-          <button
-            onClick={() => setIsFloatingOpen(true)}
-            className="fixed top-24 right-4 z-50 p-3 rounded-full bg-primary-600 hover:bg-primary-700 text-white shadow-lg transition-all hover:scale-110"
-            aria-label="Open search"
-            title="Search"
-          >
-            <SearchIcon className="w-5 h-5" />
-          </button>
-        )}
+        {/* Icon button when scrolled up - render inline if header position */}
+        {isScrolledUp && iconPosition === 'header' && <SearchIconButton />}
+        {isScrolledUp && iconPosition !== 'header' && <SearchIconButton />}
         
         {/* Search bar - hidden when scrolled up */}
         <div className={`relative ${className} ${isScrolledUp ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
@@ -419,19 +435,21 @@ export default function Search({
 
   // Sticky variant - Sticky search bar with enhanced styling and scroll-based icon
   if (variant === 'sticky') {
+    // If hidden class and header position, only render icon button
+    if (className.includes('hidden') && iconPosition === 'header') {
+      return (
+        <>
+          {isScrolledUp && <SearchIconButton />}
+          <FloatingSearchOverlay />
+        </>
+      );
+    }
+    
     return (
       <>
-        {/* Floating icon button when scrolled up */}
-        {isScrolledUp && (
-          <button
-            onClick={() => setIsFloatingOpen(true)}
-            className="fixed top-24 right-4 z-50 p-3 rounded-full bg-primary-600 hover:bg-primary-700 text-white shadow-lg transition-all hover:scale-110"
-            aria-label="Open search"
-            title="Search"
-          >
-            <SearchIcon className="w-5 h-5" />
-          </button>
-        )}
+        {/* Icon button when scrolled up */}
+        {isScrolledUp && iconPosition === 'header' && <SearchIconButton />}
+        {isScrolledUp && iconPosition !== 'header' && <SearchIconButton />}
         
         {/* Search bar - hidden when scrolled up */}
         <div className={`sticky top-24 z-40 mb-8 bg-white dark:bg-gray-950 ${className} ${isScrolledUp ? 'opacity-0 pointer-events-none h-0 overflow-hidden' : 'opacity-100'}`}>
