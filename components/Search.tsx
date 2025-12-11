@@ -46,13 +46,15 @@ export default function Search({
   const [isLoading, setIsLoading] = useState(false);
   const [isScrolledDown, setIsScrolledDown] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMiniatureMode, setIsMiniatureMode] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   
   // Use controlled value if provided, otherwise use internal state
   const query = value !== undefined ? value : internalQuery;
   
-  // Scroll detection for inline and sticky variants
+  // Scroll detection for inline and sticky variants with hysteresis
+  // This prevents flickering when content filtering changes page height
   useEffect(() => {
     if (variant !== 'inline' && variant !== 'sticky') return;
     
@@ -61,8 +63,26 @@ export default function Search({
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
-          // Hide search bar when scrolled down past 100px
-          setIsScrolledDown(currentScrollY > 100);
+          
+          // Hysteresis: Show miniature at 100px, but only hide when scroll < 50px
+          // This prevents flickering when content filtering reduces page height
+          if (isMiniatureMode) {
+            // Once in miniature mode, only exit when scrolled back to very top
+            if (currentScrollY < 50) {
+              setIsMiniatureMode(false);
+              setIsScrolledDown(false);
+            } else {
+              // Stay in miniature mode even if content height changes
+              setIsScrolledDown(true);
+            }
+          } else {
+            // Enter miniature mode when scrolled past threshold
+            if (currentScrollY > 100) {
+              setIsMiniatureMode(true);
+              setIsScrolledDown(true);
+            }
+          }
+          
           setLastScrollY(currentScrollY);
           ticking = false;
         });
@@ -75,7 +95,7 @@ export default function Search({
     
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [variant]);
+  }, [variant, isMiniatureMode]);
   
   const handleQueryChange = (newQuery: string) => {
     if (value === undefined) {
