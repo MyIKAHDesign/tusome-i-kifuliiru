@@ -35,21 +35,18 @@ export default function Search({
   className = '',
   showResults = true,
   searchEndpoint = '/api/search',
-  = '/api/search',
   iconPosition = 'fixed',
   headerIconSlot,
   compact = false,
 }: SearchProps) {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isFloatingOpen, setIsFloatingOpen] = useState(false);
   const [internalQuery, setInternalQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isScrolledDown, setIsScrolledDown] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const modalRef = useRef<HTMLDivElement>(null);
-  const floatingRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   
   // Use controlled value if provided, otherwise use internal state
@@ -98,9 +95,6 @@ export default function Search({
         handleQueryChange('');
         setResults([]);
       }
-      if (floatingRef.current && !floatingRef.current.contains(event.target as Node)) {
-        setIsFloatingOpen(false);
-      }
     };
 
     const handleEscape = (event: KeyboardEvent) => {
@@ -109,9 +103,6 @@ export default function Search({
           setIsModalOpen(false);
           handleQueryChange('');
           setResults([]);
-        }
-        if (isFloatingOpen) {
-          setIsFloatingOpen(false);
         }
       }
     };
@@ -127,19 +118,7 @@ export default function Search({
         document.removeEventListener('keydown', handleEscape);
       };
     }
-    
-    if (isFloatingOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('keydown', handleEscape);
-      setTimeout(() => {
-        inputRef.current?.focus();
-      }, 100);
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-        document.removeEventListener('keydown', handleEscape);
-      };
-    }
-  }, [isModalOpen, isFloatingOpen, variant]);
+  }, [isModalOpen, variant]);
 
   useEffect(() => {
     if (localResults) {
@@ -307,75 +286,6 @@ export default function Search({
     );
   }
 
-  // Floating search overlay component - positioned above content, not full screen
-  const FloatingSearchOverlay = () => (
-    <>
-      {isFloatingOpen && (
-        <div className="absolute top-full left-0 right-0 z-[60] mt-4">
-          <div
-            ref={floatingRef}
-            className="relative w-full bg-white dark:bg-gray-950 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-800 animate-in fade-in slide-in-from-top-4 duration-200"
-          >
-            <div className="flex items-center gap-3 px-4 py-4 border-b border-gray-200 dark:border-gray-800">
-              <SearchIcon className="w-5 h-5 text-gray-400 flex-shrink-0" />
-              <input
-                ref={inputRef}
-                type="text"
-                placeholder={placeholder}
-                value={query}
-                onChange={(e) => {
-                  const newValue = e.target.value;
-                  if (value === undefined) {
-                    setInternalQuery(newValue);
-                  }
-                  handleSearch(newValue);
-                }}
-                className="flex-1 bg-transparent border-0 outline-0 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400"
-              />
-              {isLoading && (
-                <Loader2 className="w-4 h-4 text-gray-600 dark:text-gray-400 animate-spin flex-shrink-0" />
-              )}
-              <button
-                onClick={() => setIsFloatingOpen(false)}
-                className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
-                aria-label="Close search"
-              >
-                <X className="w-5 h-5 text-gray-400" />
-              </button>
-            </div>
-            {showResults && query.length >= 2 && (
-              <div className="max-h-96 overflow-y-auto">
-                {isLoading ? (
-                  <div className="p-6 text-center text-sm text-gray-500 dark:text-gray-400 flex items-center justify-center gap-2">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Tugweeti tugalooza...</span>
-                  </div>
-                ) : results.length > 0 ? (
-                  <div className="py-2">
-                    {results.map((result, index) => (
-                      <button
-                        key={index}
-                        onClick={() => handleResultClick(result.path)}
-                        className="w-full flex items-center gap-3 px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors border-b border-gray-100 dark:border-gray-800 last:border-0 text-left"
-                      >
-                        <FileText className="w-4 h-4 flex-shrink-0 text-gray-400" />
-                        <span>{result.title}</span>
-                      </button>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="p-6 text-center text-sm text-gray-500 dark:text-gray-400">
-                    Ndabyo twaloonga
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-    </>
-  );
-
   // Compact search bar for header - rendered via portal when scrolled down
   const HeaderSearchBar = () => {
     if (!isScrolledDown || iconPosition !== 'header' || !headerIconSlot?.current) {
@@ -455,9 +365,6 @@ export default function Search({
               </button>
             )}
           </div>
-          
-          {/* Floating search overlay - appears above content when icon clicked */}
-          <FloatingSearchOverlay />
         </div>
       </>
     );
@@ -504,9 +411,6 @@ export default function Search({
             </div>
           </div>
           </div>
-          
-          {/* Floating search overlay - appears above content when icon clicked */}
-          <FloatingSearchOverlay />
         </div>
       </>
     );
