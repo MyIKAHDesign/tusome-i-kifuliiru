@@ -213,7 +213,11 @@ export default function Vocabulary({ content }: VocabularyProps) {
   return (
     <div className="space-y-6">
       {/* Header - Sticky when scrolled */}
-      <div className={`border-b border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out ${isScrolled ? 'sticky top-20 z-40 bg-white/95 dark:bg-gray-950/95 backdrop-blur-sm py-3 -mx-6 px-6 mb-4 shadow-sm' : 'pb-8 mb-10'}`}>
+      <div className={`border-b border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out ${
+        isScrolled 
+          ? 'sticky top-20 z-40 bg-white/95 dark:bg-gray-950/95 backdrop-blur-sm py-3 -mx-6 px-6 mb-4 shadow-sm' 
+          : 'pb-8 mb-10'
+      }`}>
         <div className={`flex items-center gap-4 transition-all duration-300 ease-in-out ${isScrolled ? 'mb-0' : 'mb-4'}`}>
           {/* Title Column */}
           <div className="flex items-center gap-4 flex-1 min-w-0">
@@ -225,7 +229,7 @@ export default function Vocabulary({ content }: VocabularyProps) {
             </h1>
           </div>
           {/* Search Column - rendered by Search component when scrolled down */}
-          <div className={`flex-shrink-0 transition-all duration-300 ease-in-out ${isScrolled ? '' : 'hidden'}`} ref={headerIconRef} />
+          <div className={`flex-shrink-0 transition-all duration-300 ease-in-out ${isScrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} ref={headerIconRef} />
         </div>
         {content.description && (
           <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-4">

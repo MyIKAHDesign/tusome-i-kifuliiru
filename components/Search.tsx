@@ -308,12 +308,23 @@ export default function Search({
 
   // Compact search bar for header - rendered via portal when scrolled down
   const HeaderSearchBar = () => {
-    if (!isScrolledDown || iconPosition !== 'header' || !headerIconSlot?.current) {
+    if (!headerIconSlot?.current) {
       return null;
     }
+    
+    // Smooth transition: fade in/out and slide in/out
+    // The transition is handled by the parent header component, so we just need to show/hide smoothly
+    const shouldShow = isScrolledDown && iconPosition === 'header';
+    
     return createPortal(
-      <div className="relative w-full min-w-[200px] max-w-md">
-        <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none z-10" />
+      <div 
+        className={`relative w-full min-w-[200px] max-w-md transition-all duration-300 ease-in-out ${
+          shouldShow 
+            ? 'opacity-100 translate-x-0' 
+            : 'opacity-0 translate-x-2 pointer-events-none'
+        }`}
+      >
+        <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none z-10 transition-opacity duration-300" />
         <input
           ref={inputRef}
           type="text"
@@ -328,21 +339,17 @@ export default function Search({
               handleSearch(newValue);
             }
           }}
-          onFocus={(e) => {
-            // Ensure smooth focus
-            e.target.select();
-          }}
-          className="w-full pl-10 pr-8 py-2 text-sm bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-gray-100 placeholder-gray-400 transition-all"
+          className="w-full pl-10 pr-8 py-2 text-sm bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-gray-100 placeholder-gray-400 transition-all duration-200"
         />
         {isLoading && (
-          <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none z-10">
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none z-10 transition-opacity duration-300">
             <Loader2 className="w-4 h-4 text-gray-400 animate-spin" />
           </div>
         )}
         {query && !isLoading && (
           <button
             onClick={handleClear}
-            className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 rounded hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors z-10"
+            className="absolute right-3 top-1/2 -translate-y-1/2 p-0.5 rounded hover:bg-gray-100 dark:hover:bg-gray-900 transition-all duration-200 z-10"
             aria-label="Clear search"
             type="button"
           >
@@ -360,8 +367,8 @@ export default function Search({
       <>
         <HeaderSearchBar />
         <div className={`relative ${className}`}>
-          {/* Search bar - hidden when scrolled down */}
-          <div className={`relative transition-all duration-300 ease-in-out ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden transform -translate-y-2' : 'opacity-100 transform translate-y-0'}`}>
+          {/* Search bar - hidden when scrolled down with smooth transition */}
+          <div className={`relative transition-all duration-300 ease-in-out ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden transform -translate-y-2 scale-95' : 'opacity-100 transform translate-y-0 scale-100'}`}>
             <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               ref={inputRef}
@@ -403,8 +410,8 @@ export default function Search({
       <>
         <HeaderSearchBar />
         <div className={`relative ${className}`}>
-          {/* Search bar - hidden when scrolled down */}
-          <div className={`sticky top-24 z-40 mb-8 bg-white dark:bg-gray-950 transition-all duration-300 ease-in-out ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden transform -translate-y-2' : 'opacity-100 transform translate-y-0'}`}>
+          {/* Search bar - hidden when scrolled down with smooth transition */}
+          <div className={`sticky top-24 z-40 mb-8 bg-white dark:bg-gray-950 transition-all duration-300 ease-in-out ${isScrolledDown ? 'opacity-0 pointer-events-none h-0 overflow-hidden transform -translate-y-2 scale-95' : 'opacity-100 transform translate-y-0 scale-100'}`}>
           <div className="w-full">
             <div className="relative flex items-center">
               <div className="absolute left-4 pointer-events-none">
