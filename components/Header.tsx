@@ -62,7 +62,7 @@ export default function Header() {
             <ThemeSwitch />
             {/* Contact Us Button */}
             <a
-              href="https://ibufuliiru.editorx.io/ibufuliiru/tuyandikire"
+              href="https://www.kifuliiru.com/contact"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors"
@@ -99,7 +99,7 @@ export default function Header() {
               <div className="h-px bg-gray-200 dark:bg-white/10" />
               {/* Contact Us Button - Mobile */}
               <a
-                href="https://ibufuliiru.editorx.io/ibufuliiru/tuyandikire"
+                href="https://www.kifuliiru.com/contact"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 px-4 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors"
