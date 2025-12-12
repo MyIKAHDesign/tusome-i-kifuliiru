@@ -123,6 +123,15 @@ const buildNavigationOrder = (meta: Record<string, MetaItem | string>): string[]
     }
   }
   
+  // Ensure ndondeero_tusome comes right after homepage (if it exists)
+  const ndondeeroIndex = order.indexOf('ndondeero_tusome');
+  if (ndondeeroIndex > 0 && order[0] === '') {
+    // Remove it from current position
+    order.splice(ndondeeroIndex, 1);
+    // Insert it right after homepage (at index 1)
+    order.splice(1, 0, 'ndondeero_tusome');
+  }
+  
   // Add standalone pages that might not be in meta but exist
   const standalonePages = ['tusome', 'ibufuliiru', 'ibufuliiru.com'];
   standalonePages.forEach(page => {
