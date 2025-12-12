@@ -1,76 +1,15 @@
+'use client';
+
 import React from 'react';
-import { getContentData } from '../../lib/json-content-loader';
-import { getContentBySlug } from '../../lib/content-loader';
-import { serialize } from 'next-mdx-remote/serialize';
-import PageContent from '../../components/PageContent';
-import SEO from '../../components/SEO';
+import ContentPage from '../../components/ContentPage';
 
-async function getPageData() {
-  const slug = 'ibufuliiru';
-  
-  let jsonContent = getContentData(slug);
-  let mdxContent = getContentBySlug(slug);
-  
-  if (jsonContent) {
-    return {
-      jsonContent,
-      slug,
-      contentType: 'json' as const,
-    };
-  }
-
-  if (mdxContent) {
-    const mdxSource = await serialize(mdxContent.content, {
-      parseFrontmatter: true,
-    });
-    return {
-      mdxSource,
-      slug,
-      contentType: 'mdx' as const,
-    };
-  }
-
-  return {
-    notFound: true,
-  };
-}
-
-export default async function IbufuliiruPage() {
-  const pageData = await getPageData();
-  
-  if ('notFound' in pageData) {
-    return (
-      <div className="text-center py-12 text-gray-500 dark:text-gray-400">
-        <p>Content not found</p>
-      </div>
-    );
-  }
-  
-  const getTitle = (): string => {
-    if ('jsonContent' in pageData && pageData.jsonContent && 'title' in pageData.jsonContent && typeof pageData.jsonContent.title === 'string') {
-      return pageData.jsonContent.title;
-    }
-    if ('mdxSource' in pageData && pageData.mdxSource?.frontmatter && typeof pageData.mdxSource.frontmatter === 'object' && 'title' in pageData.mdxSource.frontmatter) {
-      const frontmatterTitle = pageData.mdxSource.frontmatter.title;
-      if (typeof frontmatterTitle === 'string') return frontmatterTitle;
-    }
-    return 'Ibufuliiru';
-  };
-  
-  const title = getTitle();
-
+export default function IbufuliiruPage() {
   return (
-    <>
-      <SEO
-        title={`${title} - Ibufuliiru`}
-        description={`Learn about ${title} - IBufuliiru is our mother land`}
-      />
-      <PageContent
-        jsonContent={'jsonContent' in pageData ? pageData.jsonContent : undefined}
-        mdxSource={'mdxSource' in pageData ? pageData.mdxSource : undefined}
-        contentType={pageData.contentType}
-      />
-    </>
+    <ContentPage
+      slug="ibufuliiru"
+      title="Ibufuliiru - Tusome i Kifuliiru"
+      description="Learn about Ibufuliiru - Our mother land"
+    />
   );
 }
 
