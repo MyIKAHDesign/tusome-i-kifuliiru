@@ -23,22 +23,9 @@ export default function Footer() {
           {/* Divider - Only visible on mobile */}
           <div className="lg:hidden w-full h-px bg-gray-200 dark:bg-white/10" />
           
-          {/* Right Section - Theme Switch and Author */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-            {/* Theme Switch */}
-            <div className="flex items-center justify-center w-full sm:w-auto">
-              <ThemeSwitch />
-            </div>
-            
-            {/* Author Link */}
-            <a
-              href="https://ayivugwekabemba.me"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-gray-700 dark:text-gray-300 font-medium hover:text-gray-900 dark:hover:text-gray-50 transition-colors px-2 py-1.5 -mx-2 -my-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-white/10 text-center sm:text-left w-full sm:w-auto"
-            >
-              By Ayivugwe Kabemba Mukome
-            </a>
+          {/* Right Section - Theme Switch */}
+          <div className="flex items-center justify-center w-full sm:w-auto">
+            <ThemeSwitch />
           </div>
         </div>
       </div>
