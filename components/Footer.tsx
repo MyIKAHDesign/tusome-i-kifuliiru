@@ -95,6 +95,16 @@ export default function Footer() {
             href: 'https://www.kifuliiru.com',
             external: true 
           },
+          { 
+            title: 'Kifuliiru Dictionary', 
+            href: 'https://dictionary.kifuliiru.net/',
+            external: true 
+          },
+          { 
+            title: 'imyazi.com', 
+            href: 'https://imyazi.com',
+            external: true 
+          },
         ],
       },
     ];
