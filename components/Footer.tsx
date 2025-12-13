@@ -105,6 +105,21 @@ export default function Footer() {
             href: 'https://imyazi.com',
             external: true 
           },
+          { 
+            title: 'Kifuliiru Books', 
+            href: 'https://www.kifuliiru.com/books',
+            external: true 
+          },
+          { 
+            title: 'Kifuliiru Bookstore', 
+            href: 'https://www.kifuliiru.com/bookstore',
+            external: true 
+          },
+          { 
+            title: 'Kifuliiru Audio', 
+            href: 'https://www.kifuliiru.com/audio',
+            external: true 
+          },
         ],
       },
     ];
