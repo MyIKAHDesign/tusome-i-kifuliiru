@@ -181,7 +181,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         <button
           onClick={() => setOpenDropdown(isOpen ? null : key)}
           className={`
-            flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all
+            w-full lg:w-auto flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all
             ${
               pathname?.startsWith(`/${key}`)
                 ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-white/10 dark:backdrop-blur-sm'
@@ -198,20 +198,20 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
 
         {isOpen && (
           <>
-            {/* Indicator Arrow */}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[8px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-slate-700 z-[100]" />
-            <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-b-[7px] border-l-transparent border-r-transparent border-b-white dark:border-b-slate-800 z-[101]" />
+            {/* Indicator Arrow - Hidden on mobile */}
+            <div className="hidden lg:block absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[8px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-slate-700 z-[100]" />
+            <div className="hidden lg:block absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-b-[7px] border-l-transparent border-r-transparent border-b-white dark:border-b-slate-800 z-[101]" />
             
             {/* Dropdown/Mega Menu */}
             <div className={`
-              absolute top-full mt-2 bg-white dark:bg-slate-800 dark:backdrop-blur-xl rounded-lg shadow-2xl border border-gray-200 dark:border-white/20 z-[100] animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden
+              lg:absolute lg:top-full mt-2 bg-white dark:bg-slate-800 dark:backdrop-blur-xl rounded-lg shadow-2xl border border-gray-200 dark:border-white/20 z-[100] animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden
               ${isMegaMenu 
-                ? 'w-[400px] left-1/2 -translate-x-1/2' 
-                : 'w-40 left-1/2 -translate-x-1/2'
+                ? 'w-full lg:w-[400px] lg:left-1/2 lg:-translate-x-1/2' 
+                : 'w-full lg:w-40 lg:left-1/2 lg:-translate-x-1/2'
               }
             `}>
             {isMegaMenu ? (
-              <div className="grid grid-cols-2 divide-x divide-gray-200 dark:divide-white/10">
+              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:divide-x divide-y lg:divide-y-0 divide-gray-200 dark:divide-white/10">
                 {/* Left Column */}
                 <div className="p-4">
                   <h3 className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2 border-b border-gray-200 dark:border-white/10 pb-2">
@@ -419,7 +419,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         <button
           onClick={() => setOpenDropdown(isOpen ? null : key)}
           className={`
-            flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all
+            w-full lg:w-auto flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-md transition-all
             ${
               pathname?.startsWith(`/${key}`)
                 ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-white/10 dark:backdrop-blur-sm'
@@ -435,12 +435,12 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
 
         {isOpen && (
           <>
-            {/* Indicator Arrow */}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[8px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-slate-700 z-[100]" />
-            <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-b-[7px] border-l-transparent border-r-transparent border-b-white dark:border-b-slate-800 z-[101]" />
+            {/* Indicator Arrow - Hidden on mobile */}
+            <div className="hidden lg:block absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[8px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-slate-700 z-[100]" />
+            <div className="hidden lg:block absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-b-[7px] border-l-transparent border-r-transparent border-b-white dark:border-b-slate-800 z-[101]" />
             
             {/* Language Dropdown */}
-            <div className="absolute top-full mt-2 bg-white dark:bg-slate-800/95 dark:backdrop-blur-xl rounded-lg shadow-2xl border border-gray-200 dark:border-white/20 z-[100] animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden w-40 left-1/2 -translate-x-1/2">
+            <div className="lg:absolute lg:top-full mt-2 bg-white dark:bg-slate-800/95 dark:backdrop-blur-xl rounded-lg shadow-2xl border border-gray-200 dark:border-white/20 z-[100] animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden w-full lg:w-40 lg:left-1/2 lg:-translate-x-1/2">
               <div className="py-2">
                 {itemEntries.map(([subKey, subItem]) => {
                   const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
@@ -494,7 +494,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
             router.push(href);
           }}
           className={`
-            flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all
+            w-full lg:w-auto flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all
             ${
               isActive
                 ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
@@ -534,7 +534,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
           }
         }}
         className={`
-          flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all
+          w-full lg:w-auto flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all
           ${
             isActive
               ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
@@ -550,7 +550,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
   };
 
   return (
-    <nav className="flex items-center gap-2">
+    <nav className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-2">
       {Object.entries(navItems).map(([key, item]) => renderNavItem(key, item))}
     </nav>
   );
