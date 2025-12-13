@@ -39,7 +39,7 @@ export default function Home() {
           
           {/* Gwajiika Content - Hero Text */}
           <div className="text-left max-w-3xl mx-auto mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">Ndondeezo</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">Muyegerere</h2>
             
             <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
               Mu kihugo kya zene, abandu booshi bagweti bagakola kwoshi bashobwiri higulu lyo' kudeta kwo bazamuule indeto zabo. Mu bindu bihamu ibija ku ndeto ne'byangatuma indeto igasikama inamale ne' kyanya kingi halinde ihikire ibibusi ibigayija, haliri ukusome no kusomeesa iyo ndeto. Ukusomeesa kwoshi ngisi kwo kwangaba kuliri kusoma nakwo, nga ngisi kwo tumubwirwa na'bakoli komiri ukusomeesa. Umuundu ugasomesa i Kifuliiru, akwaniini atebera ayiji bingi mu ino ndeto.
