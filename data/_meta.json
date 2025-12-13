@@ -229,6 +229,11 @@
       "umwandisi": {
         "title": "Umwandisi",
         "type": "page"
+      },
+      "our-platforms": {
+        "title": "Gindi Mikolwa Yitu",
+        "type": "page",
+        "href": "/our-platforms"
       }
     }
   },
