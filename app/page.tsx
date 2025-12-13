@@ -39,7 +39,7 @@ export default function Home() {
           
           {/* Gwajiika Content - Hero Text */}
           <div className="text-left max-w-3xl mx-auto mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">Ndondeezo</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-6 text-center">Muyegerere</h2>
             
             <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
               Mu kihugo kya zene, abandu booshi bagweti bagakola kwoshi bashobwiri higulu lyo' kudeta kwo bazamuule indeto zabo. Mu bindu bihamu ibija ku ndeto ne'byangatuma indeto igasikama inamale ne' kyanya kingi halinde ihikire ibibusi ibigayija, haliri ukusome no kusomeesa iyo ndeto. Ukusomeesa kwoshi ngisi kwo kwangaba kuliri kusoma nakwo, nga ngisi kwo tumubwirwa na'bakoli komiri ukusomeesa. Umuundu ugasomesa i Kifuliiru, akwaniini atebera ayiji bingi mu ino ndeto.
@@ -66,7 +66,7 @@ export default function Home() {
               href="/tusome"
               className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-primary-600 hover:bg-primary-700 active:bg-primary-800 text-white font-medium text-sm rounded-md shadow-sm hover:shadow transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
             >
-              Start Learning
+              Gwajika Ukusoma
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
@@ -74,7 +74,7 @@ export default function Home() {
               className="inline-flex items-center justify-center gap-2 px-8 py-3 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-medium text-sm rounded-md border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 active:bg-gray-100 dark:active:bg-gray-600 shadow-sm hover:shadow transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
             >
               <Info className="w-4 h-4" />
-              About Us
+              Twehe
             </Link>
           </div>
         </div>
