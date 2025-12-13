@@ -1,66 +1,8 @@
 import React from 'react';
+import Link from 'next/link';
 import SEO from '../../components/SEO';
-import { ExternalLink } from 'lucide-react';
-
-interface Platform {
-  name: string;
-  nameKifuliiru: string;
-  url: string;
-  description: string;
-  descriptionKifuliiru: string;
-}
-
-const platforms: Platform[] = [
-  {
-    name: 'Kifuliiru Lab',
-    nameKifuliiru: 'Kifuliiru Lab',
-    url: 'https://kifuliiru.org',
-    description: 'The main platform for Kifuliiru language resources and tools.',
-    descriptionKifuliiru: 'Mukolwa mukulu wa Kifuliiru Language Platform. Iliri hano higulu lyo kubona abandu bitu na ngisi gundi yeshi uwangasima ukumenya bikingi ku ndeto yitu Kifuliiru.',
-  },
-  {
-    name: 'Kifuliiru.com',
-    nameKifuliiru: 'Kifuliiru.com',
-    url: 'https://www.kifuliiru.com',
-    description: 'The main website for Kifuliiru language learning and resources. Includes dictionary, verbs, proverbs, numbers, books, audio, and more.',
-    descriptionKifuliiru: 'Mukolwa mukulu wa Kifuliiru Language Platform. Iliri hano higulu lyo kubona abandu bitu na ngisi gundi yeshi uwangasima ukumenya bikingi ku ndeto yitu Kifuliiru. Ikugwasa tumenye bingi ku amagambo, imikolwa, imigani, ukuharura, ibitaabo, amajwi, na bindi bingi.',
-  },
-  {
-    name: 'Kifuliiru Dictionary',
-    nameKifuliiru: 'Kifuliiru Dictionary',
-    url: 'https://dictionary.kifuliiru.net/',
-    description: 'Kifuliiru Public Dictionary - Search for words in Kifuliiru and translate to English, French, and Swahili. Includes verbs, proverbs, and numbers.',
-    descriptionKifuliiru: 'Mukolwa wa amagambo ge\'Kifuliiru. Iliri hano higulu lyo kubona amagambo ge\'Kifuliiru na kuyihindura mu zindi ndeto nga English, Français, na Kiswahili. Ikugwasa tumenye bingi ku amagambo, imikolwa, imigani, na ukuharura.',
-  },
-  {
-    name: 'imyazi.com',
-    nameKifuliiru: 'imyazi.com',
-    url: 'https://imyazi.com',
-    description: 'A platform for Kifuliiru language resources and learning materials.',
-    descriptionKifuliiru: 'Mukolwa wa Kifuliiru Language Platform. Iliri hano higulu lyo kubona abandu bitu na ngisi gundi yeshi uwangasima ukumenya bikingi ku ndeto yitu Kifuliiru.',
-  },
-  {
-    name: 'Kifuliiru Books',
-    nameKifuliiru: 'Kifuliiru Books',
-    url: 'https://www.kifuliiru.com/books',
-    description: 'Your gateway to language learning. Discover the largest collection of Kifuliiru language books online. Free digital library featuring language learning materials, cultural literature, and educational resources for all levels.',
-    descriptionKifuliiru: 'Mukolwa wa ibitaabo bya Kifuliiru. Iliri hano higulu lyo kubona ibitaabo bya Kifuliiru byoshi. Ikugwasa tumenye bingi ku ibitaabo bya Kifuliiru byoshi, ibitaabo bya kuyigiriza, ibitaabo bya kumenya, na bindi bingi.',
-  },
-  {
-    name: 'Kifuliiru Bookstore',
-    nameKifuliiru: 'Kifuliiru Bookstore',
-    url: 'https://www.kifuliiru.com/bookstore',
-    description: 'Preserve culture and support creators. Discover books in Kifuliiru, English, French & Swahili. Categories include medicinal herbs, language learning, stories & folktales, cultural practices, traditional foods, and children\'s books.',
-    descriptionKifuliiru: 'Mukolwa wa ibitaabo bya Kifuliiru. Iliri hano higulu lyo kugura ibitaabo bya Kifuliiru. Ikugwasa tumenye bingi ku ibitaabo bya Kifuliiru, English, Français, na Kiswahili.',
-  },
-  {
-    name: 'Kifuliiru Audio',
-    nameKifuliiru: 'Kifuliiru Audio',
-    url: 'https://www.kifuliiru.com/audio',
-    description: 'Audio Hub - Listen to Kifuliiru stories, conversations, and cultural content. Includes numbers & counting, music & songs, stories & tales, news & radio, conversations, language lessons, and cultural content.',
-    descriptionKifuliiru: 'Mukolwa wa amajwi ge\'Kifuliiru. Iliri hano higulu lyo kumwumwa amajwi ge\'Kifuliiru. Ikugwasa tumenye bingi ku amajwi ge\'Kifuliiru, imigani, amagambo, ukuharura, na bindi bingi.',
-  },
-];
+import { ExternalLink, Info } from 'lucide-react';
+import { platforms } from '../../lib/platforms-data';
 
 export default function OurPlatformsPage() {
   return (
@@ -104,15 +46,25 @@ export default function OurPlatformsPage() {
                 {platform.description}
               </p>
               
-              <a
-                href={platform.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium transition-colors"
-              >
-                <span>Visit Platform</span>
-                <ExternalLink className="w-4 h-4" />
-              </a>
+              <div className="flex items-center gap-3 pt-4 border-t border-gray-200 dark:border-white/10">
+                <Link
+                  href={`/our-platforms/${platform.id}`}
+                  className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 hover:border-gray-400 dark:hover:border-gray-500 font-medium transition-colors"
+                >
+                  <Info className="w-4 h-4" />
+                  <span>Learn More</span>
+                </Link>
+                <span className="text-gray-300 dark:text-gray-600">|</span>
+                <a
+                  href={platform.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors"
+                >
+                  <span>Visit Platform</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
             </div>
           ))}
         </div>
