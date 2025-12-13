@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { BookOpen, Search as SearchIcon, Menu, X, Mail } from 'lucide-react';
 import Search from './Search';
 import HeaderNavigation from './HeaderNavigation';
+import MobileNavigation from './MobileNavigation';
 import ThemeSwitch from './ThemeSwitch';
 
 interface MetaItem {
@@ -95,7 +96,7 @@ export default function Header() {
         {isMobileMenuOpen && (
           <div className="lg:hidden py-4 border-t border-gray-200 dark:border-white/10">
             <div className="flex flex-col gap-4">
-              <HeaderNavigation items={navMeta} />
+              <MobileNavigation items={navMeta} />
               <div className="h-px bg-gray-200 dark:bg-white/10 my-2" />
               {/* Contact Us Button - Mobile */}
               <a
