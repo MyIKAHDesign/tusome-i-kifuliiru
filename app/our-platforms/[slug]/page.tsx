@@ -60,7 +60,7 @@ export default async function PlatformDetailPage({ params }: PageProps) {
         </div>
 
         {/* Description */}
-        <div className="mb-8 space-y-6">
+        <div className="mb-8 space-y-8">
           <div>
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-50 mb-3">
               Description
@@ -76,12 +76,12 @@ export default async function PlatformDetailPage({ params }: PageProps) {
           {/* Features */}
           {platform.features && platform.features.length > 0 && (
             <div>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-50 mb-3">
+              <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-50 mb-4">
                 Features
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-2">
+                  <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-3">
                     English
                   </h3>
                   <ul className="space-y-2">
@@ -95,7 +95,7 @@ export default async function PlatformDetailPage({ params }: PageProps) {
                 </div>
                 {platform.featuresKifuliiru && platform.featuresKifuliiru.length > 0 && (
                   <div>
-                    <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-2">
+                    <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-3">
                       Kifuliiru
                     </h3>
                     <ul className="space-y-2">
@@ -109,6 +109,103 @@ export default async function PlatformDetailPage({ params }: PageProps) {
                   </div>
                 )}
               </div>
+            </div>
+          )}
+
+          {/* Use Cases */}
+          {platform.useCases && platform.useCases.length > 0 && (
+            <div>
+              <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-50 mb-4">
+                Use Cases
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-3">
+                    English
+                  </h3>
+                  <ul className="space-y-2">
+                    {platform.useCases.map((useCase, index) => (
+                      <li key={index} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
+                        <span className="text-primary-600 dark:text-primary-400 mt-1">•</span>
+                        <span>{useCase}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {platform.useCasesKifuliiru && platform.useCasesKifuliiru.length > 0 && (
+                  <div>
+                    <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-3">
+                      Kifuliiru
+                    </h3>
+                    <ul className="space-y-2">
+                      {platform.useCasesKifuliiru.map((useCase, index) => (
+                        <li key={index} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
+                          <span className="text-primary-600 dark:text-primary-400 mt-1">•</span>
+                          <span>{useCase}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Benefits */}
+          {platform.benefits && platform.benefits.length > 0 && (
+            <div>
+              <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-50 mb-4">
+                Benefits
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-3">
+                    English
+                  </h3>
+                  <ul className="space-y-2">
+                    {platform.benefits.map((benefit, index) => (
+                      <li key={index} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
+                        <span className="text-primary-600 dark:text-primary-400 mt-1">•</span>
+                        <span>{benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {platform.benefitsKifuliiru && platform.benefitsKifuliiru.length > 0 && (
+                  <div>
+                    <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-3">
+                      Kifuliiru
+                    </h3>
+                    <ul className="space-y-2">
+                      {platform.benefitsKifuliiru.map((benefit, index) => (
+                        <li key={index} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
+                          <span className="text-primary-600 dark:text-primary-400 mt-1">•</span>
+                          <span>{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Additional Info */}
+          {(platform.additionalInfo || platform.additionalInfoKifuliiru) && (
+            <div className="bg-gray-50 dark:bg-white/5 rounded-lg p-6 border border-gray-200 dark:border-white/10">
+              <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-50 mb-4">
+                Additional Information
+              </h2>
+              {platform.additionalInfoKifuliiru && (
+                <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                  {platform.additionalInfoKifuliiru}
+                </p>
+              )}
+              {platform.additionalInfo && (
+                <p className="text-gray-600 dark:text-gray-400 italic leading-relaxed">
+                  {platform.additionalInfo}
+                </p>
+              )}
             </div>
           )}
         </div>
