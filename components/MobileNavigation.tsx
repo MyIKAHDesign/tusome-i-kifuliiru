@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { ChevronDown, ExternalLink, Home, BookOpen, Info, Languages } from 'lucide-react';
+import { ChevronDown, ExternalLink, Home, BookOpen, Info } from 'lucide-react';
 
 interface NavItem {
   title?: string;
@@ -12,43 +12,21 @@ interface NavItem {
   items?: Record<string, NavItem | string>;
 }
 
-interface HeaderNavigationProps {
+interface MobileNavigationProps {
   items: Record<string, NavItem | string>;
 }
 
-export default function HeaderNavigation({ items }: HeaderNavigationProps) {
+export default function MobileNavigation({ items }: MobileNavigationProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  
+  // Debug: Log to confirm this component is being used
+  if (typeof window !== 'undefined') {
+    console.log('MobileNavigation component is rendering');
+  }
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Node;
-      // Don't close if clicking on a link or button inside the dropdown
-      if (target instanceof Element) {
-        const isLink = target.closest('a');
-        const isButton = target.closest('button');
-        if (isLink || isButton) {
-          return; // Let the link/button handle the click
-        }
-      }
-      
-      Object.values(dropdownRefs.current).forEach((ref) => {
-        if (ref && !ref.contains(target)) {
-          setOpenDropdown(null);
-        }
-      });
-    };
-
-    if (openDropdown) {
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
-    }
-  }, [openDropdown]);
-
-  // Build the new navigation structure
+  // Build the navigation structure
   const buildNavigation = () => {
     const kifuliiruItems: Record<string, NavItem | string> = {};
     
@@ -71,7 +49,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
       }
     }
     
-    // Build Imwitu items (Ibufuliiru and others)
+    // Build Imwitu items
     const imwituItems: Record<string, NavItem | string> = {};
     if (typeof items.imwitu === 'object' && items.imwitu !== null) {
       const imwitu = items.imwitu as NavItem;
@@ -80,7 +58,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
       }
     }
     
-    // Build Twehe items (include Tuyandikire)
+    // Build Twehe items
     const tweheItems: Record<string, NavItem | string> = {};
     if (typeof items.twehe === 'object' && items.twehe !== null) {
       const twehe = items.twehe as NavItem;
@@ -88,7 +66,6 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         Object.assign(tweheItems, twehe.items);
       }
     }
-    // Add Tuyandikire to Twehe
     if (items.contact) {
       tweheItems.contact = items.contact;
     }
@@ -134,24 +111,47 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
       case 'twehe':
         return <Info className="w-4 h-4" />;
       case 'eng-frn-swa':
-        return null; // Using flags instead of icon
+        return null;
       default:
         return null;
     }
   };
 
-  const renderDropdown = (key: string, item: NavItem | string) => {
-    if (typeof item === 'string' || !item.items) return null;
+  const getLanguageFlag = (langKey: string): string => {
+    switch (langKey) {
+      case 'kiswahili':
+        return '🇹🇿';
+      case 'english':
+        return '🇬🇧';
+      case 'francais':
+        return '🇫🇷';
+      case 'tukole':
+        return '🌍';
+      default:
+        return '🌐';
+    }
+  };
+
+  const getCurrentLanguage = (): string => {
+    if (!pathname?.startsWith('/eng-frn-swa/')) {
+      return 'english';
+    }
+    const pathParts = pathname.split('/');
+    const langKey = pathParts[2];
+    return langKey || 'english';
+  };
+
+  const renderDropdown = (key: string, item: NavItem) => {
+    if (!item.items) return null;
 
     const isOpen = openDropdown === key;
     const itemEntries = Object.entries(item.items);
     const isMegaMenu = key === 'kifuliiru';
 
-    // For mega menu, split items into two columns
+    // Split items for mega menu
     const splitItems = (items: [string, NavItem | string][]) => {
       if (!isMegaMenu) return { left: items, right: [] };
       
-      // Column 1: Kifuliiru, Imigani, Imigeeza
       const leftItems: [string, NavItem | string][] = [];
       const rightItems: [string, NavItem | string][] = [];
       
@@ -171,23 +171,10 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
     const { left, right } = splitItems(itemEntries);
 
     return (
-      <div
-        key={key}
-        className="w-full lg:relative"
-        ref={(el) => {
-          dropdownRefs.current[key] = el;
-        }}
-      >
+      <div key={key} className="w-full">
         <button
           onClick={() => setOpenDropdown(isOpen ? null : key)}
-          className={`
-            w-full lg:w-auto flex items-center justify-between lg:justify-start gap-2 px-4 py-3 lg:px-3 lg:py-2 text-sm font-medium rounded-md transition-all
-            ${
-              pathname?.startsWith(`/${key}`)
-                ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-white/10 dark:backdrop-blur-sm'
-                : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-white/5'
-            }
-          `}
+          className="w-full flex items-center justify-between gap-2 px-4 py-3 text-sm font-medium rounded-md transition-all text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-white/5"
         >
           <div className="flex items-center gap-2">
             {getIcon(key)}
@@ -199,27 +186,15 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         </button>
 
         {isOpen && (
-          <>
-            {/* Indicator Arrow - Hidden on mobile */}
-            <div className="hidden lg:block absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[8px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-slate-700 z-[100]" />
-            <div className="hidden lg:block absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-b-[7px] border-l-transparent border-r-transparent border-b-white dark:border-b-slate-800 z-[101]" />
-            
-            {/* Dropdown/Mega Menu */}
-            <div className={`
-              lg:absolute lg:top-full mt-2 lg:mt-2 bg-white dark:bg-slate-800 dark:backdrop-blur-xl rounded-lg shadow-lg lg:shadow-2xl border border-gray-200 dark:border-white/20 z-[100] animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden
-              ${isMegaMenu 
-                ? 'w-full lg:w-[400px] lg:left-1/2 lg:-translate-x-1/2' 
-                : 'w-full lg:w-40 lg:left-1/2 lg:-translate-x-1/2'
-              }
-            `}>
+          <div className="mt-2 ml-4 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-white/20 overflow-hidden">
             {isMegaMenu ? (
-              <div className="flex flex-col lg:grid lg:grid-cols-2 lg:divide-x divide-y lg:divide-y-0 divide-gray-200 dark:divide-white/10">
+              <div className="flex flex-col divide-y divide-gray-200 dark:divide-white/10">
                 {/* Left Column */}
                 <div className="p-4">
                   <h3 className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2 border-b border-gray-200 dark:border-white/10 pb-2">
                     Kifuliiru
                   </h3>
-                  <div className="space-y-0.5">
+                  <div className="space-y-1">
                     {left.map(([subKey, subItem]) => {
                       const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
                       let subHref: string;
@@ -247,14 +222,11 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                               setOpenDropdown(null);
                             }
                           }}
-                          className={`
-                            w-full flex items-center gap-2 px-3 py-2 text-xs rounded-md transition-all
-                            ${
-                              isActive
-                                ? 'bg-gray-100 dark:bg-white/10 dark:backdrop-blur-sm text-gray-900 dark:text-gray-50 font-medium'
-                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-gray-50'
-                            }
-                          `}
+                          className={`w-full flex items-center gap-2 px-3 py-2 text-xs rounded-md transition-all ${
+                            isActive
+                              ? 'bg-gray-100 dark:bg-white/10 text-gray-900 dark:text-gray-50 font-medium'
+                              : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-gray-50'
+                          }`}
                         >
                           <span className="truncate">{subTitle}</span>
                           {isExternal && <ExternalLink className="w-3 h-3 opacity-50 flex-shrink-0 ml-auto" />}
@@ -265,18 +237,17 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                 </div>
 
                 {/* Right Column */}
-                <div className="p-4 lg:border-l lg:border-gray-200 lg:dark:border-white/10 border-t lg:border-t-0 border-gray-200 dark:border-white/10 pt-4 lg:pt-4">
+                <div className="p-4 border-t border-gray-200 dark:border-white/10">
                   <h3 className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-3 px-2 border-b border-gray-200 dark:border-white/10 pb-2">
                     Bingi ku Kifuliiru
                   </h3>
-                  <div className="space-y-0.5">
+                  <div className="space-y-1">
                     {right.map(([subKey, subItem]) => {
                       const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
                       let subHref: string;
                       if (typeof subItem === 'object' && subItem.href) {
                         subHref = subItem.href;
                       } else {
-                        // Items in right column are from "bingi-ku-kifuliiru" menu
                         subHref = `/bingi-ku-kifuliiru/${subKey}`;
                       }
                       const isExternal = typeof subItem === 'object' && subItem.newWindow || subHref.startsWith('http');
@@ -298,14 +269,11 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                               setOpenDropdown(null);
                             }
                           }}
-                          className={`
-                            w-full flex items-center gap-2 px-3 py-2 text-xs rounded-md transition-all
-                            ${
-                              isActive
-                                ? 'bg-gray-100 dark:bg-white/10 dark:backdrop-blur-sm text-gray-900 dark:text-gray-50 font-medium'
-                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-gray-50'
-                            }
-                          `}
+                          className={`w-full flex items-center gap-2 px-3 py-2 text-xs rounded-md transition-all ${
+                            isActive
+                              ? 'bg-gray-100 dark:bg-white/10 text-gray-900 dark:text-gray-50 font-medium'
+                              : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-gray-50'
+                          }`}
                         >
                           <span className="truncate">{subTitle}</span>
                           {isExternal && <ExternalLink className="w-3 h-3 opacity-50 flex-shrink-0 ml-auto" />}
@@ -354,14 +322,11 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                           setOpenDropdown(null);
                         }
                       }}
-                      className={`
-                        w-full flex items-center gap-2 px-4 py-2.5 text-xs rounded-md transition-all
-                        ${
-                          isActive
-                            ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
-                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900/50 hover:text-gray-900 dark:hover:text-gray-50'
-                        }
-                      `}
+                      className={`w-full flex items-center gap-2 px-4 py-2.5 text-xs rounded-md transition-all ${
+                        isActive
+                          ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
+                          : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900/50 hover:text-gray-900 dark:hover:text-gray-50'
+                      }`}
                     >
                       <span className="truncate">{subTitle}</span>
                       {isExternal && <ExternalLink className="w-3 h-3 opacity-50 flex-shrink-0 ml-auto" />}
@@ -370,36 +335,10 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
                 })}
               </div>
             )}
-            </div>
-          </>
+          </div>
         )}
       </div>
     );
-  };
-
-  // Language selector for eng-frn-swa
-  const getLanguageFlag = (langKey: string): string => {
-    switch (langKey) {
-      case 'kiswahili':
-        return '🇹🇿';
-      case 'english':
-        return '🇬🇧';
-      case 'francais':
-        return '🇫🇷';
-      case 'tukole':
-        return '🌍'; // Default icon for Tukole
-      default:
-        return '🌐';
-    }
-  };
-
-  const getCurrentLanguage = (): string => {
-    if (!pathname?.startsWith('/eng-frn-swa/')) {
-      return 'english'; // Default
-    }
-    const pathParts = pathname.split('/');
-    const langKey = pathParts[2]; // eng-frn-swa/[lang]
-    return langKey || 'english';
   };
 
   const renderLanguageSelector = (key: string, item: NavItem) => {
@@ -411,23 +350,10 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
     const itemEntries = Object.entries(item.items);
 
     return (
-      <div
-        key={key}
-        className="w-full lg:relative"
-        ref={(el) => {
-          dropdownRefs.current[key] = el;
-        }}
-      >
+      <div key={key} className="w-full">
         <button
           onClick={() => setOpenDropdown(isOpen ? null : key)}
-          className={`
-            w-full lg:w-auto flex items-center justify-between lg:justify-start gap-2 px-4 py-3 lg:px-3 lg:py-2 text-sm font-medium rounded-md transition-all
-            ${
-              pathname?.startsWith(`/${key}`)
-                ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-white/10 dark:backdrop-blur-sm'
-                : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-white/5'
-            }
-          `}
+          className="w-full flex items-center justify-between gap-2 px-4 py-3 text-sm font-medium rounded-md transition-all text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-white/5"
         >
           <span className="text-lg">{currentFlag}</span>
           <ChevronDown
@@ -436,47 +362,37 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         </button>
 
         {isOpen && (
-          <>
-            {/* Indicator Arrow - Hidden on mobile */}
-            <div className="hidden lg:block absolute top-full left-1/2 -translate-x-1/2 -mt-0.5 w-0 h-0 border-l-[8px] border-r-[8px] border-b-[8px] border-l-transparent border-r-transparent border-b-gray-300 dark:border-b-slate-700 z-[100]" />
-            <div className="hidden lg:block absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[7px] border-r-[7px] border-b-[7px] border-l-transparent border-r-transparent border-b-white dark:border-b-slate-800 z-[101]" />
-            
-            {/* Language Dropdown */}
-            <div className="lg:absolute lg:top-full mt-2 bg-white dark:bg-slate-800/95 dark:backdrop-blur-xl rounded-lg shadow-lg lg:shadow-2xl border border-gray-200 dark:border-white/20 z-[100] animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden w-full lg:w-40 lg:left-1/2 lg:-translate-x-1/2">
-              <div className="py-2 space-y-1">
-                {itemEntries.map(([subKey, subItem]) => {
-                  const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
-                  const subHref = `/eng-frn-swa/${subKey}`;
-                  const isActive = pathname === subHref || pathname?.startsWith(`${subHref}/`);
-                  const flag = getLanguageFlag(subKey);
+          <div className="mt-2 ml-4 bg-white dark:bg-slate-800/95 rounded-lg border border-gray-200 dark:border-white/20 overflow-hidden">
+            <div className="py-2 space-y-1">
+              {itemEntries.map(([subKey, subItem]) => {
+                const subTitle = typeof subItem === 'string' ? subItem : subItem.title || subKey;
+                const subHref = `/eng-frn-swa/${subKey}`;
+                const isActive = pathname === subHref || pathname?.startsWith(`${subHref}/`);
+                const flag = getLanguageFlag(subKey);
 
-                  return (
-                    <a
-                      key={subKey}
-                      href={subHref}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        setOpenDropdown(null);
-                        router.push(subHref);
-                      }}
-                      className={`
-                        w-full flex items-center gap-3 px-4 py-2.5 text-xs rounded-md transition-all
-                        ${
-                          isActive
-                            ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
-                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900/50 hover:text-gray-900 dark:hover:text-gray-50'
-                        }
-                      `}
-                    >
-                      <span className="text-base">{flag}</span>
-                      <span className="truncate">{subTitle}</span>
-                    </a>
-                  );
-                })}
-              </div>
+                return (
+                  <a
+                    key={subKey}
+                    href={subHref}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      setOpenDropdown(null);
+                      router.push(subHref);
+                    }}
+                    className={`w-full flex items-center gap-3 px-4 py-2.5 text-xs rounded-md transition-all ${
+                      isActive
+                        ? 'bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50 font-medium'
+                        : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900/50 hover:text-gray-900 dark:hover:text-gray-50'
+                    }`}
+                  >
+                    <span className="text-base">{flag}</span>
+                    <span className="truncate">{subTitle}</span>
+                  </a>
+                );
+              })}
             </div>
-          </>
+          </div>
         )}
       </div>
     );
@@ -495,14 +411,11 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
             e.preventDefault();
             router.push(href);
           }}
-          className={`
-            w-full lg:w-auto flex items-center gap-2 px-4 py-3 lg:py-2 text-sm font-medium rounded-lg transition-all
-            ${
-              isActive
-                ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
-                : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900'
-            }
-          `}
+          className={`w-full flex items-center gap-2 px-4 py-3 text-sm font-medium rounded-lg transition-all ${
+            isActive
+              ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
+              : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900'
+          }`}
         >
           {getIcon(key)}
           <span>{item}</span>
@@ -535,14 +448,11 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
             router.push(href);
           }
         }}
-        className={`
-          w-full lg:w-auto flex items-center gap-2 px-4 py-3 lg:py-2 text-sm font-medium rounded-lg transition-all
-          ${
-            isActive
-              ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
-              : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900'
-          }
-        `}
+        className={`w-full flex items-center gap-2 px-4 py-3 text-sm font-medium rounded-lg transition-all ${
+          isActive
+            ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
+            : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-900'
+        }`}
       >
         {getIcon(key)}
         <span>{item.title}</span>
@@ -552,12 +462,14 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
   };
 
   return (
-    <nav className="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-2 w-full lg:w-auto">
-      {Object.entries(navItems).map(([key, item]) => (
-        <div key={key} className="w-full block lg:w-auto lg:inline-block">
-          {renderNavItem(key, item)}
-        </div>
-      ))}
-    </nav>
+    <div className="w-full">
+      <nav className="flex flex-col gap-3 w-full" style={{ display: 'flex', flexDirection: 'column', flexWrap: 'nowrap' }}>
+        {Object.entries(navItems).map(([key, item]) => (
+          <div key={key} className="w-full block" style={{ width: '100%', display: 'block', flexShrink: 0 }}>
+            {renderNavItem(key, item)}
+          </div>
+        ))}
+      </nav>
+    </div>
   );
 }

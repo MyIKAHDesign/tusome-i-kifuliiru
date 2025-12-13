@@ -3,296 +3,244 @@
 import React, { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { getAllContentSlugs } from '../lib/content-loader';
 
 interface PageNavigationProps {
   currentSlug?: string;
 }
 
-// Define the navigation order based on _meta.json structure
-const getNavigationOrder = (): string[] => {
+interface MetaItem {
+  title?: string;
+  type?: 'page' | 'menu';
+  href?: string;
+  newWindow?: boolean;
+  items?: Record<string, MetaItem | string>;
+}
+
+// Build navigation order dynamically from meta data structure
+const buildNavigationOrder = (meta: Record<string, MetaItem | string>): string[] => {
   const order: string[] = [];
+  const seenSlugs = new Set<string>();
   
-  // 1. Muyegerere (homepage)
-  order.push('');
+  // Helper to extract slug from href or key
+  const getSlugFromHref = (href: string | undefined, key: string, parentKey: string = ''): string => {
+    if (href) {
+      // Remove leading slash and trailing slash
+      const slug = href.replace(/^\//, '').replace(/\/$/, '');
+      return slug;
+    }
+    
+    // Construct slug based on parent and key
+    if (key === 'index' || key === 'muyegerere') {
+      return '';
+    }
+    
+    if (parentKey) {
+      // Handle nested paths
+      if (parentKey === 'ukuharura') {
+        return `ukuharura/${key}`;
+      } else if (parentKey === 'amagambo') {
+        return `amagambo/${key}`;
+      } else if (parentKey === 'imwitu') {
+        return `imwitu/${key}`;
+      } else if (parentKey === 'bingi-ku-kifuliiru') {
+        return `bingi-ku-kifuliiru/${key}`;
+      } else if (parentKey === 'twehe') {
+        return `twehe/${key}`;
+      } else if (parentKey === 'eng-frn-swa') {
+        return `eng-frn-swa/${key}`;
+      } else if (parentKey === 'kuharura-ibiindu') {
+        // Special handling for kuharura-ibiindu section
+        if (key === 'harura') {
+          return 'harura';
+        }
+        return `ukuharura/${key}`;
+      }
+      return `${parentKey}/${key}`;
+    }
+    
+    return key;
+  };
   
-  // 2. Ndondeero Tusome (Menya bino)
-  order.push('ndondeero_tusome');
+  // Helper to recursively flatten meta structure
+  const flattenMeta = (items: Record<string, MetaItem | string>, parentKey: string = ''): void => {
+    Object.entries(items).forEach(([key, item]) => {
+      // Skip external links
+      if (typeof item === 'object' && item.newWindow) {
+        return;
+      }
+      
+      if (typeof item === 'string') {
+        // Simple string entry - construct slug
+        const slug = getSlugFromHref(undefined, key, parentKey);
+        if (slug !== undefined && !seenSlugs.has(slug)) {
+          seenSlugs.add(slug);
+          order.push(slug);
+        }
+      } else {
+        // Object entry
+        const { type, href, items: subItems } = item;
+        
+        // Get slug for this item
+        const itemSlug = getSlugFromHref(href, key, parentKey);
+        
+        // Add page to order if it's a page type and not already added
+        if (type === 'page' && itemSlug !== undefined && !seenSlugs.has(itemSlug)) {
+          seenSlugs.add(itemSlug);
+          order.push(itemSlug);
+        }
+        
+        // Recursively process sub-items
+        if (subItems) {
+          // Determine parent key for nested items
+          let nextParentKey = parentKey;
+          if (type === 'menu') {
+            nextParentKey = key;
+          }
+          flattenMeta(subItems, nextParentKey);
+        } else if (type === 'page' && !href && !seenSlugs.has(key)) {
+          // Top-level page without href - use key as slug
+          const slug = key === 'muyegerere' ? '' : key;
+          if (!seenSlugs.has(slug)) {
+            seenSlugs.add(slug);
+            order.push(slug);
+          }
+        }
+      }
+    });
+  };
   
-  // 3. Ukuharura - Numbers section
-  order.push('ukuharura/ndondeero');
-  order.push('ukuharura/zero-ku-ikumi');
-  order.push('ukuharura/ikumi-ku-igana');
-  order.push('ukuharura/igana-ku-kihumbi');
-  order.push('ukuharura/igana');
-  order.push('ukuharura/magana-gabiri');
-  order.push('ukuharura/magana-gashatu');
-  order.push('ukuharura/magana-gana');
-  order.push('ukuharura/magana-gatanu');
-  order.push('ukuharura/magana-galindatu');
-  order.push('ukuharura/magana-galinda');
-  order.push('ukuharura/magana-galimunaana');
-  order.push('ukuharura/magana-galimweenda');
-  order.push('ukuharura/kihumbi-no-kuzamuuka');
-  order.push('ukuharura/kihumbi');
-  order.push('ukuharura/bihumbi-bibiri');
-  order.push('ukuharura/bihumbi-bishatu');
-  order.push('ukuharura/bihumbi-bina');
-  order.push('ukuharura/bihumbi-bitanu');
-  order.push('ukuharura/bihumbi-ndatu');
-  order.push('ukuharura/bihumbi-birinda');
-  order.push('ukuharura/bihumbi-munaana');
-  order.push('ukuharura/bihumbi-mweenda');
-  order.push('ukuharura/bihumbi-ikumi');
-  order.push('ukuharura/bihumbi-ikumi-na-kiguma');
-  order.push('ukuharura/bihumbi-ikumi-na-bibiri');
-  order.push('ukuharura/bihumbi-ikumi-na-bishatu');
-  order.push('ukuharura/bihumbi-ikumi-na-bina');
-  order.push('ukuharura/bihumbi-ikumi-na-bitanu');
-  order.push('ukuharura/bihumbi-ikumi-na-ndatu');
-  order.push('ukuharura/bihumbi-ikumi-na-biriinda');
-  order.push('ukuharura/bihumbi-ikumi-na-munaana');
-  order.push('ukuharura/bihumbi-ikumi-na-mweenda');
-  order.push('ukuharura/bihumbi-makumi-gabiri');
-  order.push('ukuharura/bihumbi-makumi-gabiri-na-kiguma');
-  order.push('ukuharura/bihumbi-makumi-gabiri-na-bibiri');
-  order.push('ukuharura/bihumbi-makumi-gabiri-na-bishatu');
-  order.push('ukuharura/bihumbi-makumi-gabiri-na-bina');
-  order.push('ukuharura/bihumbi-makumi-gabiri-na-bitanu');
-  order.push('ukuharura/bihumbi-makumi-gabiri-na-ndatu');
-  order.push('ukuharura/bihumbi-makumi-gabiri-na-birinda');
-  order.push('ukuharura/bihumbi-makumi-gabiri-na-munaana');
-  order.push('ukuharura/bihumbi-makumi-gabiri-na-mweenda');
-  order.push('ukuharura/bihumbi-makumi-gashatu');
-  order.push('ukuharura/bihumbi-makumi-gana');
-  order.push('ukuharura/bihumbi-makumi-gatanu');
-  order.push('ukuharura/bihumbi-makumi-galindatu');
-  order.push('ukuharura/bihumbi-makumi-galiinda');
-  order.push('ukuharura/bihumbi-makumi-galimunaana');
-  order.push('ukuharura/bihumbi-makumi-galimweenda');
-  order.push('ukuharura/bihumbi-igana');
-  order.push('ukuharura/bihumbi-magana-gabiri');
-  order.push('ukuharura/bihumbi-magana-gashatu');
-  order.push('ukuharura/bihumbi-magana-gana');
-  order.push('ukuharura/bihumbi-magana-gatanu');
-  order.push('ukuharura/bihumbi-magana-galindatu');
-  order.push('ukuharura/bihumbi-magana-galiinda');
-  order.push('ukuharura/bihumbi-magana-galimunaana');
-  order.push('ukuharura/bihumbi-magana-galimweenda');
-  order.push('ukuharura/umulyoni');
-  order.push('ukuharura/umulyari');
-  order.push('ukuharura/umulyari-muguma');
+  // Process all meta items
+  flattenMeta(meta);
   
-  // 4. Kuharura Ibiindu section
-  order.push('harura');
-  order.push('ukuharura/ibindu');
-  order.push('ukuharura/abandu');
-  order.push('ukuharura/binamishwa');
-  order.push('ukuharura/bihumbi-bingi');
+  // Ensure homepage is first
+  if (order[0] !== '') {
+    const homeIndex = order.indexOf('');
+    if (homeIndex > 0) {
+      order.splice(homeIndex, 1);
+      order.unshift('');
+    } else if (homeIndex === -1) {
+      order.unshift('');
+    }
+  }
   
-  // 5. Amagambo section
-  order.push('amagambo/ndondeero-amagambo');
-  order.push('amagambo/ulufwabe');
-  order.push('amagambo/herufi');
-  order.push('amagambo/amagambo');
-  order.push('amagambo/buniini-bwingi');
-  order.push('amagambo/abaana');
+  // Ensure ndondeero_tusome comes right after homepage (if it exists)
+  const ndondeeroIndex = order.indexOf('ndondeero_tusome');
+  if (ndondeeroIndex > 0 && order[0] === '') {
+    // Remove it from current position
+    order.splice(ndondeeroIndex, 1);
+    // Insert it right after homepage (at index 1)
+    order.splice(1, 0, 'ndondeero_tusome');
+  }
   
-  // 6. Kifuliiru
-  order.push('kifuliiru');
-  
-  // 7. Imigani
-  order.push('imigani');
-  
-  // 8. Imigeeza
-  order.push('imigeeza');
-  
-  // 9. Imwitu section
-  order.push('imwitu/ibufuliiru');
-  order.push('imwitu/imigazi');
-  order.push('imwitu/inyiji');
-  order.push('imwitu/utwaya');
-  
-  // 10. Bingi ku Kifuliiru section
-  order.push('bingi-ku-kifuliiru/amagambo');
-  order.push('bingi-ku-kifuliiru/bitaabo-bya-bafuliiru');
-  order.push('bingi-ku-kifuliiru/imikolwa');
-  order.push('bingi-ku-kifuliiru/invumo');
-  order.push('bingi-ku-kifuliiru/ibinamishwa-mu-kifuliiru');
-  order.push('bingi-ku-kifuliiru/ibufuliiru.com');
-  order.push('bingi-ku-kifuliiru/tuganule-i-kifuliiru');
-  order.push('bingi-ku-kifuliiru/ibiyandike-mu-kifuliiru');
-  
-  // 11. Twehe section
-  order.push('twehe/twehe');
-  order.push('twehe/umwandisi');
-  
-  // 12. ENG/SWA/FRN section
-  order.push('eng-frn-swa/kiswahili');
-  order.push('eng-frn-swa/english');
-  order.push('eng-frn-swa/francais');
-  order.push('eng-frn-swa/tukole');
+  // Add standalone pages that might not be in meta but exist
+  const standalonePages = ['tusome', 'ibufuliiru', 'ibufuliiru.com'];
+  standalonePages.forEach(page => {
+    if (!seenSlugs.has(page)) {
+      seenSlugs.add(page);
+      order.push(page);
+    }
+  });
   
   return order;
 };
 
-const getPageTitle = (slug: string): string => {
+// Get page title from meta data or fallback to slug
+const getPageTitle = (slug: string, meta: Record<string, MetaItem | string>): string => {
   if (slug === '') return 'Muyegerere';
-  if (slug === 'ndondeero_tusome') return 'Menya bino';
-  if (slug === 'kifuliiru') return 'Kifuliiru';
-  if (slug === 'imigani') return 'Imigani';
-  if (slug === 'imigeeza') return 'Imigeeza';
-  if (slug === 'harura') return 'Kuharura';
   
-  // Ukuharura pages
-  if (slug.startsWith('ukuharura/')) {
-    const lastPart = slug.split('/')[1];
-    const titleMap: Record<string, string> = {
-      'ndondeero': 'Ndondero',
-      'zero-ku-ikumi': 'Ubusha kuhisa ku ikumi',
-      'ikumi-ku-igana': 'Ikumi ukuhisa ku igana',
-      'igana-ku-kihumbi': 'Igana kuhisa ku kihumbi',
-      'igana': 'Igana',
-      'magana-gabiri': 'Magana gabiri',
-      'magana-gashatu': 'Magana gashatu',
-      'magana-gana': 'Magana gana',
-      'magana-gatanu': 'Magana gatanu',
-      'magana-galindatu': 'Magana galidatu',
-      'magana-galinda': 'Magana galiinda',
-      'magana-galimunaana': 'Magana galimunaana',
-      'magana-galimweenda': 'Magana galimweenda',
-      'kihumbi-no-kuzamuuka': 'Ikihumbi no kuzamuuka',
-      'kihumbi': 'Kihumbi',
-      'bihumbi-bibiri': 'Bihumbi bibiri',
-      'bihumbi-bishatu': 'Bihumbi bishatu',
-      'bihumbi-bina': 'Bihumbi bina',
-      'bihumbi-bitanu': 'Bihumbi bitanu',
-      'bihumbi-ndatu': 'Bihumbi ndatu',
-      'bihumbi-birinda': 'Bihumbi birinda',
-      'bihumbi-munaana': 'Bihumbi munaana',
-      'bihumbi-mweenda': 'Bihumbi mweenda',
-      'bihumbi-ikumi': 'Bihumbi ikumi',
-      'bihumbi-ikumi-na-kiguma': 'Bihumbi ikumi na kiguma',
-      'bihumbi-ikumi-na-bibiri': 'Bihumbi ikumi na bibiri',
-      'bihumbi-ikumi-na-bishatu': 'Bihumbi ikumi na bishatu',
-      'bihumbi-ikumi-na-bina': 'Bihumbi ikumi na bina',
-      'bihumbi-ikumi-na-bitanu': 'Bihumbi ikumi na bitanu',
-      'bihumbi-ikumi-na-ndatu': 'Bihumbi ikumi na ndatu',
-      'bihumbi-ikumi-na-biriinda': 'Bihumbi ikumi na biriinda',
-      'bihumbi-ikumi-na-munaana': 'Bihumbi ikumi na munaana',
-      'bihumbi-ikumi-na-mweenda': 'Bihumbi ikumi na mweenda',
-      'bihumbi-makumi-gabiri': 'Bihumbi makumi gabiri',
-      'bihumbi-makumi-gabiri-na-kiguma': 'Bihumbi makumi gabiri na kiguma',
-      'bihumbi-makumi-gabiri-na-bibiri': 'Bihumbi makumi gabiri na bibiri',
-      'bihumbi-makumi-gabiri-na-bishatu': 'Bihumbi makumi gabiri na bishatu',
-      'bihumbi-makumi-gabiri-na-bina': 'Bihumbi makumi gabiri na bina',
-      'bihumbi-makumi-gabiri-na-bitanu': 'Bihumbi makumi gabiri na bitanu',
-      'bihumbi-makumi-gabiri-na-ndatu': 'Bihumbi makumi gabiri na ndatu',
-      'bihumbi-makumi-gabiri-na-birinda': 'Bihumbi makumi gabiri na biriinda',
-      'bihumbi-makumi-gabiri-na-munaana': 'Bihumbi makumi gabiri na munaana',
-      'bihumbi-makumi-gabiri-na-mweenda': 'Bihumbi makumi gabiri na mweenda',
-      'bihumbi-makumi-gashatu': 'Bihumbi makumi gashatu',
-      'bihumbi-makumi-gana': 'Bihumbi makumi gana',
-      'bihumbi-makumi-gatanu': 'Bihumbi makumi gatanu',
-      'bihumbi-makumi-galindatu': 'Bihumbi makumi galindatu',
-      'bihumbi-makumi-galiinda': 'Bihumbi makumi galiinda',
-      'bihumbi-makumi-galimunaana': 'Bihumbi makumi galimunaana',
-      'bihumbi-makumi-galimweenda': 'Bihumbi makumi galimweenda',
-      'bihumbi-igana': 'Bihumbi igana',
-      'bihumbi-magana-gabiri': 'Bihumbi magana gabiri',
-      'bihumbi-magana-gashatu': 'Bihumbi magana gashatu',
-      'bihumbi-magana-gana': 'Bihumbi magana gana',
-      'bihumbi-magana-gatanu': 'Bihumbi magana gatanu',
-      'bihumbi-magana-galindatu': 'Bihumbi magana galindatu',
-      'bihumbi-magana-galiinda': 'Bihumbi magana galiinda',
-      'bihumbi-magana-galimunaana': 'Bihumbi magana galimunaana',
-      'bihumbi-magana-galimweenda': 'Bihumbi magana galimweenda',
-      'umulyoni': 'Umulyoni',
-      'umulyari': 'Umulyari',
-      'umulyari-muguma': 'Umulyari muguma',
-      'bihumbi-bingi': 'Bihumbi bingi',
-      'abandu': 'Abaandu',
-      'ibindu': 'Ibindu',
-      'binamishwa': 'Ibinamishwa',
-    };
-    return titleMap[lastPart] || lastPart.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  // Helper to extract slug from href or key (same logic as buildNavigationOrder)
+  const getSlugFromItem = (href: string | undefined, key: string, parentKey: string = ''): string => {
+    if (href) {
+      return href.replace(/^\//, '').replace(/\/$/, '');
+    }
+    if (key === 'index' || key === 'muyegerere') {
+      return '';
+    }
+    if (parentKey) {
+      if (parentKey === 'ukuharura' || parentKey === 'amagambo' || parentKey === 'imwitu' || 
+          parentKey === 'bingi-ku-kifuliiru' || parentKey === 'twehe' || parentKey === 'eng-frn-swa') {
+        return `${parentKey}/${key}`;
+      } else if (parentKey === 'kuharura-ibiindu') {
+        if (key === 'harura') {
+          return 'harura';
+        }
+        return `ukuharura/${key}`;
+      }
+      return `${parentKey}/${key}`;
+    }
+    return key;
+  };
+  
+  // Helper to find title in meta structure
+  const findTitleInMeta = (items: Record<string, MetaItem | string>, targetSlug: string, parentKey: string = ''): string | null => {
+    for (const [key, item] of Object.entries(items)) {
+      if (typeof item === 'string') {
+        const itemSlug = getSlugFromItem(undefined, key, parentKey);
+        if (itemSlug === targetSlug) {
+          return item;
+        }
+      } else {
+        const { title, href, items: subItems } = item;
+        const itemSlug = getSlugFromItem(href, key, parentKey);
+        
+        if (itemSlug === targetSlug) {
+          return title || key;
+        }
+        
+        if (subItems) {
+          const nextParentKey = item.type === 'menu' ? key : parentKey;
+          const found = findTitleInMeta(subItems, targetSlug, nextParentKey);
+          if (found) return found;
+        } else if (item.type === 'page' && !href) {
+          // Top-level page
+          const itemSlug = key === 'muyegerere' ? '' : key;
+          if (itemSlug === targetSlug) {
+            return title || key;
+          }
+        }
+      }
+    }
+    return null;
+  };
+  
+  const title = findTitleInMeta(meta, slug);
+  if (title) return title;
+  
+  // Fallback: format slug as title
+  if (slug.includes('/')) {
+    const lastPart = slug.split('/').pop() || slug;
+    return lastPart.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   }
   
-  // Amagambo pages
-  if (slug.startsWith('amagambo/')) {
-    const lastPart = slug.split('/')[1];
-    const titleMap: Record<string, string> = {
-      'ndondeero-amagambo': 'Menya bino',
-      'ulufwabe': 'Ulufwabe lwe\'Kifuliiru',
-      'herufi': 'Herufi ze\'Kifuliiru',
-      'amagambo': 'Amagambo',
-      'buniini-bwingi': 'Ubuniini no\'bwingi',
-      'abaana': 'Abaana',
-    };
-    return titleMap[lastPart] || lastPart.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-  }
-  
-  // Imwitu pages
-  if (slug.startsWith('imwitu/')) {
-    const lastPart = slug.split('/')[1];
-    const titleMap: Record<string, string> = {
-      'ibufuliiru': 'Ibufuliiru',
-      'imigazi': 'Imigazi',
-      'inyiji': 'Inyiji',
-      'utwaya': 'Utwaya',
-    };
-    return titleMap[lastPart] || lastPart.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-  }
-  
-  // Bingi ku Kifuliiru pages
-  if (slug.startsWith('bingi-ku-kifuliiru/')) {
-    const lastPart = slug.split('/')[1];
-    const titleMap: Record<string, string> = {
-      'amagambo': 'Amagambo ge\'Kifuliiru',
-      'bitaabo-bya-bafuliiru': 'Ibitaabo bya\'Bafuliiru',
-      'imikolwa': 'Imikolwa',
-      'invumo': 'Ukufuma mu Kifuliiru',
-      'ibinamishwa-mu-kifuliiru': 'Ibinamishwa mu Kifuliiru',
-      'ibufuliiru.com': 'Ibufuliiru.com',
-      'tuganule-i-kifuliiru': 'Tuganuule i Kifuliiru',
-      'ibiyandike-mu-kifuliiru': 'Ibiyandike mu Kifuliiru',
-    };
-    return titleMap[lastPart] || lastPart.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-  }
-  
-  // Twehe pages
-  if (slug.startsWith('twehe/')) {
-    const lastPart = slug.split('/')[1];
-    const titleMap: Record<string, string> = {
-      'twehe': 'Guno mukolwa',
-      'umwandisi': 'Umwandisi',
-    };
-    return titleMap[lastPart] || lastPart.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-  }
-  
-  // ENG/SWA/FRN pages
-  if (slug.startsWith('eng-frn-swa/')) {
-    const lastPart = slug.split('/')[1];
-    const titleMap: Record<string, string> = {
-      'kiswahili': 'Kiswahili',
-      'english': 'English',
-      'francais': 'Français',
-      'tukole': 'Tukole',
-    };
-    return titleMap[lastPart] || lastPart.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-  }
-  
-  return slug;
+  return slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 };
 
 export default function PageNavigation({ currentSlug }: PageNavigationProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
-  const navigationOrder = getNavigationOrder();
+  const [meta, setMeta] = useState<Record<string, MetaItem | string>>({});
+  const [navigationOrder, setNavigationOrder] = useState<string[]>([]);
   
   useEffect(() => {
     setMounted(true);
+    
+    // Fetch meta data to build navigation order
+    const loadMeta = async () => {
+      try {
+        const response = await fetch('/api/meta');
+        if (response.ok) {
+          const metaData = await response.json();
+          setMeta(metaData);
+          const order = buildNavigationOrder(metaData);
+          setNavigationOrder(order);
+        }
+      } catch (error) {
+        console.error('Error loading meta for navigation:', error);
+      }
+    };
+    
+    loadMeta();
   }, []);
   
   // Get current slug from pathname if not provided
@@ -302,13 +250,18 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
   // Normalize current slug (handle both 'index' and '' for homepage)
   const normalizedSlug = slug === 'index' ? '' : slug;
   
-  const currentIndex = navigationOrder.findIndex(slug => slug === normalizedSlug);
+  const currentIndex = navigationOrder.findIndex(s => s === normalizedSlug);
   
   const prevSlug = currentIndex > 0 ? navigationOrder[currentIndex - 1] : null;
   const nextSlug = currentIndex < navigationOrder.length - 1 ? navigationOrder[currentIndex + 1] : null;
   
-  // Don't render until mounted to avoid hydration mismatch
-  if (!mounted) {
+  // Don't render until mounted and meta is loaded
+  if (!mounted || navigationOrder.length === 0) {
+    return null;
+  }
+  
+  // Don't render if current page is not in navigation order (e.g., 404 pages)
+  if (currentIndex === -1) {
     return null;
   }
   
@@ -333,12 +286,12 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
               router.push(getHref(prevSlug));
             }}
             className="group flex items-center gap-2 px-4 py-3 text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 rounded-lg bg-white dark:bg-white/10 dark:backdrop-blur-xl shadow-lg border border-gray-200 dark:border-white/20 hover:border-gray-300 dark:hover:border-white/30 transition-all hover:shadow-xl"
-            title={getPageTitle(prevSlug)}
+            title={getPageTitle(prevSlug, meta)}
           >
             <ChevronLeft className="w-4 h-4 flex-shrink-0 group-hover:-translate-x-0.5 transition-transform text-gray-500 dark:text-gray-400" />
             <div className="flex flex-col min-w-0">
               <span className="text-[10px] text-gray-500 dark:text-gray-400 uppercase tracking-wide">Previous</span>
-              <span className="truncate max-w-[100px] text-sm font-medium">{getPageTitle(prevSlug)}</span>
+              <span className="truncate max-w-[100px] text-sm font-medium">{getPageTitle(prevSlug, meta)}</span>
             </div>
           </a>
         </div>
@@ -354,11 +307,11 @@ export default function PageNavigation({ currentSlug }: PageNavigationProps) {
               router.push(getHref(nextSlug));
             }}
             className="group flex items-center gap-2 px-4 py-3 text-xs font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-50 rounded-lg bg-white dark:bg-white/10 dark:backdrop-blur-xl shadow-lg border border-gray-200 dark:border-white/20 hover:border-gray-300 dark:hover:border-white/30 transition-all hover:shadow-xl"
-            title={getPageTitle(nextSlug)}
+            title={getPageTitle(nextSlug, meta)}
           >
             <div className="flex flex-col min-w-0 text-right">
               <span className="text-[10px] text-gray-500 dark:text-gray-400 uppercase tracking-wide">Next</span>
-              <span className="truncate max-w-[100px] text-sm font-medium">{getPageTitle(nextSlug)}</span>
+              <span className="truncate max-w-[100px] text-sm font-medium">{getPageTitle(nextSlug, meta)}</span>
             </div>
             <ChevronRight className="w-4 h-4 flex-shrink-0 group-hover:translate-x-0.5 transition-transform text-gray-500 dark:text-gray-400" />
           </a>
