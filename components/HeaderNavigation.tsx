@@ -181,7 +181,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         <button
           onClick={() => setOpenDropdown(isOpen ? null : key)}
           className={`
-            w-full lg:w-auto flex items-center justify-between lg:justify-start gap-2 px-3 py-2.5 lg:py-2 text-sm font-medium rounded-md transition-all
+            w-full lg:w-auto flex items-center justify-between lg:justify-start gap-2 px-4 py-3 lg:px-3 lg:py-2 text-sm font-medium rounded-md transition-all
             ${
               pathname?.startsWith(`/${key}`)
                 ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-white/10 dark:backdrop-blur-sm'
@@ -421,7 +421,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
         <button
           onClick={() => setOpenDropdown(isOpen ? null : key)}
           className={`
-            w-full lg:w-auto flex items-center justify-between lg:justify-start gap-2 px-3 py-2.5 lg:py-2 text-sm font-medium rounded-md transition-all
+            w-full lg:w-auto flex items-center justify-between lg:justify-start gap-2 px-4 py-3 lg:px-3 lg:py-2 text-sm font-medium rounded-md transition-all
             ${
               pathname?.startsWith(`/${key}`)
                 ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-white/10 dark:backdrop-blur-sm'
@@ -496,7 +496,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
             router.push(href);
           }}
           className={`
-            w-full lg:w-auto flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all
+            w-full lg:w-auto flex items-center gap-2 px-4 py-3 lg:py-2 text-sm font-medium rounded-lg transition-all
             ${
               isActive
                 ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
@@ -536,7 +536,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
           }
         }}
         className={`
-          w-full lg:w-auto flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all
+          w-full lg:w-auto flex items-center gap-2 px-4 py-3 lg:py-2 text-sm font-medium rounded-lg transition-all
           ${
             isActive
               ? 'text-gray-900 dark:text-gray-50 bg-gray-100 dark:bg-gray-900'
@@ -552,7 +552,7 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
   };
 
   return (
-    <nav className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-2 w-full lg:w-auto">
+    <nav className="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-2 w-full lg:w-auto">
       {Object.entries(navItems).map(([key, item]) => renderNavItem(key, item))}
     </nav>
   );
