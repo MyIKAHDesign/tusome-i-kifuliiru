@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { Home, BookOpen, Info } from 'lucide-react';
+import { BookOpen, Info, Mail, ExternalLink } from 'lucide-react';
 import ThemeSwitch from './ThemeSwitch';
 
 interface MetaItem {
@@ -11,6 +11,11 @@ interface MetaItem {
   href?: string;
   newWindow?: boolean;
   items?: Record<string, MetaItem>;
+}
+
+interface FooterSection {
+  title: string;
+  links: Array<{ title: string; href: string; external?: boolean }>;
 }
 
 export default function Footer() {
@@ -32,96 +37,129 @@ export default function Footer() {
     loadMeta();
   }, []);
 
-  // Build navigation items for footer
-  const buildFooterNav = (): Record<string, { title: string; href: string }> => {
-    const getItemHref = (item: MetaItem | string | undefined, defaultKey: string): string => {
-      if (typeof item === 'object' && item?.href) return item.href;
-      return `/${defaultKey}`;
-    };
-
-    const getItemTitle = (item: MetaItem | string | undefined, defaultTitle: string): string => {
-      if (typeof item === 'string') return item;
-      if (typeof item === 'object' && item?.title) return item.title;
-      return defaultTitle;
-    };
-
-    return {
-      home: { title: 'Home', href: '/' },
-      tusome: { title: 'Tusome', href: '/tusome' },
-      kifuliiru: { 
-        title: getItemTitle(navMeta.kifuliiru, 'Kifuliiru'), 
-        href: getItemHref(navMeta.kifuliiru, 'kifuliiru') 
-      },
-      imwitu: { 
-        title: getItemTitle(navMeta.imwitu, 'Imwitu'), 
-        href: getItemHref(navMeta.imwitu, 'imwitu') 
-      },
-      twehe: { 
-        title: getItemTitle(navMeta.twehe, 'Twehe'), 
-        href: getItemHref(navMeta.twehe, 'twehe') 
-      },
-    };
+  const getItemHref = (item: MetaItem | string | undefined, defaultKey: string): string => {
+    if (typeof item === 'object' && item?.href) return item.href;
+    return `/${defaultKey}`;
   };
 
-  const footerNavItems = buildFooterNav();
-
-  const getIcon = (key: string) => {
-    switch (key) {
-      case 'home':
-        return <Home className="w-4 h-4" />;
-      case 'tusome':
-        return <BookOpen className="w-4 h-4" />;
-      case 'kifuliiru':
-      case 'imwitu':
-        return <BookOpen className="w-4 h-4" />;
-      case 'twehe':
-        return <Info className="w-4 h-4" />;
-      default:
-        return null;
-    }
+  const getItemTitle = (item: MetaItem | string | undefined, defaultTitle: string): string => {
+    if (typeof item === 'string') return item;
+    if (typeof item === 'object' && item?.title) return item.title;
+    return defaultTitle;
   };
+
+  // Build footer sections
+  const buildFooterSections = (): FooterSection[] => {
+    const sections: FooterSection[] = [
+      {
+        title: 'Learning',
+        links: [
+          { title: 'Home', href: '/' },
+          { title: getItemTitle(navMeta.ndondeero_tusome, 'Menya Bino'), href: '/ndondeero_tusome' },
+          { title: getItemTitle(navMeta.amagambo, 'Tusome Amagambo'), href: '/amagambo' },
+          { title: getItemTitle(navMeta.ukuharura, 'Ukuharura'), href: '/ukuharura' },
+          { title: getItemTitle(navMeta.imigani, 'Imigani'), href: '/imigani' },
+          { title: getItemTitle(navMeta.imigeeza, 'Imigeeza'), href: '/imigeeza' },
+          { title: getItemTitle(navMeta.imwitu, 'Imwitu'), href: '/imwitu' },
+        ],
+      },
+      {
+        title: 'Resources',
+        links: [
+          { title: getItemTitle(navMeta.kifuliiru, 'Kifuliiru'), href: '/kifuliiru' },
+          { title: getItemTitle(navMeta['bingi-ku-kifuliiru'], 'Bingi ku Kifuliiru'), href: '/bingi-ku-kifuliiru' },
+          { title: getItemTitle(navMeta['eng-frn-swa'], 'ENG/SWA/FRN'), href: '/eng-frn-swa' },
+        ],
+      },
+      {
+        title: 'About',
+        links: [
+          { title: getItemTitle(navMeta.twehe, 'Twehe'), href: '/twehe' },
+          { 
+            title: 'Contact Us', 
+            href: 'https://www.kifuliiru.com/contact',
+            external: true 
+          },
+        ],
+      },
+      {
+        title: 'Links',
+        links: [
+          { 
+            title: 'Kifuliiru Lab', 
+            href: 'https://kifuliiru.org',
+            external: true 
+          },
+          { 
+            title: 'Kifuliiru.com', 
+            href: 'https://www.kifuliiru.com',
+            external: true 
+          },
+        ],
+      },
+    ];
+
+    return sections;
+  };
+
+  const footerSections = buildFooterSections();
 
   return (
     <footer className="border-t border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 dark:backdrop-blur-xl mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
-        {/* Navigation Menu - Bottom */}
-        <nav className="mb-6">
-          <ul className="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-3 md:gap-4 lg:gap-6 text-sm">
-            {Object.entries(footerNavItems).map(([key, item]) => {
-              const isActive = pathname === item.href || pathname?.startsWith(`${item.href}/`);
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        {/* Footer Menu Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+          {footerSections.map((section) => (
+            <div key={section.title}>
+              <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-50 mb-4">
+                {section.title}
+              </h3>
+              <ul className="space-y-3">
+                {section.links.map((link) => {
+                  const isActive = !link.external && (
+                    pathname === link.href || pathname?.startsWith(`${link.href}/`)
+                  );
 
-              return (
-                <li key={key}>
-                  <a
-                    href={item.href}
-                    className={`flex items-center gap-1.5 px-3 py-2 rounded-md transition-colors ${
-                      isActive
-                        ? 'text-gray-900 dark:text-gray-50 font-medium bg-gray-100 dark:bg-white/10'
-                        : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-white/5'
-                    }`}
-                  >
-                    {getIcon(key)}
-                    <span>{item.title}</span>
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+                  return (
+                    <li key={link.href}>
+                      <a
+                        href={link.href}
+                        target={link.external ? '_blank' : undefined}
+                        rel={link.external ? 'noopener noreferrer' : undefined}
+                        className={`flex items-center gap-1.5 text-sm transition-colors ${
+                          isActive
+                            ? 'text-gray-900 dark:text-gray-50 font-medium'
+                            : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50'
+                        }`}
+                      >
+                        <span>{link.title}</span>
+                        {link.external && (
+                          <ExternalLink className="w-3 h-3 opacity-60" />
+                        )}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+        </div>
 
-        {/* Copyright and Theme Switch - Same Row */}
-        <div className="flex flex-row items-center justify-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-          <span>{new Date().getFullYear()} ©</span>
-          <a
-            href="https://kifuliiru.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-700 dark:text-gray-300 font-medium hover:text-gray-900 dark:hover:text-gray-50 transition-colors"
-          >
-            Kifuliiru Lab
-          </a>
-          <span className="text-gray-400 dark:text-gray-600">•</span>
-          <ThemeSwitch />
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-200 dark:border-white/10 pt-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            {/* Copyright */}
+            <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-sm text-gray-600 dark:text-gray-400">
+              <span>{new Date().getFullYear()} © Tusome i Kifuliiru</span>
+              <span className="hidden md:inline text-gray-400 dark:text-gray-600">•</span>
+              <span>All rights reserved</span>
+            </div>
+
+            {/* Theme Switch */}
+            <div className="flex items-center gap-2">
+              <ThemeSwitch />
+            </div>
+          </div>
         </div>
       </div>
     </footer>
