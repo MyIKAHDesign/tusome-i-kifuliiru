@@ -457,9 +457,9 @@ export default function MobileNavigation({ items }: MobileNavigationProps) {
   };
 
   return (
-    <nav className="flex flex-col gap-3 w-full">
+    <nav className="flex flex-col gap-3 w-full" style={{ display: 'flex', flexDirection: 'column' }}>
       {Object.entries(navItems).map(([key, item]) => (
-        <div key={key} className="w-full">
+        <div key={key} className="w-full" style={{ width: '100%', display: 'block' }}>
           {renderNavItem(key, item)}
         </div>
       ))}
