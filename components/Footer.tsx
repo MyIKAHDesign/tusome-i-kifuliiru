@@ -86,7 +86,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Navigation Menu - Bottom */}
         <nav className="mb-6">
-          <ul className="flex flex-wrap items-center justify-center gap-4 lg:gap-6 text-sm">
+          <ul className="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-3 md:gap-4 lg:gap-6 text-sm">
             {Object.entries(footerNavItems).map(([key, item]) => {
               const isActive = pathname === item.href || pathname?.startsWith(`${item.href}/`);
 
