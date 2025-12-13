@@ -150,9 +150,17 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Copyright */}
             <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-sm text-gray-600 dark:text-gray-400">
-              <span>{new Date().getFullYear()} © Tusome i Kifuliiru</span>
-              <span className="hidden md:inline text-gray-400 dark:text-gray-600">•</span>
-              <span>All rights reserved</span>
+              <span>
+                {new Date().getFullYear()} ©{' '}
+                <a
+                  href="https://kifuliiru.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-700 dark:text-gray-300 font-medium hover:text-gray-900 dark:hover:text-gray-50 transition-colors"
+                >
+                  Kifuliiru Lab
+                </a>
+              </span>
             </div>
 
             {/* Theme Switch */}
