@@ -20,6 +20,11 @@ export default function MobileNavigation({ items }: MobileNavigationProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  
+  // Debug: Log to confirm this component is being used
+  if (typeof window !== 'undefined') {
+    console.log('MobileNavigation component is rendering');
+  }
 
   // Build the navigation structure
   const buildNavigation = () => {
@@ -457,12 +462,14 @@ export default function MobileNavigation({ items }: MobileNavigationProps) {
   };
 
   return (
-    <nav className="flex flex-col gap-3 w-full" style={{ display: 'flex', flexDirection: 'column' }}>
-      {Object.entries(navItems).map(([key, item]) => (
-        <div key={key} className="w-full" style={{ width: '100%', display: 'block' }}>
-          {renderNavItem(key, item)}
-        </div>
-      ))}
-    </nav>
+    <div className="w-full">
+      <nav className="flex flex-col gap-3 w-full" style={{ display: 'flex', flexDirection: 'column', flexWrap: 'nowrap' }}>
+        {Object.entries(navItems).map(([key, item]) => (
+          <div key={key} className="w-full block" style={{ width: '100%', display: 'block', flexShrink: 0 }}>
+            {renderNavItem(key, item)}
+          </div>
+        ))}
+      </nav>
+    </div>
   );
 }
