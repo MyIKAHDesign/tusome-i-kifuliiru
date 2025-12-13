@@ -83,42 +83,12 @@ export default function Footer() {
         ],
       },
       {
-        title: 'Links',
+        title: 'Platforms',
         links: [
           { 
-            title: 'Kifuliiru Lab', 
-            href: 'https://kifuliiru.org',
-            external: true 
-          },
-          { 
-            title: 'Kifuliiru.com', 
-            href: 'https://www.kifuliiru.com',
-            external: true 
-          },
-          { 
-            title: 'Kifuliiru Dictionary', 
-            href: 'https://dictionary.kifuliiru.net/',
-            external: true 
-          },
-          { 
-            title: 'imyazi.com', 
-            href: 'https://imyazi.com',
-            external: true 
-          },
-          { 
-            title: 'Kifuliiru Books', 
-            href: 'https://www.kifuliiru.com/books',
-            external: true 
-          },
-          { 
-            title: 'Kifuliiru Bookstore', 
-            href: 'https://www.kifuliiru.com/bookstore',
-            external: true 
-          },
-          { 
-            title: 'Kifuliiru Audio', 
-            href: 'https://www.kifuliiru.com/audio',
-            external: true 
+            title: 'Our Other Platforms', 
+            href: '/our-platforms',
+            external: false 
           },
         ],
       },
