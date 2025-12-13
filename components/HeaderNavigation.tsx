@@ -553,7 +553,11 @@ export default function HeaderNavigation({ items }: HeaderNavigationProps) {
 
   return (
     <nav className="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-2 w-full lg:w-auto">
-      {Object.entries(navItems).map(([key, item]) => renderNavItem(key, item))}
+      {Object.entries(navItems).map(([key, item]) => (
+        <div key={key} className="w-full block lg:w-auto lg:inline-block">
+          {renderNavItem(key, item)}
+        </div>
+      ))}
     </nav>
   );
 }
