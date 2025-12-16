@@ -69,7 +69,7 @@ export default function Header() {
               className="flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-medium transition-colors"
             >
               <Mail className="w-4 h-4" />
-              <span>Contact Us</span>
+              <span>Tuyandikire</span>
             </a>
           </nav>
 
@@ -107,7 +107,7 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Mail className="w-4 h-4" />
-                <span>Contact Us</span>
+                <span>Tuyandikire</span>
               </a>
             </div>
           </div>
