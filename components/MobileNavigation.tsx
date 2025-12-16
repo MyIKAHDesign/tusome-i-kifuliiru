@@ -71,7 +71,7 @@ export default function MobileNavigation({ items }: MobileNavigationProps) {
     }
     
     return {
-      home: { title: 'Home', type: 'page' as const, href: '/' },
+      home: { title: 'Ikaya', type: 'page' as const, href: '/' },
       tusome: { title: 'Tusome', type: 'page' as const, href: '/tusome' },
       kifuliiru: {
         title: 'Kifuliiru',

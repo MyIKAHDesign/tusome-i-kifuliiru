@@ -54,7 +54,7 @@ export default function Footer() {
       {
         title: 'Learning',
         links: [
-          { title: 'Home', href: '/' },
+          { title: 'Ikaya', href: '/' },
           { title: getItemTitle(navMeta.ndondeero_tusome, 'Menya Bino'), href: '/ndondeero_tusome' },
           { title: getItemTitle(navMeta.amagambo, 'Tusome Amagambo'), href: '/amagambo' },
           { title: getItemTitle(navMeta.ukuharura, 'Ukuharura'), href: '/ukuharura' },
