@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import PageNavigation from './PageNavigation';
+import ChatBot from './ChatBot';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -21,6 +22,8 @@ export default function Layout({ children }: LayoutProps) {
       <Footer />
       {/* Floating Page Navigation */}
       <PageNavigation />
+      {/* ChatBot */}
+      <ChatBot />
     </div>
   );
 }
